@@ -1,0 +1,32 @@
+{
+  "dataset_id": "synthetic_cn_complete_match_v1",
+  "schema_version": "goai.complete_match.v1",
+  "status": "passed",
+  "checks": {
+    "quarter_count": 20,
+    "team_count": 20,
+    "public_team_rows": 400,
+    "global_order_count": 60,
+    "annual_report_count": 5,
+    "metric_bundle_count": 20,
+    "decision_cycle_count": 20,
+    "cash_continuity": "passed",
+    "balance_sheet_identity": "passed",
+    "foreign_keys": "passed"
+  },
+  "errors": [],
+  "expected_rule_gaps": [
+    "formal_rule_manual",
+    "initial_non_cash_assets",
+    "phase_action_permissions",
+    "global_order_pool_binding",
+    "advertising_and_order_allocation",
+    "materials_and_bom",
+    "financing_limits_and_settlement",
+    "production_and_delivery_timing",
+    "depreciation_and_tax",
+    "bankruptcy_and_penalties",
+    "final_scoring"
+  ],
+  "data_use_restriction": "synthetic reference only; never merge into observed historical training data"
+}

@@ -1,0 +1,4227 @@
+{
+  "team_id": "CN01",
+  "initial_state": {
+    "state_id": "state_2654897b0b00b804",
+    "match_id": "SYN-CN-001",
+    "team_id": "CN01",
+    "rule_pack_id": "rule_family_cn_observed_v1",
+    "rule_version": "0.1-provisional",
+    "period": {
+      "year": 1,
+      "quarter": 1,
+      "phase": "year_start"
+    },
+    "cash_wan": 600.0,
+    "share_capital_wan": 600,
+    "retained_earnings_wan": 0,
+    "loans": [],
+    "receivables": [],
+    "workshops": [],
+    "production_lines": [],
+    "inventory": {
+      "materials": {},
+      "products": {},
+      "work_in_process": []
+    },
+    "qualifications": {
+      "markets": [],
+      "products": [],
+      "iso": []
+    },
+    "orders": [],
+    "provenance": {
+      "status": "simulated",
+      "basis": [
+        "600W observed initial-capital fingerprint"
+      ],
+      "note": "除初始资本外均为结构样例",
+      "training_eligible": false
+    }
+  },
+  "events": [
+    {
+      "event_id": "EVT-0001",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "BUY_PRODUCT_LINE",
+      "payload": {
+        "line_id": "LINE-01",
+        "line_type": "automatic",
+        "investment_wan": 150,
+        "availability": "immediate_synthetic_assumption"
+      },
+      "cash_delta_wan": -150.0,
+      "cash_before_wan": 600.0,
+      "cash_after_wan": 450.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0002",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_AD",
+      "payload": {
+        "amount_wan": 9.0,
+        "market": "local",
+        "product_id": "P1"
+      },
+      "cash_delta_wan": -9.0,
+      "cash_before_wan": 450.0,
+      "cash_after_wan": 441.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0003",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "DEVELOP_MARKET",
+      "payload": {
+        "market_id": "local",
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 441.0,
+      "cash_after_wan": 431.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0004",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "DEVELOP_PRODUCT",
+      "payload": {
+        "product_id": "P1",
+        "amount_wan": 10,
+        "progress_quarters": 1
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 431.0,
+      "cash_after_wan": 421.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0005",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 421.0,
+      "cash_after_wan": 411.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0006",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y1Q1",
+        "amount_wan": 18.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -18.0,
+      "cash_before_wan": 411.0,
+      "cash_after_wan": 393.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0007",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 393.0,
+      "cash_after_wan": 388.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0008",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y1Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 388.0,
+      "cash_after_wan": 388.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0009",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y1Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 96.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 96.0,
+      "cash_before_wan": 388.0,
+      "cash_after_wan": 484.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0010",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "DEVELOP_PRODUCT",
+      "payload": {
+        "product_id": "P1",
+        "amount_wan": 10,
+        "progress_quarters": 2
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 484.0,
+      "cash_after_wan": 474.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0011",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 474.0,
+      "cash_after_wan": 464.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0012",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y1Q2",
+        "amount_wan": 20.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -20.0,
+      "cash_before_wan": 464.0,
+      "cash_after_wan": 444.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0013",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 444.0,
+      "cash_after_wan": 439.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0014",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y1Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 439.0,
+      "cash_after_wan": 439.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0015",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y1Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 103.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 103.0,
+      "cash_before_wan": 439.0,
+      "cash_after_wan": 542.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0016",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 542.0,
+      "cash_after_wan": 532.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0017",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y1Q3",
+        "amount_wan": 22.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -22.0,
+      "cash_before_wan": 532.0,
+      "cash_after_wan": 510.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0018",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 510.0,
+      "cash_after_wan": 505.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0019",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y1Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 505.0,
+      "cash_after_wan": 505.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0020",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y1Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 102.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 102.0,
+      "cash_before_wan": 505.0,
+      "cash_after_wan": 607.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0021",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 607.0,
+      "cash_after_wan": 597.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0022",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y1Q4",
+        "amount_wan": 18.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -18.0,
+      "cash_before_wan": 597.0,
+      "cash_after_wan": 579.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0023",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 579.0,
+      "cash_after_wan": 574.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0024",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y1Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 574.0,
+      "cash_after_wan": 574.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0025",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y1Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 109.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 109.0,
+      "cash_before_wan": 574.0,
+      "cash_after_wan": 683.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0026",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 1,
+        "quarter": 4,
+        "phase": "year_end"
+      },
+      "event_type": "DEPRECIATE_LINES",
+      "payload": {
+        "line_id": "LINE-01",
+        "amount_wan": 20.0,
+        "book_value_after_wan": 130.0
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 683.0,
+      "cash_after_wan": 683.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0027",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_AD",
+      "payload": {
+        "amount_wan": 10.0,
+        "market": "local",
+        "product_id": "P1"
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 683.0,
+      "cash_after_wan": 673.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0028",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 673.0,
+      "cash_after_wan": 663.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0029",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y2Q1",
+        "amount_wan": 20.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -20.0,
+      "cash_before_wan": 663.0,
+      "cash_after_wan": 643.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0030",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 643.0,
+      "cash_after_wan": 638.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0031",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y2Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 638.0,
+      "cash_after_wan": 638.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0032",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y2Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 108.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 108.0,
+      "cash_before_wan": 638.0,
+      "cash_after_wan": 746.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0033",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 746.0,
+      "cash_after_wan": 736.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0034",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y2Q2",
+        "amount_wan": 22.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -22.0,
+      "cash_before_wan": 736.0,
+      "cash_after_wan": 714.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0035",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 714.0,
+      "cash_after_wan": 709.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0036",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y2Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 709.0,
+      "cash_after_wan": 709.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0037",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y2Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 115.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 115.0,
+      "cash_before_wan": 709.0,
+      "cash_after_wan": 824.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0038",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 824.0,
+      "cash_after_wan": 814.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0039",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y2Q3",
+        "amount_wan": 18.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -18.0,
+      "cash_before_wan": 814.0,
+      "cash_after_wan": 796.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0040",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 796.0,
+      "cash_after_wan": 791.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0041",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y2Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 791.0,
+      "cash_after_wan": 791.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0042",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y2Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 114.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 114.0,
+      "cash_before_wan": 791.0,
+      "cash_after_wan": 905.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0043",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 905.0,
+      "cash_after_wan": 895.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0044",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y2Q4",
+        "amount_wan": 20.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -20.0,
+      "cash_before_wan": 895.0,
+      "cash_after_wan": 875.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0045",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 875.0,
+      "cash_after_wan": 870.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0046",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y2Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 870.0,
+      "cash_after_wan": 870.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0047",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y2Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 121.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 121.0,
+      "cash_before_wan": 870.0,
+      "cash_after_wan": 991.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0048",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 2,
+        "quarter": 4,
+        "phase": "year_end"
+      },
+      "event_type": "DEPRECIATE_LINES",
+      "payload": {
+        "line_id": "LINE-01",
+        "amount_wan": 20.0,
+        "book_value_after_wan": 110.0
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 991.0,
+      "cash_after_wan": 991.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0049",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_AD",
+      "payload": {
+        "amount_wan": 11.0,
+        "market": "local",
+        "product_id": "P1"
+      },
+      "cash_delta_wan": -11.0,
+      "cash_before_wan": 991.0,
+      "cash_after_wan": 980.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0050",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 980.0,
+      "cash_after_wan": 970.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0051",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y3Q1",
+        "amount_wan": 22.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -22.0,
+      "cash_before_wan": 970.0,
+      "cash_after_wan": 948.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0052",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 948.0,
+      "cash_after_wan": 943.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0053",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y3Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 943.0,
+      "cash_after_wan": 943.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0054",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y3Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 120.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 120.0,
+      "cash_before_wan": 943.0,
+      "cash_after_wan": 1063.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0055",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1063.0,
+      "cash_after_wan": 1053.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0056",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y3Q2",
+        "amount_wan": 18.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -18.0,
+      "cash_before_wan": 1053.0,
+      "cash_after_wan": 1035.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0057",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1035.0,
+      "cash_after_wan": 1030.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0058",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y3Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1030.0,
+      "cash_after_wan": 1030.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0059",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y3Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 127.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 127.0,
+      "cash_before_wan": 1030.0,
+      "cash_after_wan": 1157.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0060",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1157.0,
+      "cash_after_wan": 1147.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0061",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y3Q3",
+        "amount_wan": 20.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -20.0,
+      "cash_before_wan": 1147.0,
+      "cash_after_wan": 1127.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0062",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1127.0,
+      "cash_after_wan": 1122.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0063",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y3Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1122.0,
+      "cash_after_wan": 1122.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0064",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y3Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 126.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 126.0,
+      "cash_before_wan": 1122.0,
+      "cash_after_wan": 1248.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0065",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1248.0,
+      "cash_after_wan": 1238.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0066",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y3Q4",
+        "amount_wan": 22.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -22.0,
+      "cash_before_wan": 1238.0,
+      "cash_after_wan": 1216.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0067",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1216.0,
+      "cash_after_wan": 1211.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0068",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y3Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1211.0,
+      "cash_after_wan": 1211.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0069",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y3Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 133.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 133.0,
+      "cash_before_wan": 1211.0,
+      "cash_after_wan": 1344.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0070",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 3,
+        "quarter": 4,
+        "phase": "year_end"
+      },
+      "event_type": "DEPRECIATE_LINES",
+      "payload": {
+        "line_id": "LINE-01",
+        "amount_wan": 20.0,
+        "book_value_after_wan": 90.0
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1344.0,
+      "cash_after_wan": 1344.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0071",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_AD",
+      "payload": {
+        "amount_wan": 12.0,
+        "market": "local",
+        "product_id": "P1"
+      },
+      "cash_delta_wan": -12.0,
+      "cash_before_wan": 1344.0,
+      "cash_after_wan": 1332.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0072",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1332.0,
+      "cash_after_wan": 1322.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0073",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y4Q1",
+        "amount_wan": 18.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -18.0,
+      "cash_before_wan": 1322.0,
+      "cash_after_wan": 1304.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0074",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1304.0,
+      "cash_after_wan": 1299.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0075",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y4Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1299.0,
+      "cash_after_wan": 1299.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0076",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y4Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 132.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 132.0,
+      "cash_before_wan": 1299.0,
+      "cash_after_wan": 1431.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0077",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1431.0,
+      "cash_after_wan": 1421.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0078",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y4Q2",
+        "amount_wan": 20.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -20.0,
+      "cash_before_wan": 1421.0,
+      "cash_after_wan": 1401.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0079",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1401.0,
+      "cash_after_wan": 1396.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0080",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y4Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1396.0,
+      "cash_after_wan": 1396.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0081",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y4Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 139.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 139.0,
+      "cash_before_wan": 1396.0,
+      "cash_after_wan": 1535.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0082",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1535.0,
+      "cash_after_wan": 1525.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0083",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y4Q3",
+        "amount_wan": 22.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -22.0,
+      "cash_before_wan": 1525.0,
+      "cash_after_wan": 1503.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0084",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1503.0,
+      "cash_after_wan": 1498.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0085",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y4Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1498.0,
+      "cash_after_wan": 1498.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0086",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y4Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 138.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 138.0,
+      "cash_before_wan": 1498.0,
+      "cash_after_wan": 1636.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0087",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1636.0,
+      "cash_after_wan": 1626.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0088",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y4Q4",
+        "amount_wan": 18.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -18.0,
+      "cash_before_wan": 1626.0,
+      "cash_after_wan": 1608.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0089",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1608.0,
+      "cash_after_wan": 1603.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0090",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y4Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1603.0,
+      "cash_after_wan": 1603.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0091",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y4Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 145.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 145.0,
+      "cash_before_wan": 1603.0,
+      "cash_after_wan": 1748.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0092",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 4,
+        "quarter": 4,
+        "phase": "year_end"
+      },
+      "event_type": "DEPRECIATE_LINES",
+      "payload": {
+        "line_id": "LINE-01",
+        "amount_wan": 20.0,
+        "book_value_after_wan": 70.0
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1748.0,
+      "cash_after_wan": 1748.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0093",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_AD",
+      "payload": {
+        "amount_wan": 13.0,
+        "market": "local",
+        "product_id": "P1"
+      },
+      "cash_delta_wan": -13.0,
+      "cash_before_wan": 1748.0,
+      "cash_after_wan": 1735.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0094",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1735.0,
+      "cash_after_wan": 1725.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0095",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y5Q1",
+        "amount_wan": 20.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -20.0,
+      "cash_before_wan": 1725.0,
+      "cash_after_wan": 1705.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0096",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1705.0,
+      "cash_after_wan": 1700.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0097",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y5Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1700.0,
+      "cash_after_wan": 1700.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0098",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 1,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y5Q1-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 144.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 144.0,
+      "cash_before_wan": 1700.0,
+      "cash_after_wan": 1844.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0099",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1844.0,
+      "cash_after_wan": 1834.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0100",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y5Q2",
+        "amount_wan": 22.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -22.0,
+      "cash_before_wan": 1834.0,
+      "cash_after_wan": 1812.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0101",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1812.0,
+      "cash_after_wan": 1807.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0102",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y5Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1807.0,
+      "cash_after_wan": 1807.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0103",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 2,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y5Q2-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 151.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 151.0,
+      "cash_before_wan": 1807.0,
+      "cash_after_wan": 1958.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0104",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 1958.0,
+      "cash_after_wan": 1948.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0105",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y5Q3",
+        "amount_wan": 18.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -18.0,
+      "cash_before_wan": 1948.0,
+      "cash_after_wan": 1930.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0106",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 2,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 1930.0,
+      "cash_after_wan": 1925.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0107",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y5Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 1925.0,
+      "cash_after_wan": 1925.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0108",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 3,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y5Q3-A",
+        "product_id": "P1",
+        "quantity": 2,
+        "revenue_wan": 150.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 150.0,
+      "cash_before_wan": 1925.0,
+      "cash_after_wan": 2075.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0109",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MANAGEMENT_FEE",
+      "payload": {
+        "amount_wan": 10
+      },
+      "cash_delta_wan": -10.0,
+      "cash_before_wan": 2075.0,
+      "cash_after_wan": 2065.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0110",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "PAY_MATERIAL",
+      "payload": {
+        "material_bundle_id": "MAT-Y5Q4",
+        "amount_wan": 20.0,
+        "bom_status": "missing_rule_simulated_bundle"
+      },
+      "cash_delta_wan": -20.0,
+      "cash_before_wan": 2065.0,
+      "cash_after_wan": 2045.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0111",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "START_PRODUCTION",
+      "payload": {
+        "line_id": "LINE-01",
+        "product_id": "P1",
+        "quantity": 3,
+        "processing_cost_wan": 5.0
+      },
+      "cash_delta_wan": -5.0,
+      "cash_before_wan": 2045.0,
+      "cash_after_wan": 2040.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0112",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "ORDER_OBTAINED",
+      "payload": {
+        "order_id": "ORD-Y5Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "market_id": "local"
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 2040.0,
+      "cash_after_wan": 2040.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0113",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 4,
+        "phase": "during_quarter"
+      },
+      "event_type": "SELL_PRODUCT",
+      "payload": {
+        "order_id": "ORD-Y5Q4-A",
+        "product_id": "P1",
+        "quantity": 3,
+        "revenue_wan": 157.0,
+        "payment_term_quarters": 0
+      },
+      "cash_delta_wan": 157.0,
+      "cash_before_wan": 2040.0,
+      "cash_after_wan": 2197.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    },
+    {
+      "event_id": "EVT-0114",
+      "source": "synthetic_generator",
+      "period": {
+        "year": 5,
+        "quarter": 4,
+        "phase": "year_end"
+      },
+      "event_type": "DEPRECIATE_LINES",
+      "payload": {
+        "line_id": "LINE-01",
+        "amount_wan": 20.0,
+        "book_value_after_wan": 50.0
+      },
+      "cash_delta_wan": 0.0,
+      "cash_before_wan": 2197.0,
+      "cash_after_wan": 2197.0,
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "用于展示标准事件结构和现金连续性",
+        "training_eligible": false
+      }
+    }
+  ],
+  "quarter_snapshots": [
+    {
+      "state_id": "state_e8dc937338adda5e",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_2654897b0b00b804",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 484.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 34.0,
+      "assets_total_wan": 634.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 150.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y1Q1-A",
+          "status": "delivered",
+          "revenue_wan": 96.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 96.0,
+        "material": 18.0,
+        "processing": 5.0,
+        "management": 10.0,
+        "advertising": 9.0,
+        "market_development": 10.0,
+        "product_development": 10.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 150.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_6da0c4ae6d8fc5b3",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_e8dc937338adda5e",
+      "period": {
+        "year": 1,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 542.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 92.0,
+      "assets_total_wan": 692.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 150.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y1Q2-A",
+          "status": "delivered",
+          "revenue_wan": 103.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 199.0,
+        "material": 38.0,
+        "processing": 10.0,
+        "management": 20.0,
+        "advertising": 9.0,
+        "market_development": 10.0,
+        "product_development": 20.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 150.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_940539d6ff76116c",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_6da0c4ae6d8fc5b3",
+      "period": {
+        "year": 1,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 607.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 157.0,
+      "assets_total_wan": 757.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 150.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y1Q3-A",
+          "status": "delivered",
+          "revenue_wan": 102.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 301.0,
+        "material": 60.0,
+        "processing": 15.0,
+        "management": 30.0,
+        "advertising": 9.0,
+        "market_development": 10.0,
+        "product_development": 20.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 150.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_98acaffda9092d7e",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_940539d6ff76116c",
+      "period": {
+        "year": 1,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 683.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 213.0,
+      "assets_total_wan": 813.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 130.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y1Q4-A",
+          "status": "delivered",
+          "revenue_wan": 109.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 410.0,
+        "material": 78.0,
+        "processing": 20.0,
+        "management": 40.0,
+        "advertising": 9.0,
+        "market_development": 10.0,
+        "product_development": 20.0,
+        "depreciation": 20.0,
+        "capital_expenditure": 150.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_360cfdf794b7b57a",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_98acaffda9092d7e",
+      "period": {
+        "year": 2,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 746.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 276.0,
+      "assets_total_wan": 876.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 130.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y2Q1-A",
+          "status": "delivered",
+          "revenue_wan": 108.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 108.0,
+        "material": 20.0,
+        "processing": 5.0,
+        "management": 10.0,
+        "advertising": 10.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_3c54414dedbbed01",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_360cfdf794b7b57a",
+      "period": {
+        "year": 2,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 824.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 354.0,
+      "assets_total_wan": 954.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 130.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y2Q2-A",
+          "status": "delivered",
+          "revenue_wan": 115.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 223.0,
+        "material": 42.0,
+        "processing": 10.0,
+        "management": 20.0,
+        "advertising": 10.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_c5db86f112ccea96",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_3c54414dedbbed01",
+      "period": {
+        "year": 2,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 905.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 435.0,
+      "assets_total_wan": 1035.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 130.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y2Q3-A",
+          "status": "delivered",
+          "revenue_wan": 114.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 337.0,
+        "material": 60.0,
+        "processing": 15.0,
+        "management": 30.0,
+        "advertising": 10.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_520882a2dfbee0fb",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_c5db86f112ccea96",
+      "period": {
+        "year": 2,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 991.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 501.0,
+      "assets_total_wan": 1101.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 110.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y2Q4-A",
+          "status": "delivered",
+          "revenue_wan": 121.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 458.0,
+        "material": 80.0,
+        "processing": 20.0,
+        "management": 40.0,
+        "advertising": 10.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 20.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_576b8124bcbee490",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_520882a2dfbee0fb",
+      "period": {
+        "year": 3,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1063.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 573.0,
+      "assets_total_wan": 1173.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 110.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y3Q1-A",
+          "status": "delivered",
+          "revenue_wan": 120.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 120.0,
+        "material": 22.0,
+        "processing": 5.0,
+        "management": 10.0,
+        "advertising": 11.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_f9c51958f2e33b7c",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_576b8124bcbee490",
+      "period": {
+        "year": 3,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1157.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 667.0,
+      "assets_total_wan": 1267.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 110.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y3Q2-A",
+          "status": "delivered",
+          "revenue_wan": 127.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 247.0,
+        "material": 40.0,
+        "processing": 10.0,
+        "management": 20.0,
+        "advertising": 11.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_f4731711f023f38c",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_f9c51958f2e33b7c",
+      "period": {
+        "year": 3,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1248.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 758.0,
+      "assets_total_wan": 1358.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 110.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y3Q3-A",
+          "status": "delivered",
+          "revenue_wan": 126.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 373.0,
+        "material": 60.0,
+        "processing": 15.0,
+        "management": 30.0,
+        "advertising": 11.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_5a74efd2e119fb33",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_f4731711f023f38c",
+      "period": {
+        "year": 3,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1344.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 834.0,
+      "assets_total_wan": 1434.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 90.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y3Q4-A",
+          "status": "delivered",
+          "revenue_wan": 133.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 506.0,
+        "material": 82.0,
+        "processing": 20.0,
+        "management": 40.0,
+        "advertising": 11.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 20.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_5a5961c21544487d",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_5a74efd2e119fb33",
+      "period": {
+        "year": 4,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1431.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 921.0,
+      "assets_total_wan": 1521.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 90.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y4Q1-A",
+          "status": "delivered",
+          "revenue_wan": 132.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 132.0,
+        "material": 18.0,
+        "processing": 5.0,
+        "management": 10.0,
+        "advertising": 12.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_eea78fc65b50bee8",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_5a5961c21544487d",
+      "period": {
+        "year": 4,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1535.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 1025.0,
+      "assets_total_wan": 1625.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 90.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y4Q2-A",
+          "status": "delivered",
+          "revenue_wan": 139.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 271.0,
+        "material": 38.0,
+        "processing": 10.0,
+        "management": 20.0,
+        "advertising": 12.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_000bc984703e3aed",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_eea78fc65b50bee8",
+      "period": {
+        "year": 4,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1636.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 1126.0,
+      "assets_total_wan": 1726.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 90.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y4Q3-A",
+          "status": "delivered",
+          "revenue_wan": 138.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 409.0,
+        "material": 60.0,
+        "processing": 15.0,
+        "management": 30.0,
+        "advertising": 12.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_c394260bd29685b7",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_000bc984703e3aed",
+      "period": {
+        "year": 4,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1748.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 1218.0,
+      "assets_total_wan": 1818.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 70.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y4Q4-A",
+          "status": "delivered",
+          "revenue_wan": 145.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 554.0,
+        "material": 78.0,
+        "processing": 20.0,
+        "management": 40.0,
+        "advertising": 12.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 20.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_af1d5796374e63fa",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_c394260bd29685b7",
+      "period": {
+        "year": 5,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1844.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 1314.0,
+      "assets_total_wan": 1914.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 70.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y5Q1-A",
+          "status": "delivered",
+          "revenue_wan": 144.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 144.0,
+        "material": 20.0,
+        "processing": 5.0,
+        "management": 10.0,
+        "advertising": 13.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_cf73a7f6eaee98db",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_af1d5796374e63fa",
+      "period": {
+        "year": 5,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 1958.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 1428.0,
+      "assets_total_wan": 2028.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 70.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y5Q2-A",
+          "status": "delivered",
+          "revenue_wan": 151.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 295.0,
+        "material": 42.0,
+        "processing": 10.0,
+        "management": 20.0,
+        "advertising": 13.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_80400ec840f68971",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_cf73a7f6eaee98db",
+      "period": {
+        "year": 5,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 2075.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 1545.0,
+      "assets_total_wan": 2145.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 70.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y5Q3-A",
+          "status": "delivered",
+          "revenue_wan": 150.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 445.0,
+        "material": 60.0,
+        "processing": 15.0,
+        "management": 30.0,
+        "advertising": 13.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 0.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    },
+    {
+      "state_id": "state_e478d7e2fa303a99",
+      "match_id": "SYN-CN-001",
+      "team_id": "CN01",
+      "rule_pack_id": "rule_family_cn_observed_v1",
+      "rule_version": "0.1-provisional",
+      "previous_state_id": "state_80400ec840f68971",
+      "period": {
+        "year": 5,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "cash_wan": 2197.0,
+      "share_capital_wan": 600.0,
+      "retained_earnings_wan": 1647.0,
+      "assets_total_wan": 2247.0,
+      "liabilities_total_wan": 0.0,
+      "loans": [],
+      "receivables": [],
+      "workshops": [],
+      "production_lines": [
+        {
+          "line_id": "LINE-01",
+          "line_type": "automatic",
+          "product_id": "P1",
+          "status": "operational",
+          "book_value_wan": 50.0
+        }
+      ],
+      "inventory": {
+        "materials": {},
+        "products": {
+          "P1": 0
+        },
+        "work_in_process": []
+      },
+      "qualifications": {
+        "markets": [
+          "local"
+        ],
+        "products": [
+          "P1"
+        ],
+        "iso": []
+      },
+      "orders": [
+        {
+          "order_id": "ORD-Y5Q4-A",
+          "status": "delivered",
+          "revenue_wan": 157.0
+        }
+      ],
+      "annual_ledger_so_far": {
+        "sales": 602.0,
+        "material": 80.0,
+        "processing": 20.0,
+        "management": 40.0,
+        "advertising": 13.0,
+        "market_development": 0.0,
+        "product_development": 0.0,
+        "depreciation": 20.0,
+        "capital_expenditure": 0.0
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "由本样例事件确定性派生",
+        "training_eligible": false
+      }
+    }
+  ],
+  "provenance": {
+    "status": "simulated",
+    "basis": [
+      "部分规则字段参考中文十簇观察指纹"
+    ],
+    "note": "完整五年流程是接口样例，不是历史企业记录",
+    "training_eligible": false
+  }
+}

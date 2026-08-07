@@ -1,0 +1,24 @@
+# Python and test artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local/shared data links and generated data.  These are intentionally outside Git.
+/data
+/origin data
+/output/
+/runs/
+
+# Local settings and credentials
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+.DS_Store
+*.swp
+
