@@ -1,0 +1,15 @@
+﻿record_id,competition_id,team_id,material_id,quantity,remaining_time,remaining_time_unit,order_year,order_quarter,source_id,source_path,source_sheet,source_row
+8c66176e05a3ee5e,historical_600_unknown_rule,ZY02,R3,3.0,1.0,quarter,5,3,src_bef4b86b4c71,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY02.xls,库存信息,4
+551b8bbd9abd7b66,historical_600_unknown_rule,ZY02,R4,2.0,1.0,quarter,5,3,src_bef4b86b4c71,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY02.xls,库存信息,5
+ac90af5fa5056a5a,historical_600_unknown_rule,ZY02,R3,1.0,2.0,quarter,5,4,src_bef4b86b4c71,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY02.xls,库存信息,6
+11b51e12ef9b6e52,historical_600_unknown_rule,ZY02,R4,2.0,2.0,quarter,5,4,src_bef4b86b4c71,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY02.xls,库存信息,7
+a4c06fe7d244e47b,historical_600_unknown_rule,ZY11,R3,3.0,1.0,quarter,5,3,src_1179379453a7,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY11.xls,库存信息,4
+c9db379b79c317cb,historical_600_unknown_rule,ZY14,R3,4.0,1.0,quarter,5,3,src_27029786bf11,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY14.xls,库存信息,4
+a6d010ef68f8f0fe,historical_600_unknown_rule,ZY14,R4,2.0,1.0,quarter,5,3,src_27029786bf11,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY14.xls,库存信息,5
+0242276b793f937f,historical_600_unknown_rule,ZY14,R1,2.0,1.0,quarter,5,4,src_27029786bf11,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY14.xls,库存信息,6
+462aff7cad83ab38,historical_600_unknown_rule,ZY14,R2,2.0,1.0,quarter,5,4,src_27029786bf11,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY14.xls,库存信息,7
+31f20bd982abf5dd,historical_600_unknown_rule,ZY14,R3,4.0,2.0,quarter,5,4,src_27029786bf11,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY14.xls,库存信息,8
+4da3fb2919fe498c,historical_600_unknown_rule,ZY14,R4,2.0,2.0,quarter,5,4,src_27029786bf11,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY14.xls,库存信息,9
+a9ffd4baa8a18ac4,historical_600_unknown_rule,ZY16,R3,4.0,1.0,quarter,5,3,src_2f4d529bc792,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY16.xls,库存信息,4
+85c72463b3cb116b,historical_600_unknown_rule,ZY16,R2,4.0,1.0,quarter,5,4,src_2f4d529bc792,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY16.xls,库存信息,5
+b86231209c85e9bc,historical_600_unknown_rule,ZY16,R3,4.0,2.0,quarter,5,4,src_2f4d529bc792,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY16.xls,库存信息,6

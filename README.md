@@ -15,9 +15,9 @@ GoAI 是面向企业经营比赛的可审计辅助决策系统。它以规则包
 
 ## 外部数据
 
-比赛原始资料和处理后数据不提交到 Git。当前开发机用两个本地软链接保持兼容：`origin data` 指向旧资料位置，`data` 指向共享数据目录。它们被 `.gitignore` 排除，不会进入独立仓库。
+比赛原始资料不提交到 Git；可公开的规范化数据和模拟数据已同步到仓库的 `data/`。当前开发机的 `origin data` 仍是指向旧资料位置的外部软链接，并被 `.gitignore` 排除。
 
-在另一台机器上，请将原始资料放入 `origin data/`，或建立同名软链接；将规范数据和模拟输出放入共享数据目录，并按 [DATA_LAYOUT.md](DATA_LAYOUT.md) 配置。新仓库不依赖 `Others` 的 Git 仓库历史即可运行源码、测试和已有的处理后数据。
+在另一台机器上，请将原始资料放入 `origin data/`，或建立同名软链接；仓库内的 `data/` 已包含可复现数据，也可以按 [DATA_LAYOUT.md](DATA_LAYOUT.md) 改为外部共享路径。新仓库不依赖 `Others` 的 Git 仓库历史即可运行源码、测试和已同步的数据。
 
 ## 快速验证
 
@@ -29,4 +29,3 @@ cd /home/undefined/Desktop/GoAI
 ## 可信边界
 
 所有数据均需区分 `observed`、`derived`、`inferred`、`simulated` 和 `missing`。只有已确认规则下的 `observed + derived` 数据可作为正式回放基准；推断和模拟数据仅用于候选仿真、压力测试和接口验证。
-

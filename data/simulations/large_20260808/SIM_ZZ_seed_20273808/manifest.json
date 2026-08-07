@@ -1,0 +1,12 @@
+{
+  "format_version": "goai_simulated_match_v1.0",
+  "match_id": "SIM_ZZ",
+  "sandbox_version": "full_financial_sandbox_v1.0",
+  "rule_pack_id": "SIM_ZZ_simulated_rules_seed_20273808",
+  "parent_rule_pack_id": "ZZ_runtime_inferred_v2",
+  "source_match_id": "ZZ",
+  "generation_seed": 20273808,
+  "provenance": "simulated",
+  "training_eligible": false,
+  "truth_policy": "Generated rules, orders, events, reports and rankings are simulation artifacts, not historical facts."
+}

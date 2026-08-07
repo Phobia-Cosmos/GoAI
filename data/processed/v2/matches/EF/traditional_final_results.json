@@ -1,0 +1,223 @@
+{
+  "match_id": "EF",
+  "observed_result": {
+    "bankruptcies": [],
+    "match_id": "EF",
+    "ranking": [],
+    "ranking_status": "simulated_ranking_from_reconstructed_rule_pack",
+    "rule_pack_id": "EF_historical_rule_unknown"
+  },
+  "provenance": {
+    "events": "observed",
+    "orders": "observed_plus_simulated",
+    "quarter_states": "derived",
+    "ranking": "simulated"
+  },
+  "ranking_warning": "旧场次没有官方最终排名；此排序仅用于运行接口和策略比较。",
+  "result_status": "candidate_replay_simulated_ranking",
+  "rule_pack_id": "EF_runtime_inferred_v2",
+  "run_version": "match_replay_v1.0",
+  "simulated_ranking": [
+    {
+      "bankruptcy_period": null,
+      "development_potential": 60,
+      "final_cash_wan": 1024.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 1,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF01"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 84,
+      "final_cash_wan": 876.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 2,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF12"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 88,
+      "final_cash_wan": 738.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 3,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF09"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 0,
+      "final_cash_wan": 661.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 4,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF16"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 100,
+      "final_cash_wan": 611.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 5,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF05"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 112,
+      "final_cash_wan": 605.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 6,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF08"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 44,
+      "final_cash_wan": 561.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 7,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF02"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 96,
+      "final_cash_wan": 486.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 8,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF18"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 32,
+      "final_cash_wan": 467.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 9,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF11"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 32,
+      "final_cash_wan": 446.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 10,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF04"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 68,
+      "final_cash_wan": 364.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 11,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF14"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 28,
+      "final_cash_wan": 357.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 12,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF07"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 16,
+      "final_cash_wan": 322.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 13,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF20"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 28,
+      "final_cash_wan": 267.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 14,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF19"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 44,
+      "final_cash_wan": 91.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 15,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF10"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 8,
+      "final_cash_wan": 84.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 16,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF17"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 24,
+      "final_cash_wan": 39.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 17,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF15"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 64,
+      "final_cash_wan": 7.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 18,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF06"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 0,
+      "final_cash_wan": 7.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 19,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF03"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 32,
+      "final_cash_wan": 1.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 20,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "EF13"
+    }
+  ],
+  "team_count": 20
+}

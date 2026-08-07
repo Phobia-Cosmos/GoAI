@@ -1,0 +1,169 @@
+{
+  "match_id": "SIM_AB",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_AB03",
+      "owner_equity_wan": 2527.776155040001,
+      "development_potential": 76.0,
+      "rounded_score": 4449.0
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_AB13",
+      "owner_equity_wan": 2114.211529440001,
+      "development_potential": 76.0,
+      "rounded_score": 3721.0
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_AB01",
+      "owner_equity_wan": 1475.595844640001,
+      "development_potential": 126.0,
+      "rounded_score": 3335.0
+    },
+    {
+      "rank": 4,
+      "team_id": "SIM_AB04",
+      "owner_equity_wan": 1373.37929728,
+      "development_potential": 126.0,
+      "rounded_score": 3104.0
+    },
+    {
+      "rank": 5,
+      "team_id": "SIM_AB10",
+      "owner_equity_wan": 1275.96702912,
+      "development_potential": 126.0,
+      "rounded_score": 2884.0
+    },
+    {
+      "rank": 6,
+      "team_id": "SIM_AB11",
+      "owner_equity_wan": 1534.83110608,
+      "development_potential": 76.0,
+      "rounded_score": 2701.0
+    },
+    {
+      "rank": 7,
+      "team_id": "SIM_AB23",
+      "owner_equity_wan": 1193.78684,
+      "development_potential": 126.0,
+      "rounded_score": 2698.0
+    },
+    {
+      "rank": 8,
+      "team_id": "SIM_AB09",
+      "owner_equity_wan": 1376.420640000001,
+      "development_potential": 76.0,
+      "rounded_score": 2423.0
+    },
+    {
+      "rank": 9,
+      "team_id": "SIM_AB18",
+      "owner_equity_wan": 1054.82427184,
+      "development_potential": 126.0,
+      "rounded_score": 2384.0
+    },
+    {
+      "rank": 10,
+      "team_id": "SIM_AB24",
+      "owner_equity_wan": 1025.379440000001,
+      "development_potential": 126.0,
+      "rounded_score": 2317.0
+    },
+    {
+      "rank": 11,
+      "team_id": "SIM_AB02",
+      "owner_equity_wan": 1237.87743264,
+      "development_potential": 76.0,
+      "rounded_score": 2179.0
+    },
+    {
+      "rank": 12,
+      "team_id": "SIM_AB14",
+      "owner_equity_wan": 1310.0,
+      "development_potential": 59.0,
+      "rounded_score": 2083.0
+    },
+    {
+      "rank": 13,
+      "team_id": "SIM_AB20",
+      "owner_equity_wan": 813.5060000000002,
+      "development_potential": 126.0,
+      "rounded_score": 1839.0
+    },
+    {
+      "rank": 14,
+      "team_id": "SIM_AB17",
+      "owner_equity_wan": 803.1098000000002,
+      "development_potential": 126.0,
+      "rounded_score": 1815.0
+    },
+    {
+      "rank": 15,
+      "team_id": "SIM_AB08",
+      "owner_equity_wan": 1101.6728,
+      "development_potential": 59.0,
+      "rounded_score": 1752.0
+    },
+    {
+      "rank": 16,
+      "team_id": "SIM_AB12",
+      "owner_equity_wan": 639.4208000000002,
+      "development_potential": 126.0,
+      "rounded_score": 1445.0
+    },
+    {
+      "rank": 17,
+      "team_id": "SIM_AB19",
+      "owner_equity_wan": 816.8352000000004,
+      "development_potential": 76.0,
+      "rounded_score": 1438.0
+    },
+    {
+      "rank": 18,
+      "team_id": "SIM_AB21",
+      "owner_equity_wan": 677.3878000000002,
+      "development_potential": 106.0,
+      "rounded_score": 1395.0
+    },
+    {
+      "rank": 19,
+      "team_id": "SIM_AB16",
+      "owner_equity_wan": 651.3418000000004,
+      "development_potential": 106.0,
+      "rounded_score": 1342.0
+    },
+    {
+      "rank": 20,
+      "team_id": "SIM_AB22",
+      "owner_equity_wan": 524.4532000000002,
+      "development_potential": 106.0,
+      "rounded_score": 1080.0
+    },
+    {
+      "rank": 21,
+      "team_id": "SIM_AB15",
+      "owner_equity_wan": 606.2112000000003,
+      "development_potential": 76.0,
+      "rounded_score": 1067.0
+    },
+    {
+      "rank": 22,
+      "team_id": "SIM_AB05",
+      "owner_equity_wan": 473.0556,
+      "development_potential": 106.0,
+      "rounded_score": 974.0
+    },
+    {
+      "rank": 23,
+      "team_id": "SIM_AB07",
+      "owner_equity_wan": 396.3226,
+      "development_potential": 106.0,
+      "rounded_score": 816.0
+    }
+  ],
+  "bankruptcies": [],
+  "provenance": "simulated",
+  "source_path": "SIM_AB最终排名和破产信息.xlsx"
+}

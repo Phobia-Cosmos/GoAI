@@ -1,0 +1,294 @@
+{
+  "format_version": "goai_frozen_rule_pack_v1",
+  "match_id": "LX_XA",
+  "rule_pack_id": "AAAAA_20160108_4.3.32.419",
+  "parent_source": "rules.json",
+  "source_provenance": "observed",
+  "formal_parameters": {
+    "initial_cash_wan": 675,
+    "management_fee_per_quarter_wan": 14,
+    "tax_rate": 0.25,
+    "default_penalty_rate": 0.2,
+    "bankruptcy": [
+      "cash_flow_break",
+      "negative_equity"
+    ],
+    "first_year_has_orders": false,
+    "long_loan": {
+      "annual_rate": 0.12,
+      "max_years": 4,
+      "max_total_multiple_prior_equity": 3,
+      "minimum_wan": 10
+    },
+    "short_loan": {
+      "rate": 0.05
+    },
+    "receivable_discount": {
+      "terms_1_2": 0.08,
+      "terms_3_4": 0.09,
+      "mode": "joint"
+    },
+    "factories": {
+      "大厂房": {
+        "purchase_wan": 481,
+        "rent_wan_per_year": 51,
+        "capacity": 6,
+        "score": 11
+      },
+      "中厂房": {
+        "purchase_wan": 248,
+        "rent_wan_per_year": 31,
+        "capacity": 3,
+        "score": 6
+      },
+      "小厂房": {
+        "purchase_wan": 72,
+        "rent_wan_per_year": 9,
+        "capacity": 1,
+        "score": 2
+      }
+    },
+    "production_lines": {
+      "手工线": {
+        "investment_wan": 40,
+        "install_quarters": 0,
+        "production_quarters": 2,
+        "maintenance_wan_per_year": 15,
+        "score": 5
+      },
+      "自动线": {
+        "investment_wan": 140,
+        "install_quarters": 2,
+        "production_quarters": 1,
+        "maintenance_wan_per_year": 11,
+        "score": 8
+      },
+      "柔性线": {
+        "investment_wan": 180,
+        "install_quarters": 3,
+        "production_quarters": 1,
+        "maintenance_wan_per_year": 15,
+        "score": 10
+      },
+      "租赁线": {
+        "investment_wan": 0,
+        "install_quarters": 0,
+        "production_quarters": 1,
+        "maintenance_wan_per_year": 70,
+        "score": 0
+      }
+    },
+    "markets": {
+      "本地": {
+        "fee_wan_per_year": 8,
+        "years": 1,
+        "score": 6
+      },
+      "区域": {
+        "fee_wan_per_year": 8,
+        "years": 1,
+        "score": 6
+      },
+      "国内": {
+        "fee_wan_per_year": 10,
+        "years": 1,
+        "score": 7
+      },
+      "亚洲": {
+        "fee_wan_per_year": 12,
+        "years": 3,
+        "score": 10
+      },
+      "国际": {
+        "fee_wan_per_year": 16,
+        "years": 3,
+        "score": 14
+      }
+    },
+    "iso": {
+      "ISO9000": {
+        "fee_wan_per_year": 21,
+        "years": 2,
+        "score": 6
+      },
+      "ISO14000": {
+        "fee_wan_per_year": 33,
+        "years": 2,
+        "score": 9
+      }
+    },
+    "products": {
+      "P1": {
+        "process_wan": 8,
+        "development_wan_per_quarter": 14,
+        "quarters": 1,
+        "direct_cost_wan": 16,
+        "score": 5,
+        "bom": {
+          "R1": 1
+        }
+      },
+      "P2": {
+        "process_wan": 9,
+        "development_wan_per_quarter": 14,
+        "quarters": 1,
+        "direct_cost_wan": 27,
+        "score": 7,
+        "bom": {
+          "R2": 1,
+          "R3": 1
+        }
+      },
+      "P3": {
+        "process_wan": 10,
+        "development_wan_per_quarter": 15,
+        "quarters": 2,
+        "direct_cost_wan": 36,
+        "score": 9,
+        "bom": {
+          "R1": 1,
+          "R3": 2
+        }
+      },
+      "P4": {
+        "process_wan": 11,
+        "development_wan_per_quarter": 16,
+        "quarters": 3,
+        "direct_cost_wan": 48,
+        "score": 12,
+        "bom": {
+          "P2": 1,
+          "R4": 1
+        }
+      },
+      "P5": {
+        "process_wan": 11,
+        "development_wan_per_quarter": 25,
+        "quarters": 4,
+        "direct_cost_wan": 56,
+        "score": 14,
+        "bom": {
+          "P3": 1,
+          "R3": 1
+        }
+      }
+    },
+    "materials": {
+      "R1": {
+        "price_wan": 8,
+        "lead_quarters": 1
+      },
+      "R2": {
+        "price_wan": 9,
+        "lead_quarters": 2
+      },
+      "R3": {
+        "price_wan": 9,
+        "lead_quarters": 1
+      },
+      "R4": {
+        "price_wan": 10,
+        "lead_quarters": 2
+      }
+    },
+    "selection_priority": [
+      "prior_market_leader",
+      "market_product_advertising",
+      "market_total_advertising",
+      "market_sales_rank",
+      "advertising_submission_time"
+    ],
+    "score_formula": "score = owner_equity * (1 + development_potential / 100)"
+  },
+  "global_rule_services": {
+    "bankruptcy": {
+      "predicates": [
+        "cash_flow_break",
+        "negative_equity"
+      ],
+      "excluded_from_ranking": true
+    },
+    "ranking": {
+      "formula": "score = owner_equity * (1 + development_potential / 100)",
+      "rounding": "half_up_for_nonnegative_score",
+      "tie_breaker": "team_id_lexicographic"
+    },
+    "order_pool": {
+      "first_year_has_orders": false,
+      "observed_years": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "unassigned_allowed": true,
+      "selection_priority": [
+        "prior_market_leader",
+        "market_product_advertising",
+        "market_total_advertising",
+        "market_sales_rank",
+        "advertising_submission_time"
+      ]
+    },
+    "counterfactual": {
+      "recompute_scope": "all_enterprises_from_changed_period"
+    }
+  },
+  "inference_report": {
+    "rule_pack_id": "AAAAA_20160108_4.3.32.419",
+    "version": "xa_global_rules_v1.0",
+    "confirmed": {
+      "initial_cash_wan": 675,
+      "bankruptcy_predicates": [
+        "cash_flow_break",
+        "negative_equity"
+      ],
+      "score_formula": "score = owner_equity * (1 + development_potential / 100)",
+      "selection_priority": [
+        "prior_market_leader",
+        "market_product_advertising",
+        "market_total_advertising",
+        "market_sales_rank",
+        "advertising_submission_time"
+      ],
+      "first_year_has_orders": false,
+      "order_pool_years_observed": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "order_pool_unassigned_count_observed": 235,
+      "rounding": "half_up_for_nonnegative_score"
+    },
+    "inferred": {
+      "ranking_tie_breaker": "team_id_lexicographic",
+      "bankrupt_team_excluded_from_ranking": true,
+      "counterfactual_recompute_scope": "all_enterprises_from_changed_period"
+    },
+    "unresolved": [
+      "auction_tie_break_and_bid_payment",
+      "exact_phase_settlement_order",
+      "information_visibility_timing",
+      "unobserved_order_generation_mechanism"
+    ],
+    "evidence": {
+      "formal_source": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378文件夹对应的省赛规则.xlsx",
+      "binding_status": "confirmed_formal_source",
+      "derived_ranking_count": 18,
+      "official_ranking_count": 18,
+      "official_score_match_count": 18,
+      "bankruptcy_observation_count": 9,
+      "global_order_count": 796
+    }
+  },
+  "customization": {
+    "allowed_overrides": [
+      "parameters",
+      "global_rule_services.order_pool",
+      "initial_state",
+      "participants"
+    ]
+  },
+  "truth_policy": "confirmed rules remain observed; inferred and unresolved fields cannot be promoted automatically"
+}

@@ -1,0 +1,5 @@
+﻿line_type_id,line_type_name,investment_per_quarter_wan,installation_quarters,production_cycle_quarters,conversion_fee_per_quarter_wan,conversion_cycle_quarters,maintenance_fee_wan,residual_value_wan,depreciation_fee_wan,depreciation_years,score,competition_id,rule_version,source_id,source_path,source_table,source_row
+1,超级手工线,48,1,2,0,0,3,8,10,4,4,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,3,2
+2,自动线,70,2,1,5,1,10,20,30,4,8,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,3,3
+3,柔性线,90,2,1,0,0,12,60,30,4,10,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,3,4
+4,租赁线,0,0,1,5,0,60,-75,0,0,0,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,3,5

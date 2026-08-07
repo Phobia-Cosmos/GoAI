@@ -1,0 +1,324 @@
+{
+  "match_id": "LX_XA",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "XA07",
+      "official_score": 3791,
+      "recomputed_score": 3790.5,
+      "rounded_recomputed_score": 3791,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 1050.0,
+      "development_potential": 261,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 2,
+      "team_id": "XA13",
+      "official_score": 2551,
+      "recomputed_score": 2551.2299999999996,
+      "rounded_recomputed_score": 2551,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 859.0,
+      "development_potential": 197,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 3,
+      "team_id": "XA06",
+      "official_score": 2506,
+      "recomputed_score": 2506.18,
+      "rounded_recomputed_score": 2506,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 841.0,
+      "development_potential": 198,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 4,
+      "team_id": "XA08",
+      "official_score": 2393,
+      "recomputed_score": 2392.95,
+      "rounded_recomputed_score": 2393,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 903.0,
+      "development_potential": 165,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 5,
+      "team_id": "XA22",
+      "official_score": 2353,
+      "recomputed_score": 2353.4,
+      "rounded_recomputed_score": 2353,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 820.0,
+      "development_potential": 187,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 6,
+      "team_id": "XA10",
+      "official_score": 2144,
+      "recomputed_score": 2143.61,
+      "rounded_recomputed_score": 2144,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 791.0,
+      "development_potential": 171,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 7,
+      "team_id": "XA15",
+      "official_score": 1840,
+      "recomputed_score": 1840.09,
+      "rounded_recomputed_score": 1840,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 679.0,
+      "development_potential": 171,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 8,
+      "team_id": "XA19",
+      "official_score": 1764,
+      "recomputed_score": 1764.0000000000002,
+      "rounded_recomputed_score": 1764,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 720.0,
+      "development_potential": 145,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 9,
+      "team_id": "XA02",
+      "official_score": 1451,
+      "recomputed_score": 1450.8200000000002,
+      "rounded_recomputed_score": 1451,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 602.0,
+      "development_potential": 141,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 10,
+      "team_id": "XA01",
+      "official_score": 1295,
+      "recomputed_score": 1295.0,
+      "rounded_recomputed_score": 1295,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 518.0,
+      "development_potential": 150,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 11,
+      "team_id": "XA03",
+      "official_score": 1271,
+      "recomputed_score": 1270.62,
+      "rounded_recomputed_score": 1271,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 543.0,
+      "development_potential": 134,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 12,
+      "team_id": "XA12",
+      "official_score": 1198,
+      "recomputed_score": 1197.93,
+      "rounded_recomputed_score": 1198,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 547.0,
+      "development_potential": 119,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 13,
+      "team_id": "XA25",
+      "official_score": 1164,
+      "recomputed_score": 1163.82,
+      "rounded_recomputed_score": 1164,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 489.0,
+      "development_potential": 138,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 14,
+      "team_id": "XA18",
+      "official_score": 1076,
+      "recomputed_score": 1075.98,
+      "rounded_recomputed_score": 1076,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 454.0,
+      "development_potential": 137,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 15,
+      "team_id": "XA27",
+      "official_score": 736,
+      "recomputed_score": 735.64,
+      "rounded_recomputed_score": 736,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 347.0,
+      "development_potential": 112,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 16,
+      "team_id": "XA21",
+      "official_score": 405,
+      "recomputed_score": 404.92,
+      "rounded_recomputed_score": 405,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 191.0,
+      "development_potential": 112,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 17,
+      "team_id": "XA11",
+      "official_score": 242,
+      "recomputed_score": 241.5,
+      "rounded_recomputed_score": 242,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 115.0,
+      "development_potential": 110,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 18,
+      "team_id": "XA26",
+      "official_score": 69,
+      "recomputed_score": 68.62,
+      "rounded_recomputed_score": 69,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": true,
+      "owner_equity_wan": 47.0,
+      "development_potential": 46,
+      "provenance": {
+        "official_score": "observed",
+        "recomputed_score": "derived"
+      }
+    }
+  ],
+  "ranking_status": "derived_and_checked_against_official_score",
+  "bankruptcies": [
+    {
+      "team_id": "XA04",
+      "period": "Y5Q1",
+      "provenance": "observed"
+    },
+    {
+      "team_id": "XA05",
+      "period": "Y4Q1",
+      "provenance": "observed"
+    },
+    {
+      "team_id": "XA09",
+      "period": "Y3Q4",
+      "provenance": "observed"
+    },
+    {
+      "team_id": "XA14",
+      "period": "Y4Q4",
+      "provenance": "observed"
+    },
+    {
+      "team_id": "XA16",
+      "period": "Y3Q4",
+      "provenance": "observed"
+    },
+    {
+      "team_id": "XA17",
+      "period": "Y4Q4",
+      "provenance": "observed"
+    },
+    {
+      "team_id": "XA20",
+      "period": "Y4Q4",
+      "provenance": "observed"
+    },
+    {
+      "team_id": "XA23",
+      "period": "Y5Q4",
+      "provenance": "observed"
+    },
+    {
+      "team_id": "XA24",
+      "period": "Y5Q1",
+      "provenance": "observed"
+    }
+  ],
+  "rule_pack_id": "AAAAA_20160108_4.3.32.419"
+}

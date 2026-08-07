@@ -1,0 +1,82 @@
+{
+  "evidence": {
+    "initial_cash_wan": {
+      "provenance": "observed_event_fingerprint",
+      "values": [
+        600.0
+      ]
+    },
+    "management_fee_per_quarter_wan": {
+      "provenance": "observed_event_fingerprint",
+      "values": [
+        10.0
+      ]
+    },
+    "observed_action_set": {
+      "provenance": "observed_event_set",
+      "values": [
+        "administrative_fee",
+        "advertising",
+        "capital_injection",
+        "emergency_purchase",
+        "factory_discount",
+        "factory_disposal",
+        "factory_purchase",
+        "factory_rent",
+        "factory_rent_renewal",
+        "inventory_sale",
+        "iso_development",
+        "long_loan_borrow",
+        "long_loan_interest_payment",
+        "long_loan_principal_payment",
+        "maintenance",
+        "market_development",
+        "material_receipt_payment",
+        "order_bid_fee",
+        "order_delivery",
+        "penalty_payment",
+        "product_development",
+        "production",
+        "production_line_conversion",
+        "production_line_investment",
+        "production_line_order",
+        "production_line_sale",
+        "receivable_discount",
+        "receivable_maturity",
+        "short_loan_borrow",
+        "short_loan_interest_payment",
+        "short_loan_principal_payment",
+        "tax_payment"
+      ]
+    },
+    "observed_order_types": {
+      "counts": {},
+      "provenance": "missing",
+      "values": []
+    },
+    "participants": {
+      "provenance": "observed_team_exports",
+      "value": 20
+    }
+  },
+  "generated_at": "2026-08-05T11:57:31+08:00",
+  "match_id": "AB",
+  "order_mode": "order_type_unobserved",
+  "runtime_rule_pack_id": "AB_runtime_inferred_v2",
+  "status": "candidate_for_simulation",
+  "unresolved": [
+    "official_global_rule_workbook",
+    "complete_preselection_unassigned_pool",
+    "full_financial_settlement_semantics"
+  ],
+  "xa_reference": {
+    "domains_reused": [
+      "selection",
+      "auction",
+      "bankruptcy",
+      "scoring",
+      "settlement_interface"
+    ],
+    "rule_pack_id": "AAAAA_20160108_4.3.32.419"
+  }
+}

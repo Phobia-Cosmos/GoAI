@@ -1,0 +1,53 @@
+{
+  "format_version": "goai_competition_xlsx_v1.0",
+  "match_id": "SIM_ZY",
+  "rule_pack_id": "SIM_ZY_simulated_rules_seed_20272808",
+  "parent_rule_pack_id": "ZY_runtime_inferred_v2",
+  "source_match_id": "ZY",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "team_count": 24,
+  "order_count": 400,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_ZY01.xlsx",
+      "企业数据/SIM_ZY02.xlsx",
+      "企业数据/SIM_ZY03.xlsx",
+      "企业数据/SIM_ZY04.xlsx",
+      "企业数据/SIM_ZY05.xlsx",
+      "企业数据/SIM_ZY06.xlsx",
+      "企业数据/SIM_ZY07.xlsx",
+      "企业数据/SIM_ZY08.xlsx",
+      "企业数据/SIM_ZY09.xlsx",
+      "企业数据/SIM_ZY10.xlsx",
+      "企业数据/SIM_ZY11.xlsx",
+      "企业数据/SIM_ZY12.xlsx",
+      "企业数据/SIM_ZY13.xlsx",
+      "企业数据/SIM_ZY14.xlsx",
+      "企业数据/SIM_ZY15.xlsx",
+      "企业数据/SIM_ZY16.xlsx",
+      "企业数据/SIM_ZY17.xlsx",
+      "企业数据/SIM_ZY18.xlsx",
+      "企业数据/SIM_ZY19.xlsx",
+      "企业数据/SIM_ZY20.xlsx",
+      "企业数据/SIM_ZY21.xlsx",
+      "企业数据/SIM_ZY22.xlsx",
+      "企业数据/SIM_ZY23.xlsx",
+      "企业数据/SIM_ZY24.xlsx"
+    ],
+    "rules": "SIM_ZY比赛规则.xlsx",
+    "orders": "SIM_ZY订单详情.xlsx",
+    "results": "SIM_ZY最终排名和破产信息.xlsx"
+  }
+}

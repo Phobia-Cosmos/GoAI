@@ -7,8 +7,7 @@ __pycache__/
 .venv/
 venv/
 
-# Local/shared data links and generated data.  These are intentionally outside Git.
-/data
+# Raw资料仍在仓库外；规范化数据和可复现实验数据会纳入 Git。
 /origin data
 /output/
 /runs/
@@ -21,4 +20,3 @@ venv/
 *.tmp
 .DS_Store
 *.swp
-

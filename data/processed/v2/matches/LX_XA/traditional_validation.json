@@ -1,0 +1,80 @@
+{
+  "checks": {
+    "cash_continuity": {
+      "passed": true,
+      "transition_count": 3760,
+      "violations": []
+    },
+    "dataset_quality": {
+      "passed": true,
+      "source_quality_checks": "all_passed",
+      "violations": []
+    },
+    "operating_action_mapping": {
+      "operating_event_count": 3787,
+      "passed": true,
+      "violations": []
+    },
+    "operating_period": {
+      "passed": true,
+      "violations": []
+    },
+    "order_fields": {
+      "order_count": 796,
+      "passed": true,
+      "violations": []
+    },
+    "quarter_state_shape": {
+      "passed": true,
+      "state_count": 540,
+      "team_count": 27,
+      "violations": []
+    },
+    "report_accounting_identities": {
+      "checked_rows": 354,
+      "passed": true,
+      "violations": []
+    },
+    "schema_files": {
+      "file_count": 12,
+      "passed": true,
+      "violations": []
+    },
+    "unique_event_ids": {
+      "event_count": 3791,
+      "passed": true,
+      "violations": []
+    },
+    "unique_order_ids": {
+      "order_count": 796,
+      "passed": true,
+      "violations": []
+    },
+    "unique_team_ids": {
+      "passed": true,
+      "team_count": 27,
+      "violations": []
+    },
+    "xa_initial_cash_rule": {
+      "initial_cash_wan": 675,
+      "passed": true,
+      "violations": []
+    },
+    "xa_official_scores": {
+      "passed": true,
+      "ranked_team_count": 18,
+      "violations": []
+    },
+    "xa_order_pool_counts": {
+      "assigned": 561,
+      "passed": true,
+      "total": 796,
+      "unassigned": 235,
+      "violations": []
+    }
+  },
+  "match_id": "LX_XA",
+  "passed": true,
+  "version": "hard_constraints_v0.1",
+  "violations": []
+}

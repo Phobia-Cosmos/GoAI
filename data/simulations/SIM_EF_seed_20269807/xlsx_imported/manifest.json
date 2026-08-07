@@ -1,0 +1,40 @@
+{
+  "format_version": "goai_simulated_xlsx_import_v1.0",
+  "match_id": "SIM_EF",
+  "rule_pack_id": "SIM_EF_simulated_rules_seed_20269807",
+  "parent_rule_pack_id": "EF_runtime_inferred_v2",
+  "source_match_id": "EF",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "team_count": 3,
+  "order_count": 16,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_EF01.xlsx",
+      "企业数据/SIM_EF02.xlsx",
+      "企业数据/SIM_EF03.xlsx"
+    ],
+    "rules": "SIM_EF比赛规则.xlsx",
+    "orders": "SIM_EF订单详情.xlsx",
+    "results": "SIM_EF最终排名和破产信息.xlsx"
+  },
+  "source_bundle": "/mnt/ubuntu-space/datasets/goai/simulations/SIM_EF_seed_20269807/competition_xlsx",
+  "counts": {
+    "teams": 3,
+    "events": 99,
+    "global_orders": 16,
+    "team_orders": 1,
+    "reports": 774
+  }
+}

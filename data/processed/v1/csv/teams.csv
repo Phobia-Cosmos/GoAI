@@ -1,0 +1,19 @@
+﻿competition_id,rule_version,team_id,company_name,school_name,company_status,current_cash_wan,capital_injection_wan,system_year,system_quarter,data_status,source_id,source_path,source_sheet
+historical_600_unknown_rule,unknown,ZY01,-,-,未登记,0.0,0.0,1,1,empty_export,src_e85a7b3ae609,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY01.xls,企业信息
+historical_600_unknown_rule,unknown,ZY02,hello world,杭州电子科技大学,正在经营,70.0,0.0,6,1,active,src_bef4b86b4c71,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY02.xls,企业信息
+historical_600_unknown_rule,unknown,ZY03,运营,杭州电子科技大学,正在经营,43.0,0.0,6,1,active,src_e3cd51a93aa1,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY03.xls,企业信息
+historical_600_unknown_rule,unknown,ZY04,挣大钱,杭州电子科技大学,正在经营,414.0,0.0,6,1,active,src_158092ee4fdb,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY04.xls,企业信息
+historical_600_unknown_rule,unknown,ZY05,1,1,正在经营,31.0,0.0,6,1,active,src_33c96cbd4d19,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY05.xls,企业信息
+historical_600_unknown_rule,unknown,ZY06,ERP老大,杭州电子科技大学,正在经营,6.0,0.0,6,1,active,src_aa724dd3736a,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY06.xls,企业信息
+historical_600_unknown_rule,unknown,ZY07,文贞强爱雨姐系统科技有限公司,杭州电子科技大学,正在经营,1871.0,0.0,6,1,active,src_610d5b6cd311,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY07.xls,企业信息
+historical_600_unknown_rule,unknown,ZY08,阿里阿巴,杭州电子科技大学,正在经营,4.0,0.0,6,1,active,src_db71d98a0a37,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY08.xls,企业信息
+historical_600_unknown_rule,unknown,ZY09,666,杭州电子科技大学,正在经营,643.0,0.0,6,1,active,src_57c289f9896a,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY09.xls,企业信息
+historical_600_unknown_rule,unknown,ZY10,乐神,hdu,正在经营,627.0,0.0,6,1,active,src_0bc478da983d,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY10.xls,企业信息
+historical_600_unknown_rule,unknown,ZY11,zy11,杭州电子科技大学,正在经营,350.0,0.0,6,1,active,src_1179379453a7,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY11.xls,企业信息
+historical_600_unknown_rule,unknown,ZY12,-,-,未登记,0.0,0.0,1,1,empty_export,src_7818187d1176,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY12.xls,企业信息
+historical_600_unknown_rule,unknown,ZY13,123,杭州电子科技大学,正在经营,760.0,0.0,6,1,active,src_766e2c00d61c,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY13.xls,企业信息
+historical_600_unknown_rule,unknown,ZY14,T1,杭州电子科技大学,正在经营,1146.0,0.0,6,1,active,src_27029786bf11,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY14.xls,企业信息
+historical_600_unknown_rule,unknown,ZY15,1,1,正在经营,273.0,0.0,6,1,active,src_4d43a1bf1514,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY15.xls,企业信息
+historical_600_unknown_rule,unknown,ZY16,helloworld,杭电,正在经营,1300.0,0.0,6,1,active,src_2f4d529bc792,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY16.xls,企业信息
+historical_600_unknown_rule,unknown,ZY17,ZY17,HDU,正在经营,560.0,0.0,6,1,active,src_6d538319baf4,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY17.xls,企业信息
+historical_600_unknown_rule,unknown,ZY18,-,-,未登记,0.0,0.0,1,1,empty_export,src_0b7d3b6dcc61,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY18.xls,企业信息

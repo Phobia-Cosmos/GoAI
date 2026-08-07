@@ -1,0 +1,394 @@
+{
+  "match_id": "ZZ",
+  "observed_result": {
+    "bankruptcies": [],
+    "match_id": "ZZ",
+    "ranking": [
+      {
+        "development_potential": 224,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 2171.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 1,
+        "recomputed_score": 7034.040000000001,
+        "rounded_recomputed_score": 7034,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ10"
+      },
+      {
+        "development_potential": 226,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 1551.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 2,
+        "recomputed_score": 5056.259999999999,
+        "rounded_recomputed_score": 5056,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ14"
+      },
+      {
+        "development_potential": 198,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 1694.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 3,
+        "recomputed_score": 5048.12,
+        "rounded_recomputed_score": 5048,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ16"
+      },
+      {
+        "development_potential": 166,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 1295.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 4,
+        "recomputed_score": 3444.7000000000003,
+        "rounded_recomputed_score": 3445,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ06"
+      },
+      {
+        "development_potential": 104,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 1631.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 5,
+        "recomputed_score": 3327.2400000000002,
+        "rounded_recomputed_score": 3327,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ05"
+      },
+      {
+        "development_potential": 104,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 1522.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 6,
+        "recomputed_score": 3104.88,
+        "rounded_recomputed_score": 3105,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ04"
+      },
+      {
+        "development_potential": 98,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 1149.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 7,
+        "recomputed_score": 2275.02,
+        "rounded_recomputed_score": 2275,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ07"
+      },
+      {
+        "development_potential": 92,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 1101.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 8,
+        "recomputed_score": 2113.92,
+        "rounded_recomputed_score": 2114,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ12"
+      },
+      {
+        "development_potential": 177,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 644.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 9,
+        "recomputed_score": 1783.88,
+        "rounded_recomputed_score": 1784,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ09"
+      },
+      {
+        "development_potential": 82,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 794.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 10,
+        "recomputed_score": 1445.08,
+        "rounded_recomputed_score": 1445,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ11"
+      },
+      {
+        "development_potential": 66,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 804.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 11,
+        "recomputed_score": 1334.64,
+        "rounded_recomputed_score": 1335,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ13"
+      },
+      {
+        "development_potential": 98,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 418.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 12,
+        "recomputed_score": 827.64,
+        "rounded_recomputed_score": 828,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ03"
+      },
+      {
+        "development_potential": 98,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": 377.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 13,
+        "recomputed_score": 746.46,
+        "rounded_recomputed_score": 746,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ02"
+      },
+      {
+        "development_potential": 71,
+        "official_score": null,
+        "official_score_matches": null,
+        "owner_equity_wan": -87.0,
+        "provenance": {
+          "official_score": "missing",
+          "recomputed_score": "derived"
+        },
+        "rank": 14,
+        "recomputed_score": -148.77,
+        "rounded_recomputed_score": -149,
+        "rounding_rule": "half_up_for_nonnegative_score",
+        "team_id": "ZZ08"
+      }
+    ],
+    "ranking_status": "simulated_ranking_from_reconstructed_rule_pack",
+    "rule_pack_id": "ZZ_historical_rule_unknown"
+  },
+  "provenance": {
+    "events": "observed",
+    "orders": "observed_plus_simulated",
+    "quarter_states": "derived",
+    "ranking": "simulated"
+  },
+  "ranking_warning": "旧场次没有官方最终排名；此排序仅用于运行接口和策略比较。",
+  "result_status": "candidate_replay_simulated_ranking",
+  "rule_pack_id": "ZZ_runtime_inferred_v2",
+  "run_version": "match_replay_v1.0",
+  "simulated_ranking": [
+    {
+      "bankruptcy_period": null,
+      "development_potential": 224,
+      "final_cash_wan": 3013.0,
+      "official_rank": 1,
+      "provenance": "simulated",
+      "rank": 1,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ10"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 104,
+      "final_cash_wan": 2209.0,
+      "official_rank": 5,
+      "provenance": "simulated",
+      "rank": 2,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ05"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 82,
+      "final_cash_wan": 1662.0,
+      "official_rank": 10,
+      "provenance": "simulated",
+      "rank": 3,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ11"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 66,
+      "final_cash_wan": 1135.0,
+      "official_rank": 11,
+      "provenance": "simulated",
+      "rank": 4,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ13"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 198,
+      "final_cash_wan": 1124.0,
+      "official_rank": 3,
+      "provenance": "simulated",
+      "rank": 5,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ16"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 98,
+      "final_cash_wan": 1091.0,
+      "official_rank": 7,
+      "provenance": "simulated",
+      "rank": 6,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ07"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 98,
+      "final_cash_wan": 956.0,
+      "official_rank": 13,
+      "provenance": "simulated",
+      "rank": 7,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ02"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 92,
+      "final_cash_wan": 719.0,
+      "official_rank": 8,
+      "provenance": "simulated",
+      "rank": 8,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ12"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 166,
+      "final_cash_wan": 620.0,
+      "official_rank": 4,
+      "provenance": "simulated",
+      "rank": 9,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ06"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 226,
+      "final_cash_wan": 537.0,
+      "official_rank": 2,
+      "provenance": "simulated",
+      "rank": 10,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ14"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 104,
+      "final_cash_wan": 458.0,
+      "official_rank": 6,
+      "provenance": "simulated",
+      "rank": 11,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ04"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 177,
+      "final_cash_wan": 336.0,
+      "official_rank": 9,
+      "provenance": "simulated",
+      "rank": 12,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ09"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 71,
+      "final_cash_wan": 101.0,
+      "official_rank": 14,
+      "provenance": "simulated",
+      "rank": 13,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ08"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 98,
+      "final_cash_wan": 64.0,
+      "official_rank": 12,
+      "provenance": "simulated",
+      "rank": 14,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ03"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 0,
+      "final_cash_wan": null,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 15,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ01"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 0,
+      "final_cash_wan": null,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 16,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "ZZ15"
+    }
+  ],
+  "team_count": 16
+}

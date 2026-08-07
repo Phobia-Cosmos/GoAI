@@ -1,0 +1,4 @@
+﻿factory_id,factory_name,purchase_price_wan,annual_rent_wan,sale_price_wan,line_capacity,usage_limit,score,competition_id,rule_version,source_id,source_path,source_table,source_row
+1,大厂房,500,50,500,6,4,12,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,2,2
+2,中厂房,250,25,250,3,2,8,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,2,3
+3,小厂房,150,15,150,2,2,4,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,2,4

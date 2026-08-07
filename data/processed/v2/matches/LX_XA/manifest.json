@@ -1,0 +1,252 @@
+{
+  "format_version": "goai_multimatch_v2.0",
+  "match_id": "LX_XA",
+  "source_kind": "complete_provincial_bundle",
+  "operating_period": {
+    "start": "Y1Q1",
+    "end": "Y5Q4",
+    "export_boundary": "Y6Q1"
+  },
+  "schema_complete": true,
+  "observed_complete": true,
+  "truth_policy": "Never promote inferred, simulated or missing values to observed facts.",
+  "provenance_values": [
+    "observed",
+    "derived",
+    "inferred",
+    "simulated",
+    "missing"
+  ],
+  "files": [
+    "manifest.json",
+    "rules.json",
+    "teams.jsonl",
+    "events.jsonl",
+    "global_orders.jsonl",
+    "annual_public.jsonl",
+    "reports.jsonl",
+    "final_states.jsonl",
+    "quarter_states.jsonl",
+    "results.json",
+    "raw_cells.jsonl",
+    "quality.json"
+  ],
+  "sources": [
+    {
+      "source_id": "src_0e883a34a9cd5d8a",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/1.xls",
+      "size_bytes": 81920,
+      "sha256": "17f680af1a1585425d26b27c672934b8530b110105ec54d3a1741ce6259f96c6"
+    },
+    {
+      "source_id": "src_def92ab513dfa1e1",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/2.xls",
+      "size_bytes": 81920,
+      "sha256": "579b5096958f6ea4d2cb3126d31da01106375db33f31c4816a74a3a0f7ed3bf5"
+    },
+    {
+      "source_id": "src_2152ae33c814341d",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/3.xls",
+      "size_bytes": 81408,
+      "sha256": "e86130dab6290284660261ef62f8ce6f214503bd8d9f0ff1ec5ddd507f25a403"
+    },
+    {
+      "source_id": "src_2441712e672a7ec5",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/4.xls",
+      "size_bytes": 79872,
+      "sha256": "533f6af3926e8a967bb51a838173964c492c958aa4db21a051c924efdeaa819b"
+    },
+    {
+      "source_id": "src_373540aa60b72f6c",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/5.xls",
+      "size_bytes": 79360,
+      "sha256": "3525eecaa9c6e4c7152855e5abf3efc38deb5150e73dda4f879dfc08804d0e2d"
+    },
+    {
+      "source_id": "src_29de40d711ff61ed",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/6.xls",
+      "size_bytes": 72704,
+      "sha256": "e66688b209bfbb80ca9fb13591c1341fbf9dab6785c9c11fdf8086fabd9ce39b"
+    },
+    {
+      "source_id": "src_56827ba57a992b2d",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA01.xls",
+      "size_bytes": 50688,
+      "sha256": "809850262451f9d07a8471be4592f0c97142f6e0e86b0a09036931a2e2cd5a54"
+    },
+    {
+      "source_id": "src_bfbe6cf0e823c4bb",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA02.xls",
+      "size_bytes": 46592,
+      "sha256": "3bd4a100580df4cf561380253b44fcc3eb5b61253d1384a0d221bf2132c09724"
+    },
+    {
+      "source_id": "src_325e37d431c4b9b3",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA03.xls",
+      "size_bytes": 43008,
+      "sha256": "bb875977494c9ff7120029f8239673b9c696ce5568ca0e168aff7c202e3fde8d"
+    },
+    {
+      "source_id": "src_f044ab65b269a2cb",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA04.xls",
+      "size_bytes": 37888,
+      "sha256": "e83dd07718c7637f3ef4e77078e82cc747627c92c3dc3e8982afd9ba3151c604"
+    },
+    {
+      "source_id": "src_9d5f386114b47431",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA05.xls",
+      "size_bytes": 32768,
+      "sha256": "ccf2c3a4fb98517f9e01ee4b89c64378318efa70314ce232313500690015ec73"
+    },
+    {
+      "source_id": "src_71f0fac7ecf28416",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA06.xls",
+      "size_bytes": 55808,
+      "sha256": "1e79d5b1f7b40236070e04a904a9ae6e8fa85e375b795b37fd2a76c7404569f0"
+    },
+    {
+      "source_id": "src_0da834a4807c9077",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA07.xls",
+      "size_bytes": 62464,
+      "sha256": "a2a4b5744dfde5f31009f4283c04aed9a1131b5238d6399233230a7901464f2e"
+    },
+    {
+      "source_id": "src_a1e299857cd63aff",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA08.xls",
+      "size_bytes": 49664,
+      "sha256": "0d828471f88e8355698a55afa098c037b483a57f3bcf41e6d56e7b082296785f"
+    },
+    {
+      "source_id": "src_b9a50eee66022069",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA09.xls",
+      "size_bytes": 31744,
+      "sha256": "4123872fa30673982e87f35ddf3b3703c3151b37dc59515c820c853f214a71e4"
+    },
+    {
+      "source_id": "src_2b87e17f0d6e9e06",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA10.xls",
+      "size_bytes": 48640,
+      "sha256": "4e7f4acf67a88925a36e1459730167771783a627530fcf8f878c63ef66acdb33"
+    },
+    {
+      "source_id": "src_0b0bbd8b716494d8",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA11.xls",
+      "size_bytes": 40960,
+      "sha256": "4aa94037d00b8ab01d26a76f14138b4e525727a7d051d1f0259d26254a9fffdc"
+    },
+    {
+      "source_id": "src_fd373a90cb8cda46",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA12.xls",
+      "size_bytes": 45568,
+      "sha256": "737468a4c5c9e581464e393050378e3e935aaf0f861d448c594cd5b9fc185170"
+    },
+    {
+      "source_id": "src_5cd509034497145d",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA13.xls",
+      "size_bytes": 45568,
+      "sha256": "cd8ccbd85731c34205b5c12a0bd09a4abf0c219776e0a304ba009af11bf73666"
+    },
+    {
+      "source_id": "src_19b3f8dbae6b1822",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA14.xls",
+      "size_bytes": 36864,
+      "sha256": "63ba7a401168c4b1b9372c683423ce577ce65c0df1c1acd18404f14796128bc5"
+    },
+    {
+      "source_id": "src_b8074804b04d3167",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA15.xls",
+      "size_bytes": 54272,
+      "sha256": "36490b21e84015341564cad7bbabce09a0e80a64ec9d067baa3484e84331fe91"
+    },
+    {
+      "source_id": "src_4ff550e5acbac59f",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA16.xls",
+      "size_bytes": 32768,
+      "sha256": "30b6e2f8fb3724f6cac7e33f8052a0ac785f108ba5a728bfa6f03ef8eaf35988"
+    },
+    {
+      "source_id": "src_7ef8205bcc968878",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA17.xls",
+      "size_bytes": 35328,
+      "sha256": "1a3b10dbc627b6157ad551d73d4da52810e925180e2028bcf1c903d98693f40b"
+    },
+    {
+      "source_id": "src_63cbed9321b031e5",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA18.xls",
+      "size_bytes": 48640,
+      "sha256": "95b52232481ab7f81a01bba6ed8a7161eea9e2fdee18fa296c1a28b2d265aa1a"
+    },
+    {
+      "source_id": "src_ff4cee903cdcb68f",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA19.xls",
+      "size_bytes": 48128,
+      "sha256": "dc7b14ff5d140a09c9fb10d48b833da8fc598263fb7744a9d7522334679d5ddf"
+    },
+    {
+      "source_id": "src_5b1acd3baa59b663",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA20.xls",
+      "size_bytes": 43520,
+      "sha256": "e73580daa17f507b0c3871810d463db0201db6157a249c452271c24aa3f1f3b3"
+    },
+    {
+      "source_id": "src_4fadb23bb9e0ff5d",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA21.xls",
+      "size_bytes": 44032,
+      "sha256": "60bcf52b109e27f91136d840ba2569ec2a6666875388ee522e528dda1846813c"
+    },
+    {
+      "source_id": "src_6778f9d6dc60c64a",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA22.xls",
+      "size_bytes": 58368,
+      "sha256": "b120608f756f64281eba988d20b082a26b611a958b68c56deab9007e3fa294e5"
+    },
+    {
+      "source_id": "src_7faf0f5a95abeef3",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA23.xls",
+      "size_bytes": 38400,
+      "sha256": "2db5206284b2f05e8da8f27970f92551587eeacea5cd42dd4d46a3601a3fe557"
+    },
+    {
+      "source_id": "src_00a0b8edfef79432",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA24.xls",
+      "size_bytes": 38912,
+      "sha256": "7a0903a522d5a91debfa9f08a780366379c592d6e87cf66f3136890dae17911c"
+    },
+    {
+      "source_id": "src_4d388538aedd545d",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA25.xls",
+      "size_bytes": 43008,
+      "sha256": "553a41f24b2486584ad10a80ba499955673b82c813eb5e0b62f453a110e86b25"
+    },
+    {
+      "source_id": "src_470976075ed4fdd7",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA26.xls",
+      "size_bytes": 36864,
+      "sha256": "c22e4a8d712bd8635c199ec9399c5bcb40bd64ec89e08bb6681960f73f4ab56d"
+    },
+    {
+      "source_id": "src_263c21b014280ef6",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378/XA27.xls",
+      "size_bytes": 44032,
+      "sha256": "94e1e7dd7b46a47ef2719ab2809f11ca459ba611c85cecf72fc1968ee078e2d4"
+    },
+    {
+      "source_id": "src_3518b8e3f93ddcab",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378文件夹对应的省赛规则.xlsx",
+      "size_bytes": 18112,
+      "sha256": "d6178c14ce8a9185939f13cb8be7927f5d80ee667d4e248011cc2b99849fc45a"
+    },
+    {
+      "source_id": "src_2f439b178f2dcb27",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378文件夹对应的省赛订单详情.xlsx",
+      "size_bytes": 56172,
+      "sha256": "5af92cff23d32ec23f5e0a04a11208a072d75427a24576bd75a5108486ed2e52"
+    },
+    {
+      "source_id": "src_b89da2c2b4952c08",
+      "path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378文件夹对应的最终排名和破产组破产时间信息.docx",
+      "size_bytes": 310200,
+      "sha256": "d3a33bafe4c622fa11b184053ace7c4450b7e50e27e16938da3e55c7232f5afb"
+    }
+  ]
+}

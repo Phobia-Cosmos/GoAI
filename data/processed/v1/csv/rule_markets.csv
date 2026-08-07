@@ -1,0 +1,6 @@
+﻿market_id,market_name,annual_development_fee_wan,development_years,score,competition_id,rule_version,source_id,source_path,source_table,source_row
+1,本地,12,1,5,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,4,2
+2,区域,14,1,5,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,4,3
+3,国内,16,1,8,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,4,4
+4,亚洲,15,3,15,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,4,5
+5,国际,25,3,20,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,4,6

@@ -1,0 +1,12 @@
+{
+  "format_version": "goai_simulated_match_v1.0",
+  "match_id": "SIM_LX_XA",
+  "sandbox_version": "full_financial_sandbox_v1.0",
+  "rule_pack_id": "SIM_LX_XA_simulated_rules_seed_20270808",
+  "parent_rule_pack_id": "AAAAA_20160108_4.3.32.419",
+  "source_match_id": "LX_XA",
+  "generation_seed": 20270808,
+  "provenance": "simulated",
+  "training_eligible": false,
+  "truth_policy": "Generated rules, orders, events, reports and rankings are simulation artifacts, not historical facts."
+}

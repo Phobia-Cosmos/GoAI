@@ -1,0 +1,32 @@
+{
+  "format_version": "goai_competition_xlsx_v1.0",
+  "match_id": "SIM_CE",
+  "rule_pack_id": "SIM_CE_simulated_rules_seed_20265807",
+  "parent_rule_pack_id": "CE_runtime_inferred_v2",
+  "source_match_id": "CE",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "team_count": 3,
+  "order_count": 16,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_CE01.xlsx",
+      "企业数据/SIM_CE02.xlsx",
+      "企业数据/SIM_CE03.xlsx"
+    ],
+    "rules": "SIM_CE比赛规则.xlsx",
+    "orders": "SIM_CE订单详情.xlsx",
+    "results": "SIM_CE最终排名和破产信息.xlsx"
+  }
+}

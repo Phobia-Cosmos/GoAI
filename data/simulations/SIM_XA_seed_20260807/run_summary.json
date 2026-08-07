@@ -1,0 +1,19 @@
+{
+  "match_id": "SIM_XA",
+  "sandbox_version": "full_financial_sandbox_v1.0",
+  "generated_at": "2026-08-07T09:46:26+08:00",
+  "seed": 20260807,
+  "team_count": 8,
+  "order_count": 120,
+  "steps": 20,
+  "final_periods": [
+    "Y5Q4"
+  ],
+  "bankruptcy_count": 0,
+  "annual_report_count": 40,
+  "allocation_count": 33,
+  "max_absolute_balance_gap_wan": 2.842170943040401e-14,
+  "accounting_balanced": true,
+  "output_dir": "/mnt/ubuntu-space/datasets/goai/simulations/SIM_XA_seed_20260807",
+  "provenance": "simulated"
+}

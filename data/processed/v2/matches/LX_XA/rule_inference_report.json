@@ -1,0 +1,78 @@
+{
+  "evidence": {
+    "initial_cash_wan": {
+      "provenance": "observed_event_fingerprint",
+      "values": [
+        675.0
+      ]
+    },
+    "management_fee_per_quarter_wan": {
+      "provenance": "observed_event_fingerprint",
+      "values": [
+        14.0
+      ]
+    },
+    "observed_action_set": {
+      "provenance": "observed_event_set",
+      "values": [
+        "administrative_fee",
+        "advertising",
+        "capital_injection",
+        "emergency_material_purchase",
+        "emergency_product_purchase",
+        "factory_discount",
+        "factory_purchase",
+        "factory_rent",
+        "factory_rent_renewal",
+        "factory_rent_to_buy",
+        "factory_sale",
+        "inventory_material_sale",
+        "inventory_product_sale",
+        "iso_development",
+        "long_loan_borrow",
+        "long_loan_repayment",
+        "maintenance",
+        "market_development",
+        "material_order",
+        "material_receipt_payment",
+        "order_award",
+        "order_delivery",
+        "penalty_payment",
+        "product_development",
+        "production",
+        "production_line_conversion",
+        "production_line_investment",
+        "production_line_order",
+        "production_line_sale",
+        "receivable_discount",
+        "receivable_maturity",
+        "short_loan_borrow",
+        "short_loan_repayment",
+        "tax_payment"
+      ]
+    },
+    "observed_order_types": {
+      "counts": {
+        "竞单": 24,
+        "选单": 772
+      },
+      "provenance": "observed_order_exports",
+      "values": [
+        "竞单",
+        "选单"
+      ]
+    },
+    "participants": {
+      "provenance": "observed_team_exports",
+      "value": 27
+    }
+  },
+  "generated_at": "2026-08-05T11:57:32+08:00",
+  "match_id": "LX_XA",
+  "order_mode": "selection_and_auction",
+  "runtime_rule_pack_id": "AAAAA_20160108_4.3.32.419",
+  "status": "formal_xa",
+  "unresolved": [
+    "full_financial_settlement_semantics"
+  ]
+}

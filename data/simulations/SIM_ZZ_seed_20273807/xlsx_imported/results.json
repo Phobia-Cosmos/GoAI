@@ -1,0 +1,29 @@
+{
+  "match_id": "SIM_ZZ",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_ZZ01",
+      "owner_equity_wan": 343.4999999999999,
+      "development_potential": 16.0,
+      "rounded_score": 398.0
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_ZZ02",
+      "owner_equity_wan": 343.4999999999999,
+      "development_potential": 16.0,
+      "rounded_score": 398.0
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_ZZ03",
+      "owner_equity_wan": 343.4999999999999,
+      "development_potential": 16.0,
+      "rounded_score": 398.0
+    }
+  ],
+  "bankruptcies": [],
+  "provenance": "simulated",
+  "source_path": "SIM_ZZ最终排名和破产信息.xlsx"
+}

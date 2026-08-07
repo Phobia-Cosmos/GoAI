@@ -1,0 +1,29 @@
+{
+  "match_id": "SIM_CE",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_CE01",
+      "owner_equity_wan": 363.5,
+      "development_potential": 16.0,
+      "rounded_score": 422.0
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_CE02",
+      "owner_equity_wan": 363.5,
+      "development_potential": 16.0,
+      "rounded_score": 422.0
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_CE03",
+      "owner_equity_wan": 363.5,
+      "development_potential": 16.0,
+      "rounded_score": 422.0
+    }
+  ],
+  "bankruptcies": [],
+  "provenance": "simulated",
+  "source_path": "SIM_CE最终排名和破产信息.xlsx"
+}

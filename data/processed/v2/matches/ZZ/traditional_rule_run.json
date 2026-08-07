@@ -1,0 +1,27 @@
+{
+  "cash_identity_passed": true,
+  "counts": {
+    "events": 1853,
+    "orders": 416,
+    "quarters": 320,
+    "teams": 16
+  },
+  "generated_at": "2026-08-05T11:57:32+08:00",
+  "hard_constraints_passed": true,
+  "limitations": [
+    "没有把推断规则升级为正式规则",
+    "没有凭空重建旧场官方未分配订单",
+    "尚未执行完整税费、折旧、应收和三表结算动力学"
+  ],
+  "match_id": "ZZ",
+  "provenance_summary": {
+    "observed_events": 1853,
+    "observed_orders": 223,
+    "simulated_orders": 193
+  },
+  "rule_pack_id": "ZZ_runtime_inferred_v2",
+  "run_version": "match_replay_v1.0",
+  "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+  "seed": 20260805,
+  "simulation_scope": "partial_accounting"
+}

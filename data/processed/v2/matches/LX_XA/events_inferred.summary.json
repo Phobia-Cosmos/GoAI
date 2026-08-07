@@ -1,0 +1,10 @@
+{
+  "input": "/home/undefined/Disk/datasets/goai/processed/v2/matches/LX_XA/events.jsonl",
+  "output": "/home/undefined/Disk/datasets/goai/processed/v2/matches/LX_XA/events_inferred.jsonl",
+  "counts": {
+    "complete|observed_or_unparsed": 3274,
+    "inferred_partial|observed_or_unparsed": 369,
+    "inferred_partial|derived_from_event_evidence": 126,
+    "inferred_complete|derived_from_event_evidence": 22
+  }
+}

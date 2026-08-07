@@ -1,0 +1,58 @@
+{
+  "match_id": "LX_XA",
+  "record_counts": {
+    "teams": 27,
+    "events": 3791,
+    "operating_events": 3787,
+    "team_orders": 561,
+    "global_orders": 796,
+    "observed_global_orders": 796,
+    "simulated_global_orders": 0,
+    "unassigned_global_orders": 235,
+    "reports": 9610,
+    "quarter_states": 540
+  },
+  "coverage": {
+    "schema": "complete",
+    "enterprise_exports": "observed",
+    "event_stream": "observed_from_cash_flow_sheet",
+    "quarter_cash_states": "derived_from_observed_events",
+    "global_orders": "complete_observed_pool",
+    "formal_rules": "complete_observed",
+    "final_ranking": "derived_from_formal_rule"
+  },
+  "checks": {
+    "cash_continuity": {
+      "passed": true,
+      "error_count": 0,
+      "errors": []
+    },
+    "operating_action_mapping": {
+      "passed": true,
+      "unmapped_count": 0,
+      "event_ids": []
+    },
+    "global_order_unique": {
+      "passed": true,
+      "duplicates": []
+    },
+    "team_orders_present_in_global_view": {
+      "passed": true,
+      "unmatched": []
+    },
+    "team_global_order_fields": {
+      "passed": true,
+      "mismatch_count": 0,
+      "mismatches": []
+    },
+    "quarter_state_shape": {
+      "passed": true,
+      "expected": 540,
+      "actual": 540
+    },
+    "duplicate_source_hashes": {
+      "passed": true,
+      "duplicate_count": 0
+    }
+  }
+}

@@ -1,0 +1,10 @@
+﻿product_name,component_product_name,material_name,quantity,competition_id,rule_version,source_id,source_path,source_table,source_row
+P1,,R1,1,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,8,2
+P2,,R2,1,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,8,3
+P2,,R3,1,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,8,4
+P3,,R1,1,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,8,5
+P3,,R2,2,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,8,6
+P4,,R3,1,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,8,7
+P4,,R4,2,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,8,8
+P5,P2,,2,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,8,9
+P5,,R2,1,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,8,10

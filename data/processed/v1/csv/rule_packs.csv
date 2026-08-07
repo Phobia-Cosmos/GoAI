@@ -1,0 +1,2 @@
+﻿rule_pack_id,competition_id,rule_version,pack_status,parameter_status,process_status,order_binding_status,simulation_ready,blocking_gap_count,source_id,source_path
+zhejiang_8th_rules_v1,zhejiang_8th_710,zhejiang_8th_rules_v1,partial,structured_from_explicit_tables,blocking_gaps_present,unbound,False,12,src_436ffc3299d8,origin data/测试数据/试题题面01.docx

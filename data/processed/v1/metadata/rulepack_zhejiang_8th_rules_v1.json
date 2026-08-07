@@ -1,0 +1,1428 @@
+{
+  "format_version": "rulepack_v0.1",
+  "rule_pack_id": "zhejiang_8th_rules_v1",
+  "generated_at": "2026-08-04T12:20:36+08:00",
+  "tables": {
+    "rule_packs": [
+      {
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "pack_status": "partial",
+        "parameter_status": "structured_from_explicit_tables",
+        "process_status": "blocking_gaps_present",
+        "order_binding_status": "unbound",
+        "simulation_ready": false,
+        "blocking_gap_count": 12,
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      }
+    ],
+    "competition_rules": [
+      {
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "competition_name": "新道杯第八届浙江省大学生企业经营沙盘模拟竞赛（本科组）",
+        "initial_capital_wan": 710.0,
+        "management_fee_per_quarter_wan": 10.0,
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      }
+    ],
+    "rule_financing_terms": [
+      {
+        "term_id": "long_loan",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "finance_type": "长期贷款",
+        "rate": 0.1,
+        "rate_basis": "annual",
+        "term_min": null,
+        "term_max": 4.0,
+        "term_unit": "year",
+        "semantic_status": "explicit_rate_partial_process",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 1,
+        "source_row": 2
+      },
+      {
+        "term_id": "short_loan",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "finance_type": "短期贷款",
+        "rate": 0.05,
+        "rate_basis": "annual",
+        "term_min": null,
+        "term_max": null,
+        "term_unit": null,
+        "semantic_status": "explicit_rate_partial_process",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 1,
+        "source_row": 3
+      },
+      {
+        "term_id": "discount_1_2q",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "finance_type": "资金贴现",
+        "rate": 0.08,
+        "rate_basis": "as_stated",
+        "term_min": 1.0,
+        "term_max": 2.0,
+        "term_unit": "quarter",
+        "semantic_status": "explicit_rate_partial_process",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 1,
+        "source_row": 4
+      },
+      {
+        "term_id": "discount_3_4q",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "finance_type": "资金贴现",
+        "rate": 0.11,
+        "rate_basis": "as_stated",
+        "term_min": 3.0,
+        "term_max": 4.0,
+        "term_unit": "quarter",
+        "semantic_status": "explicit_rate_partial_process",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 1,
+        "source_row": 4
+      }
+    ],
+    "rule_factories": [
+      {
+        "factory_id": 1,
+        "factory_name": "大厂房",
+        "purchase_price_wan": 500,
+        "annual_rent_wan": 50,
+        "sale_price_wan": 500,
+        "line_capacity": 6,
+        "usage_limit": 4,
+        "score": 12,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 2,
+        "source_row": 2
+      },
+      {
+        "factory_id": 2,
+        "factory_name": "中厂房",
+        "purchase_price_wan": 250,
+        "annual_rent_wan": 25,
+        "sale_price_wan": 250,
+        "line_capacity": 3,
+        "usage_limit": 2,
+        "score": 8,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 2,
+        "source_row": 3
+      },
+      {
+        "factory_id": 3,
+        "factory_name": "小厂房",
+        "purchase_price_wan": 150,
+        "annual_rent_wan": 15,
+        "sale_price_wan": 150,
+        "line_capacity": 2,
+        "usage_limit": 2,
+        "score": 4,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 2,
+        "source_row": 4
+      }
+    ],
+    "rule_production_lines": [
+      {
+        "line_type_id": 1,
+        "line_type_name": "超级手工线",
+        "investment_per_quarter_wan": 48,
+        "installation_quarters": 1,
+        "production_cycle_quarters": 2,
+        "conversion_fee_per_quarter_wan": 0,
+        "conversion_cycle_quarters": 0,
+        "maintenance_fee_wan": 3,
+        "residual_value_wan": 8,
+        "depreciation_fee_wan": 10,
+        "depreciation_years": 4,
+        "score": 4,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 3,
+        "source_row": 2
+      },
+      {
+        "line_type_id": 2,
+        "line_type_name": "自动线",
+        "investment_per_quarter_wan": 70,
+        "installation_quarters": 2,
+        "production_cycle_quarters": 1,
+        "conversion_fee_per_quarter_wan": 5,
+        "conversion_cycle_quarters": 1,
+        "maintenance_fee_wan": 10,
+        "residual_value_wan": 20,
+        "depreciation_fee_wan": 30,
+        "depreciation_years": 4,
+        "score": 8,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 3,
+        "source_row": 3
+      },
+      {
+        "line_type_id": 3,
+        "line_type_name": "柔性线",
+        "investment_per_quarter_wan": 90,
+        "installation_quarters": 2,
+        "production_cycle_quarters": 1,
+        "conversion_fee_per_quarter_wan": 0,
+        "conversion_cycle_quarters": 0,
+        "maintenance_fee_wan": 12,
+        "residual_value_wan": 60,
+        "depreciation_fee_wan": 30,
+        "depreciation_years": 4,
+        "score": 10,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 3,
+        "source_row": 4
+      },
+      {
+        "line_type_id": 4,
+        "line_type_name": "租赁线",
+        "investment_per_quarter_wan": 0,
+        "installation_quarters": 0,
+        "production_cycle_quarters": 1,
+        "conversion_fee_per_quarter_wan": 5,
+        "conversion_cycle_quarters": 0,
+        "maintenance_fee_wan": 60,
+        "residual_value_wan": -75,
+        "depreciation_fee_wan": 0,
+        "depreciation_years": 0,
+        "score": 0,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 3,
+        "source_row": 5
+      }
+    ],
+    "rule_markets": [
+      {
+        "market_id": 1,
+        "market_name": "本地",
+        "annual_development_fee_wan": 12,
+        "development_years": 1,
+        "score": 5,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 4,
+        "source_row": 2
+      },
+      {
+        "market_id": 2,
+        "market_name": "区域",
+        "annual_development_fee_wan": 14,
+        "development_years": 1,
+        "score": 5,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 4,
+        "source_row": 3
+      },
+      {
+        "market_id": 3,
+        "market_name": "国内",
+        "annual_development_fee_wan": 16,
+        "development_years": 1,
+        "score": 8,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 4,
+        "source_row": 4
+      },
+      {
+        "market_id": 4,
+        "market_name": "亚洲",
+        "annual_development_fee_wan": 15,
+        "development_years": 3,
+        "score": 15,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 4,
+        "source_row": 5
+      },
+      {
+        "market_id": 5,
+        "market_name": "国际",
+        "annual_development_fee_wan": 25,
+        "development_years": 3,
+        "score": 20,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 4,
+        "source_row": 6
+      }
+    ],
+    "rule_iso": [
+      {
+        "iso_id": 1,
+        "iso_name": "ISO9000",
+        "annual_development_fee_wan": 20,
+        "development_years": 2,
+        "score": 4,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 5,
+        "source_row": 2
+      },
+      {
+        "iso_id": 2,
+        "iso_name": "ISO14000",
+        "annual_development_fee_wan": 30,
+        "development_years": 2,
+        "score": 5,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 5,
+        "source_row": 3
+      }
+    ],
+    "rule_materials": [
+      {
+        "material_id": 1,
+        "material_name": "R1",
+        "unit_purchase_price_wan": 7,
+        "lead_time_quarters": 1,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 6,
+        "source_row": 2
+      },
+      {
+        "material_id": 2,
+        "material_name": "R2",
+        "unit_purchase_price_wan": 8,
+        "lead_time_quarters": 1,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 6,
+        "source_row": 3
+      },
+      {
+        "material_id": 3,
+        "material_name": "R3",
+        "unit_purchase_price_wan": 9,
+        "lead_time_quarters": 2,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 6,
+        "source_row": 4
+      },
+      {
+        "material_id": 4,
+        "material_name": "R4",
+        "unit_purchase_price_wan": 10,
+        "lead_time_quarters": 2,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 6,
+        "source_row": 5
+      }
+    ],
+    "rule_products": [
+      {
+        "product_id": 1,
+        "product_name": "P1",
+        "processing_fee_wan": 6,
+        "development_fee_per_quarter_wan": 14,
+        "development_quarters": 1,
+        "direct_cost_wan": 13,
+        "score": 4,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 7,
+        "source_row": 2
+      },
+      {
+        "product_id": 2,
+        "product_name": "P2",
+        "processing_fee_wan": 7,
+        "development_fee_per_quarter_wan": 14,
+        "development_quarters": 1,
+        "direct_cost_wan": 24,
+        "score": 7,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 7,
+        "source_row": 3
+      },
+      {
+        "product_id": 3,
+        "product_name": "P3",
+        "processing_fee_wan": 7,
+        "development_fee_per_quarter_wan": 25,
+        "development_quarters": 2,
+        "direct_cost_wan": 30,
+        "score": 10,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 7,
+        "source_row": 4
+      },
+      {
+        "product_id": 4,
+        "product_name": "P4",
+        "processing_fee_wan": 9,
+        "development_fee_per_quarter_wan": 26,
+        "development_quarters": 3,
+        "direct_cost_wan": 38,
+        "score": 13,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 7,
+        "source_row": 5
+      },
+      {
+        "product_id": 5,
+        "product_name": "P5",
+        "processing_fee_wan": 10,
+        "development_fee_per_quarter_wan": 22,
+        "development_quarters": 5,
+        "direct_cost_wan": 66,
+        "score": 18,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 7,
+        "source_row": 6
+      }
+    ],
+    "rule_bom": [
+      {
+        "product_name": "P1",
+        "component_product_name": null,
+        "material_name": "R1",
+        "quantity": 1,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 8,
+        "source_row": 2
+      },
+      {
+        "product_name": "P2",
+        "component_product_name": null,
+        "material_name": "R2",
+        "quantity": 1,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 8,
+        "source_row": 3
+      },
+      {
+        "product_name": "P2",
+        "component_product_name": null,
+        "material_name": "R3",
+        "quantity": 1,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 8,
+        "source_row": 4
+      },
+      {
+        "product_name": "P3",
+        "component_product_name": null,
+        "material_name": "R1",
+        "quantity": 1,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 8,
+        "source_row": 5
+      },
+      {
+        "product_name": "P3",
+        "component_product_name": null,
+        "material_name": "R2",
+        "quantity": 2,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 8,
+        "source_row": 6
+      },
+      {
+        "product_name": "P4",
+        "component_product_name": null,
+        "material_name": "R3",
+        "quantity": 1,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 8,
+        "source_row": 7
+      },
+      {
+        "product_name": "P4",
+        "component_product_name": null,
+        "material_name": "R4",
+        "quantity": 2,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 8,
+        "source_row": 8
+      },
+      {
+        "product_name": "P5",
+        "component_product_name": "P2",
+        "material_name": null,
+        "quantity": 2,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 8,
+        "source_row": 9
+      },
+      {
+        "product_name": "P5",
+        "component_product_name": null,
+        "material_name": "R2",
+        "quantity": 1,
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx",
+        "source_table": 8,
+        "source_row": 10
+      }
+    ],
+    "rule_gaps": [
+      {
+        "gap_id": "phase_sequence",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "流程",
+        "title": "经营阶段和季度结算顺序",
+        "description": "题面只有参数表，没有定义动作开放阶段及季度结算先后关系。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "loan_limit",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "融资",
+        "title": "贷款额度与申请资格",
+        "description": "缺少长短贷额度上限、申请时点、续贷及特别贷款条件。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "loan_settlement",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "融资",
+        "title": "贷款计息与到期结算",
+        "description": "缺少本金、利息的精确扣款时点和逾期处理。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "discount_semantics",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "融资",
+        "title": "贴现计算语义",
+        "description": "已知 1–2 季为 8%、3–4 季为 11%，但缺少计费基数和入账时点说明。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "advertising_order",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "销售",
+        "title": "广告、询单、选单和竞单机制",
+        "description": "缺少广告排名、订单分配、竞单费用及平局处理规则。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "material_receipt",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "采购",
+        "title": "原料下单、到货与付款顺序",
+        "description": "提前期参数已知，但付款和库存入账时点未由题面确认。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "production_transition",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "生产",
+        "title": "生产与转产状态转移",
+        "description": "缺少开工、完工、停工、转产和在制品入账的完整状态机。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "delivery_receivable",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "销售",
+        "title": "交货与应收账款转移",
+        "description": "缺少交货期、账期、收入确认和到账的完整时点规则。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "emergency_purchase",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "采购",
+        "title": "紧急采购价格和限制",
+        "description": "历史中存在紧急采购，但题面未给出价格倍率与使用约束。",
+        "severity": "major",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "default_penalty",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "风险",
+        "title": "违约判定和处罚",
+        "description": "历史中存在违约处罚，但题面未给出触发条件与公式。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "accounting_close",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "会计",
+        "title": "折旧、税费和年末结转",
+        "description": "参数表不能确定会计确认顺序、所得税口径和损失处理。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "bankruptcy_injection",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "风险",
+        "title": "现金不足、注资和破产",
+        "description": "缺少现金断裂后的特别贷款、注资、破产及排名处理规则。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "final_scoring",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "评价",
+        "title": "最终评分和排名",
+        "description": "题面包含部分资产分值，但缺少完整综合评分公式。",
+        "severity": "major",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      },
+      {
+        "gap_id": "order_binding",
+        "rule_pack_id": "zhejiang_8th_rules_v1",
+        "competition_id": "zhejiang_8th_710",
+        "rule_version": "zhejiang_8th_rules_v1",
+        "domain": "数据",
+        "title": "订单目录比赛归属",
+        "description": "581 条订单尚未确认属于 710 万元题面还是历史 600 万元比赛。",
+        "severity": "blocker",
+        "status": "unresolved",
+        "evidence_status": "not_explicit_in_available_rule_source",
+        "source_id": "src_436ffc3299d8",
+        "source_path": "origin data/测试数据/试题题面01.docx"
+      }
+    ],
+    "action_definitions": [
+      {
+        "canonical_action": "capital_injection",
+        "category": "finance",
+        "description": "股东注资",
+        "control_type": "exception_intervention",
+        "is_agent_candidate": false,
+        "historical_observation_count": 15,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "administrative_fee",
+        "category": "period_close",
+        "description": "支付行政管理费",
+        "control_type": "automatic_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 300,
+        "test_observation_count": 20,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "material_order",
+        "category": "procurement",
+        "description": "订购原材料",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 228,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "material_receipt_payment",
+        "category": "procurement",
+        "description": "原材料到货并付款",
+        "control_type": "committed_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 223,
+        "test_observation_count": 8,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "production",
+        "category": "production",
+        "description": "投入加工费并开始或完成生产",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 221,
+        "test_observation_count": 9,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "production_line_order",
+        "category": "capacity",
+        "description": "订购生产线",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 109,
+        "test_observation_count": 3,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "production_line_investment",
+        "category": "capacity",
+        "description": "支付在建生产线投资",
+        "control_type": "committed_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 58,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "production_line_conversion",
+        "category": "capacity",
+        "description": "生产线转产",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 3,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "product_development",
+        "category": "qualification",
+        "description": "产品研发投入",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 95,
+        "test_observation_count": 4,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "market_development",
+        "category": "qualification",
+        "description": "市场开拓投入",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 50,
+        "test_observation_count": 3,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "iso_development",
+        "category": "qualification",
+        "description": "ISO 认证投入",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 32,
+        "test_observation_count": 2,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "short_loan_borrow",
+        "category": "finance",
+        "description": "取得短期贷款",
+        "control_type": "conditional_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 84,
+        "test_observation_count": 20,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "short_loan_repayment",
+        "category": "finance",
+        "description": "偿还短贷本息（历史合并事件）",
+        "control_type": "committed_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 66,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "short_loan_principal_payment",
+        "category": "finance",
+        "description": "偿还短贷本金",
+        "control_type": "committed_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 0,
+        "test_observation_count": 16,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "short_loan_interest_payment",
+        "category": "finance",
+        "description": "支付短贷利息",
+        "control_type": "committed_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 0,
+        "test_observation_count": 16,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "long_loan_borrow",
+        "category": "finance",
+        "description": "取得长期贷款",
+        "control_type": "conditional_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 32,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "long_loan_repayment",
+        "category": "finance",
+        "description": "偿还长贷本息",
+        "control_type": "committed_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 52,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "receivable_maturity",
+        "category": "receivable",
+        "description": "应收账款到期更新",
+        "control_type": "automatic_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 120,
+        "test_observation_count": 10,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "receivable_discount",
+        "category": "receivable",
+        "description": "应收账款贴现",
+        "control_type": "conditional_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 40,
+        "test_observation_count": 4,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "advertising",
+        "category": "sales",
+        "description": "广告投放",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 60,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "maintenance",
+        "category": "period_close",
+        "description": "生产线维护费",
+        "control_type": "automatic_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 62,
+        "test_observation_count": 5,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "factory_rent",
+        "category": "capacity",
+        "description": "租赁厂房",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 21,
+        "test_observation_count": 3,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "factory_rent_renewal",
+        "category": "capacity",
+        "description": "厂房续租",
+        "control_type": "conditional_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 58,
+        "test_observation_count": 5,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "factory_purchase",
+        "category": "capacity",
+        "description": "购买厂房",
+        "control_type": "direct_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 12,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "factory_rent_to_buy",
+        "category": "capacity",
+        "description": "厂房租转买",
+        "control_type": "conditional_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 12,
+        "test_observation_count": 4,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "factory_buy_to_rent",
+        "category": "capacity",
+        "description": "厂房买转租",
+        "control_type": "conditional_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 0,
+        "test_observation_count": 1,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "order_award",
+        "category": "sales",
+        "description": "竞单成功取得订单",
+        "control_type": "external_outcome",
+        "is_agent_candidate": false,
+        "historical_observation_count": 32,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "order_delivery",
+        "category": "sales",
+        "description": "按订单交货",
+        "control_type": "conditional_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 6,
+        "test_observation_count": 6,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "inventory_product_sale",
+        "category": "sales",
+        "description": "出售库存产品",
+        "control_type": "conditional_decision",
+        "is_agent_candidate": true,
+        "historical_observation_count": 2,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "emergency_material_purchase",
+        "category": "procurement",
+        "description": "紧急采购原料",
+        "control_type": "exception_intervention",
+        "is_agent_candidate": true,
+        "historical_observation_count": 6,
+        "test_observation_count": 1,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "emergency_product_purchase",
+        "category": "procurement",
+        "description": "紧急采购产品",
+        "control_type": "exception_intervention",
+        "is_agent_candidate": true,
+        "historical_observation_count": 5,
+        "test_observation_count": 1,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "tax_payment",
+        "category": "period_close",
+        "description": "支付税金",
+        "control_type": "automatic_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 20,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      },
+      {
+        "canonical_action": "penalty_payment",
+        "category": "risk",
+        "description": "支付违约处罚",
+        "control_type": "automatic_settlement",
+        "is_agent_candidate": false,
+        "historical_observation_count": 2,
+        "test_observation_count": 0,
+        "semantic_status": "observed_not_rule_verified",
+        "executable_status": "blocked_until_rule_confirmed"
+      }
+    ],
+    "action_aliases": [
+      {
+        "source_scope": "historical",
+        "raw_action": "Pay_Capital",
+        "canonical_action": "capital_injection",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Pay_Overhaul",
+        "canonical_action": "administrative_fee",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Buy_Material",
+        "canonical_action": "material_order",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Pay_Material",
+        "canonical_action": "material_receipt_payment",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Product_Produce",
+        "canonical_action": "production",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Buy_ProductLine",
+        "canonical_action": "production_line_order",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Invest_ProductLine",
+        "canonical_action": "production_line_investment",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Transfer",
+        "canonical_action": "production_line_conversion",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Develop_Product",
+        "canonical_action": "product_development",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Develop_Market",
+        "canonical_action": "market_development",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Develop_ISO",
+        "canonical_action": "iso_development",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Short_Loan",
+        "canonical_action": "short_loan_borrow",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Pay_Short_Loan",
+        "canonical_action": "short_loan_repayment",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Long_Loan",
+        "canonical_action": "long_loan_borrow",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Pay_Long_Loan",
+        "canonical_action": "long_loan_repayment",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Update_Receivable",
+        "canonical_action": "receivable_maturity",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Discount",
+        "canonical_action": "receivable_discount",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Pay_AD",
+        "canonical_action": "advertising",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Pay_Maintenance",
+        "canonical_action": "maintenance",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Rent_Workshop",
+        "canonical_action": "factory_rent",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Renew_Workshop",
+        "canonical_action": "factory_rent_renewal",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Buy_Workshop",
+        "canonical_action": "factory_purchase",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "RentTOBuy_Workshop",
+        "canonical_action": "factory_rent_to_buy",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Auction_Win",
+        "canonical_action": "order_award",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Sell_Product",
+        "canonical_action": "order_delivery",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Sell_Inventory_Product",
+        "canonical_action": "inventory_product_sale",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Emergency_Buy_Material",
+        "canonical_action": "emergency_material_purchase",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Emergency_Buy_Product",
+        "canonical_action": "emergency_product_purchase",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Pay_Tax",
+        "canonical_action": "tax_payment",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "historical",
+        "raw_action": "Pay_Punish",
+        "canonical_action": "penalty_payment",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "管理费",
+        "canonical_action": "administrative_fee",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "申请短贷",
+        "canonical_action": "short_loan_borrow",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "短贷还款",
+        "canonical_action": "short_loan_principal_payment",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "短贷利息",
+        "canonical_action": "short_loan_interest_payment",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "应收账款更新",
+        "canonical_action": "receivable_maturity",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "加工费",
+        "canonical_action": "production",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "更新原料",
+        "canonical_action": "material_receipt_payment",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "维护费",
+        "canonical_action": "maintenance",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "厂房续租",
+        "canonical_action": "factory_rent_renewal",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "厂房租转买",
+        "canonical_action": "factory_rent_to_buy",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "产品研发",
+        "canonical_action": "product_development",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "生产线购买",
+        "canonical_action": "production_line_order",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "市场开拓",
+        "canonical_action": "market_development",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "厂房租赁",
+        "canonical_action": "factory_rent",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "ISO认证",
+        "canonical_action": "iso_development",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "紧急采购原料",
+        "canonical_action": "emergency_material_purchase",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "紧急采购产品",
+        "canonical_action": "emergency_product_purchase",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test",
+        "raw_action": "厂房买转租",
+        "canonical_action": "factory_buy_to_rent",
+        "mapping_status": "explicit_parser_mapping"
+      },
+      {
+        "source_scope": "test_pattern",
+        "raw_action": "按订单交货(*)",
+        "canonical_action": "order_delivery",
+        "mapping_status": "pattern_mapping"
+      },
+      {
+        "source_scope": "test_pattern",
+        "raw_action": "贴现*q(面值)",
+        "canonical_action": "receivable_discount",
+        "mapping_status": "pattern_mapping"
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "match_id": "EB",
+  "record_counts": {
+    "teams": 20,
+    "events": 4251,
+    "operating_events": 4251,
+    "team_orders": 350,
+    "global_orders": 492,
+    "observed_global_orders": 350,
+    "simulated_global_orders": 142,
+    "unassigned_global_orders": 142,
+    "reports": 4864,
+    "quarter_states": 400
+  },
+  "coverage": {
+    "schema": "complete",
+    "enterprise_exports": "observed",
+    "event_stream": "observed_from_cash_flow_sheet",
+    "quarter_cash_states": "derived_from_observed_events",
+    "global_orders": "observed_allocated_plus_simulated_unassigned",
+    "formal_rules": "reconstructed_match_specific_for_simulation",
+    "final_ranking": "simulated_from_reconstructed_rule_pack"
+  },
+  "checks": {
+    "cash_continuity": {
+      "passed": true,
+      "error_count": 0,
+      "errors": []
+    },
+    "operating_action_mapping": {
+      "passed": true,
+      "unmapped_count": 0,
+      "event_ids": []
+    },
+    "global_order_unique": {
+      "passed": true,
+      "duplicates": []
+    },
+    "team_orders_present_in_global_view": {
+      "passed": true,
+      "unmatched": []
+    },
+    "team_global_order_fields": {
+      "passed": true,
+      "mismatch_count": 0,
+      "mismatches": []
+    },
+    "quarter_state_shape": {
+      "passed": true,
+      "expected": 400,
+      "actual": 400
+    },
+    "duplicate_source_hashes": {
+      "passed": true,
+      "duplicate_count": 0
+    }
+  }
+}

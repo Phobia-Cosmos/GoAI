@@ -1,0 +1,186 @@
+{
+  "format_version": "goai_multimatch_v2.0",
+  "match_id": "EF",
+  "source_kind": "historical_enterprise_and_public_exports",
+  "operating_period": {
+    "start": "Y1Q1",
+    "end": "Y5Q4",
+    "export_boundary": "Y6Q1"
+  },
+  "schema_complete": true,
+  "observed_complete": false,
+  "truth_policy": "Never promote inferred, simulated or missing values to observed facts.",
+  "provenance_values": [
+    "observed",
+    "derived",
+    "inferred",
+    "simulated",
+    "missing"
+  ],
+  "files": [
+    "manifest.json",
+    "rules.json",
+    "teams.jsonl",
+    "events.jsonl",
+    "global_orders.jsonl",
+    "annual_public.jsonl",
+    "reports.jsonl",
+    "final_states.jsonl",
+    "quarter_states.jsonl",
+    "results.json",
+    "raw_cells.jsonl",
+    "quality.json"
+  ],
+  "sources": [
+    {
+      "source_id": "src_3f175aa0c9e3b29b",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef01.xls",
+      "size_bytes": 71168,
+      "sha256": "bf3cd13fdb12ca9c490aacfb48b32c578e07b111f34c9caefae92a61b13c9ba2"
+    },
+    {
+      "source_id": "src_ca3e151a14724b55",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef02.xls",
+      "size_bytes": 73728,
+      "sha256": "c9b2f03652cc1a3960a04e38f8890685173d04d3790e7cb27dab691948a8e96a"
+    },
+    {
+      "source_id": "src_08af4b922deae46a",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef03.xls",
+      "size_bytes": 37888,
+      "sha256": "f13d7e2f2b117a9f76ea5682aed06cc90ab35cbfcbd105a38b5e1f5ff5bc81b9"
+    },
+    {
+      "source_id": "src_22b5794d952f382a",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef04.xls",
+      "size_bytes": 53248,
+      "sha256": "596a58b5b91d056d620dcb46e8b7750626f602353342be02c12aa32b12dcb8df"
+    },
+    {
+      "source_id": "src_d21c4047a781cb49",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef05.xls",
+      "size_bytes": 82944,
+      "sha256": "2d8a1ecb94828ecd417084566ab617121305c6566826237eb1fde4309ef47dca"
+    },
+    {
+      "source_id": "src_cd4ffe10e5e7b300",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef06.xls",
+      "size_bytes": 57344,
+      "sha256": "49fb3eac36b158a68408cc41ef7fd45fd22d1b211043847badaf9b88e230899e"
+    },
+    {
+      "source_id": "src_7ae9a469a781c0d0",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef07.xls",
+      "size_bytes": 46592,
+      "sha256": "b7bd833d73d3a191c26962eb850e525254e41e93dcbed822c10f11b13cf85cff"
+    },
+    {
+      "source_id": "src_1a1f0be7654e18a4",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef08.xls",
+      "size_bytes": 77312,
+      "sha256": "99d5e4b5b60973659bb7cd0446029e10c8047f720e0f177bd2f847aa81996547"
+    },
+    {
+      "source_id": "src_aa6435a90d5a5153",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef09.xls",
+      "size_bytes": 80384,
+      "sha256": "4e4d28bce57b98bbd0a7de684ac3bc645d470507ffe6cb3bbfb0772ac1953435"
+    },
+    {
+      "source_id": "src_55f25faf2bdea349",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef10.xls",
+      "size_bytes": 53248,
+      "sha256": "c540f801f48b476dfc8e4882ae1baf54546d48586786f34a00760019bd6d3111"
+    },
+    {
+      "source_id": "src_21e49db842220c50",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef11.xls",
+      "size_bytes": 67584,
+      "sha256": "5622dc2a4cc92ce503c72077d9e19728348d276becadc134246d83717b0315ac"
+    },
+    {
+      "source_id": "src_11d2be1a3ce6256f",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef12.xls",
+      "size_bytes": 78848,
+      "sha256": "18a0592fd00ce659e0ceae38d40e7ba3f6c231fcc9023349823c7ff5d0286c46"
+    },
+    {
+      "source_id": "src_f61f4af78247fbb3",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef13.xls",
+      "size_bytes": 49152,
+      "sha256": "fde323d0510d3b80b334135ab8c5fde26ccef3f76a2c0ca968008b57e7cfe9a6"
+    },
+    {
+      "source_id": "src_47a2ffcc65e85583",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef14.xls",
+      "size_bytes": 71680,
+      "sha256": "4e7e35198c3d9c9fe1e39dbb09962cde110b6ce30be4d42aa46449fa1f22511f"
+    },
+    {
+      "source_id": "src_1aab7d996f9d79e4",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef15.xls",
+      "size_bytes": 45056,
+      "sha256": "2bfb68b4038c53be58a1dec1122dc06339396fbe2cd3a67f81076943f2ad0c4c"
+    },
+    {
+      "source_id": "src_c3b5e52ea894e453",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef16.xls",
+      "size_bytes": 62976,
+      "sha256": "afb910f7afa14df4a6d9c9daa2edbe5f982511487940b02eb683dc6fa02fd06d"
+    },
+    {
+      "source_id": "src_3aa406ada3f21216",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef17.xls",
+      "size_bytes": 51200,
+      "sha256": "3caf36b60fe470481f11746c3f7119b649ddf7760bf94b32048748ab73ed93b4"
+    },
+    {
+      "source_id": "src_4e37dcf81d457ef3",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef18.xls",
+      "size_bytes": 77824,
+      "sha256": "8d1d4c578988d0ba93b6c7f7d01bd0ef32112f20058a95c54c8998b9688a37ec"
+    },
+    {
+      "source_id": "src_7b607b587337b5fa",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef19.xls",
+      "size_bytes": 69120,
+      "sha256": "9381a744a2738343acbf6a25e2e2f518dadb8c547d7b2e7efd68426182368c85"
+    },
+    {
+      "source_id": "src_31d0ffbd45540323",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/ef20.xls",
+      "size_bytes": 50688,
+      "sha256": "d6acb52da833267d53bf6f6cd77931ce420ff41221be279a770121d0bc0d160e"
+    },
+    {
+      "source_id": "src_d8d4dbc195f6ad57",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/第1年.xls",
+      "size_bytes": 40448,
+      "sha256": "dff40a43b5b650c4497a4b41d1cf5ad507fa74ae74dd27abfa17eef993750088"
+    },
+    {
+      "source_id": "src_342882a03bc7a575",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/第2年.xls",
+      "size_bytes": 40448,
+      "sha256": "e760451b98163dcabb8b23dbf3bb7c7727bf08661c8856374ae2550e99aaff05"
+    },
+    {
+      "source_id": "src_d37ed97d3f8a8e6f",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/第3年.xls",
+      "size_bytes": 36352,
+      "sha256": "5600b393a4b3137767faf8cc3633399dc6062c909728561e3dc1202d1ae774bd"
+    },
+    {
+      "source_id": "src_603b5be7f096c2c1",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/第4年.xls",
+      "size_bytes": 31232,
+      "sha256": "91edabb20ca15c0069e6c7d07c84a09457beda271fc408e617dd694ca2213f8d"
+    },
+    {
+      "source_id": "src_c8629f45cd924880",
+      "path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/EF/第5年.xls",
+      "size_bytes": 23552,
+      "sha256": "b574ef4f4907872040798a639063195f95f5f929c59d1c42982acc8052122b14"
+    }
+  ]
+}

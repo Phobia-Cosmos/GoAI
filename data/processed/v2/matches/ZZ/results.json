@@ -1,0 +1,218 @@
+{
+  "match_id": "ZZ",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "ZZ10",
+      "official_score": null,
+      "recomputed_score": 7034.040000000001,
+      "rounded_recomputed_score": 7034,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 2171.0,
+      "development_potential": 224,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 2,
+      "team_id": "ZZ14",
+      "official_score": null,
+      "recomputed_score": 5056.259999999999,
+      "rounded_recomputed_score": 5056,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1551.0,
+      "development_potential": 226,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 3,
+      "team_id": "ZZ16",
+      "official_score": null,
+      "recomputed_score": 5048.12,
+      "rounded_recomputed_score": 5048,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1694.0,
+      "development_potential": 198,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 4,
+      "team_id": "ZZ06",
+      "official_score": null,
+      "recomputed_score": 3444.7000000000003,
+      "rounded_recomputed_score": 3445,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1295.0,
+      "development_potential": 166,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 5,
+      "team_id": "ZZ05",
+      "official_score": null,
+      "recomputed_score": 3327.2400000000002,
+      "rounded_recomputed_score": 3327,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1631.0,
+      "development_potential": 104,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 6,
+      "team_id": "ZZ04",
+      "official_score": null,
+      "recomputed_score": 3104.88,
+      "rounded_recomputed_score": 3105,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1522.0,
+      "development_potential": 104,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 7,
+      "team_id": "ZZ07",
+      "official_score": null,
+      "recomputed_score": 2275.02,
+      "rounded_recomputed_score": 2275,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1149.0,
+      "development_potential": 98,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 8,
+      "team_id": "ZZ12",
+      "official_score": null,
+      "recomputed_score": 2113.92,
+      "rounded_recomputed_score": 2114,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1101.0,
+      "development_potential": 92,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 9,
+      "team_id": "ZZ09",
+      "official_score": null,
+      "recomputed_score": 1783.88,
+      "rounded_recomputed_score": 1784,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 644.0,
+      "development_potential": 177,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 10,
+      "team_id": "ZZ11",
+      "official_score": null,
+      "recomputed_score": 1445.08,
+      "rounded_recomputed_score": 1445,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 794.0,
+      "development_potential": 82,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 11,
+      "team_id": "ZZ13",
+      "official_score": null,
+      "recomputed_score": 1334.64,
+      "rounded_recomputed_score": 1335,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 804.0,
+      "development_potential": 66,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 12,
+      "team_id": "ZZ03",
+      "official_score": null,
+      "recomputed_score": 827.64,
+      "rounded_recomputed_score": 828,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 418.0,
+      "development_potential": 98,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 13,
+      "team_id": "ZZ02",
+      "official_score": null,
+      "recomputed_score": 746.46,
+      "rounded_recomputed_score": 746,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 377.0,
+      "development_potential": 98,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 14,
+      "team_id": "ZZ08",
+      "official_score": null,
+      "recomputed_score": -148.77,
+      "rounded_recomputed_score": -149,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": -87.0,
+      "development_potential": 71,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    }
+  ],
+  "ranking_status": "simulated_ranking_from_reconstructed_rule_pack",
+  "bankruptcies": [],
+  "rule_pack_id": "ZZ_historical_rule_unknown"
+}

@@ -1,0 +1,223 @@
+{
+  "match_id": "CE",
+  "observed_result": {
+    "bankruptcies": [],
+    "match_id": "CE",
+    "ranking": [],
+    "ranking_status": "simulated_ranking_from_reconstructed_rule_pack",
+    "rule_pack_id": "CE_historical_rule_unknown"
+  },
+  "provenance": {
+    "events": "observed",
+    "orders": "observed_plus_simulated",
+    "quarter_states": "derived",
+    "ranking": "simulated"
+  },
+  "ranking_warning": "旧场次没有官方最终排名；此排序仅用于运行接口和策略比较。",
+  "result_status": "candidate_replay_simulated_ranking",
+  "rule_pack_id": "CE_runtime_inferred_v2",
+  "run_version": "match_replay_v1.0",
+  "simulated_ranking": [
+    {
+      "bankruptcy_period": null,
+      "development_potential": 64,
+      "final_cash_wan": 1444.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 1,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE19"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 88,
+      "final_cash_wan": 1133.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 2,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE18"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 56,
+      "final_cash_wan": 1102.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 3,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE06"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 80,
+      "final_cash_wan": 776.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 4,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE09"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 80,
+      "final_cash_wan": 730.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 5,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE16"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 120,
+      "final_cash_wan": 583.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 6,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE12"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 44,
+      "final_cash_wan": 485.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 7,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE05"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 56,
+      "final_cash_wan": 475.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 8,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE03"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 80,
+      "final_cash_wan": 410.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 9,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE11"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 36,
+      "final_cash_wan": 402.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 10,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE15"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 32,
+      "final_cash_wan": 378.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 11,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE02"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 92,
+      "final_cash_wan": 326.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 12,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE14"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 96,
+      "final_cash_wan": 274.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 13,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE10"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 8,
+      "final_cash_wan": 266.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 14,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE08"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 40,
+      "final_cash_wan": 190.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 15,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE13"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 0,
+      "final_cash_wan": 170.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 16,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE04"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 48,
+      "final_cash_wan": 152.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 17,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE01"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 56,
+      "final_cash_wan": 115.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 18,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE17"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 24,
+      "final_cash_wan": 23.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 19,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE07"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 44,
+      "final_cash_wan": 1.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 20,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "CE20"
+    }
+  ],
+  "team_count": 20
+}

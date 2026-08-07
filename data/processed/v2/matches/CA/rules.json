@@ -1,0 +1,639 @@
+{
+  "match_id": "CA",
+  "rule_pack_id": "CA_historical_rule_unknown",
+  "binding_status": "reconstructed_match_specific",
+  "provenance": "inferred",
+  "source_scope": {
+    "enterprise_file_count": 20,
+    "global_order_record_count": 495
+  },
+  "observed_fingerprint": {
+    "initial_capital_amounts_wan": [
+      600.0
+    ],
+    "management_fee_amounts_wan": [
+      10.0
+    ],
+    "action_count": 32
+  },
+  "inferred_parameters": {
+    "initial_cash_wan_observed": [
+      600.0
+    ],
+    "management_fee_per_quarter_wan_observed": [
+      10.0
+    ],
+    "observed_action_set": [
+      "administrative_fee",
+      "advertising",
+      "capital_injection",
+      "emergency_purchase",
+      "factory_discount",
+      "factory_disposal",
+      "factory_purchase",
+      "factory_rent",
+      "factory_rent_renewal",
+      "inventory_sale",
+      "iso_development",
+      "long_loan_borrow",
+      "long_loan_interest_payment",
+      "long_loan_principal_payment",
+      "maintenance",
+      "market_development",
+      "material_receipt_payment",
+      "order_bid_fee",
+      "order_delivery",
+      "penalty_payment",
+      "product_development",
+      "production",
+      "production_line_conversion",
+      "production_line_investment",
+      "production_line_order",
+      "production_line_sale",
+      "receivable_discount",
+      "receivable_maturity",
+      "short_loan_borrow",
+      "short_loan_interest_payment",
+      "short_loan_principal_payment",
+      "tax_payment"
+    ],
+    "observed_order_types": [],
+    "competitions_with_explicit_order_type": false
+  },
+  "parameters": {
+    "initial_cash_wan": 600.0,
+    "management_fee_per_quarter_wan": 10.0,
+    "tax_rate": 0.25,
+    "default_penalty_rate": 0.2,
+    "bankruptcy": [
+      "cash_flow_break",
+      "negative_equity"
+    ],
+    "first_year_has_orders": false,
+    "long_loan": {
+      "annual_rate": 0.1,
+      "max_years": 5,
+      "max_total_multiple_prior_equity": 3
+    },
+    "short_loan": {
+      "rate": 0.05
+    },
+    "receivable_discount": {
+      "terms_1_2": 0.1,
+      "terms_3_4": 0.125
+    },
+    "factories": {
+      "大厂房": {
+        "purchase_wan": 500.0,
+        "rent_wan_per_year": 50.0,
+        "capacity": 5,
+        "score": 12
+      },
+      "中厂房": {
+        "purchase_wan": 300.0,
+        "rent_wan_per_year": 30.0,
+        "capacity": 3,
+        "score": 8
+      },
+      "小厂房": {
+        "purchase_wan": 200.0,
+        "rent_wan_per_year": 20.0,
+        "capacity": 2,
+        "score": 4
+      }
+    },
+    "production_lines": {
+      "手工线": {
+        "investment_wan_per_quarter": 40.0,
+        "install_quarters": 0,
+        "production_quarters": 2,
+        "maintenance_wan_per_year": 10.0,
+        "score": 3
+      },
+      "租赁线": {
+        "investment_wan_per_quarter": 0.0,
+        "install_quarters": 0,
+        "production_quarters": 1,
+        "maintenance_wan_per_year": 65.0,
+        "score": 0
+      },
+      "自动线": {
+        "investment_wan_per_quarter": 80.0,
+        "install_quarters": 2,
+        "production_quarters": 1,
+        "maintenance_wan_per_year": 20.0,
+        "score": 8
+      },
+      "柔性线": {
+        "investment_wan_per_quarter": 70.0,
+        "install_quarters": 3,
+        "production_quarters": 1,
+        "maintenance_wan_per_year": 20.0,
+        "score": 12
+      }
+    },
+    "markets": {
+      "本地": {
+        "fee_wan_per_year": 15.0,
+        "years": 1,
+        "score": 5
+      },
+      "区域": {
+        "fee_wan_per_year": 15.0,
+        "years": 1,
+        "score": 5
+      },
+      "国内": {
+        "fee_wan_per_year": 15.0,
+        "years": 1,
+        "score": 8
+      },
+      "亚洲": {
+        "fee_wan_per_year": 20.0,
+        "years": 2,
+        "score": 10
+      },
+      "国际": {
+        "fee_wan_per_year": 20.0,
+        "years": 3,
+        "score": 10
+      }
+    },
+    "iso": {
+      "ISO9000": {
+        "fee_wan_per_year": 20.0,
+        "years": 2,
+        "score": 10
+      },
+      "ISO14000": {
+        "fee_wan_per_year": 25.0,
+        "years": 2,
+        "score": 10
+      }
+    },
+    "products": {
+      "P1": {
+        "process_wan": 10.0,
+        "development_wan_per_quarter": 15.0,
+        "quarters": 2,
+        "direct_cost_wan": 20.0,
+        "score": 4
+      },
+      "P2": {
+        "process_wan": 10.0,
+        "development_wan_per_quarter": 20.0,
+        "quarters": 2,
+        "direct_cost_wan": 30.0,
+        "score": 8
+      },
+      "P3": {
+        "process_wan": 10.0,
+        "development_wan_per_quarter": 20.0,
+        "quarters": 3,
+        "direct_cost_wan": 40.0,
+        "score": 12
+      },
+      "P4": {
+        "process_wan": 10.0,
+        "development_wan_per_quarter": 20.0,
+        "quarters": 3,
+        "direct_cost_wan": 50.0,
+        "score": 12
+      },
+      "P5": {
+        "process_wan": 10.0,
+        "development_wan_per_quarter": 20.0,
+        "quarters": 4,
+        "direct_cost_wan": 60.0,
+        "score": 18
+      }
+    },
+    "materials": {
+      "R1": {
+        "price_wan": 10.0,
+        "lead_quarters": 1
+      },
+      "R2": {
+        "price_wan": 10.0,
+        "lead_quarters": 1
+      },
+      "R3": {
+        "price_wan": 10.0,
+        "lead_quarters": 2
+      },
+      "R4": {
+        "price_wan": 10.0,
+        "lead_quarters": 2
+      }
+    },
+    "bom": [
+      {
+        "product": "P1",
+        "material": "R1",
+        "quantity": 1
+      },
+      {
+        "product": "P2",
+        "material": "R2",
+        "quantity": 1
+      },
+      {
+        "product": "P2",
+        "material": "R3",
+        "quantity": 1
+      },
+      {
+        "product": "P3",
+        "material": "R1",
+        "quantity": 1
+      },
+      {
+        "product": "P3",
+        "material": "R2",
+        "quantity": 1
+      },
+      {
+        "product": "P3",
+        "material": "R3",
+        "quantity": 1
+      },
+      {
+        "product": "P4",
+        "material": "R2",
+        "quantity": 1
+      },
+      {
+        "product": "P4",
+        "material": "R3",
+        "quantity": 1
+      },
+      {
+        "product": "P4",
+        "sub_product": "P1",
+        "sub_quantity": 1
+      },
+      {
+        "product": "P5",
+        "material": "R2",
+        "quantity": 1
+      },
+      {
+        "product": "P5",
+        "material": "R4",
+        "quantity": 1
+      },
+      {
+        "product": "P5",
+        "sub_product": "P2",
+        "sub_quantity": 2
+      }
+    ],
+    "selection_priority": [
+      "prior_market_leader",
+      "market_product_advertising",
+      "market_total_advertising",
+      "market_sales_rank",
+      "submission_time"
+    ],
+    "score_formula": "score = owner_equity * (1 + development_potential / 100)"
+  },
+  "parameter_provenance": {
+    "initial_cash_wan": "observed_event_fingerprint",
+    "management_fee_per_quarter_wan": "observed_event_fingerprint",
+    "factory_line_market_iso_product_material_parameters": "inferred_from_600W_candidate_pack_and_checked_against_exports",
+    "bankruptcy_selection_and_scoring_semantics": "inherited_from_XA_when_not_contradicted"
+  },
+  "inherited_xa_interfaces_only": [
+    "cash_transition_identity",
+    "quarterly_event_ordering_interface",
+    "bankruptcy_state_fields",
+    "report_statement_names",
+    "provenance_and_coverage_contract"
+  ],
+  "simulation_policy": {
+    "unallocated_orders_generated": true,
+    "simulated_unallocated_order_count": 173,
+    "generate_competition_order_types_only_if_observed": true,
+    "do_not_generate_when_complete_pool_observed": true,
+    "warning": "Generated rows are scenario placeholders, not official historical facts."
+  },
+  "candidate_rule_pack": {
+    "source_path": "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/rules/competition_rules.json",
+    "binding_status": "unconfirmed_not_auto_bound_to_match",
+    "currency_unit": "yuan",
+    "data": {
+      "meta": {
+        "initial_capital": 6000000,
+        "management_fee_per_quarter": 100000,
+        "currency_unit": "元"
+      },
+      "loans": {
+        "long_term_rate": 0.1,
+        "long_term_max_years": 5,
+        "short_term_rate": 0.05,
+        "discount_rates": {
+          "q1_q2": 0.1,
+          "q3_q4": 0.125
+        }
+      },
+      "factories": [
+        {
+          "id": 1,
+          "name": "大厂房",
+          "purchase_price": 5000000,
+          "rent_price_per_year": 500000,
+          "sell_price": 5000000,
+          "line_capacity": 5,
+          "use_limit_years": 4,
+          "score": 12
+        },
+        {
+          "id": 2,
+          "name": "中厂房",
+          "purchase_price": 3000000,
+          "rent_price_per_year": 300000,
+          "sell_price": 3000000,
+          "line_capacity": 3,
+          "use_limit_years": 4,
+          "score": 8
+        },
+        {
+          "id": 3,
+          "name": "小厂房",
+          "purchase_price": 2000000,
+          "rent_price_per_year": 200000,
+          "sell_price": 2000000,
+          "line_capacity": 2,
+          "use_limit_years": 4,
+          "score": 4
+        }
+      ],
+      "lines": [
+        {
+          "id": 1,
+          "name": "手工线",
+          "investment_per_quarter": 400000,
+          "install_periods": 0,
+          "production_periods": 2,
+          "conversion_fee_per_quarter": 0,
+          "conversion_periods": 0,
+          "maintenance_per_year": 100000,
+          "residual_value": 0,
+          "depreciation_per_year": 100000,
+          "depreciation_years": 5,
+          "score": 3,
+          "capacity_per_quarter": 0.5
+        },
+        {
+          "id": 2,
+          "name": "租赁线",
+          "investment_per_quarter": 0,
+          "install_periods": 0,
+          "production_periods": 1,
+          "conversion_fee_per_quarter": 0,
+          "conversion_periods": 0,
+          "maintenance_per_year": 650000,
+          "residual_value": -700000,
+          "depreciation_per_year": 0,
+          "depreciation_years": 0,
+          "score": 0,
+          "capacity_per_quarter": 1.0
+        },
+        {
+          "id": 3,
+          "name": "自动线",
+          "investment_per_quarter": 800000,
+          "install_periods": 2,
+          "production_periods": 1,
+          "conversion_fee_per_quarter": 100000,
+          "conversion_periods": 1,
+          "maintenance_per_year": 200000,
+          "residual_value": 400000,
+          "depreciation_per_year": 300000,
+          "depreciation_years": 5,
+          "score": 8,
+          "capacity_per_quarter": 1.0
+        },
+        {
+          "id": 4,
+          "name": "柔性线",
+          "investment_per_quarter": 700000,
+          "install_periods": 3,
+          "production_periods": 1,
+          "conversion_fee_per_quarter": 0,
+          "conversion_periods": 0,
+          "maintenance_per_year": 200000,
+          "residual_value": 900000,
+          "depreciation_per_year": 300000,
+          "depreciation_years": 5,
+          "score": 12,
+          "capacity_per_quarter": 1.0
+        }
+      ],
+      "markets": [
+        {
+          "id": 1,
+          "name": "本地",
+          "development_fee_per_year": 150000,
+          "development_years": 1,
+          "score": 5
+        },
+        {
+          "id": 2,
+          "name": "区域",
+          "development_fee_per_year": 150000,
+          "development_years": 1,
+          "score": 5
+        },
+        {
+          "id": 3,
+          "name": "国内",
+          "development_fee_per_year": 150000,
+          "development_years": 1,
+          "score": 8
+        },
+        {
+          "id": 4,
+          "name": "亚洲",
+          "development_fee_per_year": 200000,
+          "development_years": 2,
+          "score": 10
+        },
+        {
+          "id": 5,
+          "name": "国际",
+          "development_fee_per_year": 200000,
+          "development_years": 3,
+          "score": 10
+        }
+      ],
+      "iso": [
+        {
+          "id": 1,
+          "name": "ISO9000",
+          "development_fee_per_year": 200000,
+          "development_years": 2,
+          "score": 10
+        },
+        {
+          "id": 2,
+          "name": "ISO14000",
+          "development_fee_per_year": 250000,
+          "development_years": 2,
+          "score": 10
+        }
+      ],
+      "materials": [
+        {
+          "id": 1,
+          "name": "R1",
+          "unit_price": 100000,
+          "lead_time_quarters": 1
+        },
+        {
+          "id": 2,
+          "name": "R2",
+          "unit_price": 100000,
+          "lead_time_quarters": 1
+        },
+        {
+          "id": 3,
+          "name": "R3",
+          "unit_price": 100000,
+          "lead_time_quarters": 2
+        },
+        {
+          "id": 4,
+          "name": "R4",
+          "unit_price": 100000,
+          "lead_time_quarters": 2
+        }
+      ],
+      "products": [
+        {
+          "id": 1,
+          "name": "P1",
+          "process_fee": 100000,
+          "rd_fee_per_quarter": 150000,
+          "rd_periods": 2,
+          "direct_cost": 200000,
+          "score": 4
+        },
+        {
+          "id": 2,
+          "name": "P2",
+          "process_fee": 100000,
+          "rd_fee_per_quarter": 200000,
+          "rd_periods": 2,
+          "direct_cost": 300000,
+          "score": 8
+        },
+        {
+          "id": 3,
+          "name": "P3",
+          "process_fee": 100000,
+          "rd_fee_per_quarter": 200000,
+          "rd_periods": 3,
+          "direct_cost": 400000,
+          "score": 12
+        },
+        {
+          "id": 4,
+          "name": "P4",
+          "process_fee": 100000,
+          "rd_fee_per_quarter": 200000,
+          "rd_periods": 3,
+          "direct_cost": 500000,
+          "score": 12
+        },
+        {
+          "id": 5,
+          "name": "P5",
+          "process_fee": 100000,
+          "rd_fee_per_quarter": 200000,
+          "rd_periods": 4,
+          "direct_cost": 600000,
+          "score": 18
+        }
+      ],
+      "bom": [
+        {
+          "product": "P1",
+          "material": "R1",
+          "quantity": 1
+        },
+        {
+          "product": "P2",
+          "material": "R2",
+          "quantity": 1
+        },
+        {
+          "product": "P2",
+          "material": "R3",
+          "quantity": 1
+        },
+        {
+          "product": "P3",
+          "material": "R1",
+          "quantity": 1
+        },
+        {
+          "product": "P3",
+          "material": "R2",
+          "quantity": 1
+        },
+        {
+          "product": "P3",
+          "material": "R3",
+          "quantity": 1
+        },
+        {
+          "product": "P4",
+          "material": "R2",
+          "quantity": 1
+        },
+        {
+          "product": "P4",
+          "material": "R3",
+          "quantity": 1
+        },
+        {
+          "product": "P4",
+          "sub_product": "P1",
+          "sub_quantity": 1
+        },
+        {
+          "product": "P5",
+          "material": "R2",
+          "quantity": 1
+        },
+        {
+          "product": "P5",
+          "material": "R4",
+          "quantity": 1
+        },
+        {
+          "product": "P5",
+          "sub_product": "P2",
+          "sub_quantity": 2
+        }
+      ]
+    }
+  },
+  "common_xa_rule_domains_available_for_reuse": [
+    "production_line",
+    "financing",
+    "factory",
+    "market",
+    "iso",
+    "product",
+    "materials",
+    "bankruptcy",
+    "scoring"
+  ],
+  "known_gaps": [
+    "No formal rule workbook is bound to this match.",
+    "The complete pre-selection global order pool is absent from the source export.",
+    "Allocated orders are observed; unallocated rows, when generated, are simulated from observed identifier ranges."
+  ]
+}

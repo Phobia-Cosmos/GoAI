@@ -1,0 +1,29 @@
+{
+  "match_id": "SIM_LX_XA",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_LX_XA01",
+      "owner_equity_wan": 230.4999999999999,
+      "development_potential": 18.0,
+      "rounded_score": 272.0
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_LX_XA02",
+      "owner_equity_wan": 230.4999999999999,
+      "development_potential": 18.0,
+      "rounded_score": 272.0
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_LX_XA03",
+      "owner_equity_wan": 230.4999999999999,
+      "development_potential": 18.0,
+      "rounded_score": 272.0
+    }
+  ],
+  "bankruptcies": [],
+  "provenance": "simulated",
+  "source_path": "SIM_LX_XA最终排名和破产信息.xlsx"
+}

@@ -1,0 +1,24 @@
+{
+  "match_id": "SIM_ZY",
+  "source_match_id": "ZY",
+  "source_rule_path": "/mnt/ubuntu-space/datasets/goai/processed/v2/matches/ZY/rules_inferred_v2.json",
+  "sandbox_version": "full_financial_sandbox_v1.0",
+  "generated_at": "2026-08-07T10:13:09+08:00",
+  "seed": 20272807,
+  "team_count": 3,
+  "order_count": 16,
+  "steps": 20,
+  "final_periods": [
+    "Y5Q4"
+  ],
+  "bankruptcy_count": 0,
+  "annual_report_count": 15,
+  "allocation_count": 0,
+  "max_absolute_balance_gap_wan": 1.1368683772161603e-13,
+  "accounting_balanced": true,
+  "xlsx_exported": true,
+  "xlsx_round_trip_imported": true,
+  "xlsx_team_file_count": 3,
+  "output_dir": "/mnt/ubuntu-space/datasets/goai/simulations/SIM_ZY_seed_20272807",
+  "provenance": "simulated"
+}

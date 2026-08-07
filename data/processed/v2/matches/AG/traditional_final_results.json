@@ -1,0 +1,213 @@
+{
+  "match_id": "AG",
+  "observed_result": {
+    "bankruptcies": [],
+    "match_id": "AG",
+    "ranking": [],
+    "ranking_status": "simulated_ranking_from_reconstructed_rule_pack",
+    "rule_pack_id": "AG_historical_rule_unknown"
+  },
+  "provenance": {
+    "events": "observed",
+    "orders": "observed_plus_simulated",
+    "quarter_states": "derived",
+    "ranking": "simulated"
+  },
+  "ranking_warning": "旧场次没有官方最终排名；此排序仅用于运行接口和策略比较。",
+  "result_status": "candidate_replay_simulated_ranking",
+  "rule_pack_id": "AG_runtime_inferred_v2",
+  "run_version": "match_replay_v1.0",
+  "simulated_ranking": [
+    {
+      "bankruptcy_period": null,
+      "development_potential": 100,
+      "final_cash_wan": 1037.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 1,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG06"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 124,
+      "final_cash_wan": 991.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 2,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG17"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 120,
+      "final_cash_wan": 782.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 3,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG07"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 96,
+      "final_cash_wan": 728.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 4,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG16"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 106,
+      "final_cash_wan": 691.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 5,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG04"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 82,
+      "final_cash_wan": 662.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 6,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG11"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 72,
+      "final_cash_wan": 648.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 7,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG08"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 100,
+      "final_cash_wan": 627.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 8,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG18"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 112,
+      "final_cash_wan": 503.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 9,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG14"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 112,
+      "final_cash_wan": 483.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 10,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG15"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 98,
+      "final_cash_wan": 292.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 11,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG01"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 112,
+      "final_cash_wan": 265.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 12,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG19"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 96,
+      "final_cash_wan": 253.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 13,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG12"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 56,
+      "final_cash_wan": 231.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 14,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG02"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 104,
+      "final_cash_wan": 203.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 15,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG10"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 82,
+      "final_cash_wan": 179.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 16,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG13"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 100,
+      "final_cash_wan": 70.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 17,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG09"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 112,
+      "final_cash_wan": 51.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 18,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG03"
+    },
+    {
+      "bankruptcy_period": null,
+      "development_potential": 132,
+      "final_cash_wan": 2.0,
+      "official_rank": null,
+      "provenance": "simulated",
+      "rank": 19,
+      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "team_id": "AG05"
+    }
+  ],
+  "team_count": 19
+}

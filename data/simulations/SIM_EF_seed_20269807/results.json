@@ -1,0 +1,82 @@
+{
+  "match_id": "SIM_EF",
+  "sandbox_version": "full_financial_sandbox_v1.0",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_EF01",
+      "owner_equity_wan": 297.5000000000001,
+      "development_potential": 16.0,
+      "score": 345.10000000000014,
+      "rounded_score": 345
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_EF02",
+      "owner_equity_wan": 297.5000000000001,
+      "development_potential": 16.0,
+      "score": 345.10000000000014,
+      "rounded_score": 345
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_EF03",
+      "owner_equity_wan": 258.6929000000001,
+      "development_potential": 16.0,
+      "score": 300.08376400000014,
+      "rounded_score": 300
+    }
+  ],
+  "bankruptcies": [],
+  "states": [
+    {
+      "team_id": "SIM_EF01",
+      "owner_equity_wan": 297.5000000000001,
+      "development_potential": 16.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 198.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EF02",
+      "owner_equity_wan": 297.5000000000001,
+      "development_potential": 16.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 198.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EF03",
+      "owner_equity_wan": 258.6929000000001,
+      "development_potential": 16.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 121.19290000000001,
+      "reports": 5
+    }
+  ],
+  "order_log": [
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EF-3-0001",
+      "winner_team_id": "SIM_EF03",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EF01",
+        "SIM_EF02",
+        "SIM_EF03"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    }
+  ],
+  "provenance": "simulated"
+}

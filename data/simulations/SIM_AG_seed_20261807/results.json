@@ -1,0 +1,82 @@
+{
+  "match_id": "SIM_AG",
+  "sandbox_version": "full_financial_sandbox_v1.0",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_AG01",
+      "owner_equity_wan": 276.4999999999999,
+      "development_potential": 16.0,
+      "score": 320.73999999999984,
+      "rounded_score": 321
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_AG03",
+      "owner_equity_wan": 276.4999999999999,
+      "development_potential": 16.0,
+      "score": 320.73999999999984,
+      "rounded_score": 321
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_AG02",
+      "owner_equity_wan": 234.69699999999992,
+      "development_potential": 16.0,
+      "score": 272.24851999999987,
+      "rounded_score": 272
+    }
+  ],
+  "bankruptcies": [],
+  "states": [
+    {
+      "team_id": "SIM_AG01",
+      "owner_equity_wan": 276.4999999999999,
+      "development_potential": 16.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 166.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_AG02",
+      "owner_equity_wan": 234.69699999999992,
+      "development_potential": 16.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 124.197,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_AG03",
+      "owner_equity_wan": 276.4999999999999,
+      "development_potential": 16.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 166.0,
+      "reports": 5
+    }
+  ],
+  "order_log": [
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_AG-4-0002",
+      "winner_team_id": "SIM_AG02",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_AG01",
+        "SIM_AG02",
+        "SIM_AG03"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    }
+  ],
+  "provenance": "simulated"
+}

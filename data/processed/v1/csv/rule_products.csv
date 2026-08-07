@@ -1,0 +1,6 @@
+﻿product_id,product_name,processing_fee_wan,development_fee_per_quarter_wan,development_quarters,direct_cost_wan,score,competition_id,rule_version,source_id,source_path,source_table,source_row
+1,P1,6,14,1,13,4,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,7,2
+2,P2,7,14,1,24,7,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,7,3
+3,P3,7,25,2,30,10,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,7,4
+4,P4,9,26,3,38,13,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,7,5
+5,P5,10,22,5,66,18,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,7,6

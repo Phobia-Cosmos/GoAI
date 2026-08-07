@@ -1,0 +1,4 @@
+﻿competition_id,rule_version,finance_type,annual_rate,max_term_years,raw_rule,source_id,source_path,source_table,source_row
+zhejiang_8th_710,zhejiang_8th_rules_v1,长期贷款,0.1,4.0,10%（最长可贷年限4年）,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,1,2
+zhejiang_8th_710,zhejiang_8th_rules_v1,短期贷款,0.05,,5%,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,1,3
+zhejiang_8th_710,zhejiang_8th_rules_v1,资金贴现,0.08,,8%（1季、2季），11%（3季、4季）,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,1,4

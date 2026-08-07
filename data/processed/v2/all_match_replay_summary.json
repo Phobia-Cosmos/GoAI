@@ -1,0 +1,388 @@
+{
+  "run_version": "match_replay_v1.0",
+  "dataset": "/mnt/ubuntu-space/datasets/goai/processed/v2",
+  "seed": 20260805,
+  "match_count": 14,
+  "all_hard_constraints_passed": true,
+  "all_cash_identities_passed": true,
+  "matches": [
+    {
+      "match_id": "AB",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "AB_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:31+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 3762,
+        "quarters": 400,
+        "orders": 494,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 3762,
+        "observed_orders": 290,
+        "simulated_orders": 204
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "AG",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "AG_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:31+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 1625,
+        "quarters": 380,
+        "orders": 184,
+        "teams": 19
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 1625,
+        "observed_orders": 129,
+        "simulated_orders": 55
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "CA",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "CA_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 3947,
+        "quarters": 400,
+        "orders": 495,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 3947,
+        "observed_orders": 322,
+        "simulated_orders": 173
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "CB",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "CB_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 3698,
+        "quarters": 400,
+        "orders": 492,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 3698,
+        "observed_orders": 328,
+        "simulated_orders": 164
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "CD",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "CD_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 4034,
+        "quarters": 400,
+        "orders": 494,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 4034,
+        "observed_orders": 334,
+        "simulated_orders": 160
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "CE",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "CE_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 4311,
+        "quarters": 400,
+        "orders": 493,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 4311,
+        "observed_orders": 340,
+        "simulated_orders": 153
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "EA",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "EA_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 3719,
+        "quarters": 400,
+        "orders": 494,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 3719,
+        "observed_orders": 305,
+        "simulated_orders": 189
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "EB",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "EB_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 4251,
+        "quarters": 400,
+        "orders": 492,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 4251,
+        "observed_orders": 350,
+        "simulated_orders": 142
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "EC",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "EC_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 3841,
+        "quarters": 400,
+        "orders": 493,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 3841,
+        "observed_orders": 290,
+        "simulated_orders": 203
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "EF",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "EF_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 3426,
+        "quarters": 400,
+        "orders": 494,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 3426,
+        "observed_orders": 244,
+        "simulated_orders": 250
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "LX_XA",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "AAAAA_20160108_4.3.32.419",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "formal_observed_data_plus_service_replay",
+      "counts": {
+        "events": 3787,
+        "quarters": 540,
+        "orders": 796,
+        "teams": 27
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 3787,
+        "observed_orders": 796,
+        "simulated_orders": 0
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "OP",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "OP_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 3497,
+        "quarters": 400,
+        "orders": 492,
+        "teams": 20
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 3497,
+        "observed_orders": 271,
+        "simulated_orders": 221
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "ZY",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "ZY_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 2026,
+        "quarters": 360,
+        "orders": 415,
+        "teams": 18
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 2026,
+        "observed_orders": 222,
+        "simulated_orders": 193
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    },
+    {
+      "match_id": "ZZ",
+      "run_version": "match_replay_v1.0",
+      "rule_pack_id": "ZZ_runtime_inferred_v2",
+      "seed": 20260805,
+      "generated_at": "2026-08-05T11:57:32+08:00",
+      "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
+      "simulation_scope": "partial_accounting",
+      "counts": {
+        "events": 1853,
+        "quarters": 320,
+        "orders": 416,
+        "teams": 16
+      },
+      "cash_identity_passed": true,
+      "hard_constraints_passed": true,
+      "provenance_summary": {
+        "observed_events": 1853,
+        "observed_orders": 223,
+        "simulated_orders": 193
+      },
+      "limitations": [
+        "没有把推断规则升级为正式规则",
+        "没有凭空重建旧场官方未分配订单",
+        "尚未执行完整税费、折旧、应收和三表结算动力学"
+      ]
+    }
+  ]
+}

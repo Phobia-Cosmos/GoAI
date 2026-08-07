@@ -1,0 +1,2750 @@
+{
+  "match_id": "SIM_EA",
+  "sandbox_version": "full_financial_sandbox_v1.0",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_EA21",
+      "owner_equity_wan": 1480.7162950400002,
+      "development_potential": 76.0,
+      "score": 2606.0606792704,
+      "rounded_score": 2606
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_EA23",
+      "owner_equity_wan": 1466.4973591000003,
+      "development_potential": 76.0,
+      "score": 2581.0353520160006,
+      "rounded_score": 2581
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_EA16",
+      "owner_equity_wan": 1421.4673750000002,
+      "development_potential": 76.0,
+      "score": 2501.7825800000005,
+      "rounded_score": 2502
+    },
+    {
+      "rank": 4,
+      "team_id": "SIM_EA14",
+      "owner_equity_wan": 1206.48114725,
+      "development_potential": 76.0,
+      "score": 2123.40681916,
+      "rounded_score": 2123
+    },
+    {
+      "rank": 5,
+      "team_id": "SIM_EA08",
+      "owner_equity_wan": 938.4999999999998,
+      "development_potential": 59.0,
+      "score": 1492.2149999999995,
+      "rounded_score": 1492
+    },
+    {
+      "rank": 6,
+      "team_id": "SIM_EA03",
+      "owner_equity_wan": 840.00744374,
+      "development_potential": 76.0,
+      "score": 1478.4131009824,
+      "rounded_score": 1478
+    },
+    {
+      "rank": 7,
+      "team_id": "SIM_EA01",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "score": 1380.9149999999995,
+      "rounded_score": 1381
+    },
+    {
+      "rank": 8,
+      "team_id": "SIM_EA04",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "score": 1380.9149999999995,
+      "rounded_score": 1381
+    },
+    {
+      "rank": 9,
+      "team_id": "SIM_EA05",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "score": 1380.9149999999995,
+      "rounded_score": 1381
+    },
+    {
+      "rank": 10,
+      "team_id": "SIM_EA11",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "score": 1380.9149999999995,
+      "rounded_score": 1381
+    },
+    {
+      "rank": 11,
+      "team_id": "SIM_EA12",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "score": 1380.9149999999995,
+      "rounded_score": 1381
+    },
+    {
+      "rank": 12,
+      "team_id": "SIM_EA13",
+      "owner_equity_wan": 792.7208999999998,
+      "development_potential": 59.0,
+      "score": 1260.4262309999995,
+      "rounded_score": 1260
+    },
+    {
+      "rank": 13,
+      "team_id": "SIM_EA22",
+      "owner_equity_wan": 752.7715999999998,
+      "development_potential": 59.0,
+      "score": 1196.9068439999996,
+      "rounded_score": 1197
+    },
+    {
+      "rank": 14,
+      "team_id": "SIM_EA06",
+      "owner_equity_wan": 650.2545999999998,
+      "development_potential": 59.0,
+      "score": 1033.9048139999995,
+      "rounded_score": 1034
+    },
+    {
+      "rank": 15,
+      "team_id": "SIM_EA19",
+      "owner_equity_wan": 272.78150000000005,
+      "development_potential": 106.0,
+      "score": 561.9298900000001,
+      "rounded_score": 562
+    }
+  ],
+  "bankruptcies": [
+    {
+      "team_id": "SIM_EA02",
+      "owner_equity_wan": 118.54180000000008,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q4",
+      "cash_wan": -9.45819999999992,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA07",
+      "owner_equity_wan": 42.450800000000015,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q3",
+      "cash_wan": -108.54919999999996,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA09",
+      "owner_equity_wan": -60.46459999999996,
+      "development_potential": 88.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q3",
+      "cash_wan": -127.96459999999979,
+      "reports": 3
+    },
+    {
+      "team_id": "SIM_EA10",
+      "owner_equity_wan": 90.83920000000006,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q3",
+      "cash_wan": -17.160799999999952,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA15",
+      "owner_equity_wan": 71.00620000000015,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q2",
+      "cash_wan": -92.99379999999985,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA17",
+      "owner_equity_wan": 327.71360000000004,
+      "development_potential": 76.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q4",
+      "cash_wan": -12.78639999999993,
+      "reports": 3
+    },
+    {
+      "team_id": "SIM_EA18",
+      "owner_equity_wan": 95.91910000000001,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q4",
+      "cash_wan": -116.58089999999993,
+      "reports": 3
+    },
+    {
+      "team_id": "SIM_EA20",
+      "owner_equity_wan": -27.85839999999996,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q2",
+      "cash_wan": -139.85839999999996,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA24",
+      "owner_equity_wan": -163.14,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q1",
+      "cash_wan": -259.14,
+      "reports": 4
+    }
+  ],
+  "states": [
+    {
+      "team_id": "SIM_EA01",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 660.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA02",
+      "owner_equity_wan": 118.54180000000008,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q4",
+      "cash_wan": -9.45819999999992,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA03",
+      "owner_equity_wan": 840.00744374,
+      "development_potential": 76.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 485.5074437400001,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA04",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 660.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA05",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 627.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA06",
+      "owner_equity_wan": 650.2545999999998,
+      "development_potential": 59.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 452.7546,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA07",
+      "owner_equity_wan": 42.450800000000015,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q3",
+      "cash_wan": -108.54919999999996,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA08",
+      "owner_equity_wan": 938.4999999999998,
+      "development_potential": 59.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 678.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA09",
+      "owner_equity_wan": -60.46459999999996,
+      "development_potential": 88.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q3",
+      "cash_wan": -127.96459999999979,
+      "reports": 3
+    },
+    {
+      "team_id": "SIM_EA10",
+      "owner_equity_wan": 90.83920000000006,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q3",
+      "cash_wan": -17.160799999999952,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA11",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 660.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA12",
+      "owner_equity_wan": 868.4999999999998,
+      "development_potential": 59.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 693.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA13",
+      "owner_equity_wan": 792.7208999999998,
+      "development_potential": 59.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 551.2209,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA14",
+      "owner_equity_wan": 1206.48114725,
+      "development_potential": 76.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 589.9811472499999,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA15",
+      "owner_equity_wan": 71.00620000000015,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q2",
+      "cash_wan": -92.99379999999985,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA16",
+      "owner_equity_wan": 1421.4673750000002,
+      "development_potential": 76.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 984.9673750000002,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA17",
+      "owner_equity_wan": 327.71360000000004,
+      "development_potential": 76.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q4",
+      "cash_wan": -12.78639999999993,
+      "reports": 3
+    },
+    {
+      "team_id": "SIM_EA18",
+      "owner_equity_wan": 95.91910000000001,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q4",
+      "cash_wan": -116.58089999999993,
+      "reports": 3
+    },
+    {
+      "team_id": "SIM_EA19",
+      "owner_equity_wan": 272.78150000000005,
+      "development_potential": 106.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 196.28150000000008,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA20",
+      "owner_equity_wan": -27.85839999999996,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q2",
+      "cash_wan": -139.85839999999996,
+      "reports": 4
+    },
+    {
+      "team_id": "SIM_EA21",
+      "owner_equity_wan": 1480.7162950400002,
+      "development_potential": 76.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 749.2162950400002,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA22",
+      "owner_equity_wan": 752.7715999999998,
+      "development_potential": 59.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 566.2716,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA23",
+      "owner_equity_wan": 1466.4973591000003,
+      "development_potential": 76.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 994.9973591000002,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EA24",
+      "owner_equity_wan": -163.14,
+      "development_potential": 106.0,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q1",
+      "cash_wan": -259.14,
+      "reports": 4
+    }
+  ],
+  "order_log": [
+    {
+      "period": "Y2Q1",
+      "order_id": "SIM_EA-2-0089",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 543.9802323890448,
+        "contract_payment_wan": 512.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q1",
+      "order_id": "SIM_EA-2-0023",
+      "winner_team_id": "SIM_EA23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q1",
+      "order_id": "SIM_EA-2-0014",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA09"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q2",
+      "order_id": "SIM_EA-2-0055",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 121.73836959213811,
+        "contract_payment_wan": 111.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q2",
+      "order_id": "SIM_EA-2-0063",
+      "winner_team_id": "SIM_EA16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q2",
+      "order_id": "SIM_EA-2-0017",
+      "winner_team_id": "SIM_EA21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q2",
+      "order_id": "SIM_EA-2-0087",
+      "winner_team_id": "SIM_EA18",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA07",
+        "SIM_EA10",
+        "SIM_EA15",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 200.52987663753862,
+        "contract_payment_wan": 186.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q3",
+      "order_id": "SIM_EA-2-0028",
+      "winner_team_id": "SIM_EA08",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q3",
+      "order_id": "SIM_EA-2-0027",
+      "winner_team_id": "SIM_EA13",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q3",
+      "order_id": "SIM_EA-2-0026",
+      "winner_team_id": "SIM_EA19",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA07",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q3",
+      "order_id": "SIM_EA-2-0080",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA07",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q4",
+      "order_id": "SIM_EA-2-0053",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q4",
+      "order_id": "SIM_EA-2-0002",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA09"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q1",
+      "order_id": "SIM_EA-3-0033",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA04",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q1",
+      "order_id": "SIM_EA-3-0061",
+      "winner_team_id": "SIM_EA19",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q1",
+      "order_id": "SIM_EA-3-0082",
+      "winner_team_id": "SIM_EA21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA12",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q1",
+      "order_id": "SIM_EA-3-0060",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA05",
+        "SIM_EA07",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA22",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q1",
+      "order_id": "SIM_EA-3-0037",
+      "winner_team_id": "SIM_EA19",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA11",
+        "SIM_EA14",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 234.89336097000424,
+        "contract_payment_wan": 221.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-3-0027",
+      "winner_team_id": "SIM_EA03",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA08",
+        "SIM_EA21"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 723.3270823053297,
+        "contract_payment_wan": 728.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-3-0010",
+      "winner_team_id": "SIM_EA22",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA04",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-3-0059",
+      "winner_team_id": "SIM_EA06",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA12",
+        "SIM_EA13"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 832.9678644938157,
+        "contract_payment_wan": 886.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-3-0076",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA15",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 312.3725329272756,
+        "contract_payment_wan": 291.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-3-0063",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-3-0054",
+      "winner_team_id": "SIM_EA03",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA11",
+        "SIM_EA13"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 158.31510438917093,
+        "contract_payment_wan": 182.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-3-0049",
+      "winner_team_id": "SIM_EA23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA03",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-3-0015",
+      "winner_team_id": "SIM_EA14",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA21",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-2-0065",
+      "winner_team_id": "SIM_EA17",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA05",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_EA-3-0051",
+      "winner_team_id": "SIM_EA14",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 131.95400831939227,
+        "contract_payment_wan": 131.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q3",
+      "order_id": "SIM_EA-3-0038",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q3",
+      "order_id": "SIM_EA-3-0011",
+      "winner_team_id": "SIM_EA14",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q3",
+      "order_id": "SIM_EA-3-0073",
+      "winner_team_id": "SIM_EA19",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 171.568201532458,
+        "contract_payment_wan": 160.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q3",
+      "order_id": "SIM_EA-3-0066",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_EA-3-0091",
+      "winner_team_id": "SIM_EA02",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA10",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 95.52423969971585,
+        "contract_payment_wan": 89.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_EA-3-0064",
+      "winner_team_id": "SIM_EA16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA08",
+        "SIM_EA16"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_EA-3-0019",
+      "winner_team_id": "SIM_EA21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_EA-3-0074",
+      "winner_team_id": "SIM_EA18",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA10",
+        "SIM_EA15",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_EA-3-0007",
+      "winner_team_id": "SIM_EA17",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA03",
+        "SIM_EA06",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA21"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_EA-3-0002",
+      "winner_team_id": "SIM_EA23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 225.2233155449094,
+        "contract_payment_wan": 224.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_EA-3-0025",
+      "winner_team_id": "SIM_EA21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_EA-4-0089",
+      "winner_team_id": "SIM_EA14",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA10",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA21",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_EA-4-0048",
+      "winner_team_id": "SIM_EA14",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_EA-4-0024",
+      "winner_team_id": "SIM_EA20",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA08",
+        "SIM_EA11",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 770.1341444704125,
+        "contract_payment_wan": 777.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_EA-3-0024",
+      "winner_team_id": "SIM_EA02",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA19",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_EA-3-0088",
+      "winner_team_id": "SIM_EA24",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA18",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_EA-4-0068",
+      "winner_team_id": "SIM_EA23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA09",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_EA-3-0098",
+      "winner_team_id": "SIM_EA15",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA07",
+        "SIM_EA15",
+        "SIM_EA20",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_EA-3-0080",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA09",
+        "SIM_EA18",
+        "SIM_EA20"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_EA-3-0035",
+      "winner_team_id": "SIM_EA15",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA10",
+        "SIM_EA15"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 307.62390350838973,
+        "contract_payment_wan": 304.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0002",
+      "winner_team_id": "SIM_EA17",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA09",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA21",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0049",
+      "winner_team_id": "SIM_EA21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA05",
+        "SIM_EA08",
+        "SIM_EA10",
+        "SIM_EA13",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA21"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0034",
+      "winner_team_id": "SIM_EA16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA08",
+        "SIM_EA12",
+        "SIM_EA16",
+        "SIM_EA17"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0003",
+      "winner_team_id": "SIM_EA15",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA06",
+        "SIM_EA11",
+        "SIM_EA15",
+        "SIM_EA20"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0058",
+      "winner_team_id": "SIM_EA16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA11",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0019",
+      "winner_team_id": "SIM_EA02",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0017",
+      "winner_team_id": "SIM_EA21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA17",
+        "SIM_EA20",
+        "SIM_EA21"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0077",
+      "winner_team_id": "SIM_EA10",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA03",
+        "SIM_EA10",
+        "SIM_EA12",
+        "SIM_EA19",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 169.10609632230808,
+        "contract_payment_wan": 174.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0078",
+      "winner_team_id": "SIM_EA23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA04",
+        "SIM_EA06",
+        "SIM_EA10",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA18",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0032",
+      "winner_team_id": "SIM_EA18",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA18",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_EA-4-0093",
+      "winner_team_id": "SIM_EA24",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_EA-4-0092",
+      "winner_team_id": "SIM_EA09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA09",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA19",
+        "SIM_EA22",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_EA-4-0015",
+      "winner_team_id": "SIM_EA14",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_EA-4-0008",
+      "winner_team_id": "SIM_EA23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA10",
+        "SIM_EA13",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA21",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_EA-4-0072",
+      "winner_team_id": "SIM_EA17",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA12",
+        "SIM_EA17",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_EA-4-0018",
+      "winner_team_id": "SIM_EA21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA17",
+        "SIM_EA18",
+        "SIM_EA21",
+        "SIM_EA23",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_EA-4-0069",
+      "winner_team_id": "SIM_EA02",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA09"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_EA-4-0065",
+      "winner_team_id": "SIM_EA07",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA07",
+        "SIM_EA20"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_EA-4-0051",
+      "winner_team_id": "SIM_EA18",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA09",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_EA-4-0047",
+      "winner_team_id": "SIM_EA20",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA20"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q4",
+      "order_id": "SIM_EA-4-0075",
+      "winner_team_id": "SIM_EA10",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA10",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q4",
+      "order_id": "SIM_EA-4-0007",
+      "winner_team_id": "SIM_EA24",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA10",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q4",
+      "order_id": "SIM_EA-4-0067",
+      "winner_team_id": "SIM_EA10",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA10",
+        "SIM_EA18",
+        "SIM_EA19",
+        "SIM_EA20",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0051",
+      "winner_team_id": "SIM_EA23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA08",
+        "SIM_EA10",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0076",
+      "winner_team_id": "SIM_EA21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA21"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0071",
+      "winner_team_id": "SIM_EA14",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA10",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA19",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0053",
+      "winner_team_id": "SIM_EA07",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA19"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0047",
+      "winner_team_id": "SIM_EA15",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA15"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0068",
+      "winner_team_id": "SIM_EA23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA04",
+        "SIM_EA08",
+        "SIM_EA11",
+        "SIM_EA13",
+        "SIM_EA15",
+        "SIM_EA20",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0009",
+      "winner_team_id": "SIM_EA03",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA03",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA10",
+        "SIM_EA16",
+        "SIM_EA20",
+        "SIM_EA21",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P3",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0049",
+      "winner_team_id": "SIM_EA16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA05",
+        "SIM_EA14",
+        "SIM_EA16",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0027",
+      "winner_team_id": "SIM_EA16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA16",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0040",
+      "winner_team_id": "SIM_EA19",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA19",
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0036",
+      "winner_team_id": "SIM_EA20",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA20"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q1",
+      "order_id": "SIM_EA-5-0085",
+      "winner_team_id": "SIM_EA24",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA24"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q2",
+      "order_id": "SIM_EA-5-0023",
+      "winner_team_id": "SIM_EA16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA10",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA19",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q2",
+      "order_id": "SIM_EA-5-0097",
+      "winner_team_id": "SIM_EA14",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA06",
+        "SIM_EA08",
+        "SIM_EA11",
+        "SIM_EA13",
+        "SIM_EA14",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA21",
+        "SIM_EA22",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P2",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q2",
+      "order_id": "SIM_EA-5-0079",
+      "winner_team_id": "SIM_EA03",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA01",
+        "SIM_EA02",
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA06",
+        "SIM_EA07",
+        "SIM_EA11",
+        "SIM_EA12",
+        "SIM_EA13",
+        "SIM_EA15",
+        "SIM_EA16",
+        "SIM_EA21",
+        "SIM_EA23"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q2",
+      "order_id": "SIM_EA-5-0008",
+      "winner_team_id": "SIM_EA20",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA20"
+      ],
+      "trace": {
+        "market": "区域",
+        "product": "P4",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q2",
+      "order_id": "SIM_EA-5-0012",
+      "winner_team_id": "SIM_EA07",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA02",
+        "SIM_EA07",
+        "SIM_EA20"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q2",
+      "order_id": "SIM_EA-5-0100",
+      "winner_team_id": "SIM_EA03",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "highest_bid_then_first_submission_then_team_id",
+      "contenders": [
+        "SIM_EA03",
+        "SIM_EA04",
+        "SIM_EA05",
+        "SIM_EA08",
+        "SIM_EA12",
+        "SIM_EA14",
+        "SIM_EA22"
+      ],
+      "trace": {
+        "payment_mode": "fixed_order_price",
+        "bid_wan": 137.68221268180318,
+        "contract_payment_wan": 136.0,
+        "tie_rule": "submitted_at_then_team_id",
+        "order_type": "竞单",
+        "bid_fee_wan": 10,
+        "batch_size": 3,
+        "eligibility_checked": true
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q2",
+      "order_id": "SIM_EA-5-0057",
+      "winner_team_id": "SIM_EA07",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA07",
+        "SIM_EA10",
+        "SIM_EA19",
+        "SIM_EA20"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y5Q2",
+      "order_id": "SIM_EA-5-0050",
+      "winner_team_id": "SIM_EA10",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_EA10",
+        "SIM_EA19"
+      ],
+      "trace": {
+        "market": "国内",
+        "product": "P5",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    }
+  ],
+  "provenance": "simulated"
+}

@@ -1,0 +1,53 @@
+{
+  "format_version": "goai_competition_xlsx_v1.0",
+  "match_id": "SIM_ZZ",
+  "rule_pack_id": "SIM_ZZ_simulated_rules_seed_20273808",
+  "parent_rule_pack_id": "ZZ_runtime_inferred_v2",
+  "source_match_id": "ZZ",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "team_count": 24,
+  "order_count": 400,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_ZZ01.xlsx",
+      "企业数据/SIM_ZZ02.xlsx",
+      "企业数据/SIM_ZZ03.xlsx",
+      "企业数据/SIM_ZZ04.xlsx",
+      "企业数据/SIM_ZZ05.xlsx",
+      "企业数据/SIM_ZZ06.xlsx",
+      "企业数据/SIM_ZZ07.xlsx",
+      "企业数据/SIM_ZZ08.xlsx",
+      "企业数据/SIM_ZZ09.xlsx",
+      "企业数据/SIM_ZZ10.xlsx",
+      "企业数据/SIM_ZZ11.xlsx",
+      "企业数据/SIM_ZZ12.xlsx",
+      "企业数据/SIM_ZZ13.xlsx",
+      "企业数据/SIM_ZZ14.xlsx",
+      "企业数据/SIM_ZZ15.xlsx",
+      "企业数据/SIM_ZZ16.xlsx",
+      "企业数据/SIM_ZZ17.xlsx",
+      "企业数据/SIM_ZZ18.xlsx",
+      "企业数据/SIM_ZZ19.xlsx",
+      "企业数据/SIM_ZZ20.xlsx",
+      "企业数据/SIM_ZZ21.xlsx",
+      "企业数据/SIM_ZZ22.xlsx",
+      "企业数据/SIM_ZZ23.xlsx",
+      "企业数据/SIM_ZZ24.xlsx"
+    ],
+    "rules": "SIM_ZZ比赛规则.xlsx",
+    "orders": "SIM_ZZ订单详情.xlsx",
+    "results": "SIM_ZZ最终排名和破产信息.xlsx"
+  }
+}

@@ -1,0 +1,474 @@
+﻿table_name,table_description,column_name,dtype,nullable,unit,description
+source_manifest,源文件清单、哈希、批次归属和重复关系,source_id,str,False,,源文件稳定标识
+source_manifest,源文件清单、哈希、批次归属和重复关系,relative_path,str,False,,relative path
+source_manifest,源文件清单、哈希、批次归属和重复关系,file_name,str,False,,file name
+source_manifest,源文件清单、哈希、批次归属和重复关系,extension,str,False,,extension
+source_manifest,源文件清单、哈希、批次归属和重复关系,source_type,str,False,,source type
+source_manifest,源文件清单、哈希、批次归属和重复关系,size_bytes,int64,False,,size bytes
+source_manifest,源文件清单、哈希、批次归属和重复关系,sha256,str,False,,sha256
+source_manifest,源文件清单、哈希、批次归属和重复关系,competition_id,str,False,,隔离后的比赛或资料批次标识
+source_manifest,源文件清单、哈希、批次归属和重复关系,rule_version,str,True,,规则版本；unknown 表示尚未确认
+source_manifest,源文件清单、哈希、批次归属和重复关系,binding_status,str,False,,binding status
+source_manifest,源文件清单、哈希、批次归属和重复关系,duplicate_of_source_id,object,True,,duplicate of source id
+source_manifest,源文件清单、哈希、批次归属和重复关系,modified_at,str,False,,modified at
+workbook_inventory,所有 Excel 工作簿及工作表结构,source_id,str,False,,源文件稳定标识
+workbook_inventory,所有 Excel 工作簿及工作表结构,source_path,str,False,,相对项目根目录的源文件路径
+workbook_inventory,所有 Excel 工作簿及工作表结构,workbook_format,str,False,,workbook format
+workbook_inventory,所有 Excel 工作簿及工作表结构,sheet_name,str,False,,sheet name
+workbook_inventory,所有 Excel 工作簿及工作表结构,row_count,int64,False,,row count
+workbook_inventory,所有 Excel 工作簿及工作表结构,column_count,int64,False,,column count
+workbook_inventory,所有 Excel 工作簿及工作表结构,merged_range_count,int64,False,,merged range count
+workbook_cells,所有 Excel 非空单元格的保真长表,source_id,str,False,,源文件稳定标识
+workbook_cells,所有 Excel 非空单元格的保真长表,source_path,str,False,,相对项目根目录的源文件路径
+workbook_cells,所有 Excel 非空单元格的保真长表,sheet_name,str,False,,sheet name
+workbook_cells,所有 Excel 非空单元格的保真长表,source_cell,str,False,,源 Excel 单元格坐标
+workbook_cells,所有 Excel 非空单元格的保真长表,source_row,int64,False,,源文件一基行号
+workbook_cells,所有 Excel 非空单元格的保真长表,source_column,int64,False,,source column
+workbook_cells,所有 Excel 非空单元格的保真长表,value_type,str,False,,value type
+workbook_cells,所有 Excel 非空单元格的保真长表,raw_value,str,False,,raw value
+workbook_cells,所有 Excel 非空单元格的保真长表,formula,str,True,,formula
+competition_rules,题面级比赛元数据,competition_id,str,False,,隔离后的比赛或资料批次标识
+competition_rules,题面级比赛元数据,rule_version,str,False,,规则版本；unknown 表示尚未确认
+competition_rules,题面级比赛元数据,competition_name,str,False,,competition name
+competition_rules,题面级比赛元数据,initial_capital_wan,float64,False,万元,initial capital wan
+competition_rules,题面级比赛元数据,management_fee_per_quarter_wan,float64,False,万元,management fee per quarter wan
+competition_rules,题面级比赛元数据,source_id,str,False,,源文件稳定标识
+competition_rules,题面级比赛元数据,source_path,str,False,,相对项目根目录的源文件路径
+rule_financing,融资与贴现规则,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_financing,融资与贴现规则,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_financing,融资与贴现规则,finance_type,str,False,,finance type
+rule_financing,融资与贴现规则,annual_rate,float64,False,比例,annual rate
+rule_financing,融资与贴现规则,max_term_years,float64,True,,max term years
+rule_financing,融资与贴现规则,raw_rule,str,False,,raw rule
+rule_financing,融资与贴现规则,source_id,str,False,,源文件稳定标识
+rule_financing,融资与贴现规则,source_path,str,False,,相对项目根目录的源文件路径
+rule_financing,融资与贴现规则,source_table,int64,False,,source table
+rule_financing,融资与贴现规则,source_row,int64,False,,源文件一基行号
+rule_financing_terms,可审计的融资与贴现分档条款,term_id,str,False,,term id
+rule_financing_terms,可审计的融资与贴现分档条款,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_financing_terms,可审计的融资与贴现分档条款,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_financing_terms,可审计的融资与贴现分档条款,finance_type,str,False,,finance type
+rule_financing_terms,可审计的融资与贴现分档条款,rate,float64,False,,rate
+rule_financing_terms,可审计的融资与贴现分档条款,rate_basis,str,False,,rate basis
+rule_financing_terms,可审计的融资与贴现分档条款,term_min,float64,True,,term min
+rule_financing_terms,可审计的融资与贴现分档条款,term_max,float64,True,,term max
+rule_financing_terms,可审计的融资与贴现分档条款,term_unit,str,True,,term unit
+rule_financing_terms,可审计的融资与贴现分档条款,semantic_status,str,False,,semantic status
+rule_financing_terms,可审计的融资与贴现分档条款,source_id,str,False,,源文件稳定标识
+rule_financing_terms,可审计的融资与贴现分档条款,source_path,str,False,,相对项目根目录的源文件路径
+rule_financing_terms,可审计的融资与贴现分档条款,source_table,int64,False,,source table
+rule_financing_terms,可审计的融资与贴现分档条款,source_row,int64,False,,源文件一基行号
+rule_factories,厂房规则,factory_id,int64,False,,factory id
+rule_factories,厂房规则,factory_name,str,False,,factory name
+rule_factories,厂房规则,purchase_price_wan,int64,False,万元,purchase price wan
+rule_factories,厂房规则,annual_rent_wan,int64,False,万元,annual rent wan
+rule_factories,厂房规则,sale_price_wan,int64,False,万元,sale price wan
+rule_factories,厂房规则,line_capacity,int64,False,数值,line capacity
+rule_factories,厂房规则,usage_limit,int64,False,数值,usage limit
+rule_factories,厂房规则,score,int64,False,数值,score
+rule_factories,厂房规则,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_factories,厂房规则,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_factories,厂房规则,source_id,str,False,,源文件稳定标识
+rule_factories,厂房规则,source_path,str,False,,相对项目根目录的源文件路径
+rule_factories,厂房规则,source_table,int64,False,,source table
+rule_factories,厂房规则,source_row,int64,False,,源文件一基行号
+rule_production_lines,生产线规则,line_type_id,int64,False,,line type id
+rule_production_lines,生产线规则,line_type_name,str,False,,line type name
+rule_production_lines,生产线规则,investment_per_quarter_wan,int64,False,万元,investment per quarter wan
+rule_production_lines,生产线规则,installation_quarters,int64,False,季度,installation quarters
+rule_production_lines,生产线规则,production_cycle_quarters,int64,False,季度,production cycle quarters
+rule_production_lines,生产线规则,conversion_fee_per_quarter_wan,int64,False,万元,conversion fee per quarter wan
+rule_production_lines,生产线规则,conversion_cycle_quarters,int64,False,季度,conversion cycle quarters
+rule_production_lines,生产线规则,maintenance_fee_wan,int64,False,万元,maintenance fee wan
+rule_production_lines,生产线规则,residual_value_wan,int64,False,万元,residual value wan
+rule_production_lines,生产线规则,depreciation_fee_wan,int64,False,万元,depreciation fee wan
+rule_production_lines,生产线规则,depreciation_years,int64,False,,depreciation years
+rule_production_lines,生产线规则,score,int64,False,数值,score
+rule_production_lines,生产线规则,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_production_lines,生产线规则,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_production_lines,生产线规则,source_id,str,False,,源文件稳定标识
+rule_production_lines,生产线规则,source_path,str,False,,相对项目根目录的源文件路径
+rule_production_lines,生产线规则,source_table,int64,False,,source table
+rule_production_lines,生产线规则,source_row,int64,False,,源文件一基行号
+rule_markets,市场开拓规则,market_id,int64,False,,market id
+rule_markets,市场开拓规则,market_name,str,False,,market name
+rule_markets,市场开拓规则,annual_development_fee_wan,int64,False,万元,annual development fee wan
+rule_markets,市场开拓规则,development_years,int64,False,,development years
+rule_markets,市场开拓规则,score,int64,False,数值,score
+rule_markets,市场开拓规则,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_markets,市场开拓规则,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_markets,市场开拓规则,source_id,str,False,,源文件稳定标识
+rule_markets,市场开拓规则,source_path,str,False,,相对项目根目录的源文件路径
+rule_markets,市场开拓规则,source_table,int64,False,,source table
+rule_markets,市场开拓规则,source_row,int64,False,,源文件一基行号
+rule_iso,ISO 认证规则,iso_id,int64,False,,iso id
+rule_iso,ISO 认证规则,iso_name,str,False,,iso name
+rule_iso,ISO 认证规则,annual_development_fee_wan,int64,False,万元,annual development fee wan
+rule_iso,ISO 认证规则,development_years,int64,False,,development years
+rule_iso,ISO 认证规则,score,int64,False,数值,score
+rule_iso,ISO 认证规则,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_iso,ISO 认证规则,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_iso,ISO 认证规则,source_id,str,False,,源文件稳定标识
+rule_iso,ISO 认证规则,source_path,str,False,,相对项目根目录的源文件路径
+rule_iso,ISO 认证规则,source_table,int64,False,,source table
+rule_iso,ISO 认证规则,source_row,int64,False,,源文件一基行号
+rule_materials,原材料规则,material_id,int64,False,,material id
+rule_materials,原材料规则,material_name,str,False,,material name
+rule_materials,原材料规则,unit_purchase_price_wan,int64,False,万元,unit purchase price wan
+rule_materials,原材料规则,lead_time_quarters,int64,False,季度,lead time quarters
+rule_materials,原材料规则,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_materials,原材料规则,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_materials,原材料规则,source_id,str,False,,源文件稳定标识
+rule_materials,原材料规则,source_path,str,False,,相对项目根目录的源文件路径
+rule_materials,原材料规则,source_table,int64,False,,source table
+rule_materials,原材料规则,source_row,int64,False,,源文件一基行号
+rule_products,产品研发及成本规则,product_id,int64,False,,product id
+rule_products,产品研发及成本规则,product_name,str,False,,product name
+rule_products,产品研发及成本规则,processing_fee_wan,int64,False,万元,processing fee wan
+rule_products,产品研发及成本规则,development_fee_per_quarter_wan,int64,False,万元,development fee per quarter wan
+rule_products,产品研发及成本规则,development_quarters,int64,False,季度,development quarters
+rule_products,产品研发及成本规则,direct_cost_wan,int64,False,万元,direct cost wan
+rule_products,产品研发及成本规则,score,int64,False,数值,score
+rule_products,产品研发及成本规则,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_products,产品研发及成本规则,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_products,产品研发及成本规则,source_id,str,False,,源文件稳定标识
+rule_products,产品研发及成本规则,source_path,str,False,,相对项目根目录的源文件路径
+rule_products,产品研发及成本规则,source_table,int64,False,,source table
+rule_products,产品研发及成本规则,source_row,int64,False,,源文件一基行号
+rule_bom,产品物料清单,product_name,str,False,,product name
+rule_bom,产品物料清单,component_product_name,str,True,,component product name
+rule_bom,产品物料清单,material_name,str,True,,material name
+rule_bom,产品物料清单,quantity,int64,False,数值,quantity
+rule_bom,产品物料清单,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_bom,产品物料清单,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_bom,产品物料清单,source_id,str,False,,源文件稳定标识
+rule_bom,产品物料清单,source_path,str,False,,相对项目根目录的源文件路径
+rule_bom,产品物料清单,source_table,int64,False,,source table
+rule_bom,产品物料清单,source_row,int64,False,,源文件一基行号
+rule_packs,规则包版本、绑定和可执行状态,rule_pack_id,str,False,,rule pack id
+rule_packs,规则包版本、绑定和可执行状态,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_packs,规则包版本、绑定和可执行状态,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_packs,规则包版本、绑定和可执行状态,pack_status,str,False,,pack status
+rule_packs,规则包版本、绑定和可执行状态,parameter_status,str,False,,parameter status
+rule_packs,规则包版本、绑定和可执行状态,process_status,str,False,,process status
+rule_packs,规则包版本、绑定和可执行状态,order_binding_status,str,False,,order binding status
+rule_packs,规则包版本、绑定和可执行状态,simulation_ready,bool,False,,simulation ready
+rule_packs,规则包版本、绑定和可执行状态,blocking_gap_count,int64,False,,blocking gap count
+rule_packs,规则包版本、绑定和可执行状态,source_id,str,False,,源文件稳定标识
+rule_packs,规则包版本、绑定和可执行状态,source_path,str,False,,相对项目根目录的源文件路径
+rule_gaps,阻止完整仿真或需要确认的规则缺口,gap_id,str,False,,gap id
+rule_gaps,阻止完整仿真或需要确认的规则缺口,rule_pack_id,str,False,,rule pack id
+rule_gaps,阻止完整仿真或需要确认的规则缺口,competition_id,str,False,,隔离后的比赛或资料批次标识
+rule_gaps,阻止完整仿真或需要确认的规则缺口,rule_version,str,False,,规则版本；unknown 表示尚未确认
+rule_gaps,阻止完整仿真或需要确认的规则缺口,domain,str,False,,domain
+rule_gaps,阻止完整仿真或需要确认的规则缺口,title,str,False,,title
+rule_gaps,阻止完整仿真或需要确认的规则缺口,description,str,False,,description
+rule_gaps,阻止完整仿真或需要确认的规则缺口,severity,str,False,,severity
+rule_gaps,阻止完整仿真或需要确认的规则缺口,status,str,False,,status
+rule_gaps,阻止完整仿真或需要确认的规则缺口,evidence_status,str,False,,evidence status
+rule_gaps,阻止完整仿真或需要确认的规则缺口,source_id,str,False,,源文件稳定标识
+rule_gaps,阻止完整仿真或需要确认的规则缺口,source_path,str,False,,相对项目根目录的源文件路径
+action_definitions,跨来源标准动作定义与观察覆盖,canonical_action,str,False,,canonical action
+action_definitions,跨来源标准动作定义与观察覆盖,category,str,False,,category
+action_definitions,跨来源标准动作定义与观察覆盖,description,str,False,,description
+action_definitions,跨来源标准动作定义与观察覆盖,control_type,str,False,,control type
+action_definitions,跨来源标准动作定义与观察覆盖,is_agent_candidate,bool,False,,is agent candidate
+action_definitions,跨来源标准动作定义与观察覆盖,historical_observation_count,int64,False,,historical observation count
+action_definitions,跨来源标准动作定义与观察覆盖,test_observation_count,int64,False,,test observation count
+action_definitions,跨来源标准动作定义与观察覆盖,semantic_status,str,False,,semantic status
+action_definitions,跨来源标准动作定义与观察覆盖,executable_status,str,False,,executable status
+action_aliases,原始动作名称到标准动作的映射,source_scope,str,False,,source scope
+action_aliases,原始动作名称到标准动作的映射,raw_action,str,False,,raw action
+action_aliases,原始动作名称到标准动作的映射,canonical_action,str,False,,canonical action
+action_aliases,原始动作名称到标准动作的映射,mapping_status,str,False,,mapping status
+action_events,历史与测试现金流统一后的结构化经营事件,event_id,str,False,,event id
+action_events,历史与测试现金流统一后的结构化经营事件,event_source,str,False,,event source
+action_events,历史与测试现金流统一后的结构化经营事件,competition_id,str,False,,隔离后的比赛或资料批次标识
+action_events,历史与测试现金流统一后的结构化经营事件,rule_version,str,False,,规则版本；unknown 表示尚未确认
+action_events,历史与测试现金流统一后的结构化经营事件,team_id,str,True,,参赛企业标识
+action_events,历史与测试现金流统一后的结构化经营事件,scenario_id,str,True,,scenario id
+action_events,历史与测试现金流统一后的结构化经营事件,sequence,int64,False,,sequence
+action_events,历史与测试现金流统一后的结构化经营事件,year,int64,False,年,比赛年度；0 表示初始元年
+action_events,历史与测试现金流统一后的结构化经营事件,quarter,int64,False,,比赛季度
+action_events,历史与测试现金流统一后的结构化经营事件,raw_action,str,False,,raw action
+action_events,历史与测试现金流统一后的结构化经营事件,canonical_action,str,False,,canonical action
+action_events,历史与测试现金流统一后的结构化经营事件,category,str,False,,category
+action_events,历史与测试现金流统一后的结构化经营事件,control_type,str,False,,control type
+action_events,历史与测试现金流统一后的结构化经营事件,is_agent_candidate,bool,False,,is agent candidate
+action_events,历史与测试现金流统一后的结构化经营事件,parameters_json,str,False,,parameters json
+action_events,历史与测试现金流统一后的结构化经营事件,parameter_parse_status,str,False,,parameter parse status
+action_events,历史与测试现金流统一后的结构化经营事件,cash_effect_wan,float64,False,万元,cash effect wan
+action_events,历史与测试现金流统一后的结构化经营事件,balance_wan,float64,False,万元,balance wan
+action_events,历史与测试现金流统一后的结构化经营事件,note,str,True,,note
+action_events,历史与测试现金流统一后的结构化经营事件,evidence_status,str,False,,evidence status
+action_events,历史与测试现金流统一后的结构化经营事件,source_id,str,False,,源文件稳定标识
+action_events,历史与测试现金流统一后的结构化经营事件,source_path,str,False,,相对项目根目录的源文件路径
+action_events,历史与测试现金流统一后的结构化经营事件,source_sheet,str,True,,源工作表名称
+action_events,历史与测试现金流统一后的结构化经营事件,source_row,float64,True,,源文件一基行号
+action_events,历史与测试现金流统一后的结构化经营事件,source_line,float64,True,,source line
+order_catalog,赛前订单目录,order_id,str,False,,order id
+order_catalog,赛前订单目录,competition_id,str,False,,隔离后的比赛或资料批次标识
+order_catalog,赛前订单目录,rule_version,object,True,,规则版本；unknown 表示尚未确认
+order_catalog,赛前订单目录,year,int64,False,年,比赛年度；0 表示初始元年
+order_catalog,赛前订单目录,market_code,int64,False,,market code
+order_catalog,赛前订单目录,market_id,str,False,,market id
+order_catalog,赛前订单目录,market_name_candidate,str,False,,market name candidate
+order_catalog,赛前订单目录,product_code,int64,False,,product code
+order_catalog,赛前订单目录,product_id,str,False,,product id
+order_catalog,赛前订单目录,quantity,float64,False,数值,quantity
+order_catalog,赛前订单目录,total_amount_wan,float64,False,万元,total amount wan
+order_catalog,赛前订单目录,unit_price_wan,float64,False,万元,unit price wan
+order_catalog,赛前订单目录,receivable_term_quarters,int64,False,季度,receivable term quarters
+order_catalog,赛前订单目录,delivery_term_quarters,int64,False,季度,delivery term quarters
+order_catalog,赛前订单目录,iso_code,int64,False,,iso code
+order_catalog,赛前订单目录,iso_name_candidate,str,True,,iso name candidate
+order_catalog,赛前订单目录,mapping_status,str,False,,mapping status
+order_catalog,赛前订单目录,source_id,str,False,,源文件稳定标识
+order_catalog,赛前订单目录,source_path,str,False,,相对项目根目录的源文件路径
+order_catalog,赛前订单目录,source_sheet,str,False,,源工作表名称
+order_catalog,赛前订单目录,source_row,int64,False,,源文件一基行号
+annual_advertising,公共年度广告巡盘长表,competition_id,str,False,,隔离后的比赛或资料批次标识
+annual_advertising,公共年度广告巡盘长表,rule_version,str,False,,规则版本；unknown 表示尚未确认
+annual_advertising,公共年度广告巡盘长表,year,int64,False,年,比赛年度；0 表示初始元年
+annual_advertising,公共年度广告巡盘长表,team_id,str,False,,参赛企业标识
+annual_advertising,公共年度广告巡盘长表,product_id,str,False,,product id
+annual_advertising,公共年度广告巡盘长表,market_name,str,False,,market name
+annual_advertising,公共年度广告巡盘长表,amount_wan,float64,False,万元,amount wan
+annual_advertising,公共年度广告巡盘长表,source_id,str,False,,源文件稳定标识
+annual_advertising,公共年度广告巡盘长表,source_path,str,False,,相对项目根目录的源文件路径
+annual_advertising,公共年度广告巡盘长表,source_sheet,str,False,,源工作表名称
+annual_advertising,公共年度广告巡盘长表,source_cell,str,False,,源 Excel 单元格坐标
+annual_advertising,公共年度广告巡盘长表,source_row,int64,False,,源文件一基行号
+annual_financial_metrics,公共年度三张报表长表,competition_id,str,False,,隔离后的比赛或资料批次标识
+annual_financial_metrics,公共年度三张报表长表,rule_version,str,False,,规则版本；unknown 表示尚未确认
+annual_financial_metrics,公共年度三张报表长表,year,int64,False,年,比赛年度；0 表示初始元年
+annual_financial_metrics,公共年度三张报表长表,team_id,str,False,,参赛企业标识
+annual_financial_metrics,公共年度三张报表长表,statement,str,False,,statement
+annual_financial_metrics,公共年度三张报表长表,metric_name,str,False,,metric name
+annual_financial_metrics,公共年度三张报表长表,amount_wan,float64,False,万元,amount wan
+annual_financial_metrics,公共年度三张报表长表,source_id,str,False,,源文件稳定标识
+annual_financial_metrics,公共年度三张报表长表,source_path,str,False,,相对项目根目录的源文件路径
+annual_financial_metrics,公共年度三张报表长表,source_sheet,str,False,,源工作表名称
+annual_financial_metrics,公共年度三张报表长表,source_cell,str,False,,源 Excel 单元格坐标
+annual_financial_metrics,公共年度三张报表长表,source_row,int64,False,,源文件一基行号
+annual_production_lines,公共年度产线巡盘,record_id,str,False,,由来源和业务键生成的稳定记录标识
+annual_production_lines,公共年度产线巡盘,competition_id,str,False,,隔离后的比赛或资料批次标识
+annual_production_lines,公共年度产线巡盘,rule_version,str,False,,规则版本；unknown 表示尚未确认
+annual_production_lines,公共年度产线巡盘,snapshot_year,int64,False,年,snapshot year
+annual_production_lines,公共年度产线巡盘,team_id,str,False,,参赛企业标识
+annual_production_lines,公共年度产线巡盘,line_type,str,False,,line type
+annual_production_lines,公共年度产线巡盘,factory,str,False,,factory
+annual_production_lines,公共年度产线巡盘,product_id,str,False,,product id
+annual_production_lines,公共年度产线巡盘,state,str,False,,state
+annual_production_lines,公共年度产线巡盘,accumulated_depreciation_wan,float64,False,万元,accumulated depreciation wan
+annual_production_lines,公共年度产线巡盘,production_start_year,float64,True,年,production start year
+annual_production_lines,公共年度产线巡盘,production_start_quarter,float64,True,季度,production start quarter
+annual_production_lines,公共年度产线巡盘,conversion_time_raw,str,False,,conversion time raw
+annual_production_lines,公共年度产线巡盘,remaining_time_raw,str,False,,remaining time raw
+annual_production_lines,公共年度产线巡盘,completion_year,int64,False,年,completion year
+annual_production_lines,公共年度产线巡盘,completion_quarter,int64,False,季度,completion quarter
+annual_production_lines,公共年度产线巡盘,construction_start_raw,str,False,,construction start raw
+annual_production_lines,公共年度产线巡盘,source_id,str,False,,源文件稳定标识
+annual_production_lines,公共年度产线巡盘,source_path,str,False,,相对项目根目录的源文件路径
+annual_production_lines,公共年度产线巡盘,source_sheet,str,False,,源工作表名称
+annual_production_lines,公共年度产线巡盘,source_row,int64,False,,源文件一基行号
+annual_market_leaders,公共年度市场老大,competition_id,str,False,,隔离后的比赛或资料批次标识
+annual_market_leaders,公共年度市场老大,rule_version,str,False,,规则版本；unknown 表示尚未确认
+annual_market_leaders,公共年度市场老大,year,int64,False,年,比赛年度；0 表示初始元年
+annual_market_leaders,公共年度市场老大,market_name,str,False,,market name
+annual_market_leaders,公共年度市场老大,team_id,str,True,,参赛企业标识
+annual_market_leaders,公共年度市场老大,source_id,str,False,,源文件稳定标识
+annual_market_leaders,公共年度市场老大,source_path,str,False,,相对项目根目录的源文件路径
+annual_market_leaders,公共年度市场老大,source_sheet,str,False,,源工作表名称
+annual_market_leaders,公共年度市场老大,source_row,int64,False,,源文件一基行号
+teams,企业基本信息与数据可用状态,competition_id,str,False,,隔离后的比赛或资料批次标识
+teams,企业基本信息与数据可用状态,rule_version,str,False,,规则版本；unknown 表示尚未确认
+teams,企业基本信息与数据可用状态,team_id,str,False,,参赛企业标识
+teams,企业基本信息与数据可用状态,company_name,str,False,,company name
+teams,企业基本信息与数据可用状态,school_name,str,False,,school name
+teams,企业基本信息与数据可用状态,company_status,str,False,,company status
+teams,企业基本信息与数据可用状态,current_cash_wan,float64,False,万元,current cash wan
+teams,企业基本信息与数据可用状态,capital_injection_wan,float64,False,万元,capital injection wan
+teams,企业基本信息与数据可用状态,system_year,int64,False,年,system year
+teams,企业基本信息与数据可用状态,system_quarter,int64,False,季度,system quarter
+teams,企业基本信息与数据可用状态,data_status,str,False,,data status
+teams,企业基本信息与数据可用状态,source_id,str,False,,源文件稳定标识
+teams,企业基本信息与数据可用状态,source_path,str,False,,相对项目根目录的源文件路径
+teams,企业基本信息与数据可用状态,source_sheet,str,False,,源工作表名称
+team_cash_flows,企业现金流水明细,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_cash_flows,企业现金流水明细,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_cash_flows,企业现金流水明细,team_id,str,False,,参赛企业标识
+team_cash_flows,企业现金流水明细,transaction_id,int64,False,,transaction id
+team_cash_flows,企业现金流水明细,sequence_in_source,int64,False,,sequence in source
+team_cash_flows,企业现金流水明细,year,int64,False,年,比赛年度；0 表示初始元年
+team_cash_flows,企业现金流水明细,quarter,int64,False,,比赛季度
+team_cash_flows,企业现金流水明细,action,str,False,,action
+team_cash_flows,企业现金流水明细,amount_wan,float64,False,万元,amount wan
+team_cash_flows,企业现金流水明细,balance_wan,float64,False,万元,balance wan
+team_cash_flows,企业现金流水明细,note,str,False,,note
+team_cash_flows,企业现金流水明细,source_id,str,False,,源文件稳定标识
+team_cash_flows,企业现金流水明细,source_path,str,False,,相对项目根目录的源文件路径
+team_cash_flows,企业现金流水明细,source_sheet,str,False,,源工作表名称
+team_cash_flows,企业现金流水明细,source_row,int64,False,,源文件一基行号
+team_financial_metrics,企业历年三张报表长表,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_financial_metrics,企业历年三张报表长表,team_id,str,False,,参赛企业标识
+team_financial_metrics,企业历年三张报表长表,year,int64,False,年,比赛年度；0 表示初始元年
+team_financial_metrics,企业历年三张报表长表,period_label,str,False,,period label
+team_financial_metrics,企业历年三张报表长表,statement,str,False,,statement
+team_financial_metrics,企业历年三张报表长表,metric_name,str,False,,metric name
+team_financial_metrics,企业历年三张报表长表,amount_wan,float64,False,万元,amount wan
+team_financial_metrics,企业历年三张报表长表,source_id,str,False,,源文件稳定标识
+team_financial_metrics,企业历年三张报表长表,source_path,str,False,,相对项目根目录的源文件路径
+team_financial_metrics,企业历年三张报表长表,source_sheet,str,False,,源工作表名称
+team_financial_metrics,企业历年三张报表长表,source_cell,str,False,,源 Excel 单元格坐标
+team_financial_metrics,企业历年三张报表长表,source_row,int64,False,,源文件一基行号
+team_advertising,企业历年广告投放长表,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_advertising,企业历年广告投放长表,team_id,str,False,,参赛企业标识
+team_advertising,企业历年广告投放长表,year,int64,False,年,比赛年度；0 表示初始元年
+team_advertising,企业历年广告投放长表,product_id,str,False,,product id
+team_advertising,企业历年广告投放长表,market_name,str,False,,market name
+team_advertising,企业历年广告投放长表,amount_wan,float64,False,万元,amount wan
+team_advertising,企业历年广告投放长表,source_id,str,False,,源文件稳定标识
+team_advertising,企业历年广告投放长表,source_path,str,False,,相对项目根目录的源文件路径
+team_advertising,企业历年广告投放长表,source_sheet,str,False,,源工作表名称
+team_advertising,企业历年广告投放长表,source_cell,str,False,,源 Excel 单元格坐标
+team_advertising,企业历年广告投放长表,source_row,int64,False,,源文件一基行号
+team_orders,企业获得订单及交付状态,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_orders,企业获得订单及交付状态,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_orders,企业获得订单及交付状态,team_id,str,False,,参赛企业标识
+team_orders,企业获得订单及交付状态,order_id,str,False,,order id
+team_orders,企业获得订单及交付状态,market_name,str,False,,market name
+team_orders,企业获得订单及交付状态,product_id,str,False,,product id
+team_orders,企业获得订单及交付状态,quantity,float64,False,数值,quantity
+team_orders,企业获得订单及交付状态,total_amount_wan,float64,False,万元,total amount wan
+team_orders,企业获得订单及交付状态,status,str,False,,status
+team_orders,企业获得订单及交付状态,won_year,int64,False,年,won year
+team_orders,企业获得订单及交付状态,delivery_term_quarters,float64,False,季度,delivery term quarters
+team_orders,企业获得订单及交付状态,receivable_term_quarters,float64,False,季度,receivable term quarters
+team_orders,企业获得订单及交付状态,iso_name,str,True,,iso name
+team_orders,企业获得订单及交付状态,delivered_year,float64,True,年,delivered year
+team_orders,企业获得订单及交付状态,delivered_quarter,float64,True,季度,delivered quarter
+team_orders,企业获得订单及交付状态,source_id,str,False,,源文件稳定标识
+team_orders,企业获得订单及交付状态,source_path,str,False,,相对项目根目录的源文件路径
+team_orders,企业获得订单及交付状态,source_sheet,str,False,,源工作表名称
+team_orders,企业获得订单及交付状态,source_row,int64,False,,源文件一基行号
+team_material_orders,企业在途原材料,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_material_orders,企业在途原材料,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_material_orders,企业在途原材料,team_id,str,False,,参赛企业标识
+team_material_orders,企业在途原材料,material_id,str,False,,material id
+team_material_orders,企业在途原材料,quantity,float64,False,数值,quantity
+team_material_orders,企业在途原材料,remaining_time,float64,False,,remaining time
+team_material_orders,企业在途原材料,remaining_time_unit,str,False,,remaining time unit
+team_material_orders,企业在途原材料,order_year,int64,False,年,order year
+team_material_orders,企业在途原材料,order_quarter,int64,False,季度,order quarter
+team_material_orders,企业在途原材料,source_id,str,False,,源文件稳定标识
+team_material_orders,企业在途原材料,source_path,str,False,,相对项目根目录的源文件路径
+team_material_orders,企业在途原材料,source_sheet,str,False,,源工作表名称
+team_material_orders,企业在途原材料,source_row,int64,False,,源文件一基行号
+team_material_inventory,企业原材料库存,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_material_inventory,企业原材料库存,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_material_inventory,企业原材料库存,team_id,str,False,,参赛企业标识
+team_material_inventory,企业原材料库存,material_id,str,False,,material id
+team_material_inventory,企业原材料库存,quantity,float64,False,数值,quantity
+team_material_inventory,企业原材料库存,source_id,str,False,,源文件稳定标识
+team_material_inventory,企业原材料库存,source_path,str,False,,相对项目根目录的源文件路径
+team_material_inventory,企业原材料库存,source_sheet,str,False,,源工作表名称
+team_material_inventory,企业原材料库存,source_row,int64,False,,源文件一基行号
+team_product_inventory,企业产成品库存,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_product_inventory,企业产成品库存,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_product_inventory,企业产成品库存,team_id,str,False,,参赛企业标识
+team_product_inventory,企业产成品库存,product_id,str,False,,product id
+team_product_inventory,企业产成品库存,quantity,float64,False,数值,quantity
+team_product_inventory,企业产成品库存,source_id,str,False,,源文件稳定标识
+team_product_inventory,企业产成品库存,source_path,str,False,,相对项目根目录的源文件路径
+team_product_inventory,企业产成品库存,source_sheet,str,False,,源工作表名称
+team_product_inventory,企业产成品库存,source_row,int64,False,,源文件一基行号
+team_receivables,企业应收款批次,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_receivables,企业应收款批次,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_receivables,企业应收款批次,team_id,str,False,,参赛企业标识
+team_receivables,企业应收款批次,remaining_term,float64,False,,remaining term
+team_receivables,企业应收款批次,remaining_term_unit,str,False,,remaining term unit
+team_receivables,企业应收款批次,amount_wan,float64,False,万元,amount wan
+team_receivables,企业应收款批次,source_id,str,False,,源文件稳定标识
+team_receivables,企业应收款批次,source_path,str,False,,相对项目根目录的源文件路径
+team_receivables,企业应收款批次,source_sheet,str,False,,源工作表名称
+team_receivables,企业应收款批次,source_row,int64,False,,源文件一基行号
+team_loans,企业贷款明细,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_loans,企业贷款明细,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_loans,企业贷款明细,team_id,str,False,,参赛企业标识
+team_loans,企业贷款明细,loan_type,str,False,,loan type
+team_loans,企业贷款明细,amount_wan,float64,False,万元,amount wan
+team_loans,企业贷款明细,remaining_term,float64,False,,remaining term
+team_loans,企业贷款明细,remaining_term_unit,str,False,,remaining term unit
+team_loans,企业贷款明细,start_year,int64,False,年,start year
+team_loans,企业贷款明细,start_quarter,int64,False,季度,start quarter
+team_loans,企业贷款明细,source_id,str,False,,源文件稳定标识
+team_loans,企业贷款明细,source_path,str,False,,相对项目根目录的源文件路径
+team_loans,企业贷款明细,source_sheet,str,False,,源工作表名称
+team_loans,企业贷款明细,source_row,int64,False,,源文件一基行号
+team_qualifications,市场、产品和 ISO 研发认证状态,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_qualifications,市场、产品和 ISO 研发认证状态,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_qualifications,市场、产品和 ISO 研发认证状态,team_id,str,False,,参赛企业标识
+team_qualifications,市场、产品和 ISO 研发认证状态,qualification_type,str,False,,qualification type
+team_qualifications,市场、产品和 ISO 研发认证状态,qualification_name,str,False,,qualification name
+team_qualifications,市场、产品和 ISO 研发认证状态,development_fee_wan,float64,False,万元,development fee wan
+team_qualifications,市场、产品和 ISO 研发认证状态,development_cycle,float64,False,,development cycle
+team_qualifications,市场、产品和 ISO 研发认证状态,development_cycle_unit,str,False,,development cycle unit
+team_qualifications,市场、产品和 ISO 研发认证状态,remaining_time,float64,False,,remaining time
+team_qualifications,市场、产品和 ISO 研发认证状态,remaining_time_unit,object,True,,remaining time unit
+team_qualifications,市场、产品和 ISO 研发认证状态,is_complete,bool,False,,is complete
+team_qualifications,市场、产品和 ISO 研发认证状态,completion_year,float64,True,年,completion year
+team_qualifications,市场、产品和 ISO 研发认证状态,completion_quarter,float64,True,季度,completion quarter
+team_qualifications,市场、产品和 ISO 研发认证状态,source_id,str,False,,源文件稳定标识
+team_qualifications,市场、产品和 ISO 研发认证状态,source_path,str,False,,相对项目根目录的源文件路径
+team_qualifications,市场、产品和 ISO 研发认证状态,source_sheet,str,False,,源工作表名称
+team_qualifications,市场、产品和 ISO 研发认证状态,source_row,int64,False,,源文件一基行号
+team_factories,企业厂房状态,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_factories,企业厂房状态,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_factories,企业厂房状态,team_id,str,False,,参赛企业标识
+team_factories,企业厂房状态,factory_instance_id,int64,False,,factory instance id
+team_factories,企业厂房状态,factory_name,str,False,,factory name
+team_factories,企业厂房状态,state,str,False,,state
+team_factories,企业厂房状态,capacity_raw,str,False,,capacity raw
+team_factories,企业厂房状态,purchase_price_wan,float64,False,万元,purchase price wan
+team_factories,企业厂房状态,annual_rent_wan,float64,False,万元,annual rent wan
+team_factories,企业厂房状态,sale_price_wan,float64,False,万元,sale price wan
+team_factories,企业厂房状态,last_rent_payment_raw,str,False,,last rent payment raw
+team_factories,企业厂房状态,acquisition_time_raw,str,False,,acquisition time raw
+team_factories,企业厂房状态,source_id,str,False,,源文件稳定标识
+team_factories,企业厂房状态,source_path,str,False,,相对项目根目录的源文件路径
+team_factories,企业厂房状态,source_sheet,str,False,,源工作表名称
+team_factories,企业厂房状态,source_row,int64,False,,源文件一基行号
+team_production_lines,企业生产线状态,record_id,str,False,,由来源和业务键生成的稳定记录标识
+team_production_lines,企业生产线状态,competition_id,str,False,,隔离后的比赛或资料批次标识
+team_production_lines,企业生产线状态,team_id,str,False,,参赛企业标识
+team_production_lines,企业生产线状态,line_instance_id,int64,False,,line instance id
+team_production_lines,企业生产线状态,line_type,str,False,,line type
+team_production_lines,企业生产线状态,factory,str,False,,factory
+team_production_lines,企业生产线状态,product_id,str,False,,product id
+team_production_lines,企业生产线状态,state,str,False,,state
+team_production_lines,企业生产线状态,accumulated_depreciation_wan,float64,False,万元,accumulated depreciation wan
+team_production_lines,企业生产线状态,production_start_year,float64,True,年,production start year
+team_production_lines,企业生产线状态,production_start_quarter,float64,True,季度,production start quarter
+team_production_lines,企业生产线状态,conversion_time_raw,str,False,,conversion time raw
+team_production_lines,企业生产线状态,remaining_time_raw,str,False,,remaining time raw
+team_production_lines,企业生产线状态,completion_year,int64,False,年,completion year
+team_production_lines,企业生产线状态,completion_quarter,int64,False,季度,completion quarter
+team_production_lines,企业生产线状态,construction_start_raw,str,False,,construction start raw
+team_production_lines,企业生产线状态,source_id,str,False,,源文件稳定标识
+team_production_lines,企业生产线状态,source_path,str,False,,相对项目根目录的源文件路径
+team_production_lines,企业生产线状态,source_sheet,str,False,,源工作表名称
+team_production_lines,企业生产线状态,source_row,int64,False,,源文件一基行号
+test_cash_flow_events,710W 测试方案的人工整理现金流,record_id,str,False,,由来源和业务键生成的稳定记录标识
+test_cash_flow_events,710W 测试方案的人工整理现金流,competition_id,str,False,,隔离后的比赛或资料批次标识
+test_cash_flow_events,710W 测试方案的人工整理现金流,rule_version,str,False,,规则版本；unknown 表示尚未确认
+test_cash_flow_events,710W 测试方案的人工整理现金流,scenario_id,str,False,,scenario id
+test_cash_flow_events,710W 测试方案的人工整理现金流,sequence,int64,False,,sequence
+test_cash_flow_events,710W 测试方案的人工整理现金流,year,int64,False,年,比赛年度；0 表示初始元年
+test_cash_flow_events,710W 测试方案的人工整理现金流,quarter,int64,False,,比赛季度
+test_cash_flow_events,710W 测试方案的人工整理现金流,action,str,False,,action
+test_cash_flow_events,710W 测试方案的人工整理现金流,amount_wan,float64,False,万元,amount wan
+test_cash_flow_events,710W 测试方案的人工整理现金流,balance_wan,float64,False,万元,balance wan
+test_cash_flow_events,710W 测试方案的人工整理现金流,source_id,str,False,,源文件稳定标识
+test_cash_flow_events,710W 测试方案的人工整理现金流,source_path,str,False,,相对项目根目录的源文件路径
+test_cash_flow_events,710W 测试方案的人工整理现金流,source_line,int64,False,,source line

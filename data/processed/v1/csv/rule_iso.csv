@@ -1,0 +1,3 @@
+﻿iso_id,iso_name,annual_development_fee_wan,development_years,score,competition_id,rule_version,source_id,source_path,source_table,source_row
+1,ISO9000,20,2,4,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,5,2
+2,ISO14000,30,2,5,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,5,3

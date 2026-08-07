@@ -1,0 +1,26 @@
+﻿record_id,competition_id,team_id,remaining_term,remaining_term_unit,amount_wan,source_id,source_path,source_sheet,source_row
+ae3db38345e89106,historical_600_unknown_rule,ZY02,1.0,quarter,521.0,src_bef4b86b4c71,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY02.xls,银行贷款,4
+a055581d940b0670,historical_600_unknown_rule,ZY03,1.0,quarter,900.0,src_e3cd51a93aa1,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY03.xls,银行贷款,4
+e850bf2bd903d884,historical_600_unknown_rule,ZY03,4.0,quarter,200.0,src_e3cd51a93aa1,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY03.xls,银行贷款,5
+f9a0cc5b77f09cfb,historical_600_unknown_rule,ZY04,1.0,quarter,802.0,src_158092ee4fdb,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY04.xls,银行贷款,4
+95671ec9e6395be9,historical_600_unknown_rule,ZY05,1.0,quarter,246.0,src_33c96cbd4d19,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY05.xls,银行贷款,4
+c12e4dfb2c4b7a66,historical_600_unknown_rule,ZY05,2.0,quarter,777.0,src_33c96cbd4d19,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY05.xls,银行贷款,5
+b94623fecc107dd4,historical_600_unknown_rule,ZY06,2.0,quarter,491.0,src_aa724dd3736a,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY06.xls,银行贷款,4
+f7a092b0d2b971e1,historical_600_unknown_rule,ZY07,1.0,quarter,862.0,src_610d5b6cd311,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY07.xls,银行贷款,4
+329ac67b04e646d8,historical_600_unknown_rule,ZY08,1.0,quarter,721.0,src_db71d98a0a37,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY08.xls,银行贷款,4
+29868e1ed125b2a0,historical_600_unknown_rule,ZY08,2.0,quarter,564.0,src_db71d98a0a37,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY08.xls,银行贷款,5
+00fd8ee21ff46b86,historical_600_unknown_rule,ZY08,4.0,quarter,374.0,src_db71d98a0a37,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY08.xls,银行贷款,6
+09478e56c2a0c846,historical_600_unknown_rule,ZY09,2.0,quarter,496.0,src_57c289f9896a,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY09.xls,银行贷款,4
+36d20fb8b2dd5494,historical_600_unknown_rule,ZY10,1.0,quarter,1209.0,src_0bc478da983d,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY10.xls,银行贷款,4
+ab3b62f5f4a44203,historical_600_unknown_rule,ZY10,3.0,quarter,230.0,src_0bc478da983d,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY10.xls,银行贷款,5
+013d48a2fbc7a2d2,historical_600_unknown_rule,ZY10,2.0,quarter,330.0,src_0bc478da983d,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY10.xls,银行贷款,6
+078f832d76420c6b,historical_600_unknown_rule,ZY11,1.0,quarter,685.0,src_1179379453a7,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY11.xls,银行贷款,4
+e0c3cbe1c09595e6,historical_600_unknown_rule,ZY13,1.0,quarter,1455.0,src_766e2c00d61c,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY13.xls,银行贷款,4
+b439cd6c83d441b9,historical_600_unknown_rule,ZY13,2.0,quarter,291.0,src_766e2c00d61c,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY13.xls,银行贷款,5
+514109e6e9db3eb3,historical_600_unknown_rule,ZY14,2.0,quarter,746.0,src_27029786bf11,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY14.xls,银行贷款,4
+c870752873823af0,historical_600_unknown_rule,ZY14,1.0,quarter,413.0,src_27029786bf11,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY14.xls,银行贷款,5
+56bfdd55b619373a,historical_600_unknown_rule,ZY15,1.0,quarter,942.0,src_4d43a1bf1514,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY15.xls,银行贷款,4
+319829f03f7e7911,historical_600_unknown_rule,ZY15,2.0,quarter,603.0,src_4d43a1bf1514,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY15.xls,银行贷款,5
+3990f0f286faecd4,historical_600_unknown_rule,ZY16,1.0,quarter,221.0,src_2f4d529bc792,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY16.xls,银行贷款,4
+b2b1cf11be30441a,historical_600_unknown_rule,ZY16,4.0,quarter,600.0,src_2f4d529bc792,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY16.xls,银行贷款,5
+29388ef4ad2b99f4,historical_600_unknown_rule,ZY17,1.0,quarter,1212.0,src_6d538319baf4,origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY/ZY17.xls,银行贷款,4

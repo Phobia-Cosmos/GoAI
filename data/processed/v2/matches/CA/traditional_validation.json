@@ -1,0 +1,63 @@
+{
+  "checks": {
+    "cash_continuity": {
+      "passed": true,
+      "transition_count": 3927,
+      "violations": []
+    },
+    "dataset_quality": {
+      "passed": true,
+      "source_quality_checks": "all_passed",
+      "violations": []
+    },
+    "operating_action_mapping": {
+      "operating_event_count": 3947,
+      "passed": true,
+      "violations": []
+    },
+    "operating_period": {
+      "passed": true,
+      "violations": []
+    },
+    "order_fields": {
+      "order_count": 495,
+      "passed": true,
+      "violations": []
+    },
+    "quarter_state_shape": {
+      "passed": true,
+      "state_count": 400,
+      "team_count": 20,
+      "violations": []
+    },
+    "report_accounting_identities": {
+      "checked_rows": 88,
+      "passed": true,
+      "violations": []
+    },
+    "schema_files": {
+      "file_count": 12,
+      "passed": true,
+      "violations": []
+    },
+    "unique_event_ids": {
+      "event_count": 3947,
+      "passed": true,
+      "violations": []
+    },
+    "unique_order_ids": {
+      "order_count": 495,
+      "passed": true,
+      "violations": []
+    },
+    "unique_team_ids": {
+      "passed": true,
+      "team_count": 20,
+      "violations": []
+    }
+  },
+  "match_id": "CA",
+  "passed": true,
+  "version": "hard_constraints_v0.1",
+  "violations": []
+}

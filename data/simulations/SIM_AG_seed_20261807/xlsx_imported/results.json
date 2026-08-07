@@ -1,0 +1,29 @@
+{
+  "match_id": "SIM_AG",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_AG01",
+      "owner_equity_wan": 276.4999999999999,
+      "development_potential": 16.0,
+      "rounded_score": 321.0
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_AG03",
+      "owner_equity_wan": 276.4999999999999,
+      "development_potential": 16.0,
+      "rounded_score": 321.0
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_AG02",
+      "owner_equity_wan": 234.6969999999999,
+      "development_potential": 16.0,
+      "rounded_score": 272.0
+    }
+  ],
+  "bankruptcies": [],
+  "provenance": "simulated",
+  "source_path": "SIM_AG最终排名和破产信息.xlsx"
+}

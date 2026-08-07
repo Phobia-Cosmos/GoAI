@@ -1,0 +1,53 @@
+{
+  "format_version": "goai_competition_xlsx_v1.0",
+  "match_id": "SIM_AG",
+  "rule_pack_id": "SIM_AG_simulated_rules_seed_20261808",
+  "parent_rule_pack_id": "AG_runtime_inferred_v2",
+  "source_match_id": "AG",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "team_count": 24,
+  "order_count": 400,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_AG01.xlsx",
+      "企业数据/SIM_AG02.xlsx",
+      "企业数据/SIM_AG03.xlsx",
+      "企业数据/SIM_AG04.xlsx",
+      "企业数据/SIM_AG05.xlsx",
+      "企业数据/SIM_AG06.xlsx",
+      "企业数据/SIM_AG07.xlsx",
+      "企业数据/SIM_AG08.xlsx",
+      "企业数据/SIM_AG09.xlsx",
+      "企业数据/SIM_AG10.xlsx",
+      "企业数据/SIM_AG11.xlsx",
+      "企业数据/SIM_AG12.xlsx",
+      "企业数据/SIM_AG13.xlsx",
+      "企业数据/SIM_AG14.xlsx",
+      "企业数据/SIM_AG15.xlsx",
+      "企业数据/SIM_AG16.xlsx",
+      "企业数据/SIM_AG17.xlsx",
+      "企业数据/SIM_AG18.xlsx",
+      "企业数据/SIM_AG19.xlsx",
+      "企业数据/SIM_AG20.xlsx",
+      "企业数据/SIM_AG21.xlsx",
+      "企业数据/SIM_AG22.xlsx",
+      "企业数据/SIM_AG23.xlsx",
+      "企业数据/SIM_AG24.xlsx"
+    ],
+    "rules": "SIM_AG比赛规则.xlsx",
+    "orders": "SIM_AG订单详情.xlsx",
+    "results": "SIM_AG最终排名和破产信息.xlsx"
+  }
+}

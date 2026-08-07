@@ -7,16 +7,16 @@
 ```text
 /home/undefined/Desktop/GoAI/
 ├── origin data -> /home/undefined/Desktop/Others/goai/origin data
-├── data -> /home/undefined/Disk/datasets/goai
+├── data/                         # 已同步到 Git 的规范化和模拟数据
 └── docs/PROJECT_STATUS_AND_AGENT_PLAN.md
 
-/home/undefined/Disk/datasets/goai/
+/home/undefined/Disk/datasets/goai/        # 当前开发机的原始共享副本
 ├── processed/v1/                 # 通用标准化 CSV、SQLite、数据字典和质量报告
 ├── processed/v2/matches/         # 14 场比赛的结构化数据、规则和回放产物
 └── simulations/                  # 明确标记为 simulated 的沙盘批次
 ```
 
-`origin data` 和 `data` 都被 `.gitignore` 排除。它们只是本机兼容链接，不能假设在其他机器上存在。
+`origin data` 被 `.gitignore` 排除，是本机兼容链接，不能假设在其他机器上存在。仓库内 `data/` 是已同步的小于 GitHub 单文件限制的数据副本；如需节省克隆空间，可以删除它并改用外部共享目录。
 
 ## 在新机器上使用
 
@@ -26,4 +26,3 @@
 4. 使用共享 Python 环境 `/home/undefined/Disk/python-envs/goai-py312/bin/python`，或创建等价的 Python 3.12 环境并安装 `pyproject.toml` 依赖。
 
 不要把 `processed/`、`simulations/`、模型文件、缓存或浏览器导出的临时文件提交到 Git。原始资料和模拟产物都应保留其 `provenance` 字段，避免被误用为正式历史事实。
-

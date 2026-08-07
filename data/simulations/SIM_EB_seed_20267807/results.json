@@ -1,0 +1,62 @@
+{
+  "match_id": "SIM_EB",
+  "sandbox_version": "full_financial_sandbox_v1.0",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_EB01",
+      "owner_equity_wan": 195.00000000000006,
+      "development_potential": 16.0,
+      "score": 226.20000000000005,
+      "rounded_score": 226
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_EB02",
+      "owner_equity_wan": 195.00000000000006,
+      "development_potential": 16.0,
+      "score": 226.20000000000005,
+      "rounded_score": 226
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_EB03",
+      "owner_equity_wan": 195.00000000000006,
+      "development_potential": 16.0,
+      "score": 226.20000000000005,
+      "rounded_score": 226
+    }
+  ],
+  "bankruptcies": [],
+  "states": [
+    {
+      "team_id": "SIM_EB01",
+      "owner_equity_wan": 195.00000000000006,
+      "development_potential": 16.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 103.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EB02",
+      "owner_equity_wan": 195.00000000000006,
+      "development_potential": 16.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 103.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_EB03",
+      "owner_equity_wan": 195.00000000000006,
+      "development_potential": 16.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 103.0,
+      "reports": 5
+    }
+  ],
+  "order_log": [],
+  "provenance": "simulated"
+}

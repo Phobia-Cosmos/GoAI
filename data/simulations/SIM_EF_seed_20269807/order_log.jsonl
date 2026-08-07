@@ -1,0 +1,1 @@
+{"contenders": ["SIM_EF01", "SIM_EF02", "SIM_EF03"], "order_id": "SIM_EF-3-0001", "period": "Y3Q2", "policy_id": "traditional_xa_selection_and_auction", "provenance": "simulated", "reason": "advertising_priority", "trace": {"market": "本地", "one_order_per_turn": true, "order_type": "选单", "product": "P1"}, "winner_team_id": "SIM_EF03"}

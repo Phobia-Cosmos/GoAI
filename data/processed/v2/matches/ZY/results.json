@@ -1,0 +1,233 @@
+{
+  "match_id": "ZY",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "ZY03",
+      "official_score": null,
+      "recomputed_score": 4704.96,
+      "rounded_recomputed_score": 4705,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1392.0,
+      "development_potential": 238,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 2,
+      "team_id": "ZY10",
+      "official_score": null,
+      "recomputed_score": 3963.3599999999997,
+      "rounded_recomputed_score": 3963,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1436.0,
+      "development_potential": 176,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 3,
+      "team_id": "ZY05",
+      "official_score": null,
+      "recomputed_score": 3870.9,
+      "rounded_recomputed_score": 3871,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1265.0,
+      "development_potential": 206,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 4,
+      "team_id": "ZY13",
+      "official_score": null,
+      "recomputed_score": 3575.76,
+      "rounded_recomputed_score": 3576,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1268.0,
+      "development_potential": 182,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 5,
+      "team_id": "ZY17",
+      "official_score": null,
+      "recomputed_score": 2667.7200000000003,
+      "rounded_recomputed_score": 2668,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 946.0,
+      "development_potential": 182,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 6,
+      "team_id": "ZY06",
+      "official_score": null,
+      "recomputed_score": 2640.3999999999996,
+      "rounded_recomputed_score": 2640,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1148.0,
+      "development_potential": 130,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 7,
+      "team_id": "ZY08",
+      "official_score": null,
+      "recomputed_score": 2263.2,
+      "rounded_recomputed_score": 2263,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 920.0,
+      "development_potential": 146,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 8,
+      "team_id": "ZY15",
+      "official_score": null,
+      "recomputed_score": 2082.84,
+      "rounded_recomputed_score": 2083,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 1021.0,
+      "development_potential": 104,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 9,
+      "team_id": "ZY16",
+      "official_score": null,
+      "recomputed_score": 1925.7,
+      "rounded_recomputed_score": 1926,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 917.0,
+      "development_potential": 110,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 10,
+      "team_id": "ZY07",
+      "official_score": null,
+      "recomputed_score": 1911.0,
+      "rounded_recomputed_score": 1911,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 910.0,
+      "development_potential": 110,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 11,
+      "team_id": "ZY14",
+      "official_score": null,
+      "recomputed_score": 1902.6000000000001,
+      "rounded_recomputed_score": 1903,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 906.0,
+      "development_potential": 110,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 12,
+      "team_id": "ZY04",
+      "official_score": null,
+      "recomputed_score": 1656.0,
+      "rounded_recomputed_score": 1656,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 690.0,
+      "development_potential": 140,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 13,
+      "team_id": "ZY11",
+      "official_score": null,
+      "recomputed_score": 698.22,
+      "rounded_recomputed_score": 698,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 431.0,
+      "development_potential": 62,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 14,
+      "team_id": "ZY02",
+      "official_score": null,
+      "recomputed_score": 638.12,
+      "rounded_recomputed_score": 638,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 371.0,
+      "development_potential": 72,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    },
+    {
+      "rank": 15,
+      "team_id": "ZY09",
+      "official_score": null,
+      "recomputed_score": 636.72,
+      "rounded_recomputed_score": 637,
+      "rounding_rule": "half_up_for_nonnegative_score",
+      "official_score_matches": null,
+      "owner_equity_wan": 379.0,
+      "development_potential": 68,
+      "provenance": {
+        "official_score": "missing",
+        "recomputed_score": "derived"
+      }
+    }
+  ],
+  "ranking_status": "simulated_ranking_from_reconstructed_rule_pack",
+  "bankruptcies": [],
+  "rule_pack_id": "ZY_historical_rule_unknown"
+}

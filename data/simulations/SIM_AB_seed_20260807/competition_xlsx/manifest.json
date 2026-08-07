@@ -1,0 +1,32 @@
+{
+  "format_version": "goai_competition_xlsx_v1.0",
+  "match_id": "SIM_AB",
+  "rule_pack_id": "SIM_AB_simulated_rules_seed_20260807",
+  "parent_rule_pack_id": "AB_runtime_inferred_v2",
+  "source_match_id": "AB",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "team_count": 3,
+  "order_count": 16,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_AB01.xlsx",
+      "企业数据/SIM_AB02.xlsx",
+      "企业数据/SIM_AB03.xlsx"
+    ],
+    "rules": "SIM_AB比赛规则.xlsx",
+    "orders": "SIM_AB订单详情.xlsx",
+    "results": "SIM_AB最终排名和破产信息.xlsx"
+  }
+}

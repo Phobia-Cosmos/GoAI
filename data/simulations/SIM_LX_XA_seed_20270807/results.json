@@ -1,0 +1,62 @@
+{
+  "match_id": "SIM_LX_XA",
+  "sandbox_version": "full_financial_sandbox_v1.0",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_LX_XA01",
+      "owner_equity_wan": 230.49999999999991,
+      "development_potential": 18.0,
+      "score": 271.9899999999999,
+      "rounded_score": 272
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_LX_XA02",
+      "owner_equity_wan": 230.49999999999991,
+      "development_potential": 18.0,
+      "score": 271.9899999999999,
+      "rounded_score": 272
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_LX_XA03",
+      "owner_equity_wan": 230.49999999999991,
+      "development_potential": 18.0,
+      "score": 271.9899999999999,
+      "rounded_score": 272
+    }
+  ],
+  "bankruptcies": [],
+  "states": [
+    {
+      "team_id": "SIM_LX_XA01",
+      "owner_equity_wan": 230.49999999999991,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 192.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_LX_XA02",
+      "owner_equity_wan": 230.49999999999991,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 192.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_LX_XA03",
+      "owner_equity_wan": 230.49999999999991,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 192.0,
+      "reports": 5
+    }
+  ],
+  "order_log": [],
+  "provenance": "simulated"
+}

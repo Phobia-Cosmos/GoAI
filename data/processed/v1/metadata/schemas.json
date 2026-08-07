@@ -1,0 +1,697 @@
+{
+  "source_manifest": {
+    "description": "源文件清单、哈希、批次归属和重复关系",
+    "record_count": 36,
+    "columns": [
+      "source_id",
+      "relative_path",
+      "file_name",
+      "extension",
+      "source_type",
+      "size_bytes",
+      "sha256",
+      "competition_id",
+      "rule_version",
+      "binding_status",
+      "duplicate_of_source_id",
+      "modified_at"
+    ]
+  },
+  "workbook_inventory": {
+    "description": "所有 Excel 工作簿及工作表结构",
+    "record_count": 198,
+    "columns": [
+      "source_id",
+      "source_path",
+      "workbook_format",
+      "sheet_name",
+      "row_count",
+      "column_count",
+      "merged_range_count"
+    ]
+  },
+  "workbook_cells": {
+    "description": "所有 Excel 非空单元格的保真长表",
+    "record_count": 54126,
+    "columns": [
+      "source_id",
+      "source_path",
+      "sheet_name",
+      "source_cell",
+      "source_row",
+      "source_column",
+      "value_type",
+      "raw_value",
+      "formula"
+    ]
+  },
+  "competition_rules": {
+    "description": "题面级比赛元数据",
+    "record_count": 1,
+    "columns": [
+      "competition_id",
+      "rule_version",
+      "competition_name",
+      "initial_capital_wan",
+      "management_fee_per_quarter_wan",
+      "source_id",
+      "source_path"
+    ]
+  },
+  "rule_financing": {
+    "description": "融资与贴现规则",
+    "record_count": 3,
+    "columns": [
+      "competition_id",
+      "rule_version",
+      "finance_type",
+      "annual_rate",
+      "max_term_years",
+      "raw_rule",
+      "source_id",
+      "source_path",
+      "source_table",
+      "source_row"
+    ]
+  },
+  "rule_financing_terms": {
+    "description": "可审计的融资与贴现分档条款",
+    "record_count": 4,
+    "columns": [
+      "term_id",
+      "competition_id",
+      "rule_version",
+      "finance_type",
+      "rate",
+      "rate_basis",
+      "term_min",
+      "term_max",
+      "term_unit",
+      "semantic_status",
+      "source_id",
+      "source_path",
+      "source_table",
+      "source_row"
+    ]
+  },
+  "rule_factories": {
+    "description": "厂房规则",
+    "record_count": 3,
+    "columns": [
+      "factory_id",
+      "factory_name",
+      "purchase_price_wan",
+      "annual_rent_wan",
+      "sale_price_wan",
+      "line_capacity",
+      "usage_limit",
+      "score",
+      "competition_id",
+      "rule_version",
+      "source_id",
+      "source_path",
+      "source_table",
+      "source_row"
+    ]
+  },
+  "rule_production_lines": {
+    "description": "生产线规则",
+    "record_count": 4,
+    "columns": [
+      "line_type_id",
+      "line_type_name",
+      "investment_per_quarter_wan",
+      "installation_quarters",
+      "production_cycle_quarters",
+      "conversion_fee_per_quarter_wan",
+      "conversion_cycle_quarters",
+      "maintenance_fee_wan",
+      "residual_value_wan",
+      "depreciation_fee_wan",
+      "depreciation_years",
+      "score",
+      "competition_id",
+      "rule_version",
+      "source_id",
+      "source_path",
+      "source_table",
+      "source_row"
+    ]
+  },
+  "rule_markets": {
+    "description": "市场开拓规则",
+    "record_count": 5,
+    "columns": [
+      "market_id",
+      "market_name",
+      "annual_development_fee_wan",
+      "development_years",
+      "score",
+      "competition_id",
+      "rule_version",
+      "source_id",
+      "source_path",
+      "source_table",
+      "source_row"
+    ]
+  },
+  "rule_iso": {
+    "description": "ISO 认证规则",
+    "record_count": 2,
+    "columns": [
+      "iso_id",
+      "iso_name",
+      "annual_development_fee_wan",
+      "development_years",
+      "score",
+      "competition_id",
+      "rule_version",
+      "source_id",
+      "source_path",
+      "source_table",
+      "source_row"
+    ]
+  },
+  "rule_materials": {
+    "description": "原材料规则",
+    "record_count": 4,
+    "columns": [
+      "material_id",
+      "material_name",
+      "unit_purchase_price_wan",
+      "lead_time_quarters",
+      "competition_id",
+      "rule_version",
+      "source_id",
+      "source_path",
+      "source_table",
+      "source_row"
+    ]
+  },
+  "rule_products": {
+    "description": "产品研发及成本规则",
+    "record_count": 5,
+    "columns": [
+      "product_id",
+      "product_name",
+      "processing_fee_wan",
+      "development_fee_per_quarter_wan",
+      "development_quarters",
+      "direct_cost_wan",
+      "score",
+      "competition_id",
+      "rule_version",
+      "source_id",
+      "source_path",
+      "source_table",
+      "source_row"
+    ]
+  },
+  "rule_bom": {
+    "description": "产品物料清单",
+    "record_count": 9,
+    "columns": [
+      "product_name",
+      "component_product_name",
+      "material_name",
+      "quantity",
+      "competition_id",
+      "rule_version",
+      "source_id",
+      "source_path",
+      "source_table",
+      "source_row"
+    ]
+  },
+  "rule_packs": {
+    "description": "规则包版本、绑定和可执行状态",
+    "record_count": 1,
+    "columns": [
+      "rule_pack_id",
+      "competition_id",
+      "rule_version",
+      "pack_status",
+      "parameter_status",
+      "process_status",
+      "order_binding_status",
+      "simulation_ready",
+      "blocking_gap_count",
+      "source_id",
+      "source_path"
+    ]
+  },
+  "rule_gaps": {
+    "description": "阻止完整仿真或需要确认的规则缺口",
+    "record_count": 14,
+    "columns": [
+      "gap_id",
+      "rule_pack_id",
+      "competition_id",
+      "rule_version",
+      "domain",
+      "title",
+      "description",
+      "severity",
+      "status",
+      "evidence_status",
+      "source_id",
+      "source_path"
+    ]
+  },
+  "action_definitions": {
+    "description": "跨来源标准动作定义与观察覆盖",
+    "record_count": 33,
+    "columns": [
+      "canonical_action",
+      "category",
+      "description",
+      "control_type",
+      "is_agent_candidate",
+      "historical_observation_count",
+      "test_observation_count",
+      "semantic_status",
+      "executable_status"
+    ]
+  },
+  "action_aliases": {
+    "description": "原始动作名称到标准动作的映射",
+    "record_count": 50,
+    "columns": [
+      "source_scope",
+      "raw_action",
+      "canonical_action",
+      "mapping_status"
+    ]
+  },
+  "action_events": {
+    "description": "历史与测试现金流统一后的结构化经营事件",
+    "record_count": 2167,
+    "columns": [
+      "event_id",
+      "event_source",
+      "competition_id",
+      "rule_version",
+      "team_id",
+      "scenario_id",
+      "sequence",
+      "year",
+      "quarter",
+      "raw_action",
+      "canonical_action",
+      "category",
+      "control_type",
+      "is_agent_candidate",
+      "parameters_json",
+      "parameter_parse_status",
+      "cash_effect_wan",
+      "balance_wan",
+      "note",
+      "evidence_status",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row",
+      "source_line"
+    ]
+  },
+  "order_catalog": {
+    "description": "赛前订单目录",
+    "record_count": 581,
+    "columns": [
+      "order_id",
+      "competition_id",
+      "rule_version",
+      "year",
+      "market_code",
+      "market_id",
+      "market_name_candidate",
+      "product_code",
+      "product_id",
+      "quantity",
+      "total_amount_wan",
+      "unit_price_wan",
+      "receivable_term_quarters",
+      "delivery_term_quarters",
+      "iso_code",
+      "iso_name_candidate",
+      "mapping_status",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "annual_advertising": {
+    "description": "公共年度广告巡盘长表",
+    "record_count": 2160,
+    "columns": [
+      "competition_id",
+      "rule_version",
+      "year",
+      "team_id",
+      "product_id",
+      "market_name",
+      "amount_wan",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_cell",
+      "source_row"
+    ]
+  },
+  "annual_financial_metrics": {
+    "description": "公共年度三张报表长表",
+    "record_count": 3225,
+    "columns": [
+      "competition_id",
+      "rule_version",
+      "year",
+      "team_id",
+      "statement",
+      "metric_name",
+      "amount_wan",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_cell",
+      "source_row"
+    ]
+  },
+  "annual_production_lines": {
+    "description": "公共年度产线巡盘",
+    "record_count": 654,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "rule_version",
+      "snapshot_year",
+      "team_id",
+      "line_type",
+      "factory",
+      "product_id",
+      "state",
+      "accumulated_depreciation_wan",
+      "production_start_year",
+      "production_start_quarter",
+      "conversion_time_raw",
+      "remaining_time_raw",
+      "completion_year",
+      "completion_quarter",
+      "construction_start_raw",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "annual_market_leaders": {
+    "description": "公共年度市场老大",
+    "record_count": 30,
+    "columns": [
+      "competition_id",
+      "rule_version",
+      "year",
+      "market_name",
+      "team_id",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "teams": {
+    "description": "企业基本信息与数据可用状态",
+    "record_count": 18,
+    "columns": [
+      "competition_id",
+      "rule_version",
+      "team_id",
+      "company_name",
+      "school_name",
+      "company_status",
+      "current_cash_wan",
+      "capital_injection_wan",
+      "system_year",
+      "system_quarter",
+      "data_status",
+      "source_id",
+      "source_path",
+      "source_sheet"
+    ]
+  },
+  "team_cash_flows": {
+    "description": "企业现金流水明细",
+    "record_count": 2026,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "transaction_id",
+      "sequence_in_source",
+      "year",
+      "quarter",
+      "action",
+      "amount_wan",
+      "balance_wan",
+      "note",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "team_financial_metrics": {
+    "description": "企业历年三张报表长表",
+    "record_count": 3870,
+    "columns": [
+      "competition_id",
+      "team_id",
+      "year",
+      "period_label",
+      "statement",
+      "metric_name",
+      "amount_wan",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_cell",
+      "source_row"
+    ]
+  },
+  "team_advertising": {
+    "description": "企业历年广告投放长表",
+    "record_count": 1800,
+    "columns": [
+      "competition_id",
+      "team_id",
+      "year",
+      "product_id",
+      "market_name",
+      "amount_wan",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_cell",
+      "source_row"
+    ]
+  },
+  "team_orders": {
+    "description": "企业获得订单及交付状态",
+    "record_count": 222,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "order_id",
+      "market_name",
+      "product_id",
+      "quantity",
+      "total_amount_wan",
+      "status",
+      "won_year",
+      "delivery_term_quarters",
+      "receivable_term_quarters",
+      "iso_name",
+      "delivered_year",
+      "delivered_quarter",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "team_material_orders": {
+    "description": "企业在途原材料",
+    "record_count": 14,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "material_id",
+      "quantity",
+      "remaining_time",
+      "remaining_time_unit",
+      "order_year",
+      "order_quarter",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "team_material_inventory": {
+    "description": "企业原材料库存",
+    "record_count": 54,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "material_id",
+      "quantity",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "team_product_inventory": {
+    "description": "企业产成品库存",
+    "record_count": 29,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "product_id",
+      "quantity",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "team_receivables": {
+    "description": "企业应收款批次",
+    "record_count": 25,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "remaining_term",
+      "remaining_term_unit",
+      "amount_wan",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "team_loans": {
+    "description": "企业贷款明细",
+    "record_count": 48,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "loan_type",
+      "amount_wan",
+      "remaining_term",
+      "remaining_term_unit",
+      "start_year",
+      "start_quarter",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "team_qualifications": {
+    "description": "市场、产品和 ISO 研发认证状态",
+    "record_count": 129,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "qualification_type",
+      "qualification_name",
+      "development_fee_wan",
+      "development_cycle",
+      "development_cycle_unit",
+      "remaining_time",
+      "remaining_time_unit",
+      "is_complete",
+      "completion_year",
+      "completion_quarter",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "team_factories": {
+    "description": "企业厂房状态",
+    "record_count": 33,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "factory_instance_id",
+      "factory_name",
+      "state",
+      "capacity_raw",
+      "purchase_price_wan",
+      "annual_rent_wan",
+      "sale_price_wan",
+      "last_rent_payment_raw",
+      "acquisition_time_raw",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "team_production_lines": {
+    "description": "企业生产线状态",
+    "record_count": 109,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "team_id",
+      "line_instance_id",
+      "line_type",
+      "factory",
+      "product_id",
+      "state",
+      "accumulated_depreciation_wan",
+      "production_start_year",
+      "production_start_quarter",
+      "conversion_time_raw",
+      "remaining_time_raw",
+      "completion_year",
+      "completion_quarter",
+      "construction_start_raw",
+      "source_id",
+      "source_path",
+      "source_sheet",
+      "source_row"
+    ]
+  },
+  "test_cash_flow_events": {
+    "description": "710W 测试方案的人工整理现金流",
+    "record_count": 141,
+    "columns": [
+      "record_id",
+      "competition_id",
+      "rule_version",
+      "scenario_id",
+      "sequence",
+      "year",
+      "quarter",
+      "action",
+      "amount_wan",
+      "balance_wan",
+      "source_id",
+      "source_path",
+      "source_line"
+    ]
+  }
+}

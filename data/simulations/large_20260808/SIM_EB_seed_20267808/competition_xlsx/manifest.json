@@ -1,0 +1,53 @@
+{
+  "format_version": "goai_competition_xlsx_v1.0",
+  "match_id": "SIM_EB",
+  "rule_pack_id": "SIM_EB_simulated_rules_seed_20267808",
+  "parent_rule_pack_id": "EB_runtime_inferred_v2",
+  "source_match_id": "EB",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "team_count": 24,
+  "order_count": 400,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_EB01.xlsx",
+      "企业数据/SIM_EB02.xlsx",
+      "企业数据/SIM_EB03.xlsx",
+      "企业数据/SIM_EB04.xlsx",
+      "企业数据/SIM_EB05.xlsx",
+      "企业数据/SIM_EB06.xlsx",
+      "企业数据/SIM_EB07.xlsx",
+      "企业数据/SIM_EB08.xlsx",
+      "企业数据/SIM_EB09.xlsx",
+      "企业数据/SIM_EB10.xlsx",
+      "企业数据/SIM_EB11.xlsx",
+      "企业数据/SIM_EB12.xlsx",
+      "企业数据/SIM_EB13.xlsx",
+      "企业数据/SIM_EB14.xlsx",
+      "企业数据/SIM_EB15.xlsx",
+      "企业数据/SIM_EB16.xlsx",
+      "企业数据/SIM_EB17.xlsx",
+      "企业数据/SIM_EB18.xlsx",
+      "企业数据/SIM_EB19.xlsx",
+      "企业数据/SIM_EB20.xlsx",
+      "企业数据/SIM_EB21.xlsx",
+      "企业数据/SIM_EB22.xlsx",
+      "企业数据/SIM_EB23.xlsx",
+      "企业数据/SIM_EB24.xlsx"
+    ],
+    "rules": "SIM_EB比赛规则.xlsx",
+    "orders": "SIM_EB订单详情.xlsx",
+    "results": "SIM_EB最终排名和破产信息.xlsx"
+  }
+}

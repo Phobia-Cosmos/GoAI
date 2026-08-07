@@ -1,0 +1,1110 @@
+{
+  "binding_status": "confirmed_formal_source",
+  "global_rule_services": {
+    "auction": {
+      "batch_size": 3,
+      "bid_fee_wan": 10,
+      "eligibility": [
+        "market",
+        "product",
+        "iso"
+      ],
+      "payment_mode": "fixed_order_price",
+      "policy": "highest_bid_then_first_submission_then_team_id"
+    },
+    "auction_enabled": true,
+    "information": {
+      "private_fields": [
+        "cash_wan",
+        "owner_equity_wan",
+        "material_inventory",
+        "product_inventory",
+        "private_loans",
+        "private_pipeline"
+      ],
+      "public_fields": [
+        "rules",
+        "global_orders",
+        "annual_reports",
+        "public_advertising",
+        "public_order_results",
+        "rankings"
+      ],
+      "reveal_stage": "year_start_before_advertising"
+    },
+    "observed_order_types": [
+      "竞单",
+      "选单"
+    ],
+    "order_generation": {
+      "fallback_provenance": "simulated",
+      "observed_pool_preferred": true
+    },
+    "order_mode": "selection_and_auction",
+    "participant_count": 27,
+    "replay_policy": "replay_observed_owner_and_preserve_simulated_unassigned",
+    "selection": {
+      "additional_opportunity_wan": 20,
+      "market_sequence": [
+        "本地",
+        "区域",
+        "国内",
+        "亚洲",
+        "国际"
+      ],
+      "minimum_advertising_wan": 10,
+      "one_order_per_turn": true,
+      "product_sequence": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ]
+    },
+    "selection_enabled": true,
+    "settlement": {
+      "bankrupt_after_each_phase": true,
+      "phase_order": [
+        "begin_quarter_finance",
+        "material_receipt",
+        "production_completion",
+        "order_delivery_and_penalty",
+        "period_management_and_maintenance",
+        "year_end_tax_and_reports"
+      ]
+    },
+    "traditional_profile": "traditional_sandbox_rules_v1.0"
+  },
+  "match_id": "LX_XA",
+  "parameter_evidence": {
+    "initial_cash_wan": {
+      "provenance": "observed_event_fingerprint",
+      "values": [
+        675.0
+      ]
+    },
+    "management_fee_per_quarter_wan": {
+      "provenance": "observed_event_fingerprint",
+      "values": [
+        14.0
+      ]
+    },
+    "observed_action_set": {
+      "provenance": "observed_event_set",
+      "values": [
+        "administrative_fee",
+        "advertising",
+        "capital_injection",
+        "emergency_material_purchase",
+        "emergency_product_purchase",
+        "factory_discount",
+        "factory_purchase",
+        "factory_rent",
+        "factory_rent_renewal",
+        "factory_rent_to_buy",
+        "factory_sale",
+        "inventory_material_sale",
+        "inventory_product_sale",
+        "iso_development",
+        "long_loan_borrow",
+        "long_loan_repayment",
+        "maintenance",
+        "market_development",
+        "material_order",
+        "material_receipt_payment",
+        "order_award",
+        "order_delivery",
+        "penalty_payment",
+        "product_development",
+        "production",
+        "production_line_conversion",
+        "production_line_investment",
+        "production_line_order",
+        "production_line_sale",
+        "receivable_discount",
+        "receivable_maturity",
+        "short_loan_borrow",
+        "short_loan_repayment",
+        "tax_payment"
+      ]
+    },
+    "observed_order_types": {
+      "counts": {
+        "竞单": 24,
+        "选单": 772
+      },
+      "provenance": "observed_order_exports",
+      "values": [
+        "竞单",
+        "选单"
+      ]
+    },
+    "participants": {
+      "provenance": "observed_team_exports",
+      "value": 27
+    }
+  },
+  "parameters": {
+    "bankruptcy": [
+      "cash_flow_break",
+      "negative_equity"
+    ],
+    "default_penalty_rate": 0.2,
+    "factories": {
+      "中厂房": {
+        "capacity": 3,
+        "purchase_wan": 248,
+        "rent_wan_per_year": 31,
+        "score": 6
+      },
+      "大厂房": {
+        "capacity": 6,
+        "purchase_wan": 481,
+        "rent_wan_per_year": 51,
+        "score": 11
+      },
+      "小厂房": {
+        "capacity": 1,
+        "purchase_wan": 72,
+        "rent_wan_per_year": 9,
+        "score": 2
+      }
+    },
+    "first_year_has_orders": false,
+    "initial_cash_wan": 675,
+    "iso": {
+      "ISO14000": {
+        "fee_wan_per_year": 33,
+        "score": 9,
+        "years": 2
+      },
+      "ISO9000": {
+        "fee_wan_per_year": 21,
+        "score": 6,
+        "years": 2
+      }
+    },
+    "long_loan": {
+      "annual_rate": 0.12,
+      "max_total_multiple_prior_equity": 3,
+      "max_years": 4,
+      "minimum_wan": 10
+    },
+    "management_fee_per_quarter_wan": 14,
+    "markets": {
+      "亚洲": {
+        "fee_wan_per_year": 12,
+        "score": 10,
+        "years": 3
+      },
+      "区域": {
+        "fee_wan_per_year": 8,
+        "score": 6,
+        "years": 1
+      },
+      "国内": {
+        "fee_wan_per_year": 10,
+        "score": 7,
+        "years": 1
+      },
+      "国际": {
+        "fee_wan_per_year": 16,
+        "score": 14,
+        "years": 3
+      },
+      "本地": {
+        "fee_wan_per_year": 8,
+        "score": 6,
+        "years": 1
+      }
+    },
+    "materials": {
+      "R1": {
+        "lead_quarters": 1,
+        "price_wan": 8
+      },
+      "R2": {
+        "lead_quarters": 2,
+        "price_wan": 9
+      },
+      "R3": {
+        "lead_quarters": 1,
+        "price_wan": 9
+      },
+      "R4": {
+        "lead_quarters": 2,
+        "price_wan": 10
+      }
+    },
+    "production_lines": {
+      "手工线": {
+        "install_quarters": 0,
+        "investment_wan": 40,
+        "maintenance_wan_per_year": 15,
+        "production_quarters": 2,
+        "score": 5
+      },
+      "柔性线": {
+        "install_quarters": 3,
+        "investment_wan": 180,
+        "maintenance_wan_per_year": 15,
+        "production_quarters": 1,
+        "score": 10
+      },
+      "租赁线": {
+        "install_quarters": 0,
+        "investment_wan": 0,
+        "maintenance_wan_per_year": 70,
+        "production_quarters": 1,
+        "score": 0
+      },
+      "自动线": {
+        "install_quarters": 2,
+        "investment_wan": 140,
+        "maintenance_wan_per_year": 11,
+        "production_quarters": 1,
+        "score": 8
+      }
+    },
+    "products": {
+      "P1": {
+        "bom": {
+          "R1": 1
+        },
+        "development_wan_per_quarter": 14,
+        "direct_cost_wan": 16,
+        "process_wan": 8,
+        "quarters": 1,
+        "score": 5
+      },
+      "P2": {
+        "bom": {
+          "R2": 1,
+          "R3": 1
+        },
+        "development_wan_per_quarter": 14,
+        "direct_cost_wan": 27,
+        "process_wan": 9,
+        "quarters": 1,
+        "score": 7
+      },
+      "P3": {
+        "bom": {
+          "R1": 1,
+          "R3": 2
+        },
+        "development_wan_per_quarter": 15,
+        "direct_cost_wan": 36,
+        "process_wan": 10,
+        "quarters": 2,
+        "score": 9
+      },
+      "P4": {
+        "bom": {
+          "P2": 1,
+          "R4": 1
+        },
+        "development_wan_per_quarter": 16,
+        "direct_cost_wan": 48,
+        "process_wan": 11,
+        "quarters": 3,
+        "score": 12
+      },
+      "P5": {
+        "bom": {
+          "P3": 1,
+          "R3": 1
+        },
+        "development_wan_per_quarter": 25,
+        "direct_cost_wan": 56,
+        "process_wan": 11,
+        "quarters": 4,
+        "score": 14
+      }
+    },
+    "receivable_discount": {
+      "mode": "joint",
+      "terms_1_2": 0.08,
+      "terms_3_4": 0.09
+    },
+    "score_formula": "score = owner_equity * (1 + development_potential / 100)",
+    "selection_priority": [
+      "prior_market_leader",
+      "market_product_advertising",
+      "market_total_advertising",
+      "market_sales_rank",
+      "advertising_submission_time"
+    ],
+    "short_loan": {
+      "rate": 0.05
+    },
+    "tax_rate": 0.25
+  },
+  "parent_rule_pack_id": "AAAAA_20160108_4.3.32.419",
+  "provenance": "observed",
+  "raw_rule_rows": [
+    {
+      "row": 1,
+      "values": [
+        "重要经营规则"
+      ]
+    },
+    {
+      "row": 2,
+      "values": [
+        "总版本:20160108 主控版本:4.3.32.419"
+      ]
+    },
+    {
+      "row": 3,
+      "values": [
+        "当前初始化规则方案名称：AAAAA_商战第01套规则导入"
+      ]
+    },
+    {
+      "row": 4,
+      "values": [
+        "一.生产线"
+      ]
+    },
+    {
+      "row": 5,
+      "values": [
+        "名称",
+        "投资总额",
+        "每季投资额",
+        "安装周期",
+        "生产周期",
+        "每季转产费",
+        "转产周期",
+        "维护费",
+        "残值",
+        "折旧费",
+        "折旧时间",
+        "分值"
+      ]
+    },
+    {
+      "row": 6,
+      "values": [
+        "手工线",
+        "40 W",
+        "40 W",
+        "0 季",
+        "2 季",
+        "10 W",
+        "0 季",
+        "15 W/年",
+        "10 W",
+        "10 W",
+        "4 年",
+        5
+      ]
+    },
+    {
+      "row": 7,
+      "values": [
+        "自动线",
+        "140 W",
+        "70 W",
+        "2 季",
+        "1 季",
+        "10 W",
+        "1 季",
+        "11 W/年",
+        "28 W",
+        "28 W",
+        "5 年",
+        8
+      ]
+    },
+    {
+      "row": 8,
+      "values": [
+        "柔性线",
+        "180 W",
+        "60 W",
+        "3 季",
+        "1 季",
+        "0 W",
+        "0 季",
+        "15 W/年",
+        "36 W",
+        "36 W",
+        "5 年",
+        10
+      ]
+    },
+    {
+      "row": 9,
+      "values": [
+        "租赁线",
+        "0 W",
+        "0 W",
+        "0 季",
+        "1 季",
+        "10 W",
+        "1 季",
+        "70 W/年",
+        "-70 W",
+        "0 W",
+        "0 年",
+        0
+      ]
+    },
+    {
+      "row": 10,
+      "values": [
+        "安装周期为0，表示即买即用；"
+      ]
+    },
+    {
+      "row": 11,
+      "values": [
+        "计算投资总额时，若安装周期为0，则按1算；"
+      ]
+    },
+    {
+      "row": 12,
+      "values": [
+        "不论何时出售生产线，价格为残值，净值与残值之差计入损失；"
+      ]
+    },
+    {
+      "row": 13,
+      "values": [
+        "只有空生产线方可转产；"
+      ]
+    },
+    {
+      "row": 14,
+      "values": [
+        "当年建成生产线需要交维护费；"
+      ]
+    },
+    {
+      "row": 15,
+      "values": [
+        "折旧(平均年限法)：建成当年不提折旧；"
+      ]
+    },
+    {
+      "row": 16,
+      "values": [
+        "当生产线净值等于残值不再计提折旧，并满足：（折旧时间—1）*折旧费+残值=投资总额。"
+      ]
+    },
+    {
+      "row": 17,
+      "values": [
+        "二.融资"
+      ]
+    },
+    {
+      "row": 18,
+      "values": [
+        "贷款类型",
+        "贷款时间",
+        "贷款额度",
+        "年息",
+        "还款方式",
+        "备注"
+      ]
+    },
+    {
+      "row": 19,
+      "values": [
+        "长期贷款",
+        "每年年初",
+        "所有长短贷之和不超过上年权益 3 倍",
+        "12 %",
+        "年初付息，到期还本",
+        "不小于10W"
+      ]
+    },
+    {
+      "row": 20,
+      "values": [
+        "短期贷款",
+        "每季度初",
+        "5 %",
+        "到期一次还本付息"
+      ]
+    },
+    {
+      "row": 21,
+      "values": [
+        "资金贴现",
+        "任何时间",
+        "视应收款额",
+        "1季，2季：8 %",
+        "变现时贴息",
+        "1，2期联合贴现"
+      ]
+    },
+    {
+      "row": 22,
+      "values": [
+        "3季，4季：9 %",
+        "（3，4期同理）"
+      ]
+    },
+    {
+      "row": 23,
+      "values": [
+        "库存拍卖",
+        "100 %（产品） 80 %（原料）"
+      ]
+    },
+    {
+      "row": 24,
+      "values": [
+        "三.厂房"
+      ]
+    },
+    {
+      "row": 25,
+      "values": [
+        "名称",
+        "购买价格",
+        "租用价格",
+        "出售价格",
+        "生产线容量",
+        "使用上限",
+        "分值"
+      ]
+    },
+    {
+      "row": 26,
+      "values": [
+        "大厂房",
+        "481 W",
+        "51 W/年",
+        "481 W",
+        6,
+        4,
+        11
+      ]
+    },
+    {
+      "row": 27,
+      "values": [
+        "中厂房",
+        "248 W",
+        "31 W/年",
+        "248 W",
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "row": 28,
+      "values": [
+        "小厂房",
+        "72 W",
+        "9 W/年",
+        "72 W",
+        1,
+        4,
+        2
+      ]
+    },
+    {
+      "row": 29,
+      "values": [
+        "厂房出售得到4个账期的应收款，紧急情况下可厂房贴现，直接得到现金；"
+      ]
+    },
+    {
+      "row": 30,
+      "values": [
+        "厂房租入后，一年后可作租转买、退租等处理，续租系统自动处理；"
+      ]
+    },
+    {
+      "row": 31,
+      "values": [
+        "如果管理费与厂房数无关，则每季收取基本管理费（参数），如果管理费与厂房数有关，则当厂房数量为0、1、2，每季管理费为基本管理费；厂房数量为3、4，每季管理费=基本管理费*2；"
+      ]
+    },
+    {
+      "row": 32,
+      "values": [
+        "使用上限指某一种类厂房最多可以使用数量，包括买和租。"
+      ]
+    },
+    {
+      "row": 33,
+      "values": [
+        "四.市场开拓"
+      ]
+    },
+    {
+      "row": 34,
+      "values": [
+        "名称",
+        "每年开发费",
+        "开发时间",
+        "分值"
+      ]
+    },
+    {
+      "row": 35,
+      "values": [
+        "本地",
+        "8 W",
+        "1 年",
+        6
+      ]
+    },
+    {
+      "row": 36,
+      "values": [
+        "区域",
+        "8 W",
+        "1 年",
+        6
+      ]
+    },
+    {
+      "row": 37,
+      "values": [
+        "国内",
+        "10 W",
+        "1 年",
+        7
+      ]
+    },
+    {
+      "row": 38,
+      "values": [
+        "亚洲",
+        "12 W",
+        "3 年",
+        10
+      ]
+    },
+    {
+      "row": 39,
+      "values": [
+        "国际",
+        "16 W",
+        "3 年",
+        14
+      ]
+    },
+    {
+      "row": 40,
+      "values": [
+        "开发费用在年末平均支付，不允许加速投资，但可以中断投资；"
+      ]
+    },
+    {
+      "row": 41,
+      "values": [
+        "开发完成后，领取相应的资格证。"
+      ]
+    },
+    {
+      "row": 42,
+      "values": [
+        "五.ISO认证"
+      ]
+    },
+    {
+      "row": 43,
+      "values": [
+        "名称",
+        "每年开发费",
+        "开发时间",
+        "分值"
+      ]
+    },
+    {
+      "row": 44,
+      "values": [
+        "ISO9000",
+        "21 W",
+        "2 年",
+        6
+      ]
+    },
+    {
+      "row": 45,
+      "values": [
+        "ISO14000",
+        "33 W",
+        "2 年",
+        9
+      ]
+    },
+    {
+      "row": 46,
+      "values": [
+        "开发费用在年末平均支付，不允许加速投资，但可以中断投资；"
+      ]
+    },
+    {
+      "row": 47,
+      "values": [
+        "开发完成后，领取相应的资格证。"
+      ]
+    },
+    {
+      "row": 48,
+      "values": [
+        "六.产品研发"
+      ]
+    },
+    {
+      "row": 49,
+      "values": [
+        "名称",
+        "加工费",
+        "每季开发费",
+        "开发时间",
+        "直接成本",
+        "分值",
+        "产品组成"
+      ]
+    },
+    {
+      "row": 50,
+      "values": [
+        "P1",
+        "8 W",
+        "14 W",
+        "1 季",
+        "16 W",
+        5,
+        "R1"
+      ]
+    },
+    {
+      "row": 51,
+      "values": [
+        "P2",
+        "9 W",
+        "14 W",
+        "1 季",
+        "27 W",
+        7,
+        "R2,  R3"
+      ]
+    },
+    {
+      "row": 52,
+      "values": [
+        "P3",
+        "10 W",
+        "15 W",
+        "2 季",
+        "36 W",
+        9,
+        "R1, 2*R3"
+      ]
+    },
+    {
+      "row": 53,
+      "values": [
+        "P4",
+        "11 W",
+        "16 W",
+        "3 季",
+        "48 W",
+        12,
+        "P2, R4"
+      ]
+    },
+    {
+      "row": 54,
+      "values": [
+        "P5",
+        "11 W",
+        "25 W",
+        "4 季",
+        "56 W",
+        14,
+        "P3, R3"
+      ]
+    },
+    {
+      "row": 55,
+      "values": [
+        "开发费用在季末平均支付，不允许加速投资，但可以中断投资。"
+      ]
+    },
+    {
+      "row": 56,
+      "values": [
+        "七.原料设置"
+      ]
+    },
+    {
+      "row": 57,
+      "values": [
+        "名称",
+        "购买单价",
+        "提前期"
+      ]
+    },
+    {
+      "row": 58,
+      "values": [
+        "R1",
+        "8 W",
+        "1 季"
+      ]
+    },
+    {
+      "row": 59,
+      "values": [
+        "R2",
+        "9 W",
+        "2 季"
+      ]
+    },
+    {
+      "row": 60,
+      "values": [
+        "R3",
+        "9 W",
+        "1 季"
+      ]
+    },
+    {
+      "row": 61,
+      "values": [
+        "R4",
+        "10 W",
+        "2 季"
+      ]
+    },
+    {
+      "row": 62,
+      "values": [
+        "八.其它说明"
+      ]
+    },
+    {
+      "row": 63,
+      "values": [
+        "1. 紧急采购，付款即到货，原材料价格为直接成本的 2 倍；成品价格为直接成本的 3 倍；"
+      ]
+    },
+    {
+      "row": 64,
+      "values": [
+        "2. 选单规则：如果有市场老大，则上年本市场销售额最高（无违约）优先；其次看本市场本产品广告额；再看本市场广告总额；再看市场销售排名；如仍无法决定，先投广告者先选单；"
+      ]
+    },
+    {
+      "row": 65,
+      "values": [
+        "3. 破产标准：现金断流或权益为负；"
+      ]
+    },
+    {
+      "row": 66,
+      "values": [
+        "4. 第一年无订单;"
+      ]
+    },
+    {
+      "row": 67,
+      "values": [
+        "5. 交单可提前，不可推后，违约收回订单；"
+      ]
+    },
+    {
+      "row": 68,
+      "values": [
+        "6. 违约金扣除——四舍五入；库存拍卖所得现金——向下取整；贴现费用——向上取整；扣税——四舍五入； 长短贷利息——四舍五入；"
+      ]
+    },
+    {
+      "row": 69,
+      "values": [
+        "7. 库存折价拍价，生产线变卖，紧急采购，订单违约记入损失；"
+      ]
+    },
+    {
+      "row": 70,
+      "values": [
+        "8. 排行榜记分标准："
+      ]
+    },
+    {
+      "row": 71,
+      "values": [
+        "总成绩＝所有者权益×（1＋企业综合发展潜力/100）"
+      ]
+    },
+    {
+      "row": 72,
+      "values": [
+        "企业综合发展潜力=市场资格分值+ISO资格分值+生产资格分值+厂房分值+各条生产线分值"
+      ]
+    },
+    {
+      "row": 73,
+      "values": [
+        "生产线建成（包括转产）即加分，无须生产出产品，也无须有在制品；厂房状态必须为购买。"
+      ]
+    },
+    {
+      "row": 74,
+      "values": [
+        "九.重要参数"
+      ]
+    },
+    {
+      "row": 75,
+      "values": [
+        "违约金比例",
+        "20 %",
+        "贷款额倍数",
+        "3 倍"
+      ]
+    },
+    {
+      "row": 76,
+      "values": [
+        "产品折价率",
+        "100 %",
+        "原料折价率",
+        "80 %"
+      ]
+    },
+    {
+      "row": 77,
+      "values": [
+        "长贷利率",
+        "12 %",
+        "短贷利率",
+        "5 %"
+      ]
+    },
+    {
+      "row": 78,
+      "values": [
+        "1，2期贴现率",
+        "8 %",
+        "3，4期贴现率",
+        "9 %"
+      ]
+    },
+    {
+      "row": 79,
+      "values": [
+        "初始现金",
+        "675 W",
+        "管理费",
+        "14 W"
+      ]
+    },
+    {
+      "row": 80,
+      "values": [
+        "信息费",
+        "5 W",
+        "所得税率",
+        "25 %"
+      ]
+    },
+    {
+      "row": 81,
+      "values": [
+        "最大长贷年限",
+        "4 年",
+        "最小得单广告额",
+        "10 W"
+      ]
+    },
+    {
+      "row": 82,
+      "values": [
+        "原料紧急采购倍数",
+        "2 倍",
+        "产品紧急采购倍数",
+        "3 倍"
+      ]
+    },
+    {
+      "row": 83,
+      "values": [
+        "选单时间",
+        "50 秒",
+        "首位选单补时",
+        "25 秒"
+      ]
+    },
+    {
+      "row": 84,
+      "values": [
+        "市场同开数量",
+        2,
+        "市场老大",
+        "无"
+      ]
+    },
+    {
+      "row": 85,
+      "values": [
+        "竞单时间",
+        "90 秒",
+        "竞单同竞数",
+        3
+      ]
+    },
+    {
+      "row": 86,
+      "values": [
+        "最大厂房数量",
+        "4 个",
+        "管理费设置",
+        "与厂房数无关"
+      ]
+    },
+    {
+      "row": 87,
+      "values": [
+        "用户端还原本年",
+        "关",
+        "用户端还原本季",
+        "关"
+      ]
+    },
+    {
+      "row": 88,
+      "values": [
+        "贴现方式",
+        "联合",
+        "预测表查看",
+        "开"
+      ]
+    },
+    {
+      "row": 89,
+      "values": [
+        "最大抢单数",
+        "不启用",
+        "抢单时间",
+        "90 秒"
+      ]
+    }
+  ],
+  "rule_pack_id": "AAAAA_20160108_4.3.32.419",
+  "runtime_rule_status": "formal_xa",
+  "runtime_version": "match_replay_v1.0",
+  "simulation_policy": {
+    "auction_generated": "only_from_observed_order_types",
+    "observed_orders_are_replayed": true,
+    "simulated_unallocated_order_count": 0,
+    "simulated_unallocated_orders_are_scenario_only": false,
+    "warning": "XA formal rules are observed; traditional services only fill executable interfaces not present in the workbook."
+  },
+  "source_path": "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料/lx_26140727378文件夹对应的省赛规则.xlsx"
+}

@@ -1,0 +1,53 @@
+{
+  "format_version": "goai_competition_xlsx_v1.0",
+  "match_id": "SIM_CB",
+  "rule_pack_id": "SIM_CB_simulated_rules_seed_20263808",
+  "parent_rule_pack_id": "CB_runtime_inferred_v2",
+  "source_match_id": "CB",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "team_count": 24,
+  "order_count": 400,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_CB01.xlsx",
+      "企业数据/SIM_CB02.xlsx",
+      "企业数据/SIM_CB03.xlsx",
+      "企业数据/SIM_CB04.xlsx",
+      "企业数据/SIM_CB05.xlsx",
+      "企业数据/SIM_CB06.xlsx",
+      "企业数据/SIM_CB07.xlsx",
+      "企业数据/SIM_CB08.xlsx",
+      "企业数据/SIM_CB09.xlsx",
+      "企业数据/SIM_CB10.xlsx",
+      "企业数据/SIM_CB11.xlsx",
+      "企业数据/SIM_CB12.xlsx",
+      "企业数据/SIM_CB13.xlsx",
+      "企业数据/SIM_CB14.xlsx",
+      "企业数据/SIM_CB15.xlsx",
+      "企业数据/SIM_CB16.xlsx",
+      "企业数据/SIM_CB17.xlsx",
+      "企业数据/SIM_CB18.xlsx",
+      "企业数据/SIM_CB19.xlsx",
+      "企业数据/SIM_CB20.xlsx",
+      "企业数据/SIM_CB21.xlsx",
+      "企业数据/SIM_CB22.xlsx",
+      "企业数据/SIM_CB23.xlsx",
+      "企业数据/SIM_CB24.xlsx"
+    ],
+    "rules": "SIM_CB比赛规则.xlsx",
+    "orders": "SIM_CB订单详情.xlsx",
+    "results": "SIM_CB最终排名和破产信息.xlsx"
+  }
+}

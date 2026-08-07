@@ -1,0 +1,5 @@
+﻿material_id,material_name,unit_purchase_price_wan,lead_time_quarters,competition_id,rule_version,source_id,source_path,source_table,source_row
+1,R1,7,1,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,6,2
+2,R2,8,1,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,6,3
+3,R3,9,2,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,6,4
+4,R4,10,2,zhejiang_8th_710,zhejiang_8th_rules_v1,src_436ffc3299d8,origin data/测试数据/试题题面01.docx,6,5

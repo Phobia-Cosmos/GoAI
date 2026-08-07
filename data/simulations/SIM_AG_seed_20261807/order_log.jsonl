@@ -1,0 +1,1 @@
+{"contenders": ["SIM_AG01", "SIM_AG02", "SIM_AG03"], "order_id": "SIM_AG-4-0002", "period": "Y4Q2", "policy_id": "traditional_xa_selection_and_auction", "provenance": "simulated", "reason": "advertising_priority", "trace": {"market": "本地", "one_order_per_turn": true, "order_type": "选单", "product": "P1"}, "winner_team_id": "SIM_AG02"}
