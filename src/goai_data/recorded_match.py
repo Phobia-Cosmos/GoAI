@@ -144,24 +144,28 @@ def run_recorded_competition(
         result = arena.step(actions)
         for team_id in team_ids:
             info = copy.deepcopy(dict(result.infos[team_id]))
-            artifacts["feedback"].append(
-                {
-                    "format_version": RECORDED_MATCH_VERSION,
-                    "feedback_id": f"{rules.get('match_id')}:{team_id}:step-{step}",
-                    "match_id": rules.get("match_id"),
-                    "step": step,
-                    "period": period,
-                    "agent_id": team_id,
-                    "action_id": f"{rules.get('match_id')}:{team_id}:step-{step}",
-                    "reward": result.rewards[team_id],
-                    "events": info.get("events") or [],
-                    "bankrupt": info.get("bankrupt"),
-                    "balance_gap_wan": info.get("balance_gap_wan"),
-                    "terminated": result.terminated,
-                    "next_observation_id": None if result.terminated else f"{rules.get('match_id')}:{team_id}:step-{step + 1}",
-                    "provenance": "simulated",
-                }
-            )
+            feedback = {
+                "format_version": RECORDED_MATCH_VERSION,
+                "feedback_id": f"{rules.get('match_id')}:{team_id}:step-{step}",
+                "match_id": rules.get("match_id"),
+                "step": step,
+                "period": period,
+                "agent_id": team_id,
+                "action_id": f"{rules.get('match_id')}:{team_id}:step-{step}",
+                "reward": result.rewards[team_id],
+                "events": info.get("events") or [],
+                "action_status": info.get("action_status"),
+                "action_rejections": info.get("action_rejections") or [],
+                "bankrupt": info.get("bankrupt"),
+                "balance_gap_wan": info.get("balance_gap_wan"),
+                "terminated": result.terminated,
+                "next_observation_id": None if result.terminated else f"{rules.get('match_id')}:{team_id}:step-{step + 1}",
+                "provenance": "simulated",
+            }
+            artifacts["feedback"].append(feedback)
+            observer = getattr(policies[team_id], "observe_feedback", None)
+            if callable(observer):
+                observer(copy.deepcopy(feedback), result.observations[team_id])
         artifacts["trace"].append(
             {
                 "step": step,

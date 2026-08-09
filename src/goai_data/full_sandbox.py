@@ -474,6 +474,7 @@ class FinancialSandboxState:
     delivered_orders: list[dict[str, Any]] = field(default_factory=list)
     defaulted_orders: list[dict[str, Any]] = field(default_factory=list)
     intelligence_reports: list[dict[str, Any]] = field(default_factory=list)
+    last_action_feedback: dict[str, Any] = field(default_factory=dict)
     advertising: dict[str, float] = field(default_factory=dict)
     annual_income: dict[str, float] = field(default_factory=dict)
     annual_cash_flow: dict[str, float] = field(default_factory=dict)
@@ -1285,6 +1286,13 @@ class FullCompetitionArena(MultiAgentEnvironment):
                     transition.state.year, transition.state.quarter = _period_from_index(expected_next_index)
                     action_events[team_id].append({"event_type": "quarter_advanced_after_bankruptcy", "from_period": from_period, "to_period": transition.state.period})
             rewards[team_id] = transition.state.owner_equity_wan - before[team_id].owner_equity_wan
+            transition.state.last_action_feedback = {
+                "period": before[team_id].period,
+                "status": "partially_rejected" if action_rejections[team_id] else "accepted",
+                "rejections": copy.deepcopy(action_rejections[team_id]),
+                "event_types": [str(event.get("event_type")) for event in action_events[team_id]],
+                "bankrupt": transition.state.bankrupt,
+            }
             infos[team_id] = {
                 "events": copy.deepcopy(action_events[team_id]),
                 "action_status": "partially_rejected" if action_rejections[team_id] else "accepted",

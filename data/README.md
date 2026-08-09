@@ -8,6 +8,7 @@
 | `processed/v2/` | 14 场比赛的标准化数据、规则包、事件、回放和审计结果 | XA 较完整；其他比赛含推断规则，不能自动视为正式裁判规则 |
 | `simulations/` | 随机规则、订单、状态机事件、报表和比赛式 XLSX | 全部为 `simulated`，只用于沙盘、压力测试和 Agent 验证 |
 | `agent_ready/v1/xa/` | XA 真实与模拟数据的同构决策时点视图 | `observation` 可供 Agent 使用；`offline_labels` 仅供训练评估，禁止在线泄漏 |
+| `experiments/owned_agent_robust_v1/` | 我方单企业对多订单种子和未知对手组合的鲁棒性实验 | 对手与订单均为本地模拟；只用于我方策略验证，不是历史事实 |
 
 原始比赛资料仍需通过仓库外的 `origin data/` 提供。数据同步到 GitHub 后，使用者仍应检查 `manifest.json`、`provenance` 和规则绑定状态。
 
@@ -16,3 +17,5 @@
 固定使用 XA 正式参数、可完整运行 20 个季度的标准模拟比赛见 [`simulations/xa_fixed_v1/`](simulations/xa_fixed_v1/README.md)。其他 `simulations/` 批次可能随机扰动过规则，只用于跨规则压力测试。
 
 Y1Q1 含 36 个公共订单和 18 个随机预分配订单的显式场景扩展见 [`simulations/xa_initial_orders_v1/`](simulations/xa_initial_orders_v1/README.md)。真实 XA、固定模拟和初始订单模拟的结果对比见 [`../docs/XA_REAL_VS_SIMULATION_ANALYSIS.md`](../docs/XA_REAL_VS_SIMULATION_ANALYSIS.md)。
+
+仅控制我方一家企业的鲁棒滚动 Agent、信息边界和 9 组配对结果见 [`../docs/OWNED_ENTERPRISE_AGENT_SYSTEM.md`](../docs/OWNED_ENTERPRISE_AGENT_SYSTEM.md)。

@@ -156,7 +156,10 @@ class RobustOrderPlanner:
             inventory = _number((state.get("product_inventory") or {}).get(product))
             if not matching_lines and inventory < _number(order.get("quantity")):
                 continue
-            minimum_lead = 1
+            # Allocation happens before the same step's quarter advance.  An
+            # order due in the immediately following period would default
+            # before the winner gets another action opportunity.
+            minimum_lead = 2
             if inventory < _number(order.get("quantity")):
                 lead_options = []
                 for line in matching_lines:
@@ -164,7 +167,7 @@ class RobustOrderPlanner:
                     lead_options.append(
                         max(0, int(line.get("remaining_install_quarters", 0)))
                         + max(1, int(line_rule.get("production_quarters", 1)))
-                        + 1
+                        + 2
                     )
                 minimum_lead = min(lead_options)
             if int(order.get("due_period_index", 99)) - period_index < minimum_lead:
@@ -394,6 +397,7 @@ class OwnedEnterpriseRobustPolicy:
         self.operating_policy.strategy = self.config.operating_profile
         self.order_planner = RobustOrderPlanner(self.rules, self.config, seed=seed)
         self.decision_history: list[dict[str, Any]] = []
+        self.feedback_history: list[dict[str, Any]] = []
         self.information_spend_wan = 0.0
 
     @staticmethod
@@ -648,3 +652,22 @@ class OwnedEnterpriseRobustPolicy:
                 "planning_audit": audit,
             },
         }
+
+    def observe_feedback(self, feedback: Mapping[str, Any], next_observation: AgentObservation) -> None:
+        """Close the online loop without reading any referee-only state."""
+
+        if str(feedback.get("agent_id")) != self.agent_id or next_observation.agent_id != self.agent_id:
+            raise ValueError("owned policy received another enterprise's feedback")
+        record = {
+            "period": feedback.get("period"),
+            "action_status": feedback.get("action_status"),
+            "action_rejections": copy.deepcopy(list(feedback.get("action_rejections") or [])),
+            "reward": feedback.get("reward"),
+            "bankrupt": feedback.get("bankrupt"),
+            "event_types": [str(row.get("event_type")) for row in feedback.get("events") or []],
+            "next_period": next_observation.period,
+            "information_scope": "owned_feedback_and_next_owned_observation_only",
+        }
+        self.feedback_history.append(record)
+        if self.decision_history and self.decision_history[-1].get("period") == feedback.get("period"):
+            self.decision_history[-1]["feedback"] = copy.deepcopy(record)
