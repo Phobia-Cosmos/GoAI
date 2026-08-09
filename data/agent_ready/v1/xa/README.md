@@ -9,7 +9,8 @@ xa/
 │   ├── manifest.json
 │   └── transitions.jsonl
 └── simulated/
-    └── SIM_XA_FIXED_seed_20260809/
+    ├── SIM_XA_FIXED_seed_20260809/
+    └── SIM_XA_INITIAL_seed_20260809/
         ├── manifest.json
         └── transitions.jsonl
 ```

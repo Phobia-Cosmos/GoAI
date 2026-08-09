@@ -14,7 +14,7 @@ XA 原始资料不能唯一确定的结算顺序、折旧年限、资产处置�
 | 年度订单分布 | Y2=169、Y3=172、Y4=214、Y5=241 |
 | 竞单 | 24 |
 | Agent 观测/动作/反馈 | 各 540 |
-| 订单分配与交付 | 48 / 48 |
+| 订单分配与交付 | 46 / 46 |
 | 违约 | 0 |
 | 年度报表 | 135 |
 | 最终有效排名 | 27 |
@@ -45,3 +45,5 @@ PYTHONPATH=src /home/undefined/Disk/python-envs/goai-py312/bin/python scripts/ru
 ```
 
 环境拥有所有企业和全局订单，Agent 只收到自身私有状态以及按发布时间筛选的公共订单。`available_orders` 已从私有状态中移除，首年所有观测的公开订单数量均为零，未来订单不会泄漏给 Agent。
+
+`competition_xlsx/1.xlsx~6.xlsx` 是示例 `1.xls~6.xls` 的现代 XLSX 等价文件，分别保存年度广告、年度三张报表、全场生产线和市场老大；`competition_xlsx/企业数据/*.xlsx` 对应示例中的 `ZY01.xls` 等单企业九 Sheet 文件。

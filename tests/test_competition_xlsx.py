@@ -58,6 +58,15 @@ def test_competition_xlsx_round_trip_uses_visible_competition_tables(tmp_path: P
     assert manifest["team_count"] == 2
     assert manifest["order_count"] == len(orders)
     assert manifest["provenance"] == "simulated"
+    assert manifest["files"]["annual_public"] == [f"{year}.xlsx" for year in range(1, 7)]
+    annual = load_workbook(bundle / "1.xlsx", data_only=True)
+    assert tuple(name for name in annual.sheetnames if not name.startswith("_")) == (
+        "第1年广告投放",
+        "第1年广告投放(格式二)",
+        "第1年三张报表",
+        "生产线信息",
+        "第1年市场老大",
+    )
 
     for relative in manifest["files"]["enterprise"]:
         workbook = load_workbook(bundle / relative, data_only=True)

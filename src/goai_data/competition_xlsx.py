@@ -382,7 +382,8 @@ def _write_rules(path: Path, rules: Mapping[str, Any]) -> None:
     for name, item in (params.get("products") or {}).items(): ws.append([name, _money(item.get("process_wan")), _money(item.get("development_wan_per_quarter")), f"{item.get('quarters', 0)}季", _money(item.get("direct_cost_wan")), item.get("score"), ", ".join(f"{count}*{material}" if count != 1 else material for material, count in (item.get("bom") or {}).items())])
     ws.append(["七.原料设置"]); ws.append(["名称", "购买单价", "提前期"])
     for name, item in (params.get("materials") or {}).items(): ws.append([name, _money(item.get("price_wan")), f"{item.get('lead_quarters', 0)}季"])
-    ws.append(["八.其它说明"]); ws.append(["所有内容均为随机模拟规则，不是历史比赛正式规则。"]); ws.append([f"第一年{'有' if params.get('first_year_has_orders') else '无'}订单"]); ws.append(["破产标准", json.dumps(params.get("bankruptcy"), ensure_ascii=False)]); ws.append(["评分公式", params.get("score_formula")])
+    generation = rules.get("generation") or {}
+    ws.append(["八.其它说明"]); ws.append(["这是模拟执行规则包；XA 参数来源和候选结算服务必须按 provenance 分别解释。"]); ws.append(["规则模式", generation.get("mode")]); ws.append(["参数来源", generation.get("parameters_provenance")]); ws.append(["场景覆盖", json.dumps(rules.get("scenario_overrides") or {}, ensure_ascii=False)]); ws.append([f"正式 XA 参数记录第一年{'有' if params.get('first_year_has_orders') else '无'}订单"]); ws.append(["破产标准", json.dumps(params.get("bankruptcy"), ensure_ascii=False)]); ws.append(["评分公式", params.get("score_formula")])
     ws.append(["九.重要参数"]); ws.append(["违约金比例", params.get("default_penalty_rate"), "初始现金", _money(params.get("initial_cash_wan")), "管理费", _money(params.get("management_fee_per_quarter_wan")), "所得税率", params.get("tax_rate")])
     ws.sheet_view.showGridLines = False
     for col in range(1, 13): ws.column_dimensions[get_column_letter(col)].width = 20
@@ -403,6 +404,96 @@ def _write_results(path: Path, arena: FullCompetitionArena) -> None:
     workbook.save(path)
 
 
+def _annual_advertising(arena: FullCompetitionArena, year: int) -> dict[tuple[str, str, str], float]:
+    values: dict[tuple[str, str, str], float] = {}
+    for team_id, state in arena.states.items():
+        for event in state.journal:
+            if event.get("event_type") != "advertising_expense":
+                continue
+            period = str(event.get("period") or "")
+            if not period.startswith(f"Y{year}Q"):
+                continue
+            market, _, product = str(event.get("advertising_key") or "本地:P1").partition(":")
+            key = (team_id, market or "本地", product or "P1")
+            values[key] = values.get(key, 0.0) + abs(float(event.get("cash_effect_wan") or 0))
+    return values
+
+
+def _write_annual_public(path: Path, year: int, arena: FullCompetitionArena, rules: Mapping[str, Any]) -> None:
+    params = rules.get("parameters", rules)
+    markets = list((params.get("markets") or {}).keys())
+    products = list((params.get("products") or {}).keys())
+    team_ids = sorted(arena.states)
+    advertising = _annual_advertising(arena, year)
+    initial_cash = float(params.get("initial_cash_wan", 0))
+
+    workbook = Workbook()
+    ws = workbook.active
+    ws.title = f"第{year}年广告投放"
+    row = 1
+    for team_id in team_ids:
+        ws.cell(row, 2, f"{team_id}广告投放情况")
+        _header(ws, row + 1, ["产品", *markets], 2)
+        for offset, product in enumerate(products, row + 2):
+            ws.cell(offset, 2, product)
+            for market_col, market in enumerate(markets, 3):
+                ws.cell(offset, market_col, advertising.get((team_id, market, product), 0.0))
+        row += len(products) + 2
+    _finish_sheet(ws, {2: 18, **{index: 13 for index in range(3, 3 + len(markets))}})
+
+    ws = workbook.create_sheet(f"第{year}年广告投放(格式二)")
+    row = 1
+    for market in markets:
+        _header(ws, row, ["产品用户", *team_ids], 1)
+        ws.cell(row + 1, 1, f"{market}广告投放情况")
+        for offset, product in enumerate(products, row + 2):
+            ws.cell(offset, 1, product)
+            for team_col, team_id in enumerate(team_ids, 2):
+                ws.cell(offset, team_col, advertising.get((team_id, market, product), 0.0))
+        row += len(products) + 3
+    _finish_sheet(ws, {1: 18, **{index: 14 for index in range(2, 2 + len(team_ids))}})
+
+    ws = workbook.create_sheet(f"第{year}年三张报表")
+    _header(ws, 2, ["用户名", *team_ids], 2)
+    report_values: dict[str, tuple[dict[str, float], dict[str, float], dict[str, float]]] = {}
+    for team_id, state in arena.states.items():
+        report = next((item for item in state.reports if int(item.get("year", -1)) == year), {})
+        report_values[team_id] = _report_values(report, initial_cash)
+    row = 3
+    for section, metrics in ((0, EXPENSE_METRICS), (1, INCOME_METRICS), (2, BALANCE_METRICS)):
+        for metric in metrics:
+            ws.cell(row, 2, metric)
+            for team_col, team_id in enumerate(team_ids, 3):
+                ws.cell(row, team_col, report_values[team_id][section].get(metric, 0.0))
+            row += 1
+        row += 1
+    _finish_sheet(ws, {2: 24, **{index: 14 for index in range(3, 3 + len(team_ids))}})
+
+    ws = workbook.create_sheet("生产线信息")
+    _header(ws, 2, ["所属用户", "名称", "厂房", "产品", "状态", "累计折旧", "开产时间", "转产时间", "剩余时间", "建成时间", "开建时间"], 2)
+    row = 3
+    for team_id, state in sorted(arena.states.items()):
+        for line in state.production_lines:
+            values = [team_id, line.get("line_type"), line.get("factory_id") or "-", line.get("product_id") or "-", line.get("status"), _money(line.get("accumulated_depreciation_wan")), "-", "-", "0季", _period_cn(line.get("completed_period")), _period_cn(line.get("ordered_period"))]
+            for col, value in enumerate(values, 2):
+                ws.cell(row, col, value)
+            row += 1
+    _finish_sheet(ws, {index: 16 for index in range(2, 13)})
+
+    ws = workbook.create_sheet(f"第{year}年市场老大")
+    _header(ws, 1, ["市场", "市场老大", "广告总额"], 2)
+    for row, market in enumerate(markets, 2):
+        totals = {
+            team_id: sum(advertising.get((team_id, market, product), 0.0) for product in products)
+            for team_id in team_ids
+        }
+        leader = min(team_ids, key=lambda team_id: (-totals[team_id], team_id)) if team_ids and max(totals.values(), default=0) > 0 else None
+        ws.cell(row, 2, market); ws.cell(row, 3, leader); ws.cell(row, 4, totals.get(leader, 0.0) if leader else 0.0)
+    _finish_sheet(ws, {2: 16, 3: 22, 4: 14})
+    _metadata_sheet(workbook, {"format_version": COMPETITION_XLSX_VERSION, "match_id": rules.get("match_id"), "year": year, "role": "annual_public_global_export", "provenance": "simulated"})
+    workbook.save(path)
+
+
 def export_competition_xlsx(output_dir: Path, *, rules: Mapping[str, Any], orders: Sequence[Mapping[str, Any]], arena: FullCompetitionArena) -> dict[str, Any]:
     """Export one complete simulation as a competition-style XLSX bundle."""
 
@@ -413,7 +504,12 @@ def export_competition_xlsx(output_dir: Path, *, rules: Mapping[str, Any], order
     merged_orders = _merge_global_orders(orders, arena)
     rules_name = f"{match_id}比赛规则.xlsx"; orders_name = f"{match_id}订单详情.xlsx"; results_name = f"{match_id}最终排名和破产信息.xlsx"
     _write_rules(output_dir / rules_name, rules); _write_global_orders(output_dir / orders_name, merged_orders, rules); _write_results(output_dir / results_name, arena)
-    manifest = {"format_version": COMPETITION_XLSX_VERSION, "match_id": match_id, "rule_pack_id": rules.get("rule_pack_id"), "parent_rule_pack_id": rules.get("parent_rule_pack_id"), "source_match_id": (rules.get("generation") or {}).get("source_match_id"), "provenance": "simulated", "training_eligible": False, "enterprise_sheet_names": list(ENTERPRISE_SHEETS), "team_count": len(team_files), "order_count": len(merged_orders), "files": {"enterprise": team_files, "rules": rules_name, "orders": orders_name, "results": results_name}}
+    annual_public_files = []
+    for year in range(1, 7):
+        filename = f"{year}.xlsx"
+        _write_annual_public(output_dir / filename, year, arena, rules)
+        annual_public_files.append(filename)
+    manifest = {"format_version": COMPETITION_XLSX_VERSION, "match_id": match_id, "rule_pack_id": rules.get("rule_pack_id"), "parent_rule_pack_id": rules.get("parent_rule_pack_id"), "source_match_id": (rules.get("generation") or {}).get("source_match_id"), "provenance": "simulated", "training_eligible": False, "enterprise_sheet_names": list(ENTERPRISE_SHEETS), "annual_public_sheet_roles": ["年度广告投放", "年度广告投放格式二", "年度三张报表", "生产线信息", "年度市场老大"], "team_count": len(team_files), "order_count": len(merged_orders), "files": {"enterprise": team_files, "annual_public": annual_public_files, "rules": rules_name, "orders": orders_name, "results": results_name}}
     _json(output_dir / "manifest.json", manifest)
     return manifest
 

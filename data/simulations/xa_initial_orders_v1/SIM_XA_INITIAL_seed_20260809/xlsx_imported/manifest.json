@@ -1,0 +1,79 @@
+{
+  "format_version": "goai_simulated_xlsx_import_v1.0",
+  "match_id": "SIM_XA_INITIAL",
+  "rule_pack_id": "SIM_XA_INITIAL_fixed_AAAAA_20160108_4.3.32.419",
+  "parent_rule_pack_id": "AAAAA_20160108_4.3.32.419",
+  "source_match_id": "LX_XA",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "annual_public_sheet_roles": [
+    "年度广告投放",
+    "年度广告投放格式二",
+    "年度三张报表",
+    "生产线信息",
+    "年度市场老大"
+  ],
+  "team_count": 27,
+  "order_count": 850,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_XA_INITIAL01.xlsx",
+      "企业数据/SIM_XA_INITIAL02.xlsx",
+      "企业数据/SIM_XA_INITIAL03.xlsx",
+      "企业数据/SIM_XA_INITIAL04.xlsx",
+      "企业数据/SIM_XA_INITIAL05.xlsx",
+      "企业数据/SIM_XA_INITIAL06.xlsx",
+      "企业数据/SIM_XA_INITIAL07.xlsx",
+      "企业数据/SIM_XA_INITIAL08.xlsx",
+      "企业数据/SIM_XA_INITIAL09.xlsx",
+      "企业数据/SIM_XA_INITIAL10.xlsx",
+      "企业数据/SIM_XA_INITIAL11.xlsx",
+      "企业数据/SIM_XA_INITIAL12.xlsx",
+      "企业数据/SIM_XA_INITIAL13.xlsx",
+      "企业数据/SIM_XA_INITIAL14.xlsx",
+      "企业数据/SIM_XA_INITIAL15.xlsx",
+      "企业数据/SIM_XA_INITIAL16.xlsx",
+      "企业数据/SIM_XA_INITIAL17.xlsx",
+      "企业数据/SIM_XA_INITIAL18.xlsx",
+      "企业数据/SIM_XA_INITIAL19.xlsx",
+      "企业数据/SIM_XA_INITIAL20.xlsx",
+      "企业数据/SIM_XA_INITIAL21.xlsx",
+      "企业数据/SIM_XA_INITIAL22.xlsx",
+      "企业数据/SIM_XA_INITIAL23.xlsx",
+      "企业数据/SIM_XA_INITIAL24.xlsx",
+      "企业数据/SIM_XA_INITIAL25.xlsx",
+      "企业数据/SIM_XA_INITIAL26.xlsx",
+      "企业数据/SIM_XA_INITIAL27.xlsx"
+    ],
+    "annual_public": [
+      "1.xlsx",
+      "2.xlsx",
+      "3.xlsx",
+      "4.xlsx",
+      "5.xlsx",
+      "6.xlsx"
+    ],
+    "rules": "SIM_XA_INITIAL比赛规则.xlsx",
+    "orders": "SIM_XA_INITIAL订单详情.xlsx",
+    "results": "SIM_XA_INITIAL最终排名和破产信息.xlsx"
+  },
+  "source_bundle": "/home/undefined/Desktop/GoAI/data/simulations/xa_initial_orders_v1/SIM_XA_INITIAL_seed_20260809/competition_xlsx",
+  "counts": {
+    "teams": 27,
+    "events": 1437,
+    "global_orders": 850,
+    "team_orders": 71,
+    "reports": 6966
+  }
+}

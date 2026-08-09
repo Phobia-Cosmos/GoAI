@@ -9,8 +9,9 @@
     "all_agents_acted_each_step": true,
     "all_agents_received_feedback_each_step": true,
     "initial_and_feedback_states_recorded": true,
-    "observed_XA_order_count_shape": true,
-    "observed_XA_auction_count_shape": true,
+    "expected_order_count_shape": true,
+    "expected_auction_count_shape": true,
+    "expected_initial_preallocation": true,
     "all_accounts_balanced": true,
     "agent_private_observation_isolated": true,
     "terminal_results_generated": true
@@ -24,9 +25,11 @@
     "actions": 540,
     "feedback": 540,
     "quarter_states": 567,
-    "events": 1315,
+    "events": 1311,
     "reports": 135,
-    "bankruptcies": 0
+    "bankruptcies": 0,
+    "initial_public_unassigned_orders": 0,
+    "initial_preassigned_orders": 0
   },
   "rule_boundary": {
     "formal": "all values under parameters are copied exactly from normalized XA rules.json",

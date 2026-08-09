@@ -13,6 +13,7 @@ from goai_data.full_sandbox import (
     FULL_SANDBOX_VERSION,
     FixedXABaselinePolicy,
     build_fixed_xa_rule_pack,
+    generate_initial_visible_orders,
     generate_xa_shaped_global_orders,
 )
 from goai_data.recorded_match import RECORDED_MATCH_VERSION, run_recorded_competition, write_recorded_competition
@@ -29,6 +30,9 @@ def _validation(
     orders: list[dict[str, Any]],
     arena: Any,
     artifacts: dict[str, list[dict[str, Any]]],
+    expected_year_counts: dict[str, int],
+    expected_auction_count: int,
+    expected_initial_preassigned: int,
 ) -> dict[str, Any]:
     team_count = len(rules["participants"]["team_ids"])
     step_count = len(artifacts["trace"])
@@ -45,8 +49,9 @@ def _validation(
         "all_agents_acted_each_step": len(artifacts["actions"]) == expected_transitions,
         "all_agents_received_feedback_each_step": len(artifacts["feedback"]) == expected_transitions,
         "initial_and_feedback_states_recorded": len(artifacts["quarter_states"]) == team_count * (step_count + 1),
-        "observed_XA_order_count_shape": year_counts == {"2": 169, "3": 172, "4": 214, "5": 241},
-        "observed_XA_auction_count_shape": sum(order["order_type"] == "竞单" for order in orders) == 24,
+        "expected_order_count_shape": year_counts == expected_year_counts,
+        "expected_auction_count_shape": sum(order["order_type"] == "竞单" for order in orders) == expected_auction_count,
+        "expected_initial_preallocation": sum(order.get("owner_team_id") not in {None, ""} and int(order.get("release_period_index", -1)) == 0 for order in orders) == expected_initial_preassigned,
         "all_accounts_balanced": all(abs(state.balance_gap_wan) <= 1e-5 for state in arena.states.values()),
         "agent_private_observation_isolated": all(
             "other_agents" not in observation["private_state"]
@@ -71,6 +76,8 @@ def _validation(
             "events": sum(len(state.journal) for state in arena.states.values()),
             "reports": sum(len(state.reports) for state in arena.states.values()),
             "bankruptcies": sum(state.bankrupt for state in arena.states.values()),
+            "initial_public_unassigned_orders": sum(order.get("owner_team_id") in {None, ""} and int(order.get("release_period_index", -1)) == 0 for order in orders),
+            "initial_preassigned_orders": sum(order.get("owner_team_id") not in {None, ""} and int(order.get("release_period_index", -1)) == 0 for order in orders),
         },
         "rule_boundary": {
             "formal": "all values under parameters are copied exactly from normalized XA rules.json",
@@ -86,8 +93,12 @@ def main() -> int:
     parser.add_argument("--match-id", default="SIM_XA_FIXED")
     parser.add_argument("--seed", type=int, default=20260809)
     parser.add_argument("--team-count", type=int, default=27)
+    parser.add_argument("--initial-order-count", type=int, default=0, help="Y1Q1 立即可见的场景扩展订单总数")
+    parser.add_argument("--initial-preassigned-count", type=int, default=0, help="初始订单中随机预分配给不同企业的数量")
     parser.add_argument("--no-xlsx", action="store_true")
     args = parser.parse_args()
+    if not 0 <= args.initial_preassigned_count <= min(args.initial_order_count, args.team_count):
+        parser.error("--initial-preassigned-count 必须不大于初始订单数和企业数")
 
     base_path = args.base_rules.resolve()
     base_rules = json.loads(base_path.read_text(encoding="utf-8"))
@@ -99,6 +110,27 @@ def main() -> int:
         source_rule_path=args.base_rules.as_posix(),
     )
     orders = generate_xa_shaped_global_orders(rules, seed=args.seed + 1)
+    initial_orders = generate_initial_visible_orders(
+        rules,
+        seed=args.seed + 2,
+        team_ids=rules["participants"]["team_ids"],
+        order_count=args.initial_order_count,
+        preassigned_count=args.initial_preassigned_count,
+    )
+    if initial_orders:
+        rules["binding_status"] = "XA_fixed_parameters_with_explicit_initial_order_scenario"
+        rules["generation"]["mode"] = "fixed_XA_rules_random_orders_with_initial_visibility_extension"
+        rules["scenario_overrides"] = {
+            "initial_orders": {
+                "enabled": True,
+                "order_count": len(initial_orders),
+                "preassigned_count": args.initial_preassigned_count,
+                "release_period": "Y1Q1",
+                "provenance": "simulated_scenario_override",
+                "formal_XA_difference": "formal XA records first_year_has_orders=false",
+            }
+        }
+        orders = initial_orders + orders
     arena, artifacts = run_recorded_competition(
         rules,
         orders,
@@ -117,7 +149,19 @@ def main() -> int:
             output_dir / "xlsx_imported",
         ).import_bundle()
 
-    validation = _validation(base_rules=base_rules, rules=rules, orders=orders, arena=arena, artifacts=artifacts)
+    expected_year_counts = {"2": 169, "3": 172, "4": 214, "5": 241}
+    if initial_orders:
+        expected_year_counts["1"] = len(initial_orders)
+    validation = _validation(
+        base_rules=base_rules,
+        rules=rules,
+        orders=orders,
+        arena=arena,
+        artifacts=artifacts,
+        expected_year_counts=expected_year_counts,
+        expected_auction_count=24 + sum(order["order_type"] == "竞单" for order in initial_orders),
+        expected_initial_preassigned=args.initial_preassigned_count,
+    )
     validation["xlsx_exported"] = xlsx_manifest is not None
     validation["xlsx_team_file_count"] = xlsx_manifest["team_count"] if xlsx_manifest else 0
     validation["xlsx_round_trip_imported"] = imported_manifest is not None
@@ -129,7 +173,7 @@ def main() -> int:
         "match_id": args.match_id,
         "source_match_id": "LX_XA",
         "seed": args.seed,
-        "rule_mode": "exact_XA_parameters_with_fixed_candidate_settlement_services",
+        "rule_mode": rules["generation"]["mode"],
         "sandbox_version": FULL_SANDBOX_VERSION,
         "validation_passed": validation["passed"],
         **validation["counts"],

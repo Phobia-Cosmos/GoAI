@@ -17,6 +17,13 @@
     "三张报表",
     "广告投放"
   ],
+  "annual_public_sheet_roles": [
+    "年度广告投放",
+    "年度广告投放格式二",
+    "年度三张报表",
+    "生产线信息",
+    "年度市场老大"
+  ],
   "team_count": 27,
   "order_count": 796,
   "files": {
@@ -49,6 +56,14 @@
       "企业数据/SIM_XA_FIXED26.xlsx",
       "企业数据/SIM_XA_FIXED27.xlsx"
     ],
+    "annual_public": [
+      "1.xlsx",
+      "2.xlsx",
+      "3.xlsx",
+      "4.xlsx",
+      "5.xlsx",
+      "6.xlsx"
+    ],
     "rules": "SIM_XA_FIXED比赛规则.xlsx",
     "orders": "SIM_XA_FIXED订单详情.xlsx",
     "results": "SIM_XA_FIXED最终排名和破产信息.xlsx"
@@ -56,9 +71,9 @@
   "source_bundle": "/home/undefined/Desktop/GoAI/data/simulations/xa_fixed_v1/SIM_XA_FIXED_seed_20260809/competition_xlsx",
   "counts": {
     "teams": 27,
-    "events": 1342,
+    "events": 1338,
     "global_orders": 796,
-    "team_orders": 48,
+    "team_orders": 46,
     "reports": 6966
   }
 }

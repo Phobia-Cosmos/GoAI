@@ -14,3 +14,5 @@
 当前 Agent 数据整理方式和时间边界见 [`agent_ready/v1/xa/README.md`](agent_ready/v1/xa/README.md)。
 
 固定使用 XA 正式参数、可完整运行 20 个季度的标准模拟比赛见 [`simulations/xa_fixed_v1/`](simulations/xa_fixed_v1/README.md)。其他 `simulations/` 批次可能随机扰动过规则，只用于跨规则压力测试。
+
+Y1Q1 含 36 个公共订单和 18 个随机预分配订单的显式场景扩展见 [`simulations/xa_initial_orders_v1/`](simulations/xa_initial_orders_v1/README.md)。真实 XA、固定模拟和初始订单模拟的结果对比见 [`../docs/XA_REAL_VS_SIMULATION_ANALYSIS.md`](../docs/XA_REAL_VS_SIMULATION_ANALYSIS.md)。

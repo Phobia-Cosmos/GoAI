@@ -371,6 +371,66 @@ def generate_xa_shaped_global_orders(
     return orders
 
 
+def generate_initial_visible_orders(
+    rules: Mapping[str, Any],
+    *,
+    seed: int,
+    team_ids: Sequence[str],
+    order_count: int = 54,
+    preassigned_count: int = 18,
+) -> list[dict[str, Any]]:
+    """Generate Y1Q1 public orders and a seeded private preallocation subset."""
+
+    if order_count <= 0:
+        return []
+    if not 0 <= preassigned_count <= min(order_count, len(team_ids)):
+        raise ValueError("preassigned_count must fit both initial orders and unique teams")
+    rng = random.Random(seed)
+    params = rules.get("parameters", rules)
+    direct_cost = _number((params.get("products") or {}).get("P1", {}).get("direct_cost_wan"), 16)
+    orders: list[dict[str, Any]] = []
+    for index in range(1, order_count + 1):
+        quantity = rng.randint(1, 4)
+        price = round(direct_cost * quantity * rng.uniform(1.45, 2.25), 0)
+        due_index = rng.choice((4, 5))
+        orders.append(
+            {
+                "match_id": rules.get("match_id"),
+                "order_id": f"{rules.get('match_id')}-INITIAL-{index:04d}",
+                "year": 1,
+                "release_period": "Y1Q1",
+                "release_period_index": 0,
+                "due_period": _period_label(due_index),
+                "due_period_index": due_index,
+                "market": "本地",
+                "product": "P1",
+                "iso": "-",
+                "quantity": float(quantity),
+                "total_price_wan": float(price),
+                "delivery_term_quarters": due_index,
+                "receivable_term_quarters": rng.randint(0, 4),
+                "order_type": "选单",
+                "customer_segment": rng.choice(("价格敏感型", "稳定供货型", "战略客户型")),
+                "priority": rng.choice(("普通", "加急", "关键")),
+                "owner_team_id": None,
+                "status": "未分配",
+                "initial_visibility": "public_unassigned",
+                "provenance": "simulated",
+                "generation_seed": seed,
+            }
+        )
+    auction_indexes = set(rng.sample(range(order_count), max(1, round(order_count * 24 / 796))))
+    for index in auction_indexes:
+        orders[index]["order_type"] = "竞单"
+    selected_orders = rng.sample(range(order_count), preassigned_count)
+    selected_teams = rng.sample(list(team_ids), preassigned_count)
+    for order_index, team_id in zip(selected_orders, selected_teams):
+        orders[order_index]["owner_team_id"] = team_id
+        orders[order_index]["status"] = "已分配"
+        orders[order_index]["initial_visibility"] = "private_preassigned_public_result"
+    return orders
+
+
 @dataclass
 class FinancialSandboxState:
     match_id: str
@@ -1010,6 +1070,33 @@ class FullCompetitionArena(MultiAgentEnvironment):
     def reset(self, seed: int | None = None) -> Mapping[str, AgentObservation]:
         self.states = {team_id: self.dynamics.initial_state(team_id, initial_state=self.initial_states.get(team_id), orders=self.global_orders) for team_id in self.agent_ids}
         self.order_log = []
+        preassigned_ids = set()
+        for source_order in self.global_orders:
+            owner = source_order.get("owner_team_id")
+            if owner in {None, ""}:
+                continue
+            owner = str(owner)
+            if owner not in self.states:
+                raise ValueError(f"preassigned order has unknown owner: {owner}")
+            order = copy.deepcopy(source_order)
+            order["status"] = "已分配"
+            self.states[owner].assigned_orders.append(order)
+            preassigned_ids.add(str(order["order_id"]))
+            self.order_log.append(
+                {
+                    "period": "Y1Q1",
+                    "order_id": order["order_id"],
+                    "winner_team_id": owner,
+                    "policy_id": "seeded_initial_preallocation",
+                    "reason": "scenario_initial_preassignment",
+                    "contenders": [owner],
+                    "trace": {"initial_visibility": order.get("initial_visibility")},
+                    "provenance": "simulated",
+                }
+            )
+        if preassigned_ids:
+            for state in self.states.values():
+                state.available_orders = [row for row in state.available_orders if str(row.get("order_id")) not in preassigned_ids]
         self.terminated = False
         return self._observations()
 
@@ -1185,7 +1272,9 @@ class FixedXABaselinePolicy:
         self.agent_id = agent_id
         self.rules = copy.deepcopy(dict(rules or {}))
         self.parameters = dict(self.rules.get("parameters") or {})
-        digest = hashlib.sha256(f"fixed-xa|{seed}|{agent_id}".encode()).hexdigest()
+        numeric_suffix = agent_id[len(agent_id.rstrip("0123456789")) :]
+        comparison_agent_id = numeric_suffix or agent_id
+        digest = hashlib.sha256(f"fixed-xa|{seed}|{comparison_agent_id}".encode()).hexdigest()
         self.rng = random.Random(int(digest[:16], 16))
         self.strategy = self.STRATEGIES[int(digest[16:24], 16) % len(self.STRATEGIES)]
 
@@ -1274,7 +1363,7 @@ class FixedXABaselinePolicy:
             planned_cash -= _number((self.parameters.get("markets") or {}).get("区域", {}).get("fee_wan_per_year"), 8) / 4
 
         has_uncovered_commitment = bool(assigned) or pending_p1 > 0 or shortage > 0
-        if not has_uncovered_commitment and period_index >= 4 and planned_cash >= 160:
+        if not has_uncovered_commitment and planned_cash >= 160:
             visible = list((observation.public_state or {}).get("available_orders") or [])
             candidates = [
                 order
