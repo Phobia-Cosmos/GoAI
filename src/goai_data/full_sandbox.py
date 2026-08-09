@@ -69,6 +69,31 @@ DEFAULT_PHASE_ORDER = (
 )
 
 
+def _candidate_financial_rules(parameters: Mapping[str, Any]) -> dict[str, Any]:
+    """Return deterministic settlement services for rules not unique in XA data."""
+
+    return {
+        "version": FULL_SANDBOX_VERSION,
+        "phase_order": list(DEFAULT_PHASE_ORDER),
+        "bankruptcy_check_after_each_phase": True,
+        "factory_depreciation_years": 10,
+        "production_line_depreciation_years": 5,
+        "factory_disposal_book_value_rate": 0.70,
+        "production_line_disposal_book_value_rate": 0.60,
+        "emergency_material_price_multiplier": 1.50,
+        "receivable_discount_rates": copy.deepcopy(parameters.get("receivable_discount") or {"terms_1_2": 0.08, "terms_3_4": 0.09}),
+        "long_loan_interest_timing": "year_end",
+        "short_loan_interest_timing": "maturity",
+        "tax_timing": "year_end",
+        "report_timing": "year_end_after_tax",
+        "auction_bid_fee_wan": 10,
+        "auction_batch_size": 3,
+        "auction_payment_mode": "fixed_order_price",
+        "unclaimed_orders_carry_forward": False,
+        "provenance": "candidate_traditional_sandbox_service",
+    }
+
+
 def _number(value: Any, default: float = 0.0) -> float:
     return float(value) if isinstance(value, (int, float)) else default
 
@@ -139,25 +164,7 @@ def generate_simulated_rule_pack(
     rules["binding_status"] = "simulated_configurable_rule_pack"
     rules["provenance"] = "simulated"
     rules["participants"] = {"count": team_count, "team_ids": [f"{match_id}{index:02d}" for index in range(1, team_count + 1)]}
-    rules["financial_rules"] = {
-        "version": FULL_SANDBOX_VERSION,
-        "phase_order": list(DEFAULT_PHASE_ORDER),
-        "bankruptcy_check_after_each_phase": True,
-        "factory_depreciation_years": 10,
-        "production_line_depreciation_years": 5,
-        "factory_disposal_book_value_rate": 0.70,
-        "production_line_disposal_book_value_rate": 0.60,
-        "emergency_material_price_multiplier": 1.50,
-        "receivable_discount_rates": copy.deepcopy(params.get("receivable_discount") or {"terms_1_2": 0.08, "terms_3_4": 0.09}),
-        "long_loan_interest_timing": "year_end",
-        "short_loan_interest_timing": "maturity",
-        "tax_timing": "year_end",
-        "report_timing": "year_end_after_tax",
-        "auction_bid_fee_wan": 10,
-        "auction_batch_size": 3,
-        "auction_payment_mode": "fixed_order_price",
-        "unclaimed_orders_carry_forward": False,
-    }
+    rules["financial_rules"] = _candidate_financial_rules(params)
     changes = []
     for key in ("initial_cash_wan", "management_fee_per_quarter_wan", "tax_rate", "default_penalty_rate"):
         if original_parameters.get(key) != params.get(key):
@@ -186,6 +193,70 @@ def generate_simulated_rule_pack(
         "parameter_changes": changes,
         "provenance": "simulated",
     }
+    return rules
+
+
+def build_fixed_xa_rule_pack(
+    base_rules: Mapping[str, Any],
+    *,
+    match_id: str = "SIM_XA_FIXED",
+    team_count: int = 27,
+    seed: int = 0,
+    source_rule_path: str | None = None,
+) -> dict[str, Any]:
+    """Create an executable pack with exact XA parameters and fixed services.
+
+    Formal XA parameters are copied byte-for-byte at the value level.  Only the
+    match identity, participants and explicit candidate settlement services are
+    added.  The seed controls orders and policies, never the rule parameters.
+    """
+
+    rules = copy.deepcopy(dict(base_rules))
+    parameters = copy.deepcopy(dict(base_rules.get("parameters") or {}))
+    if not parameters:
+        raise ValueError("fixed XA simulation requires a normalized parameters object")
+    required = {
+        "initial_cash_wan",
+        "management_fee_per_quarter_wan",
+        "tax_rate",
+        "default_penalty_rate",
+        "factories",
+        "production_lines",
+        "products",
+        "markets",
+        "iso",
+        "materials",
+    }
+    missing = sorted(required - set(parameters))
+    if missing:
+        raise ValueError(f"fixed XA rules are missing parameters: {', '.join(missing)}")
+    source_match_id = str(base_rules.get("match_id") or "LX_XA")
+    source_rule_pack_id = str(base_rules.get("rule_pack_id") or "unknown")
+    rules.update(
+        {
+            "match_id": match_id,
+            "rule_pack_id": f"{match_id}_fixed_{source_rule_pack_id}",
+            "parent_rule_pack_id": source_rule_pack_id,
+            "binding_status": "simulation_with_exact_XA_parameters",
+            "provenance": "derived_rule_pack_with_observed_XA_parameters",
+            "parameters": parameters,
+            "participants": {
+                "count": team_count,
+                "team_ids": [f"{match_id}{index:02d}" for index in range(1, team_count + 1)],
+            },
+            "financial_rules": _candidate_financial_rules(parameters),
+            "generation": {
+                "seed": seed,
+                "mode": "fixed_XA_rules_random_orders",
+                "source_match_id": source_match_id,
+                "source_rule_pack_id": source_rule_pack_id,
+                "source_rule_path": source_rule_path,
+                "parameter_changes": [],
+                "parameters_provenance": "observed_formal_XA",
+                "settlement_services_provenance": "candidate_traditional_sandbox_service",
+            },
+        }
+    )
     return rules
 
 
@@ -265,6 +336,39 @@ def generate_global_orders(
                 "generation_seed": seed,
             })
     return output
+
+
+def generate_xa_shaped_global_orders(
+    rules: Mapping[str, Any],
+    *,
+    seed: int,
+    yearly_counts: Mapping[int, int] | None = None,
+    auction_count: int = 24,
+) -> list[dict[str, Any]]:
+    """Generate a random order pool with the observed XA year/type shape."""
+
+    counts = dict(yearly_counts or {2: 169, 3: 172, 4: 214, 5: 241})
+    if any(year < 1 or count <= 0 for year, count in counts.items()):
+        raise ValueError("XA yearly order counts require positive years and counts")
+    orders: list[dict[str, Any]] = []
+    for offset, (year, count) in enumerate(sorted(counts.items())):
+        orders.extend(
+            generate_global_orders(
+                rules,
+                seed=seed + offset * 1009,
+                orders_per_year=count,
+                years=(year,),
+                auction_ratio=0.0,
+                complexity="large",
+            )
+        )
+    if not 0 <= auction_count <= len(orders):
+        raise ValueError("auction_count must fit inside the generated order pool")
+    auction_indexes = set(random.Random(seed + 7919).sample(range(len(orders)), auction_count))
+    for index, order in enumerate(orders):
+        order["order_type"] = "竞单" if index in auction_indexes else "选单"
+        order["order_shape_profile"] = "observed_XA_counts_randomized_content_v1"
+    return orders
 
 
 @dataclass
@@ -885,6 +989,7 @@ class FullCompetitionArena(MultiAgentEnvironment):
         initial_states: Mapping[str, Mapping[str, Any]] | None = None,
         order_engine: OrderAllocationEngine | None = None,
         max_periods: int = 20,
+        stop_when_all_bankrupt: bool = True,
     ) -> None:
         self.dynamics = dynamics
         self._agent_ids = tuple(sorted(map(str, team_ids)))
@@ -893,6 +998,7 @@ class FullCompetitionArena(MultiAgentEnvironment):
         payment_mode = str(dynamics.financial_rules.get("auction_payment_mode", "fixed_order_price"))
         self.order_engine = order_engine or OrderAllocationEngine(TraditionalXAOrderPolicy(auction_payment_mode=payment_mode))
         self.max_periods = max_periods
+        self.stop_when_all_bankrupt = stop_when_all_bankrupt
         self.states: dict[str, FinancialSandboxState] = {}
         self.order_log: list[dict[str, Any]] = []
         self.terminated = False
@@ -911,14 +1017,26 @@ class FullCompetitionArena(MultiAgentEnvironment):
         return [copy.deepcopy(row) for row in state.available_orders if int(row.get("release_period_index", 0)) <= state.period_index and row.get("owner_team_id") in {None, ""}]
 
     def _observations(self) -> dict[str, AgentObservation]:
-        return {
-            team_id: AgentObservation(
-                state.match_id, team_id, state.period_index, state.period, state.to_dict(),
-                {"period": state.period, "available_orders": self._visible_orders(state), "public_order_results": copy.deepcopy(self.order_log), "agent_ids": list(self.agent_ids), "information_policy": "rules_orders_reports_public_private_operations_isolated"},
+        observations = {}
+        for team_id, state in self.states.items():
+            private_state = state.to_dict()
+            private_state.pop("available_orders", None)
+            observations[team_id] = AgentObservation(
+                state.match_id,
+                team_id,
+                state.period_index,
+                state.period,
+                private_state,
+                {
+                    "period": state.period,
+                    "available_orders": self._visible_orders(state),
+                    "public_order_results": copy.deepcopy(self.order_log),
+                    "agent_ids": list(self.agent_ids),
+                    "information_policy": "rules_orders_reports_public_private_operations_isolated",
+                },
                 self.dynamics.legal_actions(state),
             )
-            for team_id, state in self.states.items()
-        }
+        return observations
 
     @staticmethod
     def _action_list(action: Mapping[str, Any]) -> list[Mapping[str, Any]]:
@@ -981,10 +1099,21 @@ class FullCompetitionArena(MultiAgentEnvironment):
                 raise ValueError(f"{team_id}: {'; '.join(transition.violations)}")
             next_states[team_id] = transition.state
             action_events[team_id].extend(transition.events)
+            expected_next_index = before[team_id].period_index + 1
+            if transition.state.bankrupt and not transition.state.competition_complete and transition.state.period_index < expected_next_index:
+                if expected_next_index > self.max_periods - 1:
+                    transition.state.competition_complete = True
+                    action_events[team_id].append({"event_type": "competition_complete", "period": transition.state.period, "reason": "bankruptcy_during_final_settlement"})
+                else:
+                    from_period = transition.state.period
+                    transition.state.year, transition.state.quarter = _period_from_index(expected_next_index)
+                    action_events[team_id].append({"event_type": "quarter_advanced_after_bankruptcy", "from_period": from_period, "to_period": transition.state.period})
             rewards[team_id] = transition.state.owner_equity_wan - before[team_id].owner_equity_wan
             infos[team_id] = {"events": copy.deepcopy(action_events[team_id]), "bankrupt": transition.state.bankrupt, "balance_gap_wan": transition.state.balance_gap_wan}
         self.states = next_states
-        self.terminated = all(state.bankrupt or state.competition_complete for state in self.states.values())
+        all_complete = all(state.competition_complete for state in self.states.values())
+        all_inactive = all(state.bankrupt or state.competition_complete for state in self.states.values())
+        self.terminated = all_inactive if self.stop_when_all_bankrupt else all_complete
         return ArenaStep(self._observations(), rewards, self.terminated, infos)
 
     def final_results(self) -> dict[str, Any]:
@@ -1041,6 +1170,140 @@ class LegacySeededHeuristicPolicy:
         if cash < 120 and assigned and not state.get("short_loans"):
             actions.insert(0, {"action_type": "short_loan_borrow", "parameters": {"principal_wan": 100, "term_quarters": 4}})
         return {"actions": actions or [{"action_type": "hold"}]}
+
+
+class FixedXABaselinePolicy:
+    """Cash-aware baseline for the exact XA capital and cost parameters.
+
+    It deliberately limits order commitments to what one production line can
+    fulfill.  The policy is a reproducible opponent baseline, not an expert.
+    """
+
+    STRATEGIES = ("safe", "balanced", "growth")
+
+    def __init__(self, agent_id: str, seed: int = 0, *, rules: Mapping[str, Any] | None = None) -> None:
+        self.agent_id = agent_id
+        self.rules = copy.deepcopy(dict(rules or {}))
+        self.parameters = dict(self.rules.get("parameters") or {})
+        digest = hashlib.sha256(f"fixed-xa|{seed}|{agent_id}".encode()).hexdigest()
+        self.rng = random.Random(int(digest[:16], 16))
+        self.strategy = self.STRATEGIES[int(digest[16:24], 16) % len(self.STRATEGIES)]
+
+    def _claim(self, order: Mapping[str, Any], state: Mapping[str, Any]) -> dict[str, Any]:
+        market, product = str(order.get("market")), str(order.get("product"))
+        advertising = state.get("advertising") or {}
+        common = {
+            "order_id": order["order_id"],
+            "submitted_at": self.rng.random(),
+            "market": market,
+            "product": product,
+        }
+        if str(order.get("order_type")) == "竞单":
+            return {
+                "action_type": "auction_bid",
+                "parameters": {**common, "bid_wan": _number(order.get("total_price_wan")) * 0.9},
+            }
+        return {
+            "action_type": "select_order",
+            "parameters": {
+                **common,
+                "product_advertising": _number(advertising.get(f"{market}:{product}")),
+                "market_advertising": sum(_number(value) for key, value in advertising.items() if key.startswith(f"{market}:")),
+                "total_advertising": sum(_number(value) for value in advertising.values()),
+            },
+        }
+
+    def act(self, observation: AgentObservation) -> Mapping[str, Any]:
+        state = observation.private_state
+        if state.get("bankrupt"):
+            return {"action_type": "hold"}
+        actions: list[dict[str, Any]] = []
+        cash = _number(state.get("cash_wan"))
+        planned_cash = cash
+        period_index = int(observation.period_index)
+
+        if not state.get("factories") and planned_cash >= 180:
+            actions.append({"action_type": "buy_workshop", "parameters": {"factory": "小厂房"}})
+            planned_cash -= _number((self.parameters.get("factories") or {}).get("小厂房", {}).get("purchase_wan"), 72)
+        if not state.get("production_lines") and not state.get("pending_lines") and planned_cash >= 120:
+            actions.append({"action_type": "buy_product_line", "parameters": {"line_type": "手工线", "product_id": "P1"}})
+            planned_cash -= _number((self.parameters.get("production_lines") or {}).get("手工线", {}).get("investment_wan"), 40)
+
+        assigned = [row for row in state.get("assigned_orders", []) if row.get("status") not in {"已交", "违约"}]
+        inventory = {key: _number(value) for key, value in (state.get("product_inventory") or {}).items()}
+        for order in sorted(assigned, key=lambda row: (int(row.get("due_period_index", 99)), str(row.get("order_id")))):
+            product, quantity = str(order.get("product")), _number(order.get("quantity"))
+            if inventory.get(product, 0.0) >= quantity:
+                actions.append({"action_type": "order_delivery", "parameters": {"order_id": order["order_id"]}})
+                inventory[product] -= quantity
+
+        pending_p1 = sum(
+            _number(row.get("quantity"))
+            for row in state.get("pending_production", [])
+            if row.get("product_id") == "P1"
+        )
+        required_p1 = sum(_number(row.get("quantity")) for row in assigned if row.get("product") == "P1")
+        shortage = max(0.0, required_p1 - inventory.get("P1", 0.0) - pending_p1)
+        ready_line = next(
+            (
+                row
+                for row in state.get("production_lines", [])
+                if row.get("status") == "ready" and row.get("product_id") in {None, "P1"}
+            ),
+            None,
+        )
+        if shortage > 0 and ready_line is not None:
+            materials = {key: _number(value) for key, value in (state.get("material_inventory") or {}).items()}
+            missing_r1 = max(0.0, shortage - materials.get("R1", 0.0))
+            emergency_cost = missing_r1 * _number((self.parameters.get("materials") or {}).get("R1", {}).get("price_wan"), 8) * 1.5
+            process_cost = shortage * _number((self.parameters.get("products") or {}).get("P1", {}).get("process_wan"), 8)
+            if planned_cash - emergency_cost - process_cost >= 100:
+                if missing_r1:
+                    actions.append({"action_type": "emergency_purchase", "parameters": {"material_id": "R1", "quantity": missing_r1}})
+                actions.append({"action_type": "production", "parameters": {"product_id": "P1", "quantity": shortage}})
+                planned_cash -= emergency_cost + process_cost
+
+        if period_index % 4 == 0 and period_index > 0:
+            ad_amount = {"safe": 4.0, "balanced": 8.0, "growth": 12.0}[self.strategy]
+            if planned_cash - ad_amount >= 140:
+                actions.append({"action_type": "advertising", "parameters": {"market": "本地", "product_id": "P1", "amount_wan": ad_amount}})
+                planned_cash -= ad_amount
+
+        if self.strategy in {"balanced", "growth"} and period_index >= 8 and "区域" not in state.get("markets", []) and not any(row.get("kind") == "market" and row.get("target") == "区域" for row in state.get("pending_development", [])) and planned_cash >= 420:
+            actions.append({"action_type": "develop_market", "parameters": {"target": "区域"}})
+            planned_cash -= _number((self.parameters.get("markets") or {}).get("区域", {}).get("fee_wan_per_year"), 8) / 4
+
+        has_uncovered_commitment = bool(assigned) or pending_p1 > 0 or shortage > 0
+        if not has_uncovered_commitment and period_index >= 4 and planned_cash >= 160:
+            visible = list((observation.public_state or {}).get("available_orders") or [])
+            candidates = [
+                order
+                for order in visible
+                if order.get("market") == "本地"
+                and order.get("product") == "P1"
+                and order.get("iso") in {None, "", "-"}
+                and _number(order.get("quantity")) <= 4
+                and int(order.get("due_period_index", 0)) - period_index >= 4
+                and _number(order.get("total_price_wan")) >= _number(order.get("quantity")) * 24
+            ]
+            if candidates:
+                candidates.sort(
+                    key=lambda row: (
+                        _number(row.get("total_price_wan")) - _number(row.get("quantity")) * 20,
+                        -_number(row.get("quantity")),
+                        str(row.get("order_id")),
+                    ),
+                    reverse=True,
+                )
+                shortlist = candidates[: min(6, len(candidates))]
+                actions.append(self._claim(self.rng.choice(shortlist), state))
+
+        if planned_cash < 80 and assigned and not state.get("short_loans"):
+            actions.insert(0, {"action_type": "short_loan_borrow", "parameters": {"principal_wan": 100, "term_quarters": 4}})
+        return {
+            "actions": actions or [{"action_type": "hold"}],
+            "policy_metadata": {"strategy": self.strategy, "policy": "fixed_XA_cash_aware_v1"},
+        }
 
 
 class SeededHeuristicPolicy:

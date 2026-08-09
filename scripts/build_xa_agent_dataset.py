@@ -22,7 +22,7 @@ def main() -> int:
     )
     args = parser.parse_args()
     simulations = args.simulation or [
-        args.data_root / "simulations" / "large_20260808" / "SIM_LX_XA_seed_20270808"
+        args.data_root / "simulations" / "xa_fixed_v1" / "SIM_XA_FIXED_seed_20260809"
     ]
     catalog = build_xa_agent_dataset(args.data_root, args.output_root, simulations)
     print(json.dumps(catalog, ensure_ascii=False, indent=2))

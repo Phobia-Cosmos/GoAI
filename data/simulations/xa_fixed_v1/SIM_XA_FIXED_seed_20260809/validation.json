@@ -1,0 +1,39 @@
+{
+  "format_version": "goai_XA_fixed_validation_v1.0",
+  "passed": true,
+  "checks": {
+    "exact_XA_parameters": true,
+    "no_rule_parameter_changes": true,
+    "twenty_quarters_completed": true,
+    "all_agents_observed_each_step": true,
+    "all_agents_acted_each_step": true,
+    "all_agents_received_feedback_each_step": true,
+    "initial_and_feedback_states_recorded": true,
+    "observed_XA_order_count_shape": true,
+    "observed_XA_auction_count_shape": true,
+    "all_accounts_balanced": true,
+    "agent_private_observation_isolated": true,
+    "terminal_results_generated": true
+  },
+  "counts": {
+    "teams": 27,
+    "steps": 20,
+    "orders": 796,
+    "auctions": 24,
+    "observations": 540,
+    "actions": 540,
+    "feedback": 540,
+    "quarter_states": 567,
+    "events": 1315,
+    "reports": 135,
+    "bankruptcies": 0
+  },
+  "rule_boundary": {
+    "formal": "all values under parameters are copied exactly from normalized XA rules.json",
+    "candidate": "financial_rules contains deterministic settlement services for unresolved XA procedure details"
+  },
+  "xlsx_exported": true,
+  "xlsx_team_file_count": 27,
+  "xlsx_round_trip_imported": true,
+  "xlsx_imported_team_count": 27
+}

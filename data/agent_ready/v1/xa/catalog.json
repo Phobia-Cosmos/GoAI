@@ -74,21 +74,22 @@
   "simulated": [
     {
       "baseline": "XA",
-      "dataset_id": "SIM_LX_XA_seed_20270808",
+      "dataset_id": "SIM_XA_FIXED_seed_20260809",
       "dataset_kind": "simulated",
       "decision_horizon": 20,
       "format_version": "goai_agent_dataset_v1.0",
-      "generation_seed": 20270808,
+      "generation_seed": 20260809,
       "limitations": [
-        "saved private observations are compact summaries unless the simulation was generated with full trace",
+        "journal and annual report bodies are stored in separate source files and represented by counts",
         "actions come from seeded heuristic policies and are baseline behavior, not optimal labels"
       ],
-      "manifest": "simulated/SIM_LX_XA_seed_20270808/manifest.json",
+      "manifest": "simulated/SIM_XA_FIXED_seed_20260809/manifest.json",
+      "observation_completeness": "full_decision_state_without_journal_report_blobs",
       "provenance": [
         "simulated"
       ],
-      "simulated_match_id": "SIM_LX_XA",
-      "source_manifest_ref": "../../../../../simulations/large_20260808/SIM_LX_XA_seed_20270808/manifest.json",
+      "simulated_match_id": "SIM_XA_FIXED",
+      "source_manifest_ref": "../../../../../simulations/xa_fixed_v1/SIM_XA_FIXED_seed_20260809/manifest.json",
       "source_match_id": "LX_XA",
       "team_count": 27,
       "training_eligible": false,

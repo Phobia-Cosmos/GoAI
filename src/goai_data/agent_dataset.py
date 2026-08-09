@@ -213,64 +213,121 @@ def build_simulated_xa_view(source: Path, output: Path) -> dict[str, Any]:
     trace = _read_jsonl(source / "trace.jsonl")
     labels = _result_labels(_read_json(source / "results.json"))
     states_by_team_step = {(str(row["team_id"]), int(row["step"])): row for row in states}
+    recorded_mode = all(
+        (source / name).exists()
+        for name in ("observations.jsonl", "actions.jsonl", "feedback.jsonl")
+    )
 
     transitions: list[dict[str, Any]] = []
-    for trace_row in sorted(trace, key=lambda row: int(row["step"])):
-        step = int(trace_row["step"])
-        period = str(trace_row["period"])
-        for team_id, action in sorted((trace_row.get("actions") or {}).items()):
-            before = states_by_team_step.get((team_id, step - 1))
+    if recorded_mode:
+        observations_by_key = {
+            (str(row["agent_id"]), int(row["step"])): row
+            for row in _read_jsonl(source / "observations.jsonl")
+        }
+        feedback_by_key = {
+            (str(row["agent_id"]), int(row["step"])): row
+            for row in _read_jsonl(source / "feedback.jsonl")
+        }
+        action_rows = _read_jsonl(source / "actions.jsonl")
+        for action_row in sorted(action_rows, key=lambda row: (int(row["step"]), str(row["agent_id"]))):
+            step = int(action_row["step"])
+            team_id = str(action_row["agent_id"])
+            period = str(action_row["period"])
+            observation_row = observations_by_key[(team_id, step)]
+            feedback_row = feedback_by_key[(team_id, step)]
             after = states_by_team_step.get((team_id, step))
-            if before is None or after is None:
-                raise ValueError(f"missing simulation state pair for {team_id} step {step}")
+            public_state = dict(observation_row["public_state"])
+            public_state["global_orders_ref"] = _reference(source / "global_orders.jsonl", output)
+            public_state["order_results_ref"] = _reference(source / "order_log.jsonl", output)
             transitions.append(
                 {
                     "dataset_id": source.name,
                     "episode_id": f"{source.name}:{team_id}",
-                    "observation_id": f"{source.name}:{team_id}:{period}:start",
+                    "observation_id": observation_row["observation_id"],
                     "decision_index": step - 1,
                     "period": period,
                     "decision_time": "period_start",
                     "observation": {
                         "agent_id": team_id,
-                        "private_state": {
-                            key: before.get(key)
-                            for key in (
-                                "cash_wan",
-                                "owner_equity_wan",
-                                "debt_wan",
-                                "receivables_wan",
-                                "bankrupt",
-                                "assigned_order_count",
-                                "delivered_order_count",
-                                "defaulted_order_count",
-                                "event_count",
-                            )
-                        },
-                        "public_state": {
-                            "rules_ref": _reference(source / "rules.json", output),
-                            "global_orders_ref": _reference(source / "global_orders.jsonl", output),
-                            "order_visibility_rule": "release_period_index<=decision_index and owner_team_id is empty",
-                        },
-                        "legal_actions": None,
-                        "legal_actions_status": "recompute_with_FullFinancialDynamics_from_full_state",
-                        "visibility_policy": "simulator_private_state_isolation",
+                        "private_state": observation_row["private_state"],
+                        "public_state": public_state,
+                        "legal_actions": observation_row["legal_actions"],
+                        "visibility_policy": public_state.get("information_policy"),
                     },
                     "offline_labels": {
-                        "action_bundle": action,
-                        "reward": (trace_row.get("rewards") or {}).get(team_id),
+                        "action_bundle": action_row["action_bundle"],
+                        "reward": feedback_row.get("reward"),
+                        "environment_feedback": feedback_row,
                         "realized_feedback": after,
                         "terminal_result": labels.get(team_id),
-                        "label_policy": "generated_baseline_policy_not_optimal_action",
+                        "label_policy": "generated_cash_aware_baseline_policy_not_optimal_action",
                     },
                     "excluded_from_observation": [
                         "other_agents_private_states",
+                        "unreleased_global_orders",
                         "future_actions_and_feedback",
                         "terminal_rank_and_score",
                     ],
                     "provenance": "simulated",
                 }
             )
+    else:
+        for trace_row in sorted(trace, key=lambda row: int(row["step"])):
+            step = int(trace_row["step"])
+            period = str(trace_row["period"])
+            for team_id, action in sorted((trace_row.get("actions") or {}).items()):
+                before = states_by_team_step.get((team_id, step - 1))
+                after = states_by_team_step.get((team_id, step))
+                if before is None or after is None:
+                    raise ValueError(f"missing simulation state pair for {team_id} step {step}")
+                transitions.append(
+                    {
+                        "dataset_id": source.name,
+                        "episode_id": f"{source.name}:{team_id}",
+                        "observation_id": f"{source.name}:{team_id}:{period}:start",
+                        "decision_index": step - 1,
+                        "period": period,
+                        "decision_time": "period_start",
+                        "observation": {
+                            "agent_id": team_id,
+                            "private_state": {
+                                key: before.get(key)
+                                for key in (
+                                    "cash_wan",
+                                    "owner_equity_wan",
+                                    "debt_wan",
+                                    "receivables_wan",
+                                    "bankrupt",
+                                    "assigned_order_count",
+                                    "delivered_order_count",
+                                    "defaulted_order_count",
+                                    "event_count",
+                                )
+                            },
+                            "public_state": {
+                                "rules_ref": _reference(source / "rules.json", output),
+                                "global_orders_ref": _reference(source / "global_orders.jsonl", output),
+                                "order_visibility_rule": "release_period_index<=decision_index and owner_team_id is empty",
+                            },
+                            "legal_actions": None,
+                            "legal_actions_status": "recompute_with_FullFinancialDynamics_from_full_state",
+                            "visibility_policy": "simulator_private_state_isolation",
+                        },
+                        "offline_labels": {
+                            "action_bundle": action,
+                            "reward": (trace_row.get("rewards") or {}).get(team_id),
+                            "realized_feedback": after,
+                            "terminal_result": labels.get(team_id),
+                            "label_policy": "generated_baseline_policy_not_optimal_action",
+                        },
+                        "excluded_from_observation": [
+                            "other_agents_private_states",
+                            "future_actions_and_feedback",
+                            "terminal_rank_and_score",
+                        ],
+                        "provenance": "simulated",
+                    }
+                )
 
     manifest = {
         "format_version": AGENT_DATASET_VERSION,
@@ -287,8 +344,9 @@ def build_simulated_xa_view(source: Path, output: Path) -> dict[str, Any]:
         "source_manifest_ref": _reference(source / "manifest.json", output),
         "transitions_file": "transitions.jsonl",
         "training_eligible": bool(source_manifest.get("training_eligible", False)),
+        "observation_completeness": "full_decision_state_without_journal_report_blobs" if recorded_mode else "compact_financial_summary",
         "limitations": [
-            "saved private observations are compact summaries unless the simulation was generated with full trace",
+            "journal and annual report bodies are stored in separate source files and represented by counts",
             "actions come from seeded heuristic policies and are baseline behavior, not optimal labels",
         ],
     }

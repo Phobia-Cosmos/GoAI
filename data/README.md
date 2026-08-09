@@ -12,3 +12,5 @@
 原始比赛资料仍需通过仓库外的 `origin data/` 提供。数据同步到 GitHub 后，使用者仍应检查 `manifest.json`、`provenance` 和规则绑定状态。
 
 当前 Agent 数据整理方式和时间边界见 [`agent_ready/v1/xa/README.md`](agent_ready/v1/xa/README.md)。
+
+固定使用 XA 正式参数、可完整运行 20 个季度的标准模拟比赛见 [`simulations/xa_fixed_v1/`](simulations/xa_fixed_v1/README.md)。其他 `simulations/` 批次可能随机扰动过规则，只用于跨规则压力测试。

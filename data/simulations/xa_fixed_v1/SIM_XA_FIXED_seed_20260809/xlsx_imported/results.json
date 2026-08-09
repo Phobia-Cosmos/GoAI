@@ -1,0 +1,197 @@
+{
+  "match_id": "SIM_XA_FIXED",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_XA_FIXED14",
+      "owner_equity_wan": 415.5499999999998,
+      "development_potential": 18.0,
+      "rounded_score": 490.0
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_XA_FIXED10",
+      "owner_equity_wan": 388.9999999999999,
+      "development_potential": 18.0,
+      "rounded_score": 459.0
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_XA_FIXED24",
+      "owner_equity_wan": 335.9999999999999,
+      "development_potential": 18.0,
+      "rounded_score": 396.0
+    },
+    {
+      "rank": 4,
+      "team_id": "SIM_XA_FIXED21",
+      "owner_equity_wan": 325.0,
+      "development_potential": 18.0,
+      "rounded_score": 384.0
+    },
+    {
+      "rank": 5,
+      "team_id": "SIM_XA_FIXED02",
+      "owner_equity_wan": 317.9999999999999,
+      "development_potential": 18.0,
+      "rounded_score": 375.0
+    },
+    {
+      "rank": 6,
+      "team_id": "SIM_XA_FIXED09",
+      "owner_equity_wan": 310.9999999999999,
+      "development_potential": 18.0,
+      "rounded_score": 367.0
+    },
+    {
+      "rank": 7,
+      "team_id": "SIM_XA_FIXED15",
+      "owner_equity_wan": 305.0,
+      "development_potential": 18.0,
+      "rounded_score": 360.0
+    },
+    {
+      "rank": 8,
+      "team_id": "SIM_XA_FIXED18",
+      "owner_equity_wan": 300.0,
+      "development_potential": 18.0,
+      "rounded_score": 354.0
+    },
+    {
+      "rank": 9,
+      "team_id": "SIM_XA_FIXED25",
+      "owner_equity_wan": 296.0,
+      "development_potential": 18.0,
+      "rounded_score": 349.0
+    },
+    {
+      "rank": 10,
+      "team_id": "SIM_XA_FIXED22",
+      "owner_equity_wan": 285.0,
+      "development_potential": 18.0,
+      "rounded_score": 336.0
+    },
+    {
+      "rank": 11,
+      "team_id": "SIM_XA_FIXED06",
+      "owner_equity_wan": 275.0,
+      "development_potential": 18.0,
+      "rounded_score": 325.0
+    },
+    {
+      "rank": 12,
+      "team_id": "SIM_XA_FIXED12",
+      "owner_equity_wan": 273.0,
+      "development_potential": 18.0,
+      "rounded_score": 322.0
+    },
+    {
+      "rank": 13,
+      "team_id": "SIM_XA_FIXED20",
+      "owner_equity_wan": 269.0,
+      "development_potential": 18.0,
+      "rounded_score": 317.0
+    },
+    {
+      "rank": 14,
+      "team_id": "SIM_XA_FIXED11",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "rounded_score": 314.0
+    },
+    {
+      "rank": 15,
+      "team_id": "SIM_XA_FIXED17",
+      "owner_equity_wan": 264.0,
+      "development_potential": 18.0,
+      "rounded_score": 312.0
+    },
+    {
+      "rank": 16,
+      "team_id": "SIM_XA_FIXED08",
+      "owner_equity_wan": 257.0,
+      "development_potential": 18.0,
+      "rounded_score": 303.0
+    },
+    {
+      "rank": 17,
+      "team_id": "SIM_XA_FIXED19",
+      "owner_equity_wan": 256.9999999999999,
+      "development_potential": 18.0,
+      "rounded_score": 303.0
+    },
+    {
+      "rank": 18,
+      "team_id": "SIM_XA_FIXED16",
+      "owner_equity_wan": 253.0,
+      "development_potential": 18.0,
+      "rounded_score": 299.0
+    },
+    {
+      "rank": 19,
+      "team_id": "SIM_XA_FIXED26",
+      "owner_equity_wan": 253.0,
+      "development_potential": 18.0,
+      "rounded_score": 299.0
+    },
+    {
+      "rank": 20,
+      "team_id": "SIM_XA_FIXED23",
+      "owner_equity_wan": 245.0,
+      "development_potential": 18.0,
+      "rounded_score": 289.0
+    },
+    {
+      "rank": 21,
+      "team_id": "SIM_XA_FIXED03",
+      "owner_equity_wan": 242.0,
+      "development_potential": 18.0,
+      "rounded_score": 286.0
+    },
+    {
+      "rank": 22,
+      "team_id": "SIM_XA_FIXED07",
+      "owner_equity_wan": 242.0,
+      "development_potential": 18.0,
+      "rounded_score": 286.0
+    },
+    {
+      "rank": 23,
+      "team_id": "SIM_XA_FIXED27",
+      "owner_equity_wan": 241.0,
+      "development_potential": 18.0,
+      "rounded_score": 284.0
+    },
+    {
+      "rank": 24,
+      "team_id": "SIM_XA_FIXED04",
+      "owner_equity_wan": 237.0,
+      "development_potential": 18.0,
+      "rounded_score": 280.0
+    },
+    {
+      "rank": 25,
+      "team_id": "SIM_XA_FIXED05",
+      "owner_equity_wan": 236.0,
+      "development_potential": 18.0,
+      "rounded_score": 278.0
+    },
+    {
+      "rank": 26,
+      "team_id": "SIM_XA_FIXED13",
+      "owner_equity_wan": 235.0,
+      "development_potential": 18.0,
+      "rounded_score": 277.0
+    },
+    {
+      "rank": 27,
+      "team_id": "SIM_XA_FIXED01",
+      "owner_equity_wan": 225.0,
+      "development_potential": 18.0,
+      "rounded_score": 266.0
+    }
+  ],
+  "bankruptcies": [],
+  "provenance": "simulated",
+  "source_path": "SIM_XA_FIXED最终排名和破产信息.xlsx"
+}

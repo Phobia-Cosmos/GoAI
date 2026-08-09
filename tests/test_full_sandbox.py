@@ -108,6 +108,8 @@ def test_multi_team_environment_runs_twenty_quarters_with_balanced_accounts() ->
     arena = FullCompetitionArena(engine, generated["participants"]["team_ids"], orders)
     policies = {team_id: SeededHeuristicPolicy(team_id, 41) for team_id in arena.agent_ids}
     observations = arena.reset()
+    assert all("available_orders" not in observation.private_state for observation in observations.values())
+    assert all("available_orders" in observation.public_state for observation in observations.values())
     steps = 0
     while not arena.terminated:
         result = arena.step({team_id: policies[team_id].act(observations[team_id]) for team_id in arena.agent_ids})
