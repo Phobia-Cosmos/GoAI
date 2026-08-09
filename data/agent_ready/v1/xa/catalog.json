@@ -1,0 +1,99 @@
+{
+  "baseline": "XA",
+  "format_version": "goai_agent_dataset_v1.0",
+  "information_boundary": {
+    "available_after_each_action": [
+      "platform_feedback",
+      "updated_own_state",
+      "newly_released_public_information"
+    ],
+    "available_at_connection": [
+      "XA_rules",
+      "current_own_state",
+      "own_operation_history_to_cutoff",
+      "released_public_information"
+    ],
+    "never_assumed_available": [
+      "opponent_private_operations",
+      "opponent_private_state",
+      "future_information",
+      "terminal_result"
+    ]
+  },
+  "metric_policy": {
+    "optional_plugins": [
+      "VPD",
+      "PSS",
+      "EPSS",
+      "capacity_utilization",
+      "strategy_stability"
+    ],
+    "required": [
+      "hard_constraint_feasibility",
+      "cash_safety",
+      "solvency",
+      "competition_terminal_score"
+    ],
+    "vpd_required": false
+  },
+  "objective": "late-joining partially observable rolling decision support",
+  "real": {
+    "baseline": "XA",
+    "dataset_id": "xa_real_v1",
+    "dataset_kind": "real_historical",
+    "decision_horizon": 20,
+    "format_version": "goai_agent_dataset_v1.0",
+    "limitations": [
+      "period-start private state is cash-complete but not a complete historical balance-sheet snapshot",
+      "annual public rows need semantic parsing and explicit release-time confirmation",
+      "legal actions require a complete runtime state supplied when the agent connects"
+    ],
+    "manifest": "real/manifest.json",
+    "provenance": [
+      "observed",
+      "derived"
+    ],
+    "source_manifest_ref": "../../../../processed/v2/matches/LX_XA/manifest.json",
+    "source_match_id": "LX_XA",
+    "team_count": 27,
+    "training_policy": {
+      "allowed": [
+        "trajectory_analysis",
+        "behavior_cloning_candidate_generation",
+        "offline_evaluation"
+      ],
+      "forbidden": [
+        "treating_each_historical_action_as_optimal",
+        "using_offline_labels_in_observation",
+        "opponent_private_state_leakage"
+      ]
+    },
+    "transition_count": 540,
+    "transitions_file": "transitions.jsonl"
+  },
+  "simulated": [
+    {
+      "baseline": "XA",
+      "dataset_id": "SIM_LX_XA_seed_20270808",
+      "dataset_kind": "simulated",
+      "decision_horizon": 20,
+      "format_version": "goai_agent_dataset_v1.0",
+      "generation_seed": 20270808,
+      "limitations": [
+        "saved private observations are compact summaries unless the simulation was generated with full trace",
+        "actions come from seeded heuristic policies and are baseline behavior, not optimal labels"
+      ],
+      "manifest": "simulated/SIM_LX_XA_seed_20270808/manifest.json",
+      "provenance": [
+        "simulated"
+      ],
+      "simulated_match_id": "SIM_LX_XA",
+      "source_manifest_ref": "../../../../../simulations/large_20260808/SIM_LX_XA_seed_20270808/manifest.json",
+      "source_match_id": "LX_XA",
+      "team_count": 27,
+      "training_eligible": false,
+      "transition_count": 540,
+      "transitions_file": "transitions.jsonl"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "baseline": "XA",
+  "dataset_id": "xa_real_v1",
+  "dataset_kind": "real_historical",
+  "decision_horizon": 20,
+  "format_version": "goai_agent_dataset_v1.0",
+  "limitations": [
+    "period-start private state is cash-complete but not a complete historical balance-sheet snapshot",
+    "annual public rows need semantic parsing and explicit release-time confirmation",
+    "legal actions require a complete runtime state supplied when the agent connects"
+  ],
+  "provenance": [
+    "observed",
+    "derived"
+  ],
+  "source_manifest_ref": "../../../../processed/v2/matches/LX_XA/manifest.json",
+  "source_match_id": "LX_XA",
+  "team_count": 27,
+  "training_policy": {
+    "allowed": [
+      "trajectory_analysis",
+      "behavior_cloning_candidate_generation",
+      "offline_evaluation"
+    ],
+    "forbidden": [
+      "treating_each_historical_action_as_optimal",
+      "using_offline_labels_in_observation",
+      "opponent_private_state_leakage"
+    ]
+  },
+  "transition_count": 540,
+  "transitions_file": "transitions.jsonl"
+}
