@@ -80,12 +80,12 @@ def test_order_default_penalty_is_an_executable_transition() -> None:
     before_equity = state.owner_equity_wan
     state = engine.advance_quarter(state).state
     assert state.defaulted_orders[0]["order_id"] == "LATE"
-    expected = generated["parameters"]["management_fee_per_quarter_wan"] + 100 * generated["parameters"]["default_penalty_rate"]
+    expected = generated["parameters"]["management_fee_per_quarter_wan"] + round(100 * generated["parameters"]["default_penalty_rate"])
     assert round(before_equity - state.owner_equity_wan, 6) == round(expected, 6)
     assert_balanced(state)
 
 
-def test_long_loan_interest_principal_depreciation_and_tax_close_at_year_end() -> None:
+def test_long_loan_interest_and_principal_settle_at_next_year_start_without_factory_depreciation() -> None:
     generated = rules(36, 1)
     engine = FullFinancialDynamics(generated)
     state = engine.initial_state("TEST01")
@@ -95,9 +95,10 @@ def test_long_loan_interest_principal_depreciation_and_tax_close_at_year_end() -
     for _ in range(4):
         state = engine.advance_quarter(state).state
     assert not state.long_loans
-    assert state.factories[0]["book_value_wan"] < initial_book
+    assert state.factories[0]["book_value_wan"] == initial_book
     assert len(state.reports) == 1
-    assert state.reports[0]["income_statement"]["details"]["interest_expense"] < 0
+    assert "interest_expense" not in state.reports[0]["income_statement"]["details"]
+    assert state.annual_income["interest_expense"] < 0
     assert_balanced(state)
 
 

@@ -1,0 +1,2341 @@
+{
+  "depreciation_reconstruction": {
+    "all_checks": [
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA01",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA01",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 148.0,
+        "passed": true,
+        "predicted_wan": 148.0,
+        "team_id": "XA01",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 148.0,
+        "passed": true,
+        "predicted_wan": 148.0,
+        "team_id": "XA01",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 148.0,
+        "passed": true,
+        "predicted_wan": 148.0,
+        "team_id": "XA01",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA02",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA02",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 122.0,
+        "passed": true,
+        "predicted_wan": 122.0,
+        "team_id": "XA02",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 122.0,
+        "passed": true,
+        "predicted_wan": 122.0,
+        "team_id": "XA02",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 122.0,
+        "passed": true,
+        "predicted_wan": 122.0,
+        "team_id": "XA02",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA03",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 84.0,
+        "passed": true,
+        "predicted_wan": 84.0,
+        "team_id": "XA03",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 84.0,
+        "passed": true,
+        "predicted_wan": 84.0,
+        "team_id": "XA03",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 104.0,
+        "passed": true,
+        "predicted_wan": 104.0,
+        "team_id": "XA03",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 104.0,
+        "passed": true,
+        "predicted_wan": 104.0,
+        "team_id": "XA03",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA04",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 116.0,
+        "passed": true,
+        "predicted_wan": 116.0,
+        "team_id": "XA04",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 116.0,
+        "passed": true,
+        "predicted_wan": 116.0,
+        "team_id": "XA04",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 116.0,
+        "passed": true,
+        "predicted_wan": 116.0,
+        "team_id": "XA04",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA05",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA05",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 100.0,
+        "passed": true,
+        "predicted_wan": 100.0,
+        "team_id": "XA05",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA06",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA06",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 104.0,
+        "passed": true,
+        "predicted_wan": 104.0,
+        "team_id": "XA06",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 104.0,
+        "passed": true,
+        "predicted_wan": 104.0,
+        "team_id": "XA06",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 132.0,
+        "passed": true,
+        "predicted_wan": 132.0,
+        "team_id": "XA06",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA07",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 140.0,
+        "passed": true,
+        "predicted_wan": 140.0,
+        "team_id": "XA07",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 168.0,
+        "passed": true,
+        "predicted_wan": 168.0,
+        "team_id": "XA07",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 282.0,
+        "passed": true,
+        "predicted_wan": 282.0,
+        "team_id": "XA07",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 282.0,
+        "passed": true,
+        "predicted_wan": 282.0,
+        "team_id": "XA07",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA08",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 112.0,
+        "passed": true,
+        "predicted_wan": 112.0,
+        "team_id": "XA08",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 112.0,
+        "passed": true,
+        "predicted_wan": 112.0,
+        "team_id": "XA08",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 112.0,
+        "passed": true,
+        "predicted_wan": 112.0,
+        "team_id": "XA08",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 112.0,
+        "passed": true,
+        "predicted_wan": 112.0,
+        "team_id": "XA08",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA09",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA09",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA10",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA10",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 122.0,
+        "passed": true,
+        "predicted_wan": 122.0,
+        "team_id": "XA10",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 122.0,
+        "passed": true,
+        "predicted_wan": 122.0,
+        "team_id": "XA10",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 122.0,
+        "passed": true,
+        "predicted_wan": 122.0,
+        "team_id": "XA10",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA11",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA11",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 140.0,
+        "passed": true,
+        "predicted_wan": 140.0,
+        "team_id": "XA11",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 140.0,
+        "passed": true,
+        "predicted_wan": 140.0,
+        "team_id": "XA11",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 140.0,
+        "passed": true,
+        "predicted_wan": 140.0,
+        "team_id": "XA11",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA12",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA12",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 180.0,
+        "passed": true,
+        "predicted_wan": 180.0,
+        "team_id": "XA12",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 180.0,
+        "passed": true,
+        "predicted_wan": 180.0,
+        "team_id": "XA12",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 180.0,
+        "passed": true,
+        "predicted_wan": 180.0,
+        "team_id": "XA12",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA13",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA13",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 140.0,
+        "passed": true,
+        "predicted_wan": 140.0,
+        "team_id": "XA13",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 168.0,
+        "passed": true,
+        "predicted_wan": 168.0,
+        "team_id": "XA13",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 168.0,
+        "passed": true,
+        "predicted_wan": 168.0,
+        "team_id": "XA13",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA14",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA14",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 84.0,
+        "passed": true,
+        "predicted_wan": 84.0,
+        "team_id": "XA14",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA15",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA15",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 120.0,
+        "passed": true,
+        "predicted_wan": 120.0,
+        "team_id": "XA15",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 176.0,
+        "passed": true,
+        "predicted_wan": 176.0,
+        "team_id": "XA15",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 206.0,
+        "passed": true,
+        "predicted_wan": 206.0,
+        "team_id": "XA15",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA16",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 40.0,
+        "passed": true,
+        "predicted_wan": 40.0,
+        "team_id": "XA16",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA17",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA17",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 112.0,
+        "passed": true,
+        "predicted_wan": 112.0,
+        "team_id": "XA17",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA18",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 56.0,
+        "passed": true,
+        "predicted_wan": 56.0,
+        "team_id": "XA18",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 96.0,
+        "passed": true,
+        "predicted_wan": 96.0,
+        "team_id": "XA18",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 126.0,
+        "passed": true,
+        "predicted_wan": 126.0,
+        "team_id": "XA18",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 126.0,
+        "passed": true,
+        "predicted_wan": 126.0,
+        "team_id": "XA18",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA19",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 56.0,
+        "passed": true,
+        "predicted_wan": 56.0,
+        "team_id": "XA19",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 128.0,
+        "passed": true,
+        "predicted_wan": 128.0,
+        "team_id": "XA19",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 156.0,
+        "passed": true,
+        "predicted_wan": 156.0,
+        "team_id": "XA19",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 156.0,
+        "passed": true,
+        "predicted_wan": 156.0,
+        "team_id": "XA19",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA20",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA20",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 96.0,
+        "passed": true,
+        "predicted_wan": 96.0,
+        "team_id": "XA20",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA21",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 40.0,
+        "passed": false,
+        "predicted_wan": 20.0,
+        "team_id": "XA21",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 112.0,
+        "passed": false,
+        "predicted_wan": 92.0,
+        "team_id": "XA21",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 92.0,
+        "passed": true,
+        "predicted_wan": 92.0,
+        "team_id": "XA21",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 72.0,
+        "passed": true,
+        "predicted_wan": 72.0,
+        "team_id": "XA21",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA22",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 84.0,
+        "passed": true,
+        "predicted_wan": 84.0,
+        "team_id": "XA22",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 156.0,
+        "passed": true,
+        "predicted_wan": 156.0,
+        "team_id": "XA22",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 156.0,
+        "passed": true,
+        "predicted_wan": 156.0,
+        "team_id": "XA22",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 166.0,
+        "passed": true,
+        "predicted_wan": 166.0,
+        "team_id": "XA22",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA23",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 60.0,
+        "passed": false,
+        "predicted_wan": 0.0,
+        "team_id": "XA23",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 60.0,
+        "passed": false,
+        "predicted_wan": 0.0,
+        "team_id": "XA23",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA23",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA24",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA24",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 120.0,
+        "passed": true,
+        "predicted_wan": 120.0,
+        "team_id": "XA24",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 120.0,
+        "passed": true,
+        "predicted_wan": 120.0,
+        "team_id": "XA24",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA25",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA25",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 108.0,
+        "passed": true,
+        "predicted_wan": 108.0,
+        "team_id": "XA25",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 108.0,
+        "passed": true,
+        "predicted_wan": 108.0,
+        "team_id": "XA25",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 108.0,
+        "passed": true,
+        "predicted_wan": 108.0,
+        "team_id": "XA25",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA26",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 56.0,
+        "passed": false,
+        "predicted_wan": 0.0,
+        "team_id": "XA26",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 66.0,
+        "passed": false,
+        "predicted_wan": 0.0,
+        "team_id": "XA26",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 86.0,
+        "passed": false,
+        "predicted_wan": 0.0,
+        "team_id": "XA26",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": true,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA26",
+        "year": 5
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 0.0,
+        "passed": true,
+        "predicted_wan": 0.0,
+        "team_id": "XA27",
+        "year": 1
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 30.0,
+        "passed": true,
+        "predicted_wan": 30.0,
+        "team_id": "XA27",
+        "year": 2
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 114.0,
+        "passed": true,
+        "predicted_wan": 114.0,
+        "team_id": "XA27",
+        "year": 3
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 114.0,
+        "passed": true,
+        "predicted_wan": 114.0,
+        "team_id": "XA27",
+        "year": 4
+      },
+      {
+        "known_sold_line_history_gap": false,
+        "observed_wan": 84.0,
+        "passed": true,
+        "predicted_wan": 84.0,
+        "team_id": "XA27",
+        "year": 5
+      }
+    ],
+    "excluded_sold_line_team_count": 4,
+    "matched": 102,
+    "passed_on_identifiable_histories": true,
+    "total": 102
+  },
+  "development_timing": {
+    "formal_payment_timing": "year_end",
+    "iso_event_quarters": {
+      "4": 58
+    },
+    "market_event_quarters": {
+      "4": 74
+    }
+  },
+  "initial_state": {
+    "matched_teams": 27,
+    "mismatches": [],
+    "passed": true,
+    "recommended_simulator_initial_state": {
+      "cash_wan": 675,
+      "factories": [],
+      "iso": [],
+      "long_loans": [],
+      "markets": [],
+      "owner_equity_wan": 675,
+      "production_lines": [],
+      "products": [],
+      "receivables": [],
+      "short_loans": []
+    },
+    "total_teams": 27
+  },
+  "loan_reconstruction": {
+    "long_loan": {
+      "matched": 53,
+      "passed": true,
+      "rounding": "aggregate_interest_half_up",
+      "total": 53
+    },
+    "short_loan": {
+      "matched": 253,
+      "passed": true,
+      "total": 253
+    }
+  },
+  "match_id": "LX_XA",
+  "production_batch_reconstruction": {
+    "interpretation": "each recorded line assignment incurs exactly one product process fee; combined with formal batch_capacity=1",
+    "matched": 369,
+    "passed": true,
+    "total": 369
+  },
+  "reconstructed_counts": {
+    "asset_actions": 281,
+    "delivered_order_actions": 544,
+    "loan_settlements": 306,
+    "observed_cash_actions": 3787,
+    "qualification_actions": 236,
+    "quarter_states": 540,
+    "team_order_histories": 561
+  },
+  "remaining_non_identifiable": [
+    "failed_order_claims_and_complete_auction_bids",
+    "quarterly_non_cash_inventory_between_annual_checkpoints",
+    "sold_line_instance_history_for_four_teams",
+    "exact_bankruptcy_equity_inside_the_failure_quarter"
+  ],
+  "simulator_changes_supported": [
+    "empty_initial_qualifications_and_assets",
+    "annual_market_and_iso_payments",
+    "formal_line_installments_residual_and_depreciation",
+    "no_factory_depreciation",
+    "aggregate_half_up_long_loan_interest",
+    "short_loan_half_up_maturity_payment",
+    "tax_loss_carryforward_and_next_q1_payment",
+    "one_unit_per_line_production_batch"
+  ],
+  "status": "calibrated_intermediate_reconstruction",
+  "tax_reconstruction": {
+    "all_checks": [
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 259.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -259.0,
+        "team_id": "XA01",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 224.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 35.0,
+        "team_id": "XA01",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 318.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -94.0,
+        "team_id": "XA01",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 299.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 19.0,
+        "team_id": "XA01",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 157.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 142.0,
+        "team_id": "XA01",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 259.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -259.0,
+        "team_id": "XA02",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 249.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 10.0,
+        "team_id": "XA02",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 296.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -47.0,
+        "team_id": "XA02",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 287.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 9.0,
+        "team_id": "XA02",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 73.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 214.0,
+        "team_id": "XA02",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 227.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -227.0,
+        "team_id": "XA03",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 215.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 12.0,
+        "team_id": "XA03",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 384.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -169.0,
+        "team_id": "XA03",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 192.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 192.0,
+        "team_id": "XA03",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 132.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 60.0,
+        "team_id": "XA03",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 320.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -320.0,
+        "team_id": "XA04",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 514.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -194.0,
+        "team_id": "XA04",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 627.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -113.0,
+        "team_id": "XA04",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 687.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -60.0,
+        "team_id": "XA04",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 208.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -208.0,
+        "team_id": "XA05",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 398.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -190.0,
+        "team_id": "XA05",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 679.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -281.0,
+        "team_id": "XA05",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 194.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -194.0,
+        "team_id": "XA06",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 126.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 68.0,
+        "team_id": "XA06",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 171.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -45.0,
+        "team_id": "XA06",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 46.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 125.0,
+        "team_id": "XA06",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 56.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 56.0,
+        "pretax_profit_wan": 268.0,
+        "team_id": "XA06",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 265.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -265.0,
+        "team_id": "XA07",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": 13.0,
+        "observed_tax_wan": 13.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 13.0,
+        "pretax_profit_wan": 315.0,
+        "team_id": "XA07",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 116.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -116.0,
+        "team_id": "XA07",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": 7.0,
+        "observed_tax_wan": 7.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 7.0,
+        "pretax_profit_wan": 142.0,
+        "team_id": "XA07",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 106.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 106.0,
+        "pretax_profit_wan": 425.0,
+        "team_id": "XA07",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 222.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -222.0,
+        "team_id": "XA08",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 189.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 33.0,
+        "team_id": "XA08",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 271.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -82.0,
+        "team_id": "XA08",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 23.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 248.0,
+        "team_id": "XA08",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 76.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 76.0,
+        "pretax_profit_wan": 327.0,
+        "team_id": "XA08",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 229.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -229.0,
+        "team_id": "XA09",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 369.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -140.0,
+        "team_id": "XA09",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 226.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -226.0,
+        "team_id": "XA10",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 237.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -11.0,
+        "team_id": "XA10",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 332.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -95.0,
+        "team_id": "XA10",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 91.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 241.0,
+        "team_id": "XA10",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 39.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 39.0,
+        "pretax_profit_wan": 246.0,
+        "team_id": "XA10",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 145.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -145.0,
+        "team_id": "XA11",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 154.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -9.0,
+        "team_id": "XA11",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 480.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -326.0,
+        "team_id": "XA11",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 540.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -60.0,
+        "team_id": "XA11",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 560.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -20.0,
+        "team_id": "XA11",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 159.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -159.0,
+        "team_id": "XA12",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 151.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 8.0,
+        "team_id": "XA12",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 307.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -156.0,
+        "team_id": "XA12",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 417.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -110.0,
+        "team_id": "XA12",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 128.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 289.0,
+        "team_id": "XA12",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 178.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -178.0,
+        "team_id": "XA13",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 61.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 117.0,
+        "team_id": "XA13",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": 30.0,
+        "observed_tax_wan": 30.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 30.0,
+        "pretax_profit_wan": 181.0,
+        "team_id": "XA13",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 159.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -159.0,
+        "team_id": "XA13",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 32.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 32.0,
+        "pretax_profit_wan": 285.0,
+        "team_id": "XA13",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 209.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -209.0,
+        "team_id": "XA14",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 251.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -42.0,
+        "team_id": "XA14",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 455.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -204.0,
+        "team_id": "XA14",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 145.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -145.0,
+        "team_id": "XA15",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 143.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 2.0,
+        "team_id": "XA15",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 209.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -66.0,
+        "team_id": "XA15",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 232.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -23.0,
+        "team_id": "XA15",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 2.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 2.0,
+        "pretax_profit_wan": 238.0,
+        "team_id": "XA15",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 270.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -270.0,
+        "team_id": "XA16",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 589.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -319.0,
+        "team_id": "XA16",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 229.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -229.0,
+        "team_id": "XA17",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 374.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -145.0,
+        "team_id": "XA17",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 541.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -167.0,
+        "team_id": "XA17",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 267.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -267.0,
+        "team_id": "XA18",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 216.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 51.0,
+        "team_id": "XA18",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 362.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -146.0,
+        "team_id": "XA18",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 342.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 20.0,
+        "team_id": "XA18",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 221.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 121.0,
+        "team_id": "XA18",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 299.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -299.0,
+        "team_id": "XA19",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 357.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -58.0,
+        "team_id": "XA19",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 393.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -36.0,
+        "team_id": "XA19",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 284.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 109.0,
+        "team_id": "XA19",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 15.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 15.0,
+        "pretax_profit_wan": 344.0,
+        "team_id": "XA19",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 175.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -175.0,
+        "team_id": "XA20",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 305.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -130.0,
+        "team_id": "XA20",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 523.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -218.0,
+        "team_id": "XA20",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 337.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -337.0,
+        "team_id": "XA21",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 384.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -47.0,
+        "team_id": "XA21",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 531.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -147.0,
+        "team_id": "XA21",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 513.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 18.0,
+        "team_id": "XA21",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 484.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 29.0,
+        "team_id": "XA21",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 208.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -208.0,
+        "team_id": "XA22",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 275.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -67.0,
+        "team_id": "XA22",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 241.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 34.0,
+        "team_id": "XA22",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 122.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 119.0,
+        "team_id": "XA22",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 0.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 48.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 48.0,
+        "pretax_profit_wan": 315.0,
+        "team_id": "XA22",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 282.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -282.0,
+        "team_id": "XA23",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 520.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -238.0,
+        "team_id": "XA23",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 633.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -113.0,
+        "team_id": "XA23",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 642.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -9.0,
+        "team_id": "XA23",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 240.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -240.0,
+        "team_id": "XA24",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 339.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -99.0,
+        "team_id": "XA24",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 594.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -255.0,
+        "team_id": "XA24",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 712.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -118.0,
+        "team_id": "XA24",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 178.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -178.0,
+        "team_id": "XA25",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 284.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -106.0,
+        "team_id": "XA25",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 440.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -156.0,
+        "team_id": "XA25",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 282.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 158.0,
+        "team_id": "XA25",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 186.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 96.0,
+        "team_id": "XA25",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 265.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -265.0,
+        "team_id": "XA26",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 321.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -56.0,
+        "team_id": "XA26",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 539.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -218.0,
+        "team_id": "XA26",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 633.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -94.0,
+        "team_id": "XA26",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 628.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 5.0,
+        "team_id": "XA26",
+        "year": 5
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 223.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -223.0,
+        "team_id": "XA27",
+        "year": 1
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 427.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -204.0,
+        "team_id": "XA27",
+        "year": 2
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 403.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 24.0,
+        "team_id": "XA27",
+        "year": 3
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 439.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": -36.0,
+        "team_id": "XA27",
+        "year": 4
+      },
+      {
+        "calculation_passed": true,
+        "loss_carryforward_after_wan": 328.0,
+        "next_year_q1_payment_wan": null,
+        "observed_tax_wan": 0.0,
+        "payment_passed": true,
+        "predicted_tax_wan": 0.0,
+        "pretax_profit_wan": 111.0,
+        "team_id": "XA27",
+        "year": 5
+      }
+    ],
+    "calculation_matched": 118,
+    "calculation_passed": true,
+    "calculation_total": 118,
+    "next_year_q1_payment_passed": true,
+    "observed_nonzero_next_year_payments": 3
+  },
+  "terminal_outcome_replay": {
+    "causal_dynamics_replay": false,
+    "exact_outcome_match": true,
+    "source": "traditional_final_results.json"
+  },
+  "truth_policy": "inferred states remain inferred; counterfactual branches cannot consume future checkpoints",
+  "version": "xa_inverse_reconstruction_v1.0"
+}

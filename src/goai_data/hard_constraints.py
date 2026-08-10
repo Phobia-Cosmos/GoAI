@@ -8,7 +8,7 @@ from typing import Any
 from .global_rules import development_potential, rank_final_states
 
 
-HARD_CONSTRAINTS_VERSION = "hard_constraints_v0.2"
+HARD_CONSTRAINTS_VERSION = "hard_constraints_v0.3_xa_inverse"
 
 
 def _jsonl(path: Path) -> list[dict[str, Any]]:
@@ -237,6 +237,24 @@ def validate_match(match_dir: Path) -> ConstraintReport:
             report.fail("xa_exact_terminal_cash", "XA 季度现金回放终值与终局状态不一致", team_ids=cash_mismatches)
         else:
             report.pass_check("xa_exact_terminal_cash", team_count=len(final_states))
+        inverse_path = match_dir / "inverse_calibration_report.json"
+        if inverse_path.exists():
+            inverse = json.loads(inverse_path.read_text(encoding="utf-8"))
+            inverse_checks = {
+                "initial_state": bool((inverse.get("initial_state") or {}).get("passed")),
+                "short_loan": bool(((inverse.get("loan_reconstruction") or {}).get("short_loan") or {}).get("passed")),
+                "long_loan": bool(((inverse.get("loan_reconstruction") or {}).get("long_loan") or {}).get("passed")),
+                "depreciation": bool((inverse.get("depreciation_reconstruction") or {}).get("passed_on_identifiable_histories")),
+                "tax_calculation": bool((inverse.get("tax_reconstruction") or {}).get("calculation_passed")),
+                "tax_payment": bool((inverse.get("tax_reconstruction") or {}).get("next_year_q1_payment_passed")),
+                "production_batch": bool((inverse.get("production_batch_reconstruction") or {}).get("passed")),
+                "terminal_outcome": bool((inverse.get("terminal_outcome_replay") or {}).get("exact_outcome_match")),
+            }
+            failed_inverse = [name for name, passed in inverse_checks.items() if not passed]
+            if failed_inverse:
+                report.fail("xa_inverse_calibration", "XA 中途状态反推验收未全部通过", failed_checks=failed_inverse)
+            else:
+                report.pass_check("xa_inverse_calibration", checks=inverse_checks, quarter_state_count=(inverse.get("reconstructed_counts") or {}).get("quarter_states"))
 
     _check_reports(reports, report)
     quality = json.loads((match_dir / "quality.json").read_text(encoding="utf-8"))

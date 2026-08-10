@@ -6,6 +6,7 @@ import argparse
 import json
 from datetime import datetime
 from pathlib import Path
+from statistics import mean
 from typing import Any
 
 from goai_data.competition_xlsx import SimulatedCompetitionXlsxImporter, export_competition_xlsx
@@ -21,6 +22,64 @@ from goai_data.recorded_match import RECORDED_MATCH_VERSION, run_recorded_compet
 
 DEFAULT_RULES = Path("data/processed/v2/matches/LX_XA/rules.json")
 DEFAULT_OUTPUT_ROOT = Path("data/simulations/xa_fixed_v1")
+
+
+def _read_jsonl(path: Path) -> list[dict[str, Any]]:
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+
+def _mean(rows: list[dict[str, Any]], field: str) -> float:
+    values = [float(row[field]) for row in rows if isinstance(row.get(field), (int, float))]
+    return mean(values) if values else 0.0
+
+
+def _real_xa_comparison(base_path: Path, *, arena: Any) -> dict[str, Any] | None:
+    match_dir = base_path.parent
+    required = (match_dir / "results.json", match_dir / "global_orders.jsonl")
+    if not all(path.exists() for path in required):
+        return None
+    real_results = json.loads(required[0].read_text(encoding="utf-8"))
+    real_orders = _read_jsonl(required[1])
+    real_survivors = list(real_results.get("ranking") or [])
+    simulated_results = arena.final_results()
+    simulated_survivors = list(simulated_results.get("ranking") or [])
+    simulated_events = [event for state in arena.states.values() for event in state.journal]
+    team_count = len(arena.states)
+    return {
+        "format_version": "goai_real_simulated_XA_comparison_v1.0",
+        "comparison_scope": "real XA observed outcome versus calibrated simulator with baseline policies and a new random order seed",
+        "not_a_policy_equivalence_test": True,
+        "real_XA": {
+            "teams": 27,
+            "bankruptcies": len(real_results.get("bankruptcies") or []),
+            "survivors": len(real_survivors),
+            "orders": len(real_orders),
+            "delivered_orders": sum(str(row.get("status")) == "已交" for row in real_orders),
+            "unassigned_orders": sum(row.get("owner_team_id") in {None, ""} for row in real_orders),
+            "survivor_mean_equity_wan": _mean(real_survivors, "owner_equity_wan"),
+            "survivor_mean_development_potential": _mean(real_survivors, "development_potential"),
+            "survivor_mean_score": _mean(real_survivors, "official_score"),
+            "all_team_mean_score_with_bankrupt_as_zero": sum(float(row.get("official_score", 0)) for row in real_survivors) / 27,
+        },
+        "simulated": {
+            "teams": team_count,
+            "bankruptcies": len(simulated_results.get("bankruptcies") or []),
+            "survivors": len(simulated_survivors),
+            "orders": len(arena.global_orders),
+            "awarded_orders": len(arena.order_log),
+            "delivered_orders": sum(event.get("event_type") == "order_delivered" for event in simulated_events),
+            "defaulted_orders": sum(event.get("event_type") == "order_default_penalty" for event in simulated_events),
+            "survivor_mean_equity_wan": _mean(simulated_survivors, "owner_equity_wan"),
+            "survivor_mean_development_potential": _mean(simulated_survivors, "development_potential"),
+            "survivor_mean_score": _mean(simulated_survivors, "score"),
+            "all_team_mean_score_with_bankrupt_as_zero": sum(float(row.get("score", 0)) for row in simulated_survivors) / team_count,
+        },
+        "interpretation": [
+            "the simulator now uses XA-calibrated settlement semantics, but the random orders and baseline decisions are not the historical XA decisions",
+            "a final-score gap therefore measures policy and scenario mismatch as well as remaining dynamics mismatch",
+            "exact historical outcome replay remains a separate observed-data acceptance test",
+        ],
+    }
 
 
 def _validation(
@@ -183,9 +242,14 @@ def main() -> int:
         "provenance": "simulated",
     }
     (output_dir / "run_summary.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    comparison = _real_xa_comparison(base_path, arena=arena)
+    if comparison is not None:
+        (output_dir / "real_XA_comparison.json").write_text(json.dumps(comparison, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     manifest_path = output_dir / "manifest.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     manifest["files"].extend(["validation.json", "run_summary.json"])
+    if comparison is not None:
+        manifest["files"].append("real_XA_comparison.json")
     if xlsx_manifest is not None:
         manifest["files"].extend(["competition_xlsx/manifest.json", "xlsx_imported/manifest.json"])
     manifest["xlsx_round_trip_imported"] = imported_manifest is not None

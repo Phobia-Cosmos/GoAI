@@ -80,6 +80,21 @@
       "passed": true,
       "violations": []
     },
+    "xa_inverse_calibration": {
+      "checks": {
+        "depreciation": true,
+        "initial_state": true,
+        "long_loan": true,
+        "production_batch": true,
+        "short_loan": true,
+        "tax_calculation": true,
+        "tax_payment": true,
+        "terminal_outcome": true
+      },
+      "passed": true,
+      "quarter_state_count": 540,
+      "violations": []
+    },
     "xa_official_scores": {
       "passed": true,
       "ranked_team_count": 18,
@@ -95,6 +110,6 @@
   },
   "match_id": "LX_XA",
   "passed": true,
-  "version": "hard_constraints_v0.2",
+  "version": "hard_constraints_v0.3_xa_inverse",
   "violations": []
 }

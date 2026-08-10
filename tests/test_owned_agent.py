@@ -31,6 +31,8 @@ def test_owned_policy_uses_one_enterprise_observation_and_records_robust_search(
     owned_id = generated["participants"]["team_ids"][0]
     initial_states = {
         owned_id: {
+            "markets": ["本地"],
+            "products": ["P1"],
             "production_lines": [
                 {
                     "line_id": "READY-P1",
@@ -121,7 +123,8 @@ def test_public_order_results_hide_referee_contention_trace() -> None:
         order_count=1,
         preassigned_count=0,
     )
-    arena = FullCompetitionArena(FullFinancialDynamics(generated), generated["participants"]["team_ids"], orders)
+    initial_states = {team_id: {"markets": ["本地"], "products": ["P1"]} for team_id in generated["participants"]["team_ids"]}
+    arena = FullCompetitionArena(FullFinancialDynamics(generated), generated["participants"]["team_ids"], orders, initial_states=initial_states)
     arena.reset()
     first, second = arena.agent_ids
     order = orders[0]

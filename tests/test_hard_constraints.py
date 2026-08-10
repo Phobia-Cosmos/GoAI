@@ -24,6 +24,8 @@ def test_xa_hard_constraints_include_order_pool_and_official_score_checks() -> N
     assert result.checks["xa_exact_bankruptcies"]["bankrupt_team_count"] == 9
     assert result.checks["xa_exact_development_potential"]["team_count"] == 27
     assert result.checks["xa_exact_terminal_cash"]["team_count"] == 27
+    assert result.checks["xa_inverse_calibration"]["quarter_state_count"] == 540
+    assert all(result.checks["xa_inverse_calibration"]["checks"].values())
     assert result.checks["report_accounting_identities"]["passed"] is True
 
 

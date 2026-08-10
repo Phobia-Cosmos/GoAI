@@ -1,0 +1,35 @@
+{
+  "format_version": "goai_real_simulated_XA_comparison_v1.0",
+  "comparison_scope": "real XA observed outcome versus calibrated simulator with baseline policies and a new random order seed",
+  "not_a_policy_equivalence_test": true,
+  "real_XA": {
+    "teams": 27,
+    "bankruptcies": 9,
+    "survivors": 18,
+    "orders": 796,
+    "delivered_orders": 544,
+    "unassigned_orders": 235,
+    "survivor_mean_equity_wan": 584.2222222222222,
+    "survivor_mean_development_potential": 149.66666666666666,
+    "survivor_mean_score": 1569.388888888889,
+    "all_team_mean_score_with_bankrupt_as_zero": 1046.2592592592594
+  },
+  "simulated": {
+    "teams": 27,
+    "bankruptcies": 0,
+    "survivors": 27,
+    "orders": 796,
+    "awarded_orders": 41,
+    "delivered_orders": 17,
+    "defaulted_orders": 24,
+    "survivor_mean_equity_wan": 238.44444444444446,
+    "survivor_mean_development_potential": 18.0,
+    "survivor_mean_score": 281.3644444444444,
+    "all_team_mean_score_with_bankrupt_as_zero": 281.3644444444444
+  },
+  "interpretation": [
+    "the simulator now uses XA-calibrated settlement semantics, but the random orders and baseline decisions are not the historical XA decisions",
+    "a final-score gap therefore measures policy and scenario mismatch as well as remaining dynamics mismatch",
+    "exact historical outcome replay remains a separate observed-data acceptance test"
+  ]
+}

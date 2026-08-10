@@ -1,0 +1,79 @@
+{
+  "format_version": "goai_simulated_xlsx_import_v1.0",
+  "match_id": "SIM_XA_CALIBRATED",
+  "rule_pack_id": "SIM_XA_CALIBRATED_fixed_AAAAA_20160108_4.3.32.419",
+  "parent_rule_pack_id": "AAAAA_20160108_4.3.32.419",
+  "source_match_id": "LX_XA",
+  "provenance": "simulated",
+  "training_eligible": false,
+  "enterprise_sheet_names": [
+    "企业信息",
+    "库存信息",
+    "银行贷款",
+    "研发认证",
+    "厂房与生产线",
+    "订单信息",
+    "现金流量表",
+    "三张报表",
+    "广告投放"
+  ],
+  "annual_public_sheet_roles": [
+    "年度广告投放",
+    "年度广告投放格式二",
+    "年度三张报表",
+    "生产线信息",
+    "年度市场老大"
+  ],
+  "team_count": 27,
+  "order_count": 796,
+  "files": {
+    "enterprise": [
+      "企业数据/SIM_XA_CALIBRATED01.xlsx",
+      "企业数据/SIM_XA_CALIBRATED02.xlsx",
+      "企业数据/SIM_XA_CALIBRATED03.xlsx",
+      "企业数据/SIM_XA_CALIBRATED04.xlsx",
+      "企业数据/SIM_XA_CALIBRATED05.xlsx",
+      "企业数据/SIM_XA_CALIBRATED06.xlsx",
+      "企业数据/SIM_XA_CALIBRATED07.xlsx",
+      "企业数据/SIM_XA_CALIBRATED08.xlsx",
+      "企业数据/SIM_XA_CALIBRATED09.xlsx",
+      "企业数据/SIM_XA_CALIBRATED10.xlsx",
+      "企业数据/SIM_XA_CALIBRATED11.xlsx",
+      "企业数据/SIM_XA_CALIBRATED12.xlsx",
+      "企业数据/SIM_XA_CALIBRATED13.xlsx",
+      "企业数据/SIM_XA_CALIBRATED14.xlsx",
+      "企业数据/SIM_XA_CALIBRATED15.xlsx",
+      "企业数据/SIM_XA_CALIBRATED16.xlsx",
+      "企业数据/SIM_XA_CALIBRATED17.xlsx",
+      "企业数据/SIM_XA_CALIBRATED18.xlsx",
+      "企业数据/SIM_XA_CALIBRATED19.xlsx",
+      "企业数据/SIM_XA_CALIBRATED20.xlsx",
+      "企业数据/SIM_XA_CALIBRATED21.xlsx",
+      "企业数据/SIM_XA_CALIBRATED22.xlsx",
+      "企业数据/SIM_XA_CALIBRATED23.xlsx",
+      "企业数据/SIM_XA_CALIBRATED24.xlsx",
+      "企业数据/SIM_XA_CALIBRATED25.xlsx",
+      "企业数据/SIM_XA_CALIBRATED26.xlsx",
+      "企业数据/SIM_XA_CALIBRATED27.xlsx"
+    ],
+    "annual_public": [
+      "1.xlsx",
+      "2.xlsx",
+      "3.xlsx",
+      "4.xlsx",
+      "5.xlsx",
+      "6.xlsx"
+    ],
+    "rules": "SIM_XA_CALIBRATED比赛规则.xlsx",
+    "orders": "SIM_XA_CALIBRATED订单详情.xlsx",
+    "results": "SIM_XA_CALIBRATED最终排名和破产信息.xlsx"
+  },
+  "source_bundle": "/home/undefined/Desktop/GoAI/data/simulations/xa_calibrated_v2/SIM_XA_CALIBRATED_seed_20260810/competition_xlsx",
+  "counts": {
+    "teams": 27,
+    "events": 1187,
+    "global_orders": 796,
+    "team_orders": 41,
+    "reports": 6966
+  }
+}

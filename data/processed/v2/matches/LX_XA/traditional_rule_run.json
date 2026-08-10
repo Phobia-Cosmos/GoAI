@@ -8,7 +8,7 @@
     "teams": 27
   },
   "exact_historical_outcome_match": true,
-  "generated_at": "2026-08-10T11:08:10+08:00",
+  "generated_at": "2026-08-10T11:46:54+08:00",
   "hard_constraints_passed": true,
   "limitations": [
     "没有把推断规则升级为正式规则",

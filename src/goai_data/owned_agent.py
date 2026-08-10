@@ -22,7 +22,7 @@ from .full_sandbox import FinancialSandboxState, FullFinancialDynamics, SeededHe
 from .global_rules import development_potential
 
 
-OWNED_AGENT_VERSION = "owned_enterprise_robust_agent_v0.1"
+OWNED_AGENT_VERSION = "owned_enterprise_robust_agent_v0.2_xa_batch_capacity"
 
 
 def _number(value: Any, default: float = 0.0) -> float:
@@ -37,7 +37,7 @@ class RobustAgentConfig:
     scenario_count: int = 64
     max_candidate_orders: int = 9
     max_order_claims_per_quarter: int = 2
-    production_batch_units: float = 4.0
+    production_batch_units: float = 1.0
     minimum_cash_reserve_wan: float = 60.0
     growth_cash_reserve_wan: float = 120.0
     max_bankruptcy_probability: float = 0.10
@@ -173,8 +173,6 @@ class RobustOrderPlanner:
             if int(order.get("due_period_index", 99)) - period_index < minimum_lead:
                 continue
             quantity = _number(order.get("quantity"))
-            if quantity > self.config.production_batch_units:
-                continue
             direct = _number((self.parameters.get("products") or {}).get(product, {}).get("direct_cost_wan"))
             margin = _number(order.get("total_price_wan")) - direct * quantity
             if quantity > 0 and margin > 0:
@@ -523,7 +521,7 @@ class OwnedEnterpriseRobustPolicy:
             )
             if not line:
                 continue
-            quantity = min(shortage, self.config.production_batch_units)
+            quantity = min(1.0, shortage, self.config.production_batch_units)
             product_rule = ((self.rules.get("parameters") or {}).get("products") or {}).get(product, {})
             materials = {key: _number(value) for key, value in (state.get("material_inventory") or {}).items()}
             emergency: list[Mapping[str, Any]] = []
@@ -539,7 +537,8 @@ class OwnedEnterpriseRobustPolicy:
                 missing = max(0.0, required_units - materials.get(str(component), 0.0))
                 if missing:
                     material_rule = ((self.rules.get("parameters") or {}).get("materials") or {}).get(str(component), {})
-                    cost += missing * _number(material_rule.get("price_wan")) * 1.5
+                    emergency_multiplier = _number((self.rules.get("financial_rules") or {}).get("emergency_material_price_multiplier"), 2)
+                    cost += missing * _number(material_rule.get("price_wan")) * emergency_multiplier
                     emergency.append({"action_type": "emergency_purchase", "parameters": {"material_id": component, "quantity": missing}})
             if feasible and planned_cash - cost >= self.config.minimum_cash_reserve_wan * 0.5:
                 actions.extend(emergency)

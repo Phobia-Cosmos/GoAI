@@ -1,0 +1,1339 @@
+{
+  "match_id": "SIM_XA_CALIBRATED",
+  "sandbox_version": "full_financial_sandbox_v1.1_xa_calibrated_settlement",
+  "ranking": [
+    {
+      "rank": 1,
+      "team_id": "SIM_XA_CALIBRATED24",
+      "owner_equity_wan": 277.0,
+      "development_potential": 18.0,
+      "score": 326.85999999999996,
+      "rounded_score": 327
+    },
+    {
+      "rank": 2,
+      "team_id": "SIM_XA_CALIBRATED05",
+      "owner_equity_wan": 276.0,
+      "development_potential": 18.0,
+      "score": 325.68,
+      "rounded_score": 326
+    },
+    {
+      "rank": 3,
+      "team_id": "SIM_XA_CALIBRATED01",
+      "owner_equity_wan": 275.0,
+      "development_potential": 18.0,
+      "score": 324.5,
+      "rounded_score": 325
+    },
+    {
+      "rank": 4,
+      "team_id": "SIM_XA_CALIBRATED13",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "score": 313.88,
+      "rounded_score": 314
+    },
+    {
+      "rank": 5,
+      "team_id": "SIM_XA_CALIBRATED14",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "score": 313.88,
+      "rounded_score": 314
+    },
+    {
+      "rank": 6,
+      "team_id": "SIM_XA_CALIBRATED18",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "score": 313.88,
+      "rounded_score": 314
+    },
+    {
+      "rank": 7,
+      "team_id": "SIM_XA_CALIBRATED22",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "score": 313.88,
+      "rounded_score": 314
+    },
+    {
+      "rank": 8,
+      "team_id": "SIM_XA_CALIBRATED26",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "score": 313.88,
+      "rounded_score": 314
+    },
+    {
+      "rank": 9,
+      "team_id": "SIM_XA_CALIBRATED15",
+      "owner_equity_wan": 257.0,
+      "development_potential": 18.0,
+      "score": 303.26,
+      "rounded_score": 303
+    },
+    {
+      "rank": 10,
+      "team_id": "SIM_XA_CALIBRATED27",
+      "owner_equity_wan": 256.0,
+      "development_potential": 18.0,
+      "score": 302.08,
+      "rounded_score": 302
+    },
+    {
+      "rank": 11,
+      "team_id": "SIM_XA_CALIBRATED09",
+      "owner_equity_wan": 255.0,
+      "development_potential": 18.0,
+      "score": 300.9,
+      "rounded_score": 301
+    },
+    {
+      "rank": 12,
+      "team_id": "SIM_XA_CALIBRATED07",
+      "owner_equity_wan": 252.0,
+      "development_potential": 18.0,
+      "score": 297.35999999999996,
+      "rounded_score": 297
+    },
+    {
+      "rank": 13,
+      "team_id": "SIM_XA_CALIBRATED11",
+      "owner_equity_wan": 250.0,
+      "development_potential": 18.0,
+      "score": 295.0,
+      "rounded_score": 295
+    },
+    {
+      "rank": 14,
+      "team_id": "SIM_XA_CALIBRATED06",
+      "owner_equity_wan": 241.0,
+      "development_potential": 18.0,
+      "score": 284.38,
+      "rounded_score": 284
+    },
+    {
+      "rank": 15,
+      "team_id": "SIM_XA_CALIBRATED23",
+      "owner_equity_wan": 237.0,
+      "development_potential": 18.0,
+      "score": 279.65999999999997,
+      "rounded_score": 280
+    },
+    {
+      "rank": 16,
+      "team_id": "SIM_XA_CALIBRATED20",
+      "owner_equity_wan": 231.0,
+      "development_potential": 18.0,
+      "score": 272.58,
+      "rounded_score": 273
+    },
+    {
+      "rank": 17,
+      "team_id": "SIM_XA_CALIBRATED19",
+      "owner_equity_wan": 228.0,
+      "development_potential": 18.0,
+      "score": 269.03999999999996,
+      "rounded_score": 269
+    },
+    {
+      "rank": 18,
+      "team_id": "SIM_XA_CALIBRATED08",
+      "owner_equity_wan": 226.0,
+      "development_potential": 18.0,
+      "score": 266.68,
+      "rounded_score": 267
+    },
+    {
+      "rank": 19,
+      "team_id": "SIM_XA_CALIBRATED02",
+      "owner_equity_wan": 223.0,
+      "development_potential": 18.0,
+      "score": 263.14,
+      "rounded_score": 263
+    },
+    {
+      "rank": 20,
+      "team_id": "SIM_XA_CALIBRATED17",
+      "owner_equity_wan": 221.0,
+      "development_potential": 18.0,
+      "score": 260.78,
+      "rounded_score": 261
+    },
+    {
+      "rank": 21,
+      "team_id": "SIM_XA_CALIBRATED16",
+      "owner_equity_wan": 218.0,
+      "development_potential": 18.0,
+      "score": 257.24,
+      "rounded_score": 257
+    },
+    {
+      "rank": 22,
+      "team_id": "SIM_XA_CALIBRATED12",
+      "owner_equity_wan": 215.0,
+      "development_potential": 18.0,
+      "score": 253.7,
+      "rounded_score": 254
+    },
+    {
+      "rank": 23,
+      "team_id": "SIM_XA_CALIBRATED21",
+      "owner_equity_wan": 206.0,
+      "development_potential": 18.0,
+      "score": 243.07999999999998,
+      "rounded_score": 243
+    },
+    {
+      "rank": 24,
+      "team_id": "SIM_XA_CALIBRATED03",
+      "owner_equity_wan": 203.0,
+      "development_potential": 18.0,
+      "score": 239.54,
+      "rounded_score": 240
+    },
+    {
+      "rank": 25,
+      "team_id": "SIM_XA_CALIBRATED10",
+      "owner_equity_wan": 194.0,
+      "development_potential": 18.0,
+      "score": 228.92,
+      "rounded_score": 229
+    },
+    {
+      "rank": 26,
+      "team_id": "SIM_XA_CALIBRATED25",
+      "owner_equity_wan": 187.0,
+      "development_potential": 18.0,
+      "score": 220.66,
+      "rounded_score": 221
+    },
+    {
+      "rank": 27,
+      "team_id": "SIM_XA_CALIBRATED04",
+      "owner_equity_wan": 180.0,
+      "development_potential": 18.0,
+      "score": 212.39999999999998,
+      "rounded_score": 212
+    }
+  ],
+  "bankruptcies": [],
+  "states": [
+    {
+      "team_id": "SIM_XA_CALIBRATED01",
+      "owner_equity_wan": 275.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 169.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED02",
+      "owner_equity_wan": 223.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 93.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED03",
+      "owner_equity_wan": 203.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 25.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED04",
+      "owner_equity_wan": 180.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 2.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED05",
+      "owner_equity_wan": 276.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 170.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED06",
+      "owner_equity_wan": 241.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 87.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED07",
+      "owner_equity_wan": 252.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 86.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED08",
+      "owner_equity_wan": 226.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 96.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED09",
+      "owner_equity_wan": 255.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 125.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED10",
+      "owner_equity_wan": 194.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 40.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED11",
+      "owner_equity_wan": 250.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 144.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED12",
+      "owner_equity_wan": 215.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 109.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED13",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 184.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED14",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 184.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED15",
+      "owner_equity_wan": 257.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 151.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED16",
+      "owner_equity_wan": 218.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 64.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED17",
+      "owner_equity_wan": 221.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 91.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED18",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 184.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED19",
+      "owner_equity_wan": 228.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 74.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED20",
+      "owner_equity_wan": 231.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 101.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED21",
+      "owner_equity_wan": 206.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 28.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED22",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 184.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED23",
+      "owner_equity_wan": 237.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 131.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED24",
+      "owner_equity_wan": 277.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 171.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED25",
+      "owner_equity_wan": 187.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 57.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED26",
+      "owner_equity_wan": 266.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 184.0,
+      "reports": 5
+    },
+    {
+      "team_id": "SIM_XA_CALIBRATED27",
+      "owner_equity_wan": 256.0,
+      "development_potential": 18.0,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "cash_wan": 150.0,
+      "reports": 5
+    }
+  ],
+  "order_log": [
+    {
+      "period": "Y2Q1",
+      "order_id": "SIM_XA_CALIBRATED-2-0121",
+      "winner_team_id": "SIM_XA_CALIBRATED23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED02",
+        "SIM_XA_CALIBRATED05",
+        "SIM_XA_CALIBRATED07",
+        "SIM_XA_CALIBRATED10",
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED15",
+        "SIM_XA_CALIBRATED19",
+        "SIM_XA_CALIBRATED23",
+        "SIM_XA_CALIBRATED25"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q1",
+      "order_id": "SIM_XA_CALIBRATED-2-0105",
+      "winner_team_id": "SIM_XA_CALIBRATED24",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED03",
+        "SIM_XA_CALIBRATED04",
+        "SIM_XA_CALIBRATED06",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED11",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED20",
+        "SIM_XA_CALIBRATED24",
+        "SIM_XA_CALIBRATED27"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q1",
+      "order_id": "SIM_XA_CALIBRATED-2-0137",
+      "winner_team_id": "SIM_XA_CALIBRATED21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED12",
+        "SIM_XA_CALIBRATED16",
+        "SIM_XA_CALIBRATED17",
+        "SIM_XA_CALIBRATED21",
+        "SIM_XA_CALIBRATED22",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q2",
+      "order_id": "SIM_XA_CALIBRATED-2-0010",
+      "winner_team_id": "SIM_XA_CALIBRATED12",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED07",
+        "SIM_XA_CALIBRATED12",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED19",
+        "SIM_XA_CALIBRATED20",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q2",
+      "order_id": "SIM_XA_CALIBRATED-2-0110",
+      "winner_team_id": "SIM_XA_CALIBRATED25",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED02",
+        "SIM_XA_CALIBRATED05",
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED15",
+        "SIM_XA_CALIBRATED17",
+        "SIM_XA_CALIBRATED22",
+        "SIM_XA_CALIBRATED25",
+        "SIM_XA_CALIBRATED27"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q2",
+      "order_id": "SIM_XA_CALIBRATED-2-0047",
+      "winner_team_id": "SIM_XA_CALIBRATED03",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED03",
+        "SIM_XA_CALIBRATED04",
+        "SIM_XA_CALIBRATED06",
+        "SIM_XA_CALIBRATED10",
+        "SIM_XA_CALIBRATED11",
+        "SIM_XA_CALIBRATED16",
+        "SIM_XA_CALIBRATED18"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q3",
+      "order_id": "SIM_XA_CALIBRATED-2-0122",
+      "winner_team_id": "SIM_XA_CALIBRATED04",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED02",
+        "SIM_XA_CALIBRATED04",
+        "SIM_XA_CALIBRATED05",
+        "SIM_XA_CALIBRATED06",
+        "SIM_XA_CALIBRATED07",
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED10",
+        "SIM_XA_CALIBRATED11",
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED15",
+        "SIM_XA_CALIBRATED16",
+        "SIM_XA_CALIBRATED17",
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED19",
+        "SIM_XA_CALIBRATED20",
+        "SIM_XA_CALIBRATED22",
+        "SIM_XA_CALIBRATED26",
+        "SIM_XA_CALIBRATED27"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q4",
+      "order_id": "SIM_XA_CALIBRATED-2-0039",
+      "winner_team_id": "SIM_XA_CALIBRATED27",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED02",
+        "SIM_XA_CALIBRATED05",
+        "SIM_XA_CALIBRATED06",
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED19",
+        "SIM_XA_CALIBRATED20",
+        "SIM_XA_CALIBRATED27"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q4",
+      "order_id": "SIM_XA_CALIBRATED-2-0149",
+      "winner_team_id": "SIM_XA_CALIBRATED16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED07",
+        "SIM_XA_CALIBRATED10",
+        "SIM_XA_CALIBRATED11",
+        "SIM_XA_CALIBRATED16",
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED22"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y2Q4",
+      "order_id": "SIM_XA_CALIBRATED-2-0017",
+      "winner_team_id": "SIM_XA_CALIBRATED15",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED15",
+        "SIM_XA_CALIBRATED17",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q1",
+      "order_id": "SIM_XA_CALIBRATED-3-0103",
+      "winner_team_id": "SIM_XA_CALIBRATED10",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED05",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED10",
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED17"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q1",
+      "order_id": "SIM_XA_CALIBRATED-3-0149",
+      "winner_team_id": "SIM_XA_CALIBRATED19",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED02",
+        "SIM_XA_CALIBRATED06",
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED19",
+        "SIM_XA_CALIBRATED22"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q1",
+      "order_id": "SIM_XA_CALIBRATED-3-0133",
+      "winner_team_id": "SIM_XA_CALIBRATED07",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED07",
+        "SIM_XA_CALIBRATED11",
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED20",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_XA_CALIBRATED-3-0118",
+      "winner_team_id": "SIM_XA_CALIBRATED06",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED06",
+        "SIM_XA_CALIBRATED11",
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED17",
+        "SIM_XA_CALIBRATED18"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_XA_CALIBRATED-3-0147",
+      "winner_team_id": "SIM_XA_CALIBRATED24",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED02",
+        "SIM_XA_CALIBRATED05",
+        "SIM_XA_CALIBRATED22",
+        "SIM_XA_CALIBRATED23",
+        "SIM_XA_CALIBRATED24"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q2",
+      "order_id": "SIM_XA_CALIBRATED-3-0158",
+      "winner_team_id": "SIM_XA_CALIBRATED21",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED20",
+        "SIM_XA_CALIBRATED21",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q3",
+      "order_id": "SIM_XA_CALIBRATED-3-0079",
+      "winner_team_id": "SIM_XA_CALIBRATED23",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q3",
+      "order_id": "SIM_XA_CALIBRATED-3-0141",
+      "winner_team_id": "SIM_XA_CALIBRATED02",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED02",
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED17",
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED22"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q3",
+      "order_id": "SIM_XA_CALIBRATED-3-0014",
+      "winner_team_id": "SIM_XA_CALIBRATED25",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED03",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED12",
+        "SIM_XA_CALIBRATED25",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q3",
+      "order_id": "SIM_XA_CALIBRATED-3-0113",
+      "winner_team_id": "SIM_XA_CALIBRATED20",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED05",
+        "SIM_XA_CALIBRATED20"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q3",
+      "order_id": "SIM_XA_CALIBRATED-3-0073",
+      "winner_team_id": "SIM_XA_CALIBRATED11",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED11",
+        "SIM_XA_CALIBRATED14"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_XA_CALIBRATED-3-0072",
+      "winner_team_id": "SIM_XA_CALIBRATED03",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED03",
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED17",
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED22"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_XA_CALIBRATED-3-0169",
+      "winner_team_id": "SIM_XA_CALIBRATED04",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED04",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y3Q4",
+      "order_id": "SIM_XA_CALIBRATED-3-0159",
+      "winner_team_id": "SIM_XA_CALIBRATED12",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED05",
+        "SIM_XA_CALIBRATED12",
+        "SIM_XA_CALIBRATED13"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_XA_CALIBRATED-4-0129",
+      "winner_team_id": "SIM_XA_CALIBRATED15",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED15",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_XA_CALIBRATED-4-0214",
+      "winner_team_id": "SIM_XA_CALIBRATED05",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED05"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_XA_CALIBRATED-4-0005",
+      "winner_team_id": "SIM_XA_CALIBRATED24",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED17",
+        "SIM_XA_CALIBRATED24"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_XA_CALIBRATED-4-0092",
+      "winner_team_id": "SIM_XA_CALIBRATED16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED16",
+        "SIM_XA_CALIBRATED22",
+        "SIM_XA_CALIBRATED27"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q1",
+      "order_id": "SIM_XA_CALIBRATED-4-0098",
+      "winner_team_id": "SIM_XA_CALIBRATED25",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED25"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_XA_CALIBRATED-4-0099",
+      "winner_team_id": "SIM_XA_CALIBRATED19",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED19",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_XA_CALIBRATED-4-0140",
+      "winner_team_id": "SIM_XA_CALIBRATED27",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED07",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED10",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED27"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q2",
+      "order_id": "SIM_XA_CALIBRATED-4-0017",
+      "winner_team_id": "SIM_XA_CALIBRATED17",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED17",
+        "SIM_XA_CALIBRATED22",
+        "SIM_XA_CALIBRATED23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_XA_CALIBRATED-4-0175",
+      "winner_team_id": "SIM_XA_CALIBRATED08",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED08",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_XA_CALIBRATED-4-0010",
+      "winner_team_id": "SIM_XA_CALIBRATED06",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED06",
+        "SIM_XA_CALIBRATED07",
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q3",
+      "order_id": "SIM_XA_CALIBRATED-4-0041",
+      "winner_team_id": "SIM_XA_CALIBRATED10",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED10",
+        "SIM_XA_CALIBRATED13",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED22"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q4",
+      "order_id": "SIM_XA_CALIBRATED-4-0149",
+      "winner_team_id": "SIM_XA_CALIBRATED01",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED01",
+        "SIM_XA_CALIBRATED22"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q4",
+      "order_id": "SIM_XA_CALIBRATED-4-0081",
+      "winner_team_id": "SIM_XA_CALIBRATED24",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED02",
+        "SIM_XA_CALIBRATED24"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q4",
+      "order_id": "SIM_XA_CALIBRATED-4-0078",
+      "winner_team_id": "SIM_XA_CALIBRATED07",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED07",
+        "SIM_XA_CALIBRATED18",
+        "SIM_XA_CALIBRATED23"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q4",
+      "order_id": "SIM_XA_CALIBRATED-4-0176",
+      "winner_team_id": "SIM_XA_CALIBRATED09",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED09",
+        "SIM_XA_CALIBRATED13"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q4",
+      "order_id": "SIM_XA_CALIBRATED-4-0070",
+      "winner_team_id": "SIM_XA_CALIBRATED16",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED11",
+        "SIM_XA_CALIBRATED14",
+        "SIM_XA_CALIBRATED16",
+        "SIM_XA_CALIBRATED26"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    },
+    {
+      "period": "Y4Q4",
+      "order_id": "SIM_XA_CALIBRATED-4-0054",
+      "winner_team_id": "SIM_XA_CALIBRATED25",
+      "policy_id": "traditional_xa_selection_and_auction",
+      "reason": "advertising_priority",
+      "contenders": [
+        "SIM_XA_CALIBRATED20",
+        "SIM_XA_CALIBRATED25"
+      ],
+      "trace": {
+        "market": "本地",
+        "product": "P1",
+        "one_order_per_turn": true,
+        "order_type": "选单"
+      },
+      "provenance": "simulated"
+    }
+  ],
+  "provenance": "simulated"
+}

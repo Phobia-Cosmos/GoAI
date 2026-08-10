@@ -18,10 +18,14 @@
       "annual_rate": 0.12,
       "max_years": 4,
       "max_total_multiple_prior_equity": 3,
-      "minimum_wan": 10
+      "minimum_wan": 10,
+      "application_timing": "year_start",
+      "repayment_mode": "annual_interest_maturity_principal"
     },
     "short_loan": {
-      "rate": 0.05
+      "rate": 0.05,
+      "application_timing": "quarter_start",
+      "repayment_mode": "principal_and_interest_at_maturity"
     },
     "receivable_discount": {
       "terms_1_2": 0.08,
@@ -32,49 +36,83 @@
       "大厂房": {
         "purchase_wan": 481,
         "rent_wan_per_year": 51,
+        "sale_wan": 481,
         "capacity": 6,
+        "usage_limit": 4,
         "score": 11
       },
       "中厂房": {
         "purchase_wan": 248,
         "rent_wan_per_year": 31,
+        "sale_wan": 248,
         "capacity": 3,
+        "usage_limit": 4,
         "score": 6
       },
       "小厂房": {
         "purchase_wan": 72,
         "rent_wan_per_year": 9,
+        "sale_wan": 72,
         "capacity": 1,
+        "usage_limit": 4,
         "score": 2
       }
     },
     "production_lines": {
       "手工线": {
         "investment_wan": 40,
+        "investment_wan_per_quarter": 40,
         "install_quarters": 0,
         "production_quarters": 2,
+        "conversion_wan_per_quarter": 10,
+        "conversion_quarters": 0,
         "maintenance_wan_per_year": 15,
+        "residual_value_wan": 10,
+        "depreciation_fee_wan": 10,
+        "depreciation_years": 4,
+        "batch_capacity": 1,
         "score": 5
       },
       "自动线": {
         "investment_wan": 140,
+        "investment_wan_per_quarter": 70,
         "install_quarters": 2,
         "production_quarters": 1,
+        "conversion_wan_per_quarter": 10,
+        "conversion_quarters": 1,
         "maintenance_wan_per_year": 11,
+        "residual_value_wan": 28,
+        "depreciation_fee_wan": 28,
+        "depreciation_years": 5,
+        "batch_capacity": 1,
         "score": 8
       },
       "柔性线": {
         "investment_wan": 180,
+        "investment_wan_per_quarter": 60,
         "install_quarters": 3,
         "production_quarters": 1,
+        "conversion_wan_per_quarter": 0,
+        "conversion_quarters": 0,
         "maintenance_wan_per_year": 15,
+        "residual_value_wan": 36,
+        "depreciation_fee_wan": 36,
+        "depreciation_years": 5,
+        "batch_capacity": 1,
         "score": 10
       },
       "租赁线": {
         "investment_wan": 0,
+        "investment_wan_per_quarter": 0,
         "install_quarters": 0,
         "production_quarters": 1,
+        "conversion_wan_per_quarter": 10,
+        "conversion_quarters": 1,
         "maintenance_wan_per_year": 70,
+        "residual_value_wan": -70,
+        "depreciation_fee_wan": 0,
+        "depreciation_years": 0,
+        "batch_capacity": 1,
         "score": 0
       }
     },
@@ -190,6 +228,21 @@
         "price_wan": 10,
         "lead_quarters": 2
       }
+    },
+    "market_iso_payment_timing": "year_end",
+    "product_development_payment_timing": "quarter_end",
+    "production_line_depreciation_timing": "not_in_completion_year",
+    "factory_sale_receivable_term_quarters": 4,
+    "emergency_material_price_multiplier": 2,
+    "emergency_product_price_multiplier": 3,
+    "max_factory_count": 4,
+    "minimum_order_advertising_wan": 10,
+    "rounding": {
+      "default_penalty": "half_up",
+      "inventory_auction": "floor",
+      "receivable_discount_fee": "ceil",
+      "income_tax": "half_up",
+      "loan_interest": "half_up"
     },
     "selection_priority": [
       "prior_market_leader",

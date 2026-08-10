@@ -12,6 +12,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import math
 import random
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -23,7 +24,7 @@ from .order_allocation import OrderAllocationEngine
 from .traditional_rules import TraditionalXAOrderPolicy, advertising_opportunities
 
 
-FULL_SANDBOX_VERSION = "full_financial_sandbox_v1.0"
+FULL_SANDBOX_VERSION = "full_financial_sandbox_v1.1_xa_calibrated_settlement"
 COMPLEXITY_PROFILES: dict[str, dict[str, Any]] = {
     "small": {
         "team_count": 4,
@@ -76,15 +77,18 @@ def _candidate_financial_rules(parameters: Mapping[str, Any]) -> dict[str, Any]:
         "version": FULL_SANDBOX_VERSION,
         "phase_order": list(DEFAULT_PHASE_ORDER),
         "bankruptcy_check_after_each_phase": True,
-        "factory_depreciation_years": 10,
-        "production_line_depreciation_years": 5,
-        "factory_disposal_book_value_rate": 0.70,
-        "production_line_disposal_book_value_rate": 0.60,
-        "emergency_material_price_multiplier": 1.50,
+        "factory_depreciation_enabled": False,
+        "production_line_depreciation_mode": "formal_fixed_fee_after_completion_year",
+        "factory_sale_mode": "four_quarter_receivable_at_purchase_price",
+        "production_line_sale_mode": "formal_residual_value",
+        "emergency_material_price_multiplier": _number(parameters.get("emergency_material_price_multiplier"), 2.0),
         "receivable_discount_rates": copy.deepcopy(parameters.get("receivable_discount") or {"terms_1_2": 0.08, "terms_3_4": 0.09}),
-        "long_loan_interest_timing": "year_end",
+        "long_loan_interest_timing": "annual_anniversary_quarter",
         "short_loan_interest_timing": "maturity",
-        "tax_timing": "year_end",
+        "tax_timing": "year_end_accrual_next_year_q1_cash_payment",
+        "tax_loss_carryforward": True,
+        "market_iso_payment_timing": "year_end",
+        "rounding": copy.deepcopy(parameters.get("rounding") or {}),
         "report_timing": "year_end_after_tax",
         "auction_bid_fee_wan": 10,
         "auction_batch_size": 3,
@@ -110,6 +114,10 @@ def _candidate_financial_rules(parameters: Mapping[str, Any]) -> dict[str, Any]:
 
 def _number(value: Any, default: float = 0.0) -> float:
     return float(value) if isinstance(value, (int, float)) else default
+
+
+def _round_half_up(value: float) -> float:
+    return float(math.floor(float(value) + 0.5))
 
 
 def _period_index(year: int, quarter: int) -> int:
@@ -254,6 +262,15 @@ def build_fixed_xa_rule_pack(
             "binding_status": "simulation_with_exact_XA_parameters",
             "provenance": "derived_rule_pack_with_observed_XA_parameters",
             "parameters": parameters,
+            "initial_state": {
+                "cash_wan": parameters["initial_cash_wan"],
+                "owner_equity_wan": parameters["initial_cash_wan"],
+                "markets": [], "products": [], "iso": [],
+                "material_inventory": {}, "product_inventory": {},
+                "factories": [], "production_lines": [],
+                "short_loans": [], "long_loans": [], "receivables": [],
+                "provenance": "derived_from_27_observed_initial_balance_sheets_and_completion_timelines",
+            },
             "participants": {
                 "count": team_count,
                 "team_ids": [f"{match_id}{index:02d}" for index in range(1, team_count + 1)],
@@ -268,6 +285,7 @@ def build_fixed_xa_rule_pack(
                 "parameter_changes": [],
                 "parameters_provenance": "observed_formal_XA",
                 "settlement_services_provenance": "candidate_traditional_sandbox_service",
+                "initial_state_provenance": "27_of_27_observed_initial_balance_sheets",
             },
         }
     )
@@ -478,6 +496,8 @@ class FinancialSandboxState:
     advertising: dict[str, float] = field(default_factory=dict)
     annual_income: dict[str, float] = field(default_factory=dict)
     annual_cash_flow: dict[str, float] = field(default_factory=dict)
+    tax_payable_wan: float = 0.0
+    tax_loss_carryforward_wan: float = 0.0
     reports: list[dict[str, Any]] = field(default_factory=list)
     journal: list[dict[str, Any]] = field(default_factory=list)
     bankrupt: bool = False
@@ -496,7 +516,7 @@ class FinancialSandboxState:
 
     @property
     def debt_wan(self) -> float:
-        return sum(_number(row.get("principal_wan")) for row in self.short_loans + self.long_loans)
+        return sum(_number(row.get("principal_wan")) for row in self.short_loans + self.long_loans) + self.tax_payable_wan
 
     @property
     def receivables_wan(self) -> float:
@@ -549,7 +569,8 @@ class FullFinancialDynamics:
         self.financial_rules = dict(self.rules.get("financial_rules") or {})
 
     def initial_state(self, team_id: str, *, initial_state: Mapping[str, Any] | None = None, orders: Sequence[Mapping[str, Any]] = ()) -> FinancialSandboxState:
-        configured = dict(initial_state or {})
+        configured = copy.deepcopy(dict(self.rules.get("initial_state") or {}))
+        configured.update(copy.deepcopy(dict(initial_state or {})))
         cash = _number(configured.get("cash_wan"), _number(self.parameters.get("initial_cash_wan"), 675))
         materials = {key: 0.0 for key in (self.parameters.get("materials") or {})}
         materials.update(dict(configured.get("material_inventory") or {}))
@@ -561,9 +582,22 @@ class FullFinancialDynamics:
             match_id=str(self.rules.get("match_id", "SIM")), team_id=team_id, cash_wan=cash,
             material_inventory=materials, material_inventory_value_wan=material_values,
             product_inventory=products, product_inventory_value_wan=product_values,
-            markets=list(configured.get("markets") or ["本地"]), products=list(configured.get("products") or ["P1"]), iso=list(configured.get("iso") or []),
+            markets=list(configured["markets"]) if "markets" in configured else ["本地"],
+            products=list(configured["products"]) if "products" in configured else ["P1"],
+            iso=list(configured.get("iso") or []),
             factories=copy.deepcopy(list(configured.get("factories") or [])), production_lines=copy.deepcopy(list(configured.get("production_lines") or [])),
+            pending_material_orders=copy.deepcopy(list(configured.get("pending_material_orders") or [])),
+            pending_development=copy.deepcopy(list(configured.get("pending_development") or [])),
+            pending_lines=copy.deepcopy(list(configured.get("pending_lines") or [])),
+            pending_production=copy.deepcopy(list(configured.get("pending_production") or [])),
+            short_loans=copy.deepcopy(list(configured.get("short_loans") or [])),
+            long_loans=copy.deepcopy(list(configured.get("long_loans") or [])),
+            receivables=copy.deepcopy(list(configured.get("receivables") or [])),
             available_orders=copy.deepcopy(list(orders)),
+            assigned_orders=copy.deepcopy(list(configured.get("assigned_orders") or [])),
+            advertising=copy.deepcopy(dict(configured.get("advertising") or {})),
+            tax_payable_wan=_number(configured.get("tax_payable_wan")),
+            tax_loss_carryforward_wan=_number(configured.get("tax_loss_carryforward_wan")),
         )
         state.owner_equity_wan = _number(configured.get("owner_equity_wan"), state.total_assets_wan - state.debt_wan)
         return state
@@ -628,17 +662,19 @@ class FullFinancialDynamics:
             if term <= 0:
                 return self._reject(state, "短贷期限必须为正数")
             rate = _number((self.parameters.get("short_loan") or {}).get("rate"), 0.05)
-            loan = {"loan_id": _stable_id("SL", state.team_id, state.period, len(state.short_loans)), "principal_wan": principal, "rate": rate, "due_period_index": state.period_index + term, "interest_wan": principal * rate * term / 4}
+            loan = {"loan_id": _stable_id("SL", state.team_id, state.period, len(state.short_loans)), "principal_wan": principal, "rate": rate, "borrowed_period_index": state.period_index, "due_period_index": state.period_index + term, "interest_wan": _round_half_up(principal * rate * term / 4)}
             next_state.short_loans.append(loan)
         else:
             term_years = int(values.get("term_years", 4))
             rule = self.parameters.get("long_loan") or {}
+            if state.quarter != 1:
+                return self._reject(state, "长期贷款只能在每年年初申请")
             if principal < _number(rule.get("minimum_wan"), 10) or term_years <= 0 or term_years > int(rule.get("max_years", 4)):
                 return self._reject(state, "长贷金额或期限不符合规则")
             limit = max(0.0, state.owner_equity_wan * _number(rule.get("max_total_multiple_prior_equity"), 3))
             if sum(_number(row.get("principal_wan")) for row in state.long_loans) + principal > limit:
                 return self._reject(state, "长贷超过所有者权益倍数上限")
-            loan = {"loan_id": _stable_id("LL", state.team_id, state.period, len(state.long_loans)), "principal_wan": principal, "rate": _number(rule.get("annual_rate"), 0.12), "due_period_index": state.period_index + term_years * 4, "last_interest_year": state.year - 1}
+            loan = {"loan_id": _stable_id("LL", state.team_id, state.period, len(state.long_loans)), "principal_wan": principal, "rate": _number(rule.get("annual_rate"), 0.12), "borrowed_period_index": state.period_index, "next_interest_period_index": state.period_index + 4, "due_period_index": state.period_index + term_years * 4}
             next_state.long_loans.append(loan)
         event = self._journal(next_state, f"{kind}_loan_borrowed", cash=principal, cash_category="financing_inflow", details={"loan": loan})
         return FinancialTransition("success", next_state, (event,))
@@ -652,11 +688,12 @@ class FullFinancialDynamics:
         discount = self.parameters.get("receivable_discount") or {}
         rate = _number(discount.get("terms_1_2" if remaining <= 2 else "terms_3_4"), 0.09)
         gross = _number(item.get("amount_wan"))
-        net = gross * (1.0 - rate)
+        discount_fee = float(math.ceil(gross * rate))
+        net = gross - discount_fee
         next_state = copy.deepcopy(state)
         next_item = next(row for row in next_state.receivables if str(row.get("receivable_id")) == receivable_id)
         next_state.receivables.remove(next_item)
-        event = self._journal(next_state, "receivable_discounted", cash=net, equity=-(gross - net), cash_category="receivable_discount", income_category="discount_expense", details={"receivable_id": receivable_id, "gross_wan": gross, "discount_rate": rate})
+        event = self._journal(next_state, "receivable_discounted", cash=net, equity=-discount_fee, cash_category="receivable_discount", income_category="discount_expense", details={"receivable_id": receivable_id, "gross_wan": gross, "discount_rate": rate, "discount_fee_wan": discount_fee})
         return FinancialTransition("success", next_state, (event,))
 
     def _material_order(self, state: FinancialSandboxState, values: Mapping[str, Any]) -> FinancialTransition:
@@ -695,10 +732,33 @@ class FullFinancialDynamics:
         bucket = getattr(state, collection)
         if not rule or target in bucket or any(row.get("kind") == kind and row.get("target") == target for row in state.pending_development):
             return self._reject(state, "开发对象无效、已完成或正在开发")
-        duration = int(rule.get("quarters", int(rule.get("years", 1)) * 4))
-        installment = _number(rule.get("development_wan_per_quarter"), _number(rule.get("fee_wan_per_year")) / 4)
         next_state = copy.deepcopy(state)
-        pending = {"development_id": _stable_id("DEV", state.team_id, state.period, kind, target), "kind": kind, "target": target, "remaining_installments": max(0, duration - 1), "installment_wan": installment}
+        if kind in {"market", "iso"}:
+            duration_years = int(rule.get("years", 1))
+            first_year_end = (state.year - 1) * 4 + 3
+            pending = {
+                "development_id": _stable_id("DEV", state.team_id, state.period, kind, target),
+                "kind": kind,
+                "target": target,
+                "payment_timing": "year_end",
+                "remaining_installments": duration_years,
+                "installment_wan": _number(rule.get("fee_wan_per_year")),
+                "next_payment_period_index": first_year_end,
+            }
+            next_state.pending_development.append(pending)
+            event = self._journal(next_state, f"{kind}_development_started", details={"target": target, "total_installments": duration_years, "payment_timing": "year_end"})
+            return FinancialTransition("success", next_state, (event,))
+        duration = int(rule.get("quarters", 1))
+        installment = _number(rule.get("development_wan_per_quarter"))
+        pending = {
+            "development_id": _stable_id("DEV", state.team_id, state.period, kind, target),
+            "kind": kind,
+            "target": target,
+            "payment_timing": "quarterly",
+            "remaining_installments": max(0, duration - 1),
+            "installment_wan": installment,
+            "next_payment_period_index": state.period_index + 1,
+        }
         next_state.pending_development.append(pending)
         event = self._expense(next_state, installment, f"{kind}_development_expense", {"target": target, "installment": 1, "total_installments": duration})
         if duration == 1:
@@ -734,10 +794,26 @@ class FullFinancialDynamics:
             return self._reject(state, "生产线类型无效或厂房容量不足")
         cost = _number(rule.get("investment_wan"))
         install = int(rule.get("install_quarters", 0))
-        line = {"line_id": _stable_id("L", state.team_id, state.period, used), "line_type": line_type, "product_id": values.get("product_id"), "ownership": "rented" if line_type == "租赁线" else "purchased", "cost_wan": cost, "book_value_wan": cost, "accumulated_depreciation_wan": 0.0, "maintenance_wan_per_year": _number(rule.get("maintenance_wan_per_year")), "status": "ready" if install == 0 else "installing", "remaining_install_quarters": install}
+        payment_count = max(1, install)
+        installment = _number(rule.get("investment_wan_per_quarter"), cost / payment_count if payment_count else cost)
+        first_payment = min(cost, installment)
+        completed_index = state.period_index if install == 0 else state.period_index + install
+        completed_year = _period_from_index(completed_index)[0]
+        line = {
+            "line_id": _stable_id("L", state.team_id, state.period, used), "line_type": line_type,
+            "product_id": values.get("product_id"), "ownership": "rented" if line_type == "租赁线" else "purchased",
+            "cost_wan": cost, "book_value_wan": first_payment, "accumulated_depreciation_wan": 0.0,
+            "residual_value_wan": _number(rule.get("residual_value_wan")),
+            "depreciation_fee_wan": _number(rule.get("depreciation_fee_wan")),
+            "maintenance_wan_per_year": _number(rule.get("maintenance_wan_per_year")),
+            "status": "ready" if install == 0 else "installing",
+            "completion_period_index": completed_index, "completed_year": completed_year,
+            "remaining_investment_wan": max(0.0, cost - first_payment),
+            "next_investment_period_index": state.period_index + 1,
+        }
         next_state = copy.deepcopy(state)
         (next_state.production_lines if install == 0 else next_state.pending_lines).append(line)
-        event = self._journal(next_state, "production_line_ordered", cash=-cost, cash_category="fixed_asset_purchase", details={"line": line})
+        event = self._journal(next_state, "production_line_ordered", cash=-first_payment, cash_category="fixed_asset_purchase", details={"line": line, "installment_wan": first_payment})
         return FinancialTransition("success", next_state, (event,))
 
     def _convert_line(self, state: FinancialSandboxState, values: Mapping[str, Any]) -> FinancialTransition:
@@ -759,13 +835,17 @@ class FullFinancialDynamics:
         asset = next((row for row in collection if str(row.get(key)) == asset_id), None)
         if asset is None or asset.get("ownership") != "purchased" or asset.get("status") == "busy":
             return self._reject(state, "资产不存在、非自有或正在使用")
-        rate_key = "factory_disposal_book_value_rate" if kind == "factory" else "production_line_disposal_book_value_rate"
-        proceeds = _number(asset.get("book_value_wan")) * _number(self.financial_rules.get(rate_key), 0.6)
+        proceeds = _number(asset.get("cost_wan")) if kind == "factory" else _number(asset.get("residual_value_wan"), _number(asset.get("book_value_wan")))
         book = _number(asset.get("book_value_wan"))
         next_state = copy.deepcopy(state)
         target_collection = next_state.factories if kind == "factory" else next_state.production_lines
         target_collection.remove(next(row for row in target_collection if str(row.get(key)) == asset_id))
-        event = self._journal(next_state, f"{kind}_sold", cash=proceeds, equity=proceeds - book, cash_category="fixed_asset_disposal", income_category="asset_disposal_gain_loss", details={key: asset_id, "book_value_wan": book, "proceeds_wan": proceeds})
+        if kind == "factory":
+            receivable = {"receivable_id": _stable_id("ARF", state.team_id, asset_id), "asset_id": asset_id, "amount_wan": proceeds, "due_period_index": state.period_index + 4}
+            next_state.receivables.append(receivable)
+            event = self._journal(next_state, "factory_sold", equity=proceeds - book, income_category="asset_disposal_gain_loss", details={key: asset_id, "book_value_wan": book, "proceeds_wan": proceeds, "receivable": receivable})
+        else:
+            event = self._journal(next_state, "production_line_sold", cash=proceeds, equity=proceeds - book, cash_category="fixed_asset_disposal", income_category="asset_disposal_gain_loss", details={key: asset_id, "book_value_wan": book, "proceeds_wan": proceeds})
         return FinancialTransition("success", next_state, (event,))
 
     def _advertise(self, state: FinancialSandboxState, values: Mapping[str, Any]) -> FinancialTransition:
@@ -793,7 +873,9 @@ class FullFinancialDynamics:
         product_id, quantity = str(values.get("product_id") or ""), _number(values.get("quantity"), 1)
         rule = (self.parameters.get("products") or {}).get(product_id)
         line = next((row for row in state.production_lines if row.get("status") == "ready" and row.get("product_id") in {None, product_id}), None)
-        if not rule or product_id not in state.products or quantity <= 0 or line is None:
+        line_rule = (self.parameters.get("production_lines") or {}).get(line.get("line_type"), {}) if line else {}
+        batch_capacity = _number(line_rule.get("batch_capacity"), 1)
+        if not rule or product_id not in state.products or quantity <= 0 or quantity > batch_capacity or line is None:
             return self._reject(state, "生产资格、数量或生产线无效")
         next_state = copy.deepcopy(state)
         consumed_value = 0.0
@@ -874,24 +956,13 @@ class FullFinancialDynamics:
         if next_state.bankrupt:
             return FinancialTransition("success", next_state, tuple(events))
 
-        for order in list(next_state.pending_material_orders):
-            if int(order["arrival_period_index"]) <= next_index:
-                cost = _number(order.get("total_cost_wan"))
-                material_id, quantity = str(order["material_id"]), _number(order.get("quantity"))
-                next_state.cash_wan -= cost
-                next_state.annual_cash_flow["inventory_purchase"] = next_state.annual_cash_flow.get("inventory_purchase", 0.0) - cost
-                next_state.material_inventory[material_id] = next_state.material_inventory.get(material_id, 0.0) + quantity
-                next_state.material_inventory_value_wan[material_id] = next_state.material_inventory_value_wan.get(material_id, 0.0) + cost
-                next_state.pending_material_orders.remove(order)
-                event = {"event_type": "material_arrived", "period": state.period, "cash_effect_wan": -cost, "equity_effect_wan": 0.0, "order": order}
-                next_state.journal.append(event); events.append(event); self._bankruptcy_check(next_state, "material_arrival")
-                if next_state.bankrupt:
-                    return FinancialTransition("success", next_state, tuple(events))
-
         for item in list(next_state.pending_development):
+            if int(item.get("next_payment_period_index", 10**9)) > state.period_index:
+                continue
             installment = _number(item.get("installment_wan"))
             events.append(self._expense(next_state, installment, f"{item['kind']}_development_expense", {"target": item["target"]}))
             item["remaining_installments"] = int(item.get("remaining_installments", 0)) - 1
+            item["next_payment_period_index"] = int(item.get("next_payment_period_index", state.period_index)) + (4 if item.get("payment_timing") == "year_end" else 1)
             if item["remaining_installments"] <= 0:
                 collection = {"product": "products", "market": "markets", "iso": "iso"}[item["kind"]]
                 bucket = getattr(next_state, collection)
@@ -903,12 +974,23 @@ class FullFinancialDynamics:
                 return FinancialTransition("success", next_state, tuple(events))
 
         for line in list(next_state.pending_lines):
-            line["remaining_install_quarters"] = int(line.get("remaining_install_quarters", 0)) - 1
-            if line["remaining_install_quarters"] <= 0:
+            if int(line.get("next_investment_period_index", 10**9)) <= state.period_index and _number(line.get("remaining_investment_wan")) > 0:
+                rule = (self.parameters.get("production_lines") or {}).get(str(line.get("line_type")), {})
+                installment = min(_number(line.get("remaining_investment_wan")), _number(rule.get("investment_wan_per_quarter"), _number(line.get("remaining_investment_wan"))))
+                next_state.cash_wan -= installment
+                next_state.annual_cash_flow["fixed_asset_purchase"] = next_state.annual_cash_flow.get("fixed_asset_purchase", 0.0) - installment
+                line["book_value_wan"] = _number(line.get("book_value_wan")) + installment
+                line["remaining_investment_wan"] = max(0.0, _number(line.get("remaining_investment_wan")) - installment)
+                line["next_investment_period_index"] = state.period_index + 1
+                event = {"event_type": "production_line_investment", "period": state.period, "cash_effect_wan": -installment, "equity_effect_wan": 0.0, "line_id": line.get("line_id")}
+                next_state.journal.append(event); events.append(event); self._bankruptcy_check(next_state, "production_line_investment")
+                if next_state.bankrupt:
+                    return FinancialTransition("success", next_state, tuple(events))
+            if int(line.get("completion_period_index", 10**9)) <= next_index and _number(line.get("remaining_investment_wan")) <= 1e-9:
                 line["status"] = "ready"
                 next_state.production_lines.append(line)
                 next_state.pending_lines.remove(line)
-                events.append({"event_type": "production_line_ready", "line_id": line["line_id"], "period": state.period})
+                events.append({"event_type": "production_line_ready", "line_id": line["line_id"], "period": _period_label(int(line["completion_period_index"]))})
         for job in list(next_state.pending_production):
             job["remaining_quarters"] = int(job.get("remaining_quarters", 0)) - 1
             if job["remaining_quarters"] <= 0:
@@ -921,32 +1003,11 @@ class FullFinancialDynamics:
                 next_state.pending_production.remove(job)
                 events.append({"event_type": "production_completed", "job_id": job["job_id"], "period": state.period})
 
-        for loan in list(next_state.short_loans):
-            if int(loan["due_period_index"]) <= next_index:
-                amount = _number(loan["principal_wan"]) + _number(loan["interest_wan"])
-                next_state.cash_wan -= amount
-                next_state.owner_equity_wan -= _number(loan["interest_wan"])
-                next_state.annual_cash_flow["loan_repayment"] = next_state.annual_cash_flow.get("loan_repayment", 0.0) - amount
-                next_state.annual_income["interest_expense"] = next_state.annual_income.get("interest_expense", 0.0) - _number(loan["interest_wan"])
-                next_state.short_loans.remove(loan)
-                event = {"event_type": "short_loan_repaid", "period": state.period, "cash_effect_wan": -amount, "equity_effect_wan": -_number(loan["interest_wan"]), "loan_id": loan["loan_id"]}
-                next_state.journal.append(event); events.append(event); self._bankruptcy_check(next_state, "short_loan_repayment")
-                if next_state.bankrupt:
-                    return FinancialTransition("success", next_state, tuple(events))
-        for receivable in list(next_state.receivables):
-            if int(receivable["due_period_index"]) <= next_index:
-                amount = _number(receivable["amount_wan"])
-                next_state.cash_wan += amount
-                next_state.annual_cash_flow["customer_collection"] = next_state.annual_cash_flow.get("customer_collection", 0.0) + amount
-                next_state.receivables.remove(receivable)
-                event = {"event_type": "receivable_collected", "period": state.period, "cash_effect_wan": amount, "equity_effect_wan": 0.0, "receivable_id": receivable["receivable_id"]}
-                next_state.journal.append(event); events.append(event)
-
         delivered_ids = {str(row.get("order_id")) for row in next_state.delivered_orders}
         defaulted_ids = {str(row.get("order_id")) for row in next_state.defaulted_orders}
         for order in next_state.assigned_orders:
-            if int(order.get("due_period_index", 99)) <= next_index and str(order.get("order_id")) not in delivered_ids | defaulted_ids:
-                penalty = _number(order.get("total_price_wan")) * _number(self.parameters.get("default_penalty_rate"), 0.2)
+            if int(order.get("due_period_index", 99)) <= state.period_index and str(order.get("order_id")) not in delivered_ids | defaulted_ids:
+                penalty = _round_half_up(_number(order.get("total_price_wan")) * _number(self.parameters.get("default_penalty_rate"), 0.2))
                 events.append(self._expense(next_state, penalty, "order_default_penalty", {"order_id": order.get("order_id")}))
                 order["status"] = "违约"
                 next_state.defaulted_orders.append(copy.deepcopy(order))
@@ -960,56 +1021,119 @@ class FullFinancialDynamics:
                 return FinancialTransition("success", next_state, tuple(events))
         next_state.year, next_state.quarter = next_year, next_quarter
         events.append({"event_type": "quarter_advanced", "from_period": state.period, "to_period": next_state.period})
+        events.extend(self._opening_settlement(next_state))
         self._assert_balance(next_state)
         return FinancialTransition("success", next_state, tuple(events))
+
+    def _opening_settlement(self, state: FinancialSandboxState) -> list[Mapping[str, Any]]:
+        """Apply obligations due at the beginning of the newly entered quarter."""
+
+        events: list[Mapping[str, Any]] = []
+        for order in list(state.pending_material_orders):
+            if int(order["arrival_period_index"]) <= state.period_index:
+                cost = _number(order.get("total_cost_wan"))
+                material_id, quantity = str(order["material_id"]), _number(order.get("quantity"))
+                state.cash_wan -= cost
+                state.annual_cash_flow["inventory_purchase"] = state.annual_cash_flow.get("inventory_purchase", 0.0) - cost
+                state.material_inventory[material_id] = state.material_inventory.get(material_id, 0.0) + quantity
+                state.material_inventory_value_wan[material_id] = state.material_inventory_value_wan.get(material_id, 0.0) + cost
+                state.pending_material_orders.remove(order)
+                event = {"event_type": "material_arrived", "period": state.period, "cash_effect_wan": -cost, "equity_effect_wan": 0.0, "order": order}
+                state.journal.append(event); events.append(event); self._bankruptcy_check(state, "material_arrival")
+                if state.bankrupt: return events
+        for loan in list(state.short_loans):
+            if int(loan["due_period_index"]) <= state.period_index:
+                interest = _number(loan["interest_wan"])
+                amount = _number(loan["principal_wan"]) + interest
+                state.cash_wan -= amount; state.owner_equity_wan -= interest
+                state.annual_cash_flow["loan_repayment"] = state.annual_cash_flow.get("loan_repayment", 0.0) - amount
+                state.annual_income["interest_expense"] = state.annual_income.get("interest_expense", 0.0) - interest
+                state.short_loans.remove(loan)
+                event = {"event_type": "short_loan_repaid", "period": state.period, "cash_effect_wan": -amount, "equity_effect_wan": -interest, "loan_id": loan["loan_id"]}
+                state.journal.append(event); events.append(event); self._bankruptcy_check(state, "short_loan_repayment")
+                if state.bankrupt: return events
+        if state.quarter == 1:
+            due_interest_loans = [loan for loan in state.long_loans if int(loan.get("next_interest_period_index", 10**9)) <= state.period_index]
+            if due_interest_loans:
+                interest = _round_half_up(sum(_number(loan.get("principal_wan")) * _number(loan.get("rate")) for loan in due_interest_loans))
+                events.append(self._expense(state, interest, "interest_expense", {"loan_type": "long", "loan_ids": [loan.get("loan_id") for loan in due_interest_loans]}))
+                for loan in due_interest_loans: loan["next_interest_period_index"] = int(loan.get("next_interest_period_index", state.period_index)) + 4
+                if state.bankrupt: return events
+            matured = [loan for loan in state.long_loans if int(loan.get("due_period_index", 10**9)) <= state.period_index]
+            if matured:
+                principal = sum(_number(loan.get("principal_wan")) for loan in matured)
+                state.cash_wan -= principal
+                state.annual_cash_flow["loan_repayment"] = state.annual_cash_flow.get("loan_repayment", 0.0) - principal
+                for loan in matured: state.long_loans.remove(loan)
+                event = {"event_type": "long_loan_principal_repaid", "period": state.period, "cash_effect_wan": -principal, "equity_effect_wan": 0.0, "loan_ids": [loan.get("loan_id") for loan in matured]}
+                state.journal.append(event); events.append(event); self._bankruptcy_check(state, "long_loan_repayment")
+                if state.bankrupt: return events
+            if state.tax_payable_wan > 0:
+                amount = state.tax_payable_wan
+                state.cash_wan -= amount; state.tax_payable_wan = 0.0
+                state.annual_cash_flow["income_tax_payment"] = state.annual_cash_flow.get("income_tax_payment", 0.0) - amount
+                event = {"event_type": "income_tax_paid", "period": state.period, "cash_effect_wan": -amount, "equity_effect_wan": 0.0}
+                state.journal.append(event); events.append(event); self._bankruptcy_check(state, "income_tax_payment")
+                if state.bankrupt: return events
+        for receivable in list(state.receivables):
+            if int(receivable["due_period_index"]) <= state.period_index:
+                amount = _number(receivable["amount_wan"])
+                state.cash_wan += amount
+                state.annual_cash_flow["customer_collection"] = state.annual_cash_flow.get("customer_collection", 0.0) + amount
+                state.receivables.remove(receivable)
+                event = {"event_type": "receivable_collected", "period": state.period, "cash_effect_wan": amount, "equity_effect_wan": 0.0, "receivable_id": receivable["receivable_id"]}
+                state.journal.append(event); events.append(event)
+        delivered_ids = {str(row.get("order_id")) for row in state.delivered_orders}
+        defaulted_ids = {str(row.get("order_id")) for row in state.defaulted_orders}
+        for order in state.assigned_orders:
+            if int(order.get("due_period_index", 10**9)) <= state.period_index and str(order.get("order_id")) not in delivered_ids | defaulted_ids:
+                penalty = _round_half_up(_number(order.get("total_price_wan")) * _number(self.parameters.get("default_penalty_rate"), 0.2))
+                events.append(self._expense(state, penalty, "order_default_penalty", {"order_id": order.get("order_id")}))
+                order["status"] = "违约"; state.defaulted_orders.append(copy.deepcopy(order))
+                if state.bankrupt: return events
+        for factory in state.factories:
+            if factory.get("ownership") == "rented" and int(factory.get("next_rent_period_index", 10**9)) <= state.period_index:
+                rent = _number(factory.get("annual_rent_wan"))
+                events.append(self._expense(state, rent, "factory_rent_expense", {"factory_id": factory.get("factory_id")}))
+                factory["next_rent_period_index"] = int(factory.get("next_rent_period_index", state.period_index)) + 4
+                if state.bankrupt: return events
+        return events
 
     def _year_end(self, state: FinancialSandboxState, *, closing_year: int) -> list[Mapping[str, Any]]:
         events: list[Mapping[str, Any]] = []
         for line in state.production_lines:
+            if int(line.get("completed_year", closing_year)) > closing_year:
+                continue
             maintenance = _number(line.get("maintenance_wan_per_year"))
             if maintenance:
                 events.append(self._expense(state, maintenance, "maintenance_expense", {"line_id": line.get("line_id")}))
                 if state.bankrupt:
                     return events
-        for factory in state.factories:
-            if factory.get("ownership") == "rented" and int(factory.get("next_rent_period_index", 99)) <= state.period_index + 1:
-                rent = _number(factory.get("annual_rent_wan"))
-                events.append(self._expense(state, rent, "factory_rent_expense", {"factory_id": factory.get("factory_id")}))
-                factory["next_rent_period_index"] = int(factory.get("next_rent_period_index", state.period_index + 1)) + 4
-                if state.bankrupt:
-                    return events
-        for loan in list(state.long_loans):
-            interest = _number(loan.get("principal_wan")) * _number(loan.get("rate"))
-            events.append(self._expense(state, interest, "interest_expense", {"loan_id": loan.get("loan_id"), "loan_type": "long"}))
-            if int(loan.get("due_period_index", 99)) <= state.period_index + 1:
-                principal = _number(loan.get("principal_wan"))
-                state.cash_wan -= principal
-                state.annual_cash_flow["loan_repayment"] = state.annual_cash_flow.get("loan_repayment", 0.0) - principal
-                state.long_loans.remove(loan)
-                event = {"event_type": "long_loan_principal_repaid", "period": state.period, "cash_effect_wan": -principal, "equity_effect_wan": 0.0, "loan_id": loan.get("loan_id")}
-                state.journal.append(event); events.append(event); self._bankruptcy_check(state, "long_loan_repayment")
-            if state.bankrupt:
-                return events
-        factory_years = max(1, int(self.financial_rules.get("factory_depreciation_years", 10)))
-        line_years = max(1, int(self.financial_rules.get("production_line_depreciation_years", 5)))
-        for asset, years, asset_type in [(row, factory_years, "factory") for row in state.factories] + [(row, line_years, "production_line") for row in state.production_lines]:
+        for asset in state.production_lines:
             if asset.get("ownership") != "purchased":
                 continue
-            depreciation = min(_number(asset.get("book_value_wan")), _number(asset.get("cost_wan")) / years)
+            if closing_year <= int(asset.get("completed_year", closing_year)):
+                continue
+            residual = _number(asset.get("residual_value_wan"))
+            depreciation = min(max(0.0, _number(asset.get("book_value_wan")) - residual), _number(asset.get("depreciation_fee_wan")))
             if depreciation <= 0:
                 continue
             asset["book_value_wan"] = _number(asset.get("book_value_wan")) - depreciation
             asset["accumulated_depreciation_wan"] = _number(asset.get("accumulated_depreciation_wan")) + depreciation
             state.owner_equity_wan -= depreciation
             state.annual_income["depreciation_expense"] = state.annual_income.get("depreciation_expense", 0.0) - depreciation
-            event = {"event_type": "depreciation", "period": state.period, "cash_effect_wan": 0.0, "equity_effect_wan": -depreciation, "asset_type": asset_type, "asset_id": asset.get("factory_id", asset.get("line_id")), "amount_wan": depreciation}
+            event = {"event_type": "depreciation", "period": state.period, "cash_effect_wan": 0.0, "equity_effect_wan": -depreciation, "asset_type": "production_line", "asset_id": asset.get("line_id"), "amount_wan": depreciation}
             state.journal.append(event); events.append(event)
         pretax = sum(state.annual_income.values())
-        tax = max(0.0, pretax * _number(self.parameters.get("tax_rate"), 0.25))
+        taxable_after_losses = pretax - state.tax_loss_carryforward_wan
+        tax = _round_half_up(max(0.0, taxable_after_losses) * _number(self.parameters.get("tax_rate"), 0.25))
         if tax:
-            events.append(self._expense(state, tax, "income_tax_expense", {"pretax_income_wan": pretax}))
+            event = self._journal(state, "income_tax_expense", equity=-tax, income_category="income_tax_expense", details={"pretax_income_wan": pretax, "loss_carryforward_used_wan": state.tax_loss_carryforward_wan})
+            state.tax_payable_wan += tax
+            events.append(event)
             if state.bankrupt:
                 return events
+        state.tax_loss_carryforward_wan = max(0.0, -taxable_after_losses)
         report = self._build_report(state, closing_year)
         state.reports.append(report)
         events.append({"event_type": "annual_reports_generated", "year": closing_year, "report_id": report["report_id"], "period": state.period})
@@ -1414,6 +1538,16 @@ class FixedXABaselinePolicy:
         planned_cash = cash
         period_index = int(observation.period_index)
 
+        pending_development = {
+            (str(row.get("kind")), str(row.get("target")))
+            for row in state.get("pending_development", [])
+        }
+        if "P1" not in state.get("products", []) and ("product", "P1") not in pending_development:
+            actions.append({"action_type": "develop_product", "parameters": {"target": "P1"}})
+            planned_cash -= _number((self.parameters.get("products") or {}).get("P1", {}).get("development_wan_per_quarter"), 10)
+        if "本地" not in state.get("markets", []) and ("market", "本地") not in pending_development:
+            actions.append({"action_type": "develop_market", "parameters": {"target": "本地"}})
+
         if not state.get("factories") and planned_cash >= 180:
             actions.append({"action_type": "buy_workshop", "parameters": {"factory": "小厂房"}})
             planned_cash -= _number((self.parameters.get("factories") or {}).get("小厂房", {}).get("purchase_wan"), 72)
@@ -1445,14 +1579,16 @@ class FixedXABaselinePolicy:
             None,
         )
         if shortage > 0 and ready_line is not None:
+            batch_quantity = min(1.0, shortage)
             materials = {key: _number(value) for key, value in (state.get("material_inventory") or {}).items()}
-            missing_r1 = max(0.0, shortage - materials.get("R1", 0.0))
-            emergency_cost = missing_r1 * _number((self.parameters.get("materials") or {}).get("R1", {}).get("price_wan"), 8) * 1.5
-            process_cost = shortage * _number((self.parameters.get("products") or {}).get("P1", {}).get("process_wan"), 8)
+            missing_r1 = max(0.0, batch_quantity - materials.get("R1", 0.0))
+            emergency_multiplier = _number((self.rules.get("financial_rules") or {}).get("emergency_material_price_multiplier"), 2)
+            emergency_cost = missing_r1 * _number((self.parameters.get("materials") or {}).get("R1", {}).get("price_wan"), 8) * emergency_multiplier
+            process_cost = batch_quantity * _number((self.parameters.get("products") or {}).get("P1", {}).get("process_wan"), 8)
             if planned_cash - emergency_cost - process_cost >= 100:
                 if missing_r1:
                     actions.append({"action_type": "emergency_purchase", "parameters": {"material_id": "R1", "quantity": missing_r1}})
-                actions.append({"action_type": "production", "parameters": {"product_id": "P1", "quantity": shortage}})
+                actions.append({"action_type": "production", "parameters": {"product_id": "P1", "quantity": batch_quantity}})
                 planned_cash -= emergency_cost + process_cost
 
         if period_index % 4 == 0 and period_index > 0:
@@ -1494,7 +1630,7 @@ class FixedXABaselinePolicy:
             actions.insert(0, {"action_type": "short_loan_borrow", "parameters": {"principal_wan": 100, "term_quarters": 4}})
         return {
             "actions": actions or [{"action_type": "hold"}],
-            "policy_metadata": {"strategy": self.strategy, "policy": "fixed_XA_cash_aware_v1"},
+            "policy_metadata": {"strategy": self.strategy, "policy": "fixed_XA_cash_aware_v2"},
         }
 
 
@@ -1523,10 +1659,10 @@ class SeededHeuristicPolicy:
             return None, 0.0
         pending = {(str(row.get("kind")), str(row.get("target"))) for row in state.get("pending_development", [])}
         portfolios = {
-            "balanced": (("product", "P2"), ("market", "区域"), ("iso", "ISO9000"), ("product", "P3"), ("market", "国内")),
-            "growth": (("product", "P2"), ("market", "区域"), ("product", "P3"), ("market", "国内"), ("iso", "ISO9000"), ("product", "P4"), ("market", "亚洲"), ("iso", "ISO14000"), ("product", "P5")),
-            "operations": (("product", "P2"), ("product", "P3"), ("market", "区域"), ("product", "P4"), ("iso", "ISO9000"), ("market", "国内"), ("product", "P5")),
-            "finance": (("market", "区域"), ("product", "P2"), ("iso", "ISO9000"), ("market", "国内"), ("product", "P3")),
+            "balanced": (("product", "P1"), ("market", "本地"), ("product", "P2"), ("market", "区域"), ("iso", "ISO9000"), ("product", "P3"), ("market", "国内")),
+            "growth": (("product", "P1"), ("market", "本地"), ("product", "P2"), ("market", "区域"), ("product", "P3"), ("market", "国内"), ("iso", "ISO9000"), ("product", "P4"), ("market", "亚洲"), ("iso", "ISO14000"), ("product", "P5")),
+            "operations": (("product", "P1"), ("market", "本地"), ("product", "P2"), ("product", "P3"), ("market", "区域"), ("product", "P4"), ("iso", "ISO9000"), ("market", "国内"), ("product", "P5")),
+            "finance": (("product", "P1"), ("market", "本地"), ("market", "区域"), ("product", "P2"), ("iso", "ISO9000"), ("market", "国内"), ("product", "P3")),
         }
         collections = {"product": "products", "market": "markets", "iso": "iso"}
         action_names = {"product": "develop_product", "market": "develop_market", "iso": "develop_iso"}
@@ -1645,12 +1781,12 @@ class SeededHeuristicPolicy:
             if shortfall <= 0:
                 continue
             product_to_make = target_product
-            quantity = min(20.0, max(1.0, shortfall))
+            quantity = 1.0
             product_rule = (self.parameters.get("products") or {}).get(product_to_make) or {}
             for component_id, raw_units in (product_rule.get("bom") or {}).items():
                 if str(component_id).startswith("P") and inventory.get(str(component_id), 0.0) < _number(raw_units) * quantity:
                     product_to_make = str(component_id)
-                    quantity = min(6.0, max(1.0, _number(raw_units) * quantity - inventory.get(product_to_make, 0.0)))
+                    quantity = 1.0
                     product_rule = (self.parameters.get("products") or {}).get(product_to_make) or {}
                     break
             ready_line = next((row for row in state.get("production_lines", []) if row.get("status") == "ready" and row.get("product_id") in {None, product_to_make}), None)
@@ -1669,7 +1805,7 @@ class SeededHeuristicPolicy:
                         if not material_rule:
                             feasible = False
                             break
-                        emergency_cost += missing * _number(material_rule.get("price_wan")) * 1.5
+                        emergency_cost += missing * _number(material_rule.get("price_wan")) * _number((self.rules.get("financial_rules") or {}).get("emergency_material_price_multiplier"), 2)
                         emergency_actions.append({"action_type": "emergency_purchase", "parameters": {"material_id": component_id, "quantity": missing}})
                 elif inventory.get(str(component_id), 0.0) < required:
                     feasible = False

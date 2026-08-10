@@ -248,5 +248,10 @@
       "size_bytes": 310200,
       "sha256": "d3a33bafe4c622fa11b184053ace7c4450b7e50e27e16938da3e55c7232f5afb"
     }
+  ],
+  "derived_artifacts": [
+    "inverse_actions.jsonl",
+    "inverse_calibration_report.json",
+    "inverse_quarter_states.jsonl"
   ]
 }
