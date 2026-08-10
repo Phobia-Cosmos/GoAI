@@ -1,0 +1,1861 @@
+{
+  "version": "xa_historical_strategy_profiles_v1.0",
+  "profiles": [
+    {
+      "team_id": "XA01",
+      "strategy_class": "balanced_expansion",
+      "official_rank": 10,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 518.0,
+      "development_potential": 150.0,
+      "official_score": 1295.0,
+      "delivered_order_count": 27,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "administrative_fee": 20,
+        "factory_rent": 1,
+        "production_line_order": 6,
+        "production_line_investment": 2,
+        "product_development": 4,
+        "short_loan_borrow": 17,
+        "material_order": 15,
+        "market_development": 3,
+        "iso_development": 2,
+        "advertising": 4,
+        "material_receipt_payment": 15,
+        "production_line_conversion": 15,
+        "production": 15,
+        "order_delivery": 7,
+        "factory_rent_renewal": 3,
+        "receivable_discount": 13,
+        "short_loan_repayment": 13,
+        "maintenance": 4,
+        "order_award": 1,
+        "receivable_maturity": 8,
+        "emergency_product_purchase": 2,
+        "emergency_material_purchase": 1,
+        "long_loan_borrow": 1,
+        "factory_rent_to_buy": 1,
+        "factory_purchase": 3
+      },
+      "final_assets": {
+        "completed_lines": [
+          "柔性线",
+          "柔性线",
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P3",
+          "P1",
+          "P2"
+        ],
+        "purchased_factories": [
+          "大厂房",
+          "中厂房",
+          "中厂房",
+          "小厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA02",
+      "strategy_class": "conservative_survivor",
+      "official_rank": 9,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 602.0,
+      "development_potential": 141.0,
+      "official_score": 1451.0,
+      "delivered_order_count": 29,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "administrative_fee": 20,
+        "factory_rent": 1,
+        "production_line_order": 6,
+        "product_development": 3,
+        "short_loan_borrow": 15,
+        "material_order": 15,
+        "production_line_investment": 2,
+        "market_development": 3,
+        "iso_development": 2,
+        "advertising": 4,
+        "material_receipt_payment": 15,
+        "production": 15,
+        "receivable_maturity": 10,
+        "factory_rent_renewal": 3,
+        "short_loan_repayment": 12,
+        "maintenance": 4,
+        "receivable_discount": 8,
+        "emergency_product_purchase": 1,
+        "order_delivery": 2,
+        "long_loan_borrow": 1,
+        "factory_rent_to_buy": 1,
+        "factory_purchase": 3
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "手工线",
+          "自动线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P1",
+          "P3",
+          "P2"
+        ],
+        "purchased_factories": [
+          "大厂房",
+          "小厂房",
+          "小厂房",
+          "小厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA03",
+      "strategy_class": "conservative_survivor",
+      "official_rank": 11,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 543.0,
+      "development_potential": 134.0,
+      "official_score": 1271.0,
+      "delivered_order_count": 18,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "long_loan_borrow": 2,
+        "factory_purchase": 4,
+        "production_line_order": 5,
+        "product_development": 3,
+        "administrative_fee": 20,
+        "material_order": 17,
+        "production_line_investment": 1,
+        "material_receipt_payment": 17,
+        "production": 18,
+        "short_loan_borrow": 6,
+        "iso_development": 2,
+        "market_development": 3,
+        "maintenance": 5,
+        "long_loan_repayment": 4,
+        "advertising": 4,
+        "factory_sale": 3,
+        "receivable_maturity": 10,
+        "short_loan_repayment": 6,
+        "factory_rent_renewal": 2,
+        "order_delivery": 1,
+        "receivable_discount": 3,
+        "inventory_product_sale": 1,
+        "order_award": 1,
+        "factory_rent_to_buy": 3
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P3",
+          "P1",
+          "P2"
+        ],
+        "purchased_factories": [
+          "中厂房",
+          "小厂房",
+          "小厂房",
+          "大厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA04",
+      "strategy_class": "aggressive_failed",
+      "official_rank": null,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q1",
+      "owner_equity_wan": null,
+      "development_potential": 79.0,
+      "official_score": null,
+      "delivered_order_count": 19,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "long_loan_borrow": 1,
+        "factory_rent": 2,
+        "production_line_order": 8,
+        "material_order": 10,
+        "product_development": 2,
+        "administrative_fee": 16,
+        "material_receipt_payment": 10,
+        "production_line_investment": 1,
+        "production": 12,
+        "market_development": 1,
+        "maintenance": 4,
+        "long_loan_repayment": 3,
+        "advertising": 3,
+        "factory_rent_renewal": 3,
+        "receivable_discount": 5,
+        "receivable_maturity": 7,
+        "order_delivery": 6,
+        "emergency_material_purchase": 1,
+        "inventory_product_sale": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [],
+        "markets": [
+          "本地",
+          "区域",
+          "国内"
+        ],
+        "products": [
+          "P1",
+          "P3"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA05",
+      "strategy_class": "aggressive_failed",
+      "official_rank": null,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q1",
+      "owner_equity_wan": null,
+      "development_potential": 100.0,
+      "official_score": null,
+      "delivered_order_count": 8,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "product_development": 2,
+        "administrative_fee": 12,
+        "material_order": 6,
+        "market_development": 2,
+        "iso_development": 2,
+        "advertising": 2,
+        "long_loan_borrow": 1,
+        "material_receipt_payment": 5,
+        "factory_rent": 2,
+        "production_line_order": 10,
+        "production": 6,
+        "short_loan_borrow": 3,
+        "maintenance": 2,
+        "long_loan_repayment": 1,
+        "receivable_discount": 3,
+        "factory_rent_renewal": 2,
+        "receivable_maturity": 3,
+        "short_loan_repayment": 2
+      },
+      "final_assets": {
+        "completed_lines": [
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内"
+        ],
+        "products": [
+          "P2",
+          "P3"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA06",
+      "strategy_class": "leader_growth",
+      "official_rank": 3,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 841.0,
+      "development_potential": 198.0,
+      "official_score": 2506.0,
+      "delivered_order_count": 29,
+      "defaulted_order_count": 2,
+      "action_counts": {
+        "capital_injection": 1,
+        "product_development": 9,
+        "administrative_fee": 20,
+        "short_loan_borrow": 19,
+        "factory_purchase": 1,
+        "production_line_order": 18,
+        "production_line_investment": 3,
+        "material_order": 15,
+        "iso_development": 2,
+        "market_development": 3,
+        "advertising": 4,
+        "material_receipt_payment": 15,
+        "factory_rent": 3,
+        "production": 15,
+        "short_loan_repayment": 15,
+        "receivable_maturity": 8,
+        "maintenance": 4,
+        "long_loan_borrow": 2,
+        "factory_rent_renewal": 2,
+        "receivable_discount": 16,
+        "order_delivery": 8,
+        "long_loan_repayment": 2,
+        "factory_rent_to_buy": 2,
+        "penalty_payment": 1,
+        "order_award": 3,
+        "factory_discount": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线",
+          "自动线",
+          "租赁线",
+          "租赁线",
+          "租赁线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "租赁线",
+          "租赁线",
+          "租赁线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P3",
+          "P5",
+          "P4",
+          "P1",
+          "P2"
+        ],
+        "purchased_factories": [
+          "中厂房",
+          "中厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA07",
+      "strategy_class": "leader_growth",
+      "official_rank": 1,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 1050.0,
+      "development_potential": 261.0,
+      "official_score": 3791.0,
+      "delivered_order_count": 51,
+      "defaulted_order_count": 1,
+      "action_counts": {
+        "capital_injection": 1,
+        "short_loan_borrow": 15,
+        "material_order": 18,
+        "factory_rent": 3,
+        "production_line_order": 24,
+        "product_development": 4,
+        "administrative_fee": 20,
+        "production_line_investment": 4,
+        "material_receipt_payment": 17,
+        "production": 17,
+        "market_development": 3,
+        "iso_development": 3,
+        "maintenance": 5,
+        "advertising": 4,
+        "short_loan_repayment": 13,
+        "order_delivery": 11,
+        "emergency_product_purchase": 5,
+        "factory_rent_renewal": 4,
+        "receivable_discount": 12,
+        "receivable_maturity": 10,
+        "tax_payment": 2,
+        "long_loan_borrow": 2,
+        "emergency_material_purchase": 1,
+        "production_line_conversion": 1,
+        "long_loan_repayment": 2,
+        "order_award": 1,
+        "factory_purchase": 1,
+        "penalty_payment": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P1",
+          "P2",
+          "P4",
+          "P3"
+        ],
+        "purchased_factories": [
+          "大厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA08",
+      "strategy_class": "leader_growth",
+      "official_rank": 4,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 903.0,
+      "development_potential": 165.0,
+      "official_score": 2393.0,
+      "delivered_order_count": 24,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "short_loan_borrow": 18,
+        "material_order": 18,
+        "factory_purchase": 2,
+        "production_line_order": 12,
+        "product_development": 1,
+        "administrative_fee": 20,
+        "production_line_investment": 2,
+        "material_receipt_payment": 18,
+        "production": 18,
+        "market_development": 3,
+        "iso_development": 2,
+        "maintenance": 5,
+        "advertising": 4,
+        "long_loan_borrow": 3,
+        "short_loan_repayment": 15,
+        "receivable_discount": 16,
+        "receivable_maturity": 10,
+        "order_delivery": 3,
+        "long_loan_repayment": 3,
+        "emergency_material_purchase": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P2"
+        ],
+        "purchased_factories": [
+          "大厂房",
+          "大厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA09",
+      "strategy_class": "aggressive_failed",
+      "official_rank": null,
+      "bankrupt": true,
+      "bankruptcy_period": "Y3Q4",
+      "owner_equity_wan": null,
+      "development_potential": 83.0,
+      "official_score": null,
+      "delivered_order_count": 6,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "factory_rent": 1,
+        "administrative_fee": 11,
+        "production_line_order": 4,
+        "material_order": 7,
+        "production_line_investment": 2,
+        "short_loan_borrow": 6,
+        "product_development": 4,
+        "market_development": 2,
+        "iso_development": 2,
+        "advertising": 2,
+        "long_loan_borrow": 1,
+        "material_receipt_payment": 7,
+        "production": 6,
+        "factory_rent_renewal": 2,
+        "order_delivery": 1,
+        "short_loan_repayment": 4,
+        "receivable_maturity": 3,
+        "maintenance": 1,
+        "long_loan_repayment": 1,
+        "production_line_conversion": 1,
+        "inventory_product_sale": 4,
+        "inventory_material_sale": 1,
+        "production_line_sale": 1,
+        "receivable_discount": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "柔性线",
+          "柔性线",
+          "柔性线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内"
+        ],
+        "products": [
+          "P2",
+          "P4"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA10",
+      "strategy_class": "leader_growth",
+      "official_rank": 6,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 791.0,
+      "development_potential": 171.0,
+      "official_score": 2144.0,
+      "delivered_order_count": 29,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "long_loan_borrow": 4,
+        "product_development": 3,
+        "administrative_fee": 20,
+        "material_order": 16,
+        "factory_rent": 2,
+        "production_line_order": 12,
+        "short_loan_borrow": 9,
+        "production_line_investment": 2,
+        "market_development": 3,
+        "iso_development": 2,
+        "long_loan_repayment": 4,
+        "advertising": 4,
+        "material_receipt_payment": 15,
+        "emergency_material_purchase": 1,
+        "production": 15,
+        "order_delivery": 5,
+        "factory_rent_renewal": 3,
+        "short_loan_repayment": 8,
+        "maintenance": 4,
+        "receivable_maturity": 11,
+        "receivable_discount": 7,
+        "factory_rent_to_buy": 2,
+        "factory_purchase": 2
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "手工线",
+          "自动线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P2",
+          "P3",
+          "P1"
+        ],
+        "purchased_factories": [
+          "大厂房",
+          "大厂房",
+          "小厂房",
+          "小厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA11",
+      "strategy_class": "conservative_survivor",
+      "official_rank": 17,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 115.0,
+      "development_potential": 110.0,
+      "official_score": 242.0,
+      "delivered_order_count": 15,
+      "defaulted_order_count": 1,
+      "action_counts": {
+        "capital_injection": 1,
+        "administrative_fee": 20,
+        "short_loan_borrow": 9,
+        "factory_purchase": 1,
+        "production_line_order": 5,
+        "material_order": 16,
+        "production_line_investment": 1,
+        "product_development": 2,
+        "market_development": 3,
+        "iso_development": 3,
+        "advertising": 4,
+        "long_loan_borrow": 1,
+        "material_receipt_payment": 12,
+        "production": 12,
+        "order_delivery": 4,
+        "short_loan_repayment": 9,
+        "maintenance": 4,
+        "long_loan_repayment": 3,
+        "receivable_discount": 8,
+        "order_award": 2,
+        "receivable_maturity": 5,
+        "penalty_payment": 1,
+        "factory_discount": 1,
+        "factory_rent_renewal": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P2",
+          "P1"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA12",
+      "strategy_class": "conservative_survivor",
+      "official_rank": 12,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 547.0,
+      "development_potential": 119.0,
+      "official_score": 1198.0,
+      "delivered_order_count": 21,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "short_loan_borrow": 16,
+        "product_development": 1,
+        "administrative_fee": 20,
+        "factory_purchase": 3,
+        "production_line_order": 5,
+        "material_order": 16,
+        "production_line_investment": 2,
+        "market_development": 3,
+        "iso_development": 2,
+        "advertising": 4,
+        "long_loan_borrow": 2,
+        "short_loan_repayment": 15,
+        "material_receipt_payment": 15,
+        "production_line_conversion": 10,
+        "production": 15,
+        "order_delivery": 5,
+        "maintenance": 4,
+        "long_loan_repayment": 3,
+        "receivable_discount": 6,
+        "receivable_maturity": 9,
+        "factory_discount": 1,
+        "factory_rent_renewal": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "柔性线",
+          "柔性线",
+          "柔性线",
+          "柔性线",
+          "柔性线"
+        ],
+        "iso": [
+          "ISO9000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P1",
+          "P2"
+        ],
+        "purchased_factories": [
+          "中厂房",
+          "小厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA13",
+      "strategy_class": "leader_growth",
+      "official_rank": 2,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 859.0,
+      "development_potential": 197.0,
+      "official_score": 2551.0,
+      "delivered_order_count": 24,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "administrative_fee": 20,
+        "short_loan_borrow": 18,
+        "factory_purchase": 4,
+        "production_line_order": 6,
+        "material_order": 15,
+        "production_line_investment": 2,
+        "product_development": 5,
+        "market_development": 4,
+        "iso_development": 3,
+        "advertising": 4,
+        "material_receipt_payment": 15,
+        "production": 15,
+        "emergency_product_purchase": 2,
+        "receivable_discount": 3,
+        "short_loan_repayment": 14,
+        "receivable_maturity": 9,
+        "order_delivery": 5,
+        "maintenance": 4,
+        "tax_payment": 1,
+        "long_loan_borrow": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P1",
+          "P5",
+          "P4",
+          "P3",
+          "P2"
+        ],
+        "purchased_factories": [
+          "大厂房",
+          "大厂房",
+          "大厂房",
+          "大厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA14",
+      "strategy_class": "aggressive_failed",
+      "official_rank": null,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q4",
+      "owner_equity_wan": null,
+      "development_potential": 104.0,
+      "official_score": null,
+      "delivered_order_count": 12,
+      "defaulted_order_count": 1,
+      "action_counts": {
+        "capital_injection": 1,
+        "administrative_fee": 15,
+        "material_order": 13,
+        "factory_rent": 1,
+        "production_line_order": 4,
+        "short_loan_borrow": 9,
+        "production_line_investment": 2,
+        "market_development": 3,
+        "iso_development": 2,
+        "product_development": 2,
+        "advertising": 3,
+        "material_receipt_payment": 11,
+        "production": 11,
+        "factory_purchase": 1,
+        "receivable_maturity": 6,
+        "order_delivery": 4,
+        "factory_rent_renewal": 3,
+        "short_loan_repayment": 8,
+        "maintenance": 2,
+        "penalty_payment": 1,
+        "receivable_discount": 5
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P2",
+          "P1"
+        ],
+        "purchased_factories": [
+          "小厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA15",
+      "strategy_class": "balanced_expansion",
+      "official_rank": 7,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 679.0,
+      "development_potential": 171.0,
+      "official_score": 1840.0,
+      "delivered_order_count": 34,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "administrative_fee": 20,
+        "short_loan_borrow": 15,
+        "factory_purchase": 1,
+        "production_line_order": 15,
+        "material_order": 16,
+        "production_line_investment": 3,
+        "product_development": 4,
+        "market_development": 3,
+        "iso_development": 2,
+        "advertising": 4,
+        "long_loan_borrow": 1,
+        "material_receipt_payment": 15,
+        "production": 15,
+        "short_loan_repayment": 12,
+        "emergency_product_purchase": 2,
+        "receivable_discount": 15,
+        "maintenance": 4,
+        "long_loan_repayment": 3,
+        "order_award": 2,
+        "factory_discount": 1,
+        "production_line_conversion": 6,
+        "receivable_maturity": 7,
+        "order_delivery": 5,
+        "factory_rent": 2,
+        "factory_rent_renewal": 2,
+        "factory_rent_to_buy": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "柔性线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P2",
+          "P1",
+          "P3"
+        ],
+        "purchased_factories": [
+          "中厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA16",
+      "strategy_class": "aggressive_failed",
+      "official_rank": null,
+      "bankrupt": true,
+      "bankruptcy_period": "Y3Q4",
+      "owner_equity_wan": null,
+      "development_potential": 93.0,
+      "official_score": null,
+      "delivered_order_count": 3,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "short_loan_borrow": 7,
+        "material_order": 11,
+        "product_development": 3,
+        "administrative_fee": 11,
+        "factory_purchase": 1,
+        "production_line_order": 6,
+        "material_receipt_payment": 8,
+        "production": 9,
+        "production_line_investment": 2,
+        "market_development": 2,
+        "iso_development": 2,
+        "maintenance": 2,
+        "advertising": 2,
+        "long_loan_borrow": 1,
+        "short_loan_repayment": 6,
+        "production_line_conversion": 1,
+        "factory_discount": 1,
+        "emergency_material_purchase": 2,
+        "order_delivery": 3,
+        "long_loan_repayment": 1,
+        "order_award": 1,
+        "factory_rent_renewal": 1,
+        "emergency_product_purchase": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "柔性线",
+          "柔性线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "国内",
+          "本地",
+          "区域"
+        ],
+        "products": [
+          "P2",
+          "P4"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA17",
+      "strategy_class": "aggressive_failed",
+      "official_rank": null,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q4",
+      "owner_equity_wan": null,
+      "development_potential": 69.0,
+      "official_score": null,
+      "delivered_order_count": 9,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "administrative_fee": 15,
+        "short_loan_borrow": 7,
+        "material_order": 11,
+        "factory_rent": 1,
+        "production_line_order": 4,
+        "production_line_investment": 1,
+        "product_development": 2,
+        "market_development": 2,
+        "iso_development": 2,
+        "advertising": 3,
+        "long_loan_borrow": 1,
+        "material_receipt_payment": 9,
+        "production": 9,
+        "short_loan_repayment": 6,
+        "receivable_maturity": 5,
+        "factory_rent_renewal": 3,
+        "maintenance": 2,
+        "long_loan_repayment": 2,
+        "receivable_discount": 6,
+        "order_award": 1,
+        "production_line_conversion": 1,
+        "order_delivery": 1,
+        "inventory_product_sale": 2
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "自动线"
+        ],
+        "iso": [
+          "ISO9000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内"
+        ],
+        "products": [
+          "P2",
+          "P1"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA18",
+      "strategy_class": "conservative_survivor",
+      "official_rank": 14,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 454.0,
+      "development_potential": 137.0,
+      "official_score": 1076.0,
+      "delivered_order_count": 26,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "factory_rent": 2,
+        "production_line_order": 9,
+        "product_development": 3,
+        "administrative_fee": 20,
+        "material_order": 17,
+        "production_line_investment": 1,
+        "material_receipt_payment": 17,
+        "production": 20,
+        "short_loan_borrow": 13,
+        "market_development": 3,
+        "iso_development": 2,
+        "maintenance": 5,
+        "advertising": 4,
+        "long_loan_borrow": 2,
+        "factory_rent_renewal": 5,
+        "receivable_maturity": 9,
+        "short_loan_repayment": 10,
+        "long_loan_repayment": 3,
+        "receivable_discount": 7,
+        "order_delivery": 7,
+        "production_line_conversion": 1,
+        "factory_rent_to_buy": 1,
+        "factory_purchase": 2
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P3",
+          "P1"
+        ],
+        "purchased_factories": [
+          "中厂房",
+          "中厂房",
+          "小厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA19",
+      "strategy_class": "balanced_expansion",
+      "official_rank": 8,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 720.0,
+      "development_potential": 145.0,
+      "official_score": 1764.0,
+      "delivered_order_count": 17,
+      "defaulted_order_count": 2,
+      "action_counts": {
+        "capital_injection": 1,
+        "material_order": 17,
+        "factory_rent": 1,
+        "production_line_order": 6,
+        "administrative_fee": 20,
+        "production_line_investment": 4,
+        "product_development": 4,
+        "short_loan_borrow": 15,
+        "material_receipt_payment": 17,
+        "production": 17,
+        "market_development": 3,
+        "iso_development": 3,
+        "maintenance": 5,
+        "advertising": 4,
+        "long_loan_borrow": 2,
+        "production_line_conversion": 6,
+        "factory_rent_renewal": 3,
+        "short_loan_repayment": 12,
+        "order_delivery": 5,
+        "receivable_discount": 10,
+        "receivable_maturity": 5,
+        "long_loan_repayment": 3,
+        "order_award": 4,
+        "inventory_material_sale": 2,
+        "factory_rent_to_buy": 1,
+        "factory_purchase": 2,
+        "penalty_payment": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "柔性线",
+          "柔性线",
+          "自动线",
+          "租赁线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P2",
+          "P4",
+          "P1"
+        ],
+        "purchased_factories": [
+          "大厂房",
+          "中厂房",
+          "小厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA20",
+      "strategy_class": "aggressive_failed",
+      "official_rank": null,
+      "bankrupt": true,
+      "bankruptcy_period": "Y4Q4",
+      "owner_equity_wan": null,
+      "development_potential": 84.0,
+      "official_score": null,
+      "delivered_order_count": 25,
+      "defaulted_order_count": 1,
+      "action_counts": {
+        "capital_injection": 1,
+        "administrative_fee": 15,
+        "short_loan_borrow": 8,
+        "factory_purchase": 1,
+        "production_line_order": 12,
+        "product_development": 2,
+        "material_order": 9,
+        "production_line_investment": 1,
+        "iso_development": 3,
+        "market_development": 2,
+        "advertising": 3,
+        "long_loan_borrow": 1,
+        "material_receipt_payment": 9,
+        "factory_rent": 1,
+        "production": 9,
+        "order_delivery": 7,
+        "short_loan_repayment": 7,
+        "receivable_maturity": 5,
+        "receivable_discount": 16,
+        "maintenance": 2,
+        "penalty_payment": 1,
+        "factory_discount": 1,
+        "long_loan_repayment": 2,
+        "order_award": 1,
+        "factory_rent_renewal": 2
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "手工线",
+          "租赁线",
+          "租赁线",
+          "租赁线",
+          "租赁线",
+          "租赁线",
+          "租赁线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内"
+        ],
+        "products": [
+          "P3",
+          "P1"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA21",
+      "strategy_class": "conservative_survivor",
+      "official_rank": 16,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 191.0,
+      "development_potential": 112.0,
+      "official_score": 405.0,
+      "delivered_order_count": 15,
+      "defaulted_order_count": 1,
+      "action_counts": {
+        "capital_injection": 1,
+        "material_order": 15,
+        "product_development": 5,
+        "administrative_fee": 20,
+        "factory_rent": 1,
+        "production_line_order": 6,
+        "short_loan_borrow": 14,
+        "material_receipt_payment": 15,
+        "production_line_investment": 2,
+        "production": 17,
+        "market_development": 3,
+        "iso_development": 2,
+        "maintenance": 5,
+        "advertising": 4,
+        "production_line_conversion": 4,
+        "factory_rent_renewal": 4,
+        "short_loan_repayment": 12,
+        "receivable_maturity": 9,
+        "receivable_discount": 5,
+        "order_delivery": 3,
+        "production_line_sale": 1,
+        "long_loan_borrow": 1,
+        "emergency_product_purchase": 1,
+        "emergency_material_purchase": 1,
+        "penalty_payment": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "柔性线",
+          "柔性线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P2",
+          "P4",
+          "P1"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA22",
+      "strategy_class": "leader_growth",
+      "official_rank": 5,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 820.0,
+      "development_potential": 187.0,
+      "official_score": 2353.0,
+      "delivered_order_count": 34,
+      "defaulted_order_count": 1,
+      "action_counts": {
+        "capital_injection": 1,
+        "short_loan_borrow": 20,
+        "factory_purchase": 2,
+        "material_order": 18,
+        "production_line_order": 15,
+        "product_development": 7,
+        "administrative_fee": 20,
+        "production_line_investment": 4,
+        "material_receipt_payment": 17,
+        "production": 18,
+        "market_development": 3,
+        "iso_development": 3,
+        "maintenance": 5,
+        "factory_discount": 1,
+        "advertising": 4,
+        "short_loan_repayment": 16,
+        "production_line_conversion": 11,
+        "receivable_discount": 15,
+        "receivable_maturity": 9,
+        "order_delivery": 8,
+        "order_award": 3,
+        "factory_rent_renewal": 4,
+        "long_loan_borrow": 2,
+        "factory_rent": 2,
+        "long_loan_repayment": 1,
+        "emergency_product_purchase": 1,
+        "emergency_material_purchase": 1,
+        "penalty_payment": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线",
+          "自动线",
+          "自动线",
+          "柔性线",
+          "柔性线",
+          "手工线",
+          "自动线",
+          "自动线",
+          "自动线",
+          "租赁线",
+          "租赁线",
+          "租赁线",
+          "手工线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P3",
+          "P2",
+          "P5",
+          "P1"
+        ],
+        "purchased_factories": [
+          "中厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA23",
+      "strategy_class": "aggressive_failed",
+      "official_rank": null,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q4",
+      "owner_equity_wan": null,
+      "development_potential": 54.0,
+      "official_score": null,
+      "delivered_order_count": 10,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "material_order": 11,
+        "factory_purchase": 1,
+        "product_development": 3,
+        "administrative_fee": 19,
+        "short_loan_borrow": 7,
+        "material_receipt_payment": 11,
+        "production_line_order": 7,
+        "production": 9,
+        "market_development": 2,
+        "iso_development": 2,
+        "maintenance": 3,
+        "advertising": 4,
+        "long_loan_borrow": 1,
+        "order_delivery": 3,
+        "factory_sale": 1,
+        "short_loan_repayment": 7,
+        "production_line_conversion": 2,
+        "receivable_maturity": 6,
+        "long_loan_repayment": 3,
+        "receivable_discount": 3,
+        "factory_rent_renewal": 2,
+        "production_line_sale": 1,
+        "factory_rent": 1,
+        "inventory_product_sale": 1,
+        "production_line_investment": 1,
+        "order_award": 2,
+        "inventory_material_sale": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "自动线"
+        ],
+        "iso": [
+          "ISO9000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内"
+        ],
+        "products": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA24",
+      "strategy_class": "aggressive_failed",
+      "official_rank": null,
+      "bankrupt": true,
+      "bankruptcy_period": "Y5Q1",
+      "owner_equity_wan": null,
+      "development_potential": 104.0,
+      "official_score": null,
+      "delivered_order_count": 15,
+      "defaulted_order_count": 1,
+      "action_counts": {
+        "capital_injection": 1,
+        "material_order": 12,
+        "product_development": 2,
+        "administrative_fee": 16,
+        "short_loan_borrow": 6,
+        "factory_rent": 1,
+        "production_line_order": 4,
+        "material_receipt_payment": 12,
+        "production_line_investment": 2,
+        "market_development": 3,
+        "iso_development": 2,
+        "advertising": 3,
+        "long_loan_borrow": 1,
+        "production_line_conversion": 6,
+        "production": 12,
+        "short_loan_repayment": 6,
+        "order_delivery": 7,
+        "factory_rent_renewal": 3,
+        "maintenance": 3,
+        "long_loan_repayment": 2,
+        "receivable_maturity": 4,
+        "receivable_discount": 2,
+        "penalty_payment": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "柔性线",
+          "自动线",
+          "自动线",
+          "自动线"
+        ],
+        "iso": [
+          "ISO9000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P1",
+          "P2",
+          "P3"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA25",
+      "strategy_class": "conservative_survivor",
+      "official_rank": 13,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 489.0,
+      "development_potential": 138.0,
+      "official_score": 1164.0,
+      "delivered_order_count": 12,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "administrative_fee": 20,
+        "short_loan_borrow": 13,
+        "factory_purchase": 4,
+        "production_line_order": 5,
+        "production_line_investment": 2,
+        "material_order": 14,
+        "product_development": 5,
+        "market_development": 4,
+        "iso_development": 2,
+        "advertising": 4,
+        "long_loan_borrow": 3,
+        "material_receipt_payment": 15,
+        "production_line_conversion": 11,
+        "production": 15,
+        "short_loan_repayment": 12,
+        "receivable_maturity": 4,
+        "maintenance": 4,
+        "long_loan_repayment": 3,
+        "receivable_discount": 3,
+        "order_delivery": 3
+      },
+      "final_assets": {
+        "completed_lines": [
+          "柔性线",
+          "柔性线",
+          "柔性线",
+          "手工线",
+          "手工线"
+        ],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P1",
+          "P2",
+          "P4"
+        ],
+        "purchased_factories": [
+          "中厂房",
+          "小厂房",
+          "小厂房",
+          "中厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA26",
+      "strategy_class": "conservative_survivor",
+      "official_rank": 18,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 47.0,
+      "development_potential": 46.0,
+      "official_score": 69.0,
+      "delivered_order_count": 13,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "material_order": 14,
+        "factory_rent": 1,
+        "production_line_order": 5,
+        "administrative_fee": 20,
+        "production_line_investment": 1,
+        "product_development": 2,
+        "material_receipt_payment": 13,
+        "production": 13,
+        "short_loan_borrow": 3,
+        "market_development": 2,
+        "iso_development": 2,
+        "maintenance": 4,
+        "advertising": 4,
+        "long_loan_borrow": 1,
+        "order_delivery": 3,
+        "factory_rent_renewal": 3,
+        "short_loan_repayment": 3,
+        "long_loan_repayment": 3,
+        "production_line_conversion": 1,
+        "receivable_maturity": 6,
+        "receivable_discount": 2,
+        "production_line_sale": 1
+      },
+      "final_assets": {
+        "completed_lines": [],
+        "iso": [
+          "ISO9000",
+          "ISO14000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内"
+        ],
+        "products": [
+          "P2",
+          "P1"
+        ],
+        "purchased_factories": []
+      },
+      "provenance": "derived_historical_strategy_profile"
+    },
+    {
+      "team_id": "XA27",
+      "strategy_class": "conservative_survivor",
+      "official_rank": 15,
+      "bankrupt": false,
+      "bankruptcy_period": null,
+      "owner_equity_wan": 347.0,
+      "development_potential": 112.0,
+      "official_score": 736.0,
+      "delivered_order_count": 19,
+      "defaulted_order_count": 0,
+      "action_counts": {
+        "capital_injection": 1,
+        "material_order": 18,
+        "product_development": 1,
+        "administrative_fee": 20,
+        "short_loan_borrow": 12,
+        "material_receipt_payment": 16,
+        "factory_purchase": 4,
+        "production_line_order": 6,
+        "production": 16,
+        "production_line_investment": 1,
+        "market_development": 3,
+        "iso_development": 2,
+        "maintenance": 5,
+        "advertising": 4,
+        "order_delivery": 9,
+        "short_loan_repayment": 10,
+        "factory_discount": 1,
+        "receivable_maturity": 5,
+        "receivable_discount": 8,
+        "factory_rent_renewal": 2,
+        "inventory_product_sale": 1,
+        "long_loan_borrow": 1,
+        "long_loan_repayment": 1,
+        "factory_rent_to_buy": 1
+      },
+      "final_assets": {
+        "completed_lines": [
+          "手工线",
+          "手工线",
+          "手工线",
+          "自动线",
+          "自动线",
+          "自动线"
+        ],
+        "iso": [
+          "ISO9000"
+        ],
+        "markets": [
+          "本地",
+          "区域",
+          "国内",
+          "亚洲",
+          "国际"
+        ],
+        "products": [
+          "P2"
+        ],
+        "purchased_factories": [
+          "大厂房",
+          "小厂房",
+          "小厂房",
+          "小厂房"
+        ]
+      },
+      "provenance": "derived_historical_strategy_profile"
+    }
+  ]
+}

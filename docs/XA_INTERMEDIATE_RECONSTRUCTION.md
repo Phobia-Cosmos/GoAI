@@ -29,7 +29,7 @@
 
 ## 已固化到前向模拟器的修正
 
-`FullFinancialDynamics` 已升级为 `full_financial_sandbox_v1.1_xa_calibrated_settlement`，并修正以下行为：
+`FullFinancialDynamics` 已升级为 `full_financial_sandbox_v1.2_xa_phased_historical_calibration`。在 v1.1 校准内容上，又补充了融资优先于同季到期结算的阶段语义、正式应收分期贴现、紧急成品采购、柔性线零费用切换和历史检查点诊断接口。
 
 - XA 固定规则场景从 675 现金、675 权益和空资格、空资产、空贷款开局。
 - 正式产线分期投资、安装期、单线单批产能、残值、维修费和“建成当年不折旧”进入状态转移；厂房不再套用缺乏依据的折旧。
@@ -39,7 +39,7 @@
 - 厂房出售形成四季度应收，紧急采购原料使用正式 2 倍价格，贴现费和违约金使用正式取整方式。
 - 固定 XA 基线策略和专属企业 Agent 的生产动作改为每条产线每次一批，且不再假设开局已有本地市场和 P1。
 
-这些改动均经过状态机测试，当前完整测试为 69 项通过。
+这些改动均经过状态机测试，当前完整测试为 75 项通过。27 家历史策略重放的模式、结果和信息泄漏边界见 [`XA_HISTORICAL_STRATEGY_REPLAY.md`](XA_HISTORICAL_STRATEGY_REPLAY.md)。
 
 ## 校准后随机比赛
 

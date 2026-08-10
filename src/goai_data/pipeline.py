@@ -123,14 +123,14 @@ class DataPipeline:
 
     def _historical_dir(self) -> Path:
         return self._first_existing_dir(
-            "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY",
-            "origin data/一场比赛数据示例",
+            "data/original/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw/ZY",
+            "data/original/一场比赛数据示例",
             "一场比赛数据示例",
         )
 
     def _test_data_dir(self) -> Path:
         return self._first_existing_dir(
-            "origin data/测试数据",
+            "data/original/测试数据",
             "测试数据",
             "比赛赛前已知数据",
         )
@@ -174,7 +174,7 @@ class DataPipeline:
         return DESIGN_SCOPE, None, "reference_only", source_type
 
     def _build_source_manifest(self) -> None:
-        origin_root = self.root / "origin data"
+        origin_root = self.root / "data/original"
         design_files = [path for path in origin_root.iterdir() if path.is_file()] if origin_root.is_dir() else []
         source_dirs = (self._historical_dir(), self._test_data_dir())
         files = design_files + [path for directory in source_dirs for path in directory.iterdir() if path.is_file()]

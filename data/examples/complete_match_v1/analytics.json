@@ -1,0 +1,945 @@
+{
+  "team_id": "CN01",
+  "metric_bundles": [
+    {
+      "metric_bundle_id": "metric_01253f4fe837f221",
+      "input_state_id": "state_e8dc937338adda5e",
+      "period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 96.0,
+          "oe_wan": 62.0,
+          "vpd_oe_ratio": 1.548387
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.39625,
+        "u2_efficiency": 0.76,
+        "u3_fairness": 0.69
+      },
+      "coupling": {
+        "c": 0.962442,
+        "f": 0.615417,
+        "h": 0.769612
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_e8dc937338adda5e"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_992dfbe1842b9c42",
+      "input_state_id": "state_6da0c4ae6d8fc5b3",
+      "period": {
+        "year": 1,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 103.0,
+          "oe_wan": 45.0,
+          "vpd_oe_ratio": 2.288889
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.4325,
+        "u2_efficiency": 0.8,
+        "u3_fairness": 0.69
+      },
+      "coupling": {
+        "c": 0.968047,
+        "f": 0.640833,
+        "h": 0.787627
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_6da0c4ae6d8fc5b3"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_2a59292303940515",
+      "input_state_id": "state_940539d6ff76116c",
+      "period": {
+        "year": 1,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 102.0,
+          "oe_wan": 37.0,
+          "vpd_oe_ratio": 2.756757
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.473125,
+        "u2_efficiency": 0.84,
+        "u3_fairness": 0.69
+      },
+      "coupling": {
+        "c": 0.973004,
+        "f": 0.667708,
+        "h": 0.806029
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_940539d6ff76116c"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_945e958c328cbffd",
+      "input_state_id": "state_98acaffda9092d7e",
+      "period": {
+        "year": 1,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 109.0,
+          "oe_wan": 53.0,
+          "vpd_oe_ratio": 2.056604
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.508125,
+        "u2_efficiency": 0.88,
+        "u3_fairness": 0.69
+      },
+      "coupling": {
+        "c": 0.975477,
+        "f": 0.692708,
+        "h": 0.822023
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_98acaffda9092d7e"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_61b2d57600b08e7e",
+      "input_state_id": "state_360cfdf794b7b57a",
+      "period": {
+        "year": 2,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 108.0,
+          "oe_wan": 45.0,
+          "vpd_oe_ratio": 2.4
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.5475,
+        "u2_efficiency": 0.76,
+        "u3_fairness": 0.72
+      },
+      "coupling": {
+        "c": 0.99008,
+        "f": 0.675833,
+        "h": 0.818003
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_360cfdf794b7b57a"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_d6d8f725facc42c1",
+      "input_state_id": "state_3c54414dedbbed01",
+      "period": {
+        "year": 2,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 115.0,
+          "oe_wan": 37.0,
+          "vpd_oe_ratio": 3.108108
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.59625,
+        "u2_efficiency": 0.8,
+        "u3_fairness": 0.72
+      },
+      "coupling": {
+        "c": 0.992745,
+        "f": 0.705417,
+        "h": 0.836839
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_3c54414dedbbed01"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_f0fd7f93b3e421c7",
+      "input_state_id": "state_c5db86f112ccea96",
+      "period": {
+        "year": 2,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 114.0,
+          "oe_wan": 33.0,
+          "vpd_oe_ratio": 3.454545
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.646875,
+        "u2_efficiency": 0.84,
+        "u3_fairness": 0.72
+      },
+      "coupling": {
+        "c": 0.994232,
+        "f": 0.735625,
+        "h": 0.855209
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_c5db86f112ccea96"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_af1a0a9b26364f0c",
+      "input_state_id": "state_520882a2dfbee0fb",
+      "period": {
+        "year": 2,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 121.0,
+          "oe_wan": 55.0,
+          "vpd_oe_ratio": 2.2
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.688125,
+        "u2_efficiency": 0.88,
+        "u3_fairness": 0.72
+      },
+      "coupling": {
+        "c": 0.994189,
+        "f": 0.762708,
+        "h": 0.870791
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_520882a2dfbee0fb"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_23529c76de7e5df9",
+      "input_state_id": "state_576b8124bcbee490",
+      "period": {
+        "year": 3,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 120.0,
+          "oe_wan": 48.0,
+          "vpd_oe_ratio": 2.5
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.733125,
+        "u2_efficiency": 0.76,
+        "u3_fairness": 0.75
+      },
+      "coupling": {
+        "c": 0.99989,
+        "f": 0.747708,
+        "h": 0.864654
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_576b8124bcbee490"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_95891e1ab225c18c",
+      "input_state_id": "state_f9c51958f2e33b7c",
+      "period": {
+        "year": 3,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 127.0,
+          "oe_wan": 33.0,
+          "vpd_oe_ratio": 3.848485
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.791875,
+        "u2_efficiency": 0.8,
+        "u3_fairness": 0.75
+      },
+      "coupling": {
+        "c": 0.999601,
+        "f": 0.780625,
+        "h": 0.883354
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_f9c51958f2e33b7c"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_700180b43a9242b0",
+      "input_state_id": "state_f4731711f023f38c",
+      "period": {
+        "year": 3,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 126.0,
+          "oe_wan": 35.0,
+          "vpd_oe_ratio": 3.6
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.84875,
+        "u2_efficiency": 0.84,
+        "u3_fairness": 0.75
+      },
+      "coupling": {
+        "c": 0.998453,
+        "f": 0.812917,
+        "h": 0.900921
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_f4731711f023f38c"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_d64385f88dd7f15f",
+      "input_state_id": "state_5a74efd2e119fb33",
+      "period": {
+        "year": 3,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 133.0,
+          "oe_wan": 57.0,
+          "vpd_oe_ratio": 2.333333
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.89625,
+        "u2_efficiency": 0.88,
+        "u3_fairness": 0.75
+      },
+      "coupling": {
+        "c": 0.996864,
+        "f": 0.842083,
+        "h": 0.916211
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_5a74efd2e119fb33"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_c9bdc79665f5e55c",
+      "input_state_id": "state_5a5961c21544487d",
+      "period": {
+        "year": 4,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 132.0,
+          "oe_wan": 45.0,
+          "vpd_oe_ratio": 2.933333
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 0.950625,
+        "u2_efficiency": 0.76,
+        "u3_fairness": 0.78
+      },
+      "coupling": {
+        "c": 0.994914,
+        "f": 0.830208,
+        "h": 0.908837
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_5a5961c21544487d"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_7baaefb92a4682ad",
+      "input_state_id": "state_eea78fc65b50bee8",
+      "period": {
+        "year": 4,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 139.0,
+          "oe_wan": 35.0,
+          "vpd_oe_ratio": 3.971429
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 1.0,
+        "u2_efficiency": 0.8,
+        "u3_fairness": 0.78
+      },
+      "coupling": {
+        "c": 0.993642,
+        "f": 0.86,
+        "h": 0.924409
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_eea78fc65b50bee8"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_46420deb164b2be2",
+      "input_state_id": "state_000bc984703e3aed",
+      "period": {
+        "year": 4,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 138.0,
+          "oe_wan": 37.0,
+          "vpd_oe_ratio": 3.72973
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 1.0,
+        "u2_efficiency": 0.84,
+        "u3_fairness": 0.78
+      },
+      "coupling": {
+        "c": 0.994515,
+        "f": 0.873333,
+        "h": 0.931957
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_000bc984703e3aed"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_84db3e67bc1ac56f",
+      "input_state_id": "state_c394260bd29685b7",
+      "period": {
+        "year": 4,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 145.0,
+          "oe_wan": 53.0,
+          "vpd_oe_ratio": 2.735849
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 1.0,
+        "u2_efficiency": 0.88,
+        "u3_fairness": 0.78
+      },
+      "coupling": {
+        "c": 0.994868,
+        "f": 0.886667,
+        "h": 0.93921
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_c394260bd29685b7"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_2c19cf62bff5fabc",
+      "input_state_id": "state_af1d5796374e63fa",
+      "period": {
+        "year": 5,
+        "quarter": 1,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 144.0,
+          "oe_wan": 48.0,
+          "vpd_oe_ratio": 3.0
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 1.0,
+        "u2_efficiency": 0.76,
+        "u3_fairness": 0.81
+      },
+      "coupling": {
+        "c": 0.993012,
+        "f": 0.856667,
+        "h": 0.922323
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_af1d5796374e63fa"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_eda513e9435ab60a",
+      "input_state_id": "state_cf73a7f6eaee98db",
+      "period": {
+        "year": 5,
+        "quarter": 2,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 151.0,
+          "oe_wan": 37.0,
+          "vpd_oe_ratio": 4.081081
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 1.0,
+        "u2_efficiency": 0.8,
+        "u3_fairness": 0.81
+      },
+      "coupling": {
+        "c": 0.994655,
+        "f": 0.87,
+        "h": 0.930242
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_cf73a7f6eaee98db"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_973f4779ab4b1541",
+      "input_state_id": "state_80400ec840f68971",
+      "period": {
+        "year": 5,
+        "quarter": 3,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 150.0,
+          "oe_wan": 33.0,
+          "vpd_oe_ratio": 4.545455
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 1.0,
+        "u2_efficiency": 0.84,
+        "u3_fairness": 0.81
+      },
+      "coupling": {
+        "c": 0.995704,
+        "f": 0.883333,
+        "h": 0.937837
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_80400ec840f68971"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    },
+    {
+      "metric_bundle_id": "metric_82978a7aeca8751e",
+      "input_state_id": "state_e478d7e2fa303a99",
+      "period": {
+        "year": 5,
+        "quarter": 4,
+        "phase": "quarter_end"
+      },
+      "formula_version": "illustrative_vpd_oe_not_validated_v1",
+      "pss_units": [
+        {
+          "pss_id": "P1_local_automatic_operational",
+          "product_id": "P1",
+          "market_id": "local",
+          "line_type": "automatic",
+          "line_ids": [
+            "LINE-01"
+          ],
+          "vpd_wan": 157.0,
+          "oe_wan": 55.0,
+          "vpd_oe_ratio": 2.854545
+        }
+      ],
+      "u_dimensions": {
+        "u1_assets": 1.0,
+        "u2_efficiency": 0.88,
+        "u3_fairness": 0.81
+      },
+      "coupling": {
+        "c": 0.996227,
+        "f": 0.896667,
+        "h": 0.945137
+      },
+      "warnings": [
+        "VPD/OE 口径仅用于展示接口",
+        "U1/U2/U3 为模拟指标",
+        "不得用于评价真实企业"
+      ],
+      "provenance": {
+        "status": "simulated",
+        "basis": [
+          "state_e478d7e2fa303a99"
+        ],
+        "note": "数值用于展示 VPD 与报表 Agent 的接口",
+        "training_eligible": false
+      }
+    }
+  ]
+}

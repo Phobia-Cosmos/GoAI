@@ -84,6 +84,7 @@ def run_recorded_competition(
     seed: int,
     complexity_profile: str = "large",
     policy_factory: Callable[[str], Any] | None = None,
+    arena_kwargs: Mapping[str, Any] | None = None,
 ) -> tuple[FullCompetitionArena, dict[str, list[dict[str, Any]]]]:
     """Run all agents from reset to termination and retain every I/O boundary."""
 
@@ -96,6 +97,7 @@ def run_recorded_competition(
         orders,
         max_periods=20,
         stop_when_all_bankrupt=False,
+        **dict(arena_kwargs or {}),
     )
     policies = (
         {team_id: policy_factory(team_id) for team_id in team_ids}

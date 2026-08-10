@@ -1,0 +1,15 @@
+[
+  {
+    "action_type": "advertising",
+    "parameters": {
+      "amount_wan": 20
+    }
+  },
+  {
+    "action_type": "short_loan_borrow",
+    "parameters": {
+      "principal_wan": 100,
+      "term": 4
+    }
+  }
+]

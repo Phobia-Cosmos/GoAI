@@ -79,8 +79,11 @@ def test_order_default_penalty_is_an_executable_transition() -> None:
     state.assigned_orders.append({"order_id": "LATE", "product": "P1", "quantity": 1, "total_price_wan": 100, "due_period_index": 1, "status": "已分配"})
     before_equity = state.owner_equity_wan
     state = engine.advance_quarter(state).state
+    # The enterprise observes Y1Q2 and gets one final delivery/financing
+    # action opportunity before obligations due in Y1Q2 are settled.
+    state = engine.advance_quarter(state).state
     assert state.defaulted_orders[0]["order_id"] == "LATE"
-    expected = generated["parameters"]["management_fee_per_quarter_wan"] + round(100 * generated["parameters"]["default_penalty_rate"])
+    expected = 2 * generated["parameters"]["management_fee_per_quarter_wan"] + round(100 * generated["parameters"]["default_penalty_rate"])
     assert round(before_equity - state.owner_equity_wan, 6) == round(expected, 6)
     assert_balanced(state)
 
@@ -94,11 +97,79 @@ def test_long_loan_interest_and_principal_settle_at_next_year_start_without_fact
     initial_book = state.factories[0]["book_value_wan"]
     for _ in range(4):
         state = engine.advance_quarter(state).state
+    assert state.long_loans
+    state = engine.advance_quarter(state).state
     assert not state.long_loans
     assert state.factories[0]["book_value_wan"] == initial_book
     assert len(state.reports) == 1
     assert "interest_expense" not in state.reports[0]["income_statement"]["details"]
     assert state.annual_income["interest_expense"] < 0
+    assert_balanced(state)
+
+
+def test_formal_emergency_product_purchase_uses_three_times_direct_cost() -> None:
+    generated = rules(38, 1)
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state("TEST01")
+    before_cash = state.cash_wan
+    transition = engine.apply(state, {"action_type": "emergency_product_purchase", "parameters": {"product_id": "P1", "quantity": 2}})
+    assert transition.status == "success"
+    expected_cost = 2 * generated["parameters"]["products"]["P1"]["direct_cost_wan"] * 3
+    assert transition.state.cash_wan == before_cash - expected_cost
+    assert transition.state.product_inventory["P1"] == 2
+    assert_balanced(transition.state)
+
+
+def test_receivable_discount_supports_formal_term_bucket_amounts() -> None:
+    generated = rules(39, 1)
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state("TEST01")
+    state.receivables = [
+        {"receivable_id": "AR1", "amount_wan": 50, "due_period_index": 4},
+        {"receivable_id": "AR2", "amount_wan": 40, "due_period_index": 4},
+    ]
+    state.owner_equity_wan = state.total_assets_wan - state.debt_wan
+    transition = engine.apply(state, {"action_type": "receivable_discount", "parameters": {"term_amounts": {"4": 77}}})
+    assert transition.status == "success"
+    assert transition.state.cash_wan == state.cash_wan + 70
+    assert transition.state.receivables_wan == 13
+    assert_balanced(transition.state)
+
+
+def test_flexible_line_can_switch_product_without_implicit_asset_value_fee() -> None:
+    generated = rules(40, 1)
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state("TEST01")
+    state.products.append("P2")
+    state.production_lines.append({"line_id": "FLEX-1", "line_type": "柔性线", "product_id": "P1", "status": "ready", "ownership": "rented", "cost_wan": 0})
+    line_id = "FLEX-1"
+    before_cash = state.cash_wan
+    converted = engine.apply(state, {"action_type": "convert_product_line", "parameters": {"line_id": line_id, "product_id": "P2"}})
+    assert converted.status == "success"
+    assert converted.state.cash_wan == before_cash
+    converted.state.material_inventory.update({"R2": 1, "R3": 1})
+    converted.state.material_inventory_value_wan.update({"R2": 9, "R3": 9})
+    converted.state.owner_equity_wan = converted.state.total_assets_wan - converted.state.debt_wan
+    produced = engine.apply(converted.state, {"action_type": "production", "parameters": {"product_id": "P2", "quantity": 1}})
+    assert produced.status == "success"
+    assert_balanced(produced.state)
+
+
+def test_checkpoint_assisted_reconstruction_preserves_observed_cash_and_equity() -> None:
+    generated = rules(43, 1)
+    generated["financial_rules"]["defer_bankruptcy_to_historical_checkpoint"] = True
+    engine = FullFinancialDynamics(generated)
+    arena = FullCompetitionArena(
+        engine, ["TEST01"], [], stop_when_all_bankrupt=False,
+        quarter_checkpoints={"TEST01": {0: {"period": "Y1Q1", "cash_wan": 700, "owner_equity_wan": 690, "bankrupt": False}}},
+    )
+    observation = arena.reset()["TEST01"]
+    arena.step({"TEST01": {"action_type": "hold"}})
+    state = arena.states["TEST01"]
+    assert state.cash_wan == 700
+    assert state.owner_equity_wan == 690
+    assert state.calibration_residual_asset_wan == -10
+    assert any(event["event_type"] == "historical_checkpoint_assimilated" for event in state.journal)
     assert_balanced(state)
 
 

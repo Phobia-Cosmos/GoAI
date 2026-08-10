@@ -147,10 +147,10 @@ class MultiMatchDatasetBuilder:
     def __init__(self, project_root: Path, output_root: Path) -> None:
         self.project_root = project_root.resolve()
         self.output_root = output_root.resolve()
-        self.raw_root = self.project_root / "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw"
-        self.xa_bundle_root = self.project_root / "origin data/lx_26140727378文件夹对应的省赛一个赛场所有资料"
+        self.raw_root = self.project_root / "data/original/VPD-OE_Agent_20260709/VPD-OE_Agent/data/raw"
+        self.xa_bundle_root = self.project_root / "data/original/lx_26140727378文件夹对应的省赛一个赛场所有资料"
         self.xa_raw_root = self.xa_bundle_root / "lx_26140727378"
-        self.old_candidate_rules = self.project_root / "origin data/VPD-OE_Agent_20260709/VPD-OE_Agent/data/rules/competition_rules.json"
+        self.old_candidate_rules = self.project_root / "data/original/VPD-OE_Agent_20260709/VPD-OE_Agent/data/rules/competition_rules.json"
 
     def build(self) -> dict[str, Any]:
         self.output_root.mkdir(parents=True, exist_ok=True)

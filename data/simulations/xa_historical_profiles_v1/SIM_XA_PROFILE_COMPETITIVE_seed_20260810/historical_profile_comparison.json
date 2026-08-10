@@ -1,0 +1,71 @@
+{
+  "format_version": "goai_XA_historical_profile_comparison_v1.0",
+  "mode": "competitive",
+  "historical_information_boundary": "uses_full_future_historical_paths_for_calibration_not_online_decision",
+  "real_XA": {
+    "teams": 27,
+    "bankruptcies": 9,
+    "survivors": 18,
+    "delivered_orders": 544,
+    "survivor_mean_equity_wan": 584.2222222222222,
+    "survivor_mean_development_potential": 149.66666666666666,
+    "survivor_mean_score": 1569.388888888889
+  },
+  "simulated": {
+    "teams": 27,
+    "bankruptcies": 27,
+    "survivors": 0,
+    "awarded_orders": 51,
+    "delivered_orders": 7,
+    "defaulted_orders": 10,
+    "survivor_mean_equity_wan": 0.0,
+    "survivor_mean_development_potential": 0.0,
+    "survivor_mean_score": 0.0,
+    "action_rejections": 48
+  },
+  "team_level_error": {
+    "common_survivor_count": 0,
+    "survivor_equity_mae_wan": null,
+    "all_team_development_potential_mae": 53.7037037037037
+  },
+  "checkpoint_assimilation": null,
+  "strategy_class_summary": {
+    "aggressive_failed": {
+      "team_count": 9,
+      "real_bankruptcies": 9,
+      "simulated_bankruptcies": 9,
+      "real_survivor_mean_equity_wan": 0.0,
+      "simulated_survivor_mean_equity_wan": 0.0,
+      "real_survivor_mean_potential": 0.0,
+      "simulated_survivor_mean_potential": 0.0
+    },
+    "balanced_expansion": {
+      "team_count": 3,
+      "real_bankruptcies": 0,
+      "simulated_bankruptcies": 3,
+      "real_survivor_mean_equity_wan": 639.0,
+      "simulated_survivor_mean_equity_wan": 0.0,
+      "real_survivor_mean_potential": 155.33333333333334,
+      "simulated_survivor_mean_potential": 0.0
+    },
+    "conservative_survivor": {
+      "team_count": 9,
+      "real_bankruptcies": 0,
+      "simulated_bankruptcies": 9,
+      "real_survivor_mean_equity_wan": 370.55555555555554,
+      "simulated_survivor_mean_equity_wan": 0.0,
+      "real_survivor_mean_potential": 116.55555555555556,
+      "simulated_survivor_mean_potential": 0.0
+    },
+    "leader_growth": {
+      "team_count": 6,
+      "real_bankruptcies": 0,
+      "simulated_bankruptcies": 6,
+      "real_survivor_mean_equity_wan": 877.3333333333334,
+      "simulated_survivor_mean_equity_wan": 0.0,
+      "real_survivor_mean_potential": 196.5,
+      "simulated_survivor_mean_potential": 0.0
+    }
+  },
+  "interpretation": "checkpoint_assisted measures missing transitions against observed cash/annual equity and reproduces observed bankruptcy labels by construction; conditioned tests identifiable actions with observed owners but no financial checkpoints; competitive removes observed owners and is the strongest counterfactual scenario"
+}

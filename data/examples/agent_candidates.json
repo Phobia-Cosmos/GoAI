@@ -1,0 +1,24 @@
+[
+  {
+    "candidate_id": "conservative",
+    "actions": [
+      {
+        "action_type": "advertising",
+        "parameters": {
+          "amount_wan": 20
+        }
+      }
+    ]
+  },
+  {
+    "candidate_id": "aggressive",
+    "actions": [
+      {
+        "action_type": "advertising",
+        "parameters": {
+          "amount_wan": 60
+        }
+      }
+    ]
+  }
+]

@@ -607,7 +607,7 @@ def main() -> int:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path(__file__).resolve().parents[1] / "examples" / "complete_match_v1",
+        default=Path(__file__).resolve().parents[1] / "data" / "examples" / "complete_match_v1",
     )
     args = parser.parse_args()
     validation = generate(args.output.resolve())

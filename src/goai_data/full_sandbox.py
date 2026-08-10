@@ -24,7 +24,7 @@ from .order_allocation import OrderAllocationEngine
 from .traditional_rules import TraditionalXAOrderPolicy, advertising_opportunities
 
 
-FULL_SANDBOX_VERSION = "full_financial_sandbox_v1.1_xa_calibrated_settlement"
+FULL_SANDBOX_VERSION = "full_financial_sandbox_v1.2_xa_phased_historical_calibration"
 COMPLEXITY_PROFILES: dict[str, dict[str, Any]] = {
     "small": {
         "team_count": 4,
@@ -498,6 +498,11 @@ class FinancialSandboxState:
     annual_cash_flow: dict[str, float] = field(default_factory=dict)
     tax_payable_wan: float = 0.0
     tax_loss_carryforward_wan: float = 0.0
+    # Diagnostic balancing asset used only by explicitly checkpoint-assisted
+    # historical reconstruction.  Ordinary simulations always leave it zero.
+    # A non-zero value quantifies non-cash state that the historical exports do
+    # not identify well enough to assign to inventory, receivables or assets.
+    calibration_residual_asset_wan: float = 0.0
     reports: list[dict[str, Any]] = field(default_factory=list)
     journal: list[dict[str, Any]] = field(default_factory=list)
     bankrupt: bool = False
@@ -524,7 +529,7 @@ class FinancialSandboxState:
 
     @property
     def work_in_process_wan(self) -> float:
-        return sum(_number(row.get("inventory_cost_wan")) for row in self.pending_production)
+        return sum(_number(row.get("inventory_cost_wan")) for row in self.pending_production if not row.get("inventory_released_in_start_period"))
 
     @property
     def fixed_assets_wan(self) -> float:
@@ -532,7 +537,7 @@ class FinancialSandboxState:
 
     @property
     def total_assets_wan(self) -> float:
-        return self.cash_wan + self.receivables_wan + sum(self.material_inventory_value_wan.values()) + sum(self.product_inventory_value_wan.values()) + self.work_in_process_wan + self.fixed_assets_wan
+        return self.cash_wan + self.receivables_wan + sum(self.material_inventory_value_wan.values()) + sum(self.product_inventory_value_wan.values()) + self.work_in_process_wan + self.fixed_assets_wan + self.calibration_residual_asset_wan
 
     @property
     def balance_gap_wan(self) -> float:
@@ -557,7 +562,7 @@ class FullFinancialDynamics:
 
     ACTIONS = (
         "short_loan_borrow", "long_loan_borrow", "receivable_discount",
-        "material_order", "emergency_purchase", "develop_product", "develop_market", "develop_iso",
+        "material_order", "emergency_purchase", "emergency_product_purchase", "develop_product", "develop_market", "develop_iso",
         "buy_workshop", "rent_workshop", "sell_workshop", "buy_product_line", "convert_product_line", "sell_product_line",
         "advertising", "production", "order_delivery", "hold",
         "spy_information_purchase",
@@ -598,6 +603,7 @@ class FullFinancialDynamics:
             advertising=copy.deepcopy(dict(configured.get("advertising") or {})),
             tax_payable_wan=_number(configured.get("tax_payable_wan")),
             tax_loss_carryforward_wan=_number(configured.get("tax_loss_carryforward_wan")),
+            calibration_residual_asset_wan=_number(configured.get("calibration_residual_asset_wan")),
         )
         state.owner_equity_wan = _number(configured.get("owner_equity_wan"), state.total_assets_wan - state.debt_wan)
         return state
@@ -618,6 +624,7 @@ class FullFinancialDynamics:
             "receivable_discount": lambda current: self._discount(current, values),
             "material_order": lambda current: self._material_order(current, values),
             "emergency_purchase": lambda current: self._emergency_purchase(current, values),
+            "emergency_product_purchase": lambda current: self._emergency_product_purchase(current, values),
             "develop_product": lambda current: self._development(current, "product", values),
             "develop_market": lambda current: self._development(current, "market", values),
             "develop_iso": lambda current: self._development(current, "iso", values),
@@ -681,6 +688,35 @@ class FullFinancialDynamics:
 
     def _discount(self, state: FinancialSandboxState, values: Mapping[str, Any]) -> FinancialTransition:
         receivable_id = str(values.get("receivable_id") or "")
+        term_amounts = values.get("term_amounts")
+        if isinstance(term_amounts, Mapping) and any(_number(amount) > 0 for amount in term_amounts.values()):
+            next_state = copy.deepcopy(state)
+            discount = self.parameters.get("receivable_discount") or {}
+            total_gross = total_fee = 0.0
+            consumed = []
+            for raw_term, raw_amount in sorted(term_amounts.items(), key=lambda item: int(item[0])):
+                term, requested = int(raw_term), _number(raw_amount)
+                if requested <= 0:
+                    continue
+                candidates = [row for row in next_state.receivables if max(1, int(row["due_period_index"]) - state.period_index) == term]
+                available = sum(_number(row.get("amount_wan")) for row in candidates)
+                if available + 1e-9 < requested:
+                    return self._reject(state, f"第{term}期应收款不足")
+                remaining_amount = requested
+                for item in candidates:
+                    if remaining_amount <= 1e-9:
+                        break
+                    amount = min(remaining_amount, _number(item.get("amount_wan")))
+                    item["amount_wan"] = _number(item.get("amount_wan")) - amount
+                    remaining_amount -= amount
+                    consumed.append({"receivable_id": item.get("receivable_id"), "term": term, "gross_wan": amount})
+                    if _number(item.get("amount_wan")) <= 1e-9:
+                        next_state.receivables.remove(item)
+                rate = _number(discount.get("terms_1_2" if term <= 2 else "terms_3_4"), 0.09)
+                total_gross += requested
+                total_fee += float(math.ceil(requested * rate))
+            event = self._journal(next_state, "receivable_discounted", cash=total_gross - total_fee, equity=-total_fee, cash_category="receivable_discount", income_category="discount_expense", details={"term_amounts": dict(term_amounts), "gross_wan": total_gross, "discount_fee_wan": total_fee, "consumed": consumed})
+            return FinancialTransition("success", next_state, (event,))
         item = next((row for row in state.receivables if str(row.get("receivable_id")) == receivable_id), None)
         if item is None:
             return self._reject(state, "应收款不存在")
@@ -723,6 +759,19 @@ class FullFinancialDynamics:
         next_state.material_inventory[material_id] = next_state.material_inventory.get(material_id, 0.0) + quantity
         next_state.material_inventory_value_wan[material_id] = next_state.material_inventory_value_wan.get(material_id, 0.0) + cost
         event = self._journal(next_state, "emergency_material_purchase", cash=-cost, cash_category="inventory_purchase", details={"material_id": material_id, "quantity": quantity, "cost_wan": cost})
+        return FinancialTransition("success", next_state, (event,))
+
+    def _emergency_product_purchase(self, state: FinancialSandboxState, values: Mapping[str, Any]) -> FinancialTransition:
+        product_id, quantity = str(values.get("product_id") or ""), _number(values.get("quantity"))
+        rule = (self.parameters.get("products") or {}).get(product_id)
+        if not rule or quantity <= 0:
+            return self._reject(state, "紧急采购产品参数无效")
+        multiplier = _number(self.financial_rules.get("emergency_product_price_multiplier"), 3)
+        cost = quantity * _number(rule.get("direct_cost_wan")) * multiplier
+        next_state = copy.deepcopy(state)
+        next_state.product_inventory[product_id] = next_state.product_inventory.get(product_id, 0.0) + quantity
+        next_state.product_inventory_value_wan[product_id] = next_state.product_inventory_value_wan.get(product_id, 0.0) + cost
+        event = self._journal(next_state, "emergency_product_purchase", cash=-cost, cash_category="inventory_purchase", details={"product_id": product_id, "quantity": quantity, "cost_wan": cost})
         return FinancialTransition("success", next_state, (event,))
 
     def _development(self, state: FinancialSandboxState, kind: str, values: Mapping[str, Any]) -> FinancialTransition:
@@ -821,7 +870,8 @@ class FullFinancialDynamics:
         line = next((row for row in state.production_lines if str(row.get("line_id")) == line_id), None)
         if line is None or product_id not in state.products or line.get("status") != "ready":
             return self._reject(state, "生产线不存在、忙碌或产品资格不足")
-        fee = _number(values.get("conversion_fee_wan"), max(1.0, _number(line.get("cost_wan")) * 0.10))
+        line_rule = (self.parameters.get("production_lines") or {}).get(str(line.get("line_type")), {})
+        fee = _number(values.get("conversion_fee_wan"), _number(line_rule.get("conversion_wan_per_quarter"), 0.0))
         next_state = copy.deepcopy(state)
         next_line = next(row for row in next_state.production_lines if str(row.get("line_id")) == line_id)
         next_line["product_id"] = product_id
@@ -872,7 +922,15 @@ class FullFinancialDynamics:
     def _production(self, state: FinancialSandboxState, values: Mapping[str, Any]) -> FinancialTransition:
         product_id, quantity = str(values.get("product_id") or ""), _number(values.get("quantity"), 1)
         rule = (self.parameters.get("products") or {}).get(product_id)
-        line = next((row for row in state.production_lines if row.get("status") == "ready" and row.get("product_id") in {None, product_id}), None)
+        # A flexible line may produce any qualified product; its exported
+        # product label is the last observed setting, not a hard qualification.
+        candidates = [row for row in state.production_lines if row.get("status") == "ready" and (row.get("line_type") == "柔性线" or row.get("product_id") in {None, product_id})]
+        requested_line_type = values.get("line_type")
+        if requested_line_type:
+            typed = [row for row in candidates if str(row.get("line_type")) == str(requested_line_type)]
+            if typed:
+                candidates = typed
+        line = next(iter(candidates), None)
         line_rule = (self.parameters.get("production_lines") or {}).get(line.get("line_type"), {}) if line else {}
         batch_capacity = _number(line_rule.get("batch_capacity"), 1)
         if not rule or product_id not in state.products or quantity <= 0 or quantity > batch_capacity or line is None:
@@ -894,7 +952,11 @@ class FullFinancialDynamics:
         next_line = next(row for row in next_state.production_lines if row.get("line_id") == line.get("line_id"))
         next_line["status"] = "busy"
         duration = int((self.parameters.get("production_lines") or {}).get(line.get("line_type"), {}).get("production_quarters", 1))
-        job = {"job_id": _stable_id("JOB", state.team_id, state.period, len(state.pending_production)), "line_id": line.get("line_id"), "product_id": product_id, "quantity": quantity, "remaining_quarters": duration, "inventory_cost_wan": consumed_value + process_cost}
+        immediate_release = duration == 1
+        if immediate_release:
+            next_state.product_inventory[product_id] = next_state.product_inventory.get(product_id, 0.0) + quantity
+            next_state.product_inventory_value_wan[product_id] = next_state.product_inventory_value_wan.get(product_id, 0.0) + consumed_value + process_cost
+        job = {"job_id": _stable_id("JOB", state.team_id, state.period, len(state.pending_production)), "line_id": line.get("line_id"), "product_id": product_id, "quantity": quantity, "remaining_quarters": duration, "inventory_cost_wan": consumed_value + process_cost, "inventory_released_in_start_period": immediate_release}
         next_state.pending_production.append(job)
         event = {"event_type": "production_started", "period": state.period, "cash_effect_wan": -process_cost, "equity_effect_wan": 0.0, "job": job}
         next_state.journal.append(event)
@@ -943,14 +1005,13 @@ class FullFinancialDynamics:
         next_state = copy.deepcopy(state)
         events: list[Mapping[str, Any]] = []
         next_index = state.period_index + 1
-        if next_index > 19:
-            if state.quarter == 4 and not any(int(report.get("year", -1)) == state.year for report in state.reports):
-                events.extend(self._year_end(next_state, closing_year=state.year))
-            next_state.competition_complete = True
-            if not next_state.bankrupt:
-                next_state.accounting_status = "competition_complete"
-            events.append({"event_type": "competition_complete", "period": state.period})
-            self._assert_balance(next_state)
+        # Quarter-start obligations are settled after the enterprise has had
+        # its action opportunity for that quarter.  XA cash paths show that a
+        # new short loan can precede same-quarter material payment or debt
+        # service; settling while entering the observation would create false
+        # bankruptcies before the enterprise can submit that financing action.
+        events.extend(self._opening_settlement(next_state))
+        if next_state.bankrupt:
             return FinancialTransition("success", next_state, tuple(events))
         events.append(self._expense(next_state, _number(self.parameters.get("management_fee_per_quarter_wan"), 14), "management_fee_expense"))
         if next_state.bankrupt:
@@ -995,8 +1056,9 @@ class FullFinancialDynamics:
             job["remaining_quarters"] = int(job.get("remaining_quarters", 0)) - 1
             if job["remaining_quarters"] <= 0:
                 product_id, quantity, value = str(job["product_id"]), _number(job["quantity"]), _number(job["inventory_cost_wan"])
-                next_state.product_inventory[product_id] = next_state.product_inventory.get(product_id, 0.0) + quantity
-                next_state.product_inventory_value_wan[product_id] = next_state.product_inventory_value_wan.get(product_id, 0.0) + value
+                if not job.get("inventory_released_in_start_period"):
+                    next_state.product_inventory[product_id] = next_state.product_inventory.get(product_id, 0.0) + quantity
+                    next_state.product_inventory_value_wan[product_id] = next_state.product_inventory_value_wan.get(product_id, 0.0) + value
                 line = next((row for row in next_state.production_lines if row.get("line_id") == job.get("line_id")), None)
                 if line:
                     line["status"] = "ready"
@@ -1013,6 +1075,23 @@ class FullFinancialDynamics:
                 next_state.defaulted_orders.append(copy.deepcopy(order))
                 if next_state.bankrupt:
                     return FinancialTransition("success", next_state, tuple(events))
+        for factory in next_state.factories:
+            if factory.get("ownership") == "rented" and int(factory.get("next_rent_period_index", 10**9)) <= state.period_index:
+                rent = _number(factory.get("annual_rent_wan"))
+                events.append(self._expense(next_state, rent, "factory_rent_expense", {"factory_id": factory.get("factory_id")}))
+                factory["next_rent_period_index"] = int(factory.get("next_rent_period_index", state.period_index)) + 4
+                if next_state.bankrupt:
+                    return FinancialTransition("success", next_state, tuple(events))
+
+        if next_index > 19:
+            if state.quarter == 4 and not any(int(report.get("year", -1)) == state.year for report in state.reports):
+                events.extend(self._year_end(next_state, closing_year=state.year))
+            next_state.competition_complete = True
+            if not next_state.bankrupt:
+                next_state.accounting_status = "competition_complete"
+            events.append({"event_type": "competition_complete", "period": state.period})
+            self._assert_balance(next_state)
+            return FinancialTransition("success", next_state, tuple(events))
 
         next_year, next_quarter = _period_from_index(next_index)
         if state.quarter == 4:
@@ -1021,7 +1100,6 @@ class FullFinancialDynamics:
                 return FinancialTransition("success", next_state, tuple(events))
         next_state.year, next_state.quarter = next_year, next_quarter
         events.append({"event_type": "quarter_advanced", "from_period": state.period, "to_period": next_state.period})
-        events.extend(self._opening_settlement(next_state))
         self._assert_balance(next_state)
         return FinancialTransition("success", next_state, tuple(events))
 
@@ -1083,20 +1161,6 @@ class FullFinancialDynamics:
                 state.receivables.remove(receivable)
                 event = {"event_type": "receivable_collected", "period": state.period, "cash_effect_wan": amount, "equity_effect_wan": 0.0, "receivable_id": receivable["receivable_id"]}
                 state.journal.append(event); events.append(event)
-        delivered_ids = {str(row.get("order_id")) for row in state.delivered_orders}
-        defaulted_ids = {str(row.get("order_id")) for row in state.defaulted_orders}
-        for order in state.assigned_orders:
-            if int(order.get("due_period_index", 10**9)) <= state.period_index and str(order.get("order_id")) not in delivered_ids | defaulted_ids:
-                penalty = _round_half_up(_number(order.get("total_price_wan")) * _number(self.parameters.get("default_penalty_rate"), 0.2))
-                events.append(self._expense(state, penalty, "order_default_penalty", {"order_id": order.get("order_id")}))
-                order["status"] = "违约"; state.defaulted_orders.append(copy.deepcopy(order))
-                if state.bankrupt: return events
-        for factory in state.factories:
-            if factory.get("ownership") == "rented" and int(factory.get("next_rent_period_index", 10**9)) <= state.period_index:
-                rent = _number(factory.get("annual_rent_wan"))
-                events.append(self._expense(state, rent, "factory_rent_expense", {"factory_id": factory.get("factory_id")}))
-                factory["next_rent_period_index"] = int(factory.get("next_rent_period_index", state.period_index)) + 4
-                if state.bankrupt: return events
         return events
 
     def _year_end(self, state: FinancialSandboxState, *, closing_year: int) -> list[Mapping[str, Any]]:
@@ -1142,7 +1206,7 @@ class FullFinancialDynamics:
         return events
 
     def _build_report(self, state: FinancialSandboxState, year: int) -> dict[str, Any]:
-        current_assets = state.cash_wan + state.receivables_wan + sum(state.material_inventory_value_wan.values()) + sum(state.product_inventory_value_wan.values()) + state.work_in_process_wan
+        current_assets = state.cash_wan + state.receivables_wan + sum(state.material_inventory_value_wan.values()) + sum(state.product_inventory_value_wan.values()) + state.work_in_process_wan + state.calibration_residual_asset_wan
         fixed_assets = state.fixed_assets_wan
         revenue = _number(state.annual_income.get("revenue"))
         cogs = -_number(state.annual_income.get("cost_of_goods_sold"))
@@ -1151,12 +1215,14 @@ class FullFinancialDynamics:
         net_income = sum(state.annual_income.values())
         return {
             "report_id": f"{state.match_id}:{state.team_id}:Y{year}", "match_id": state.match_id, "team_id": state.team_id, "year": year, "provenance": "simulated",
-            "balance_sheet": {"cash_wan": state.cash_wan, "receivables_wan": state.receivables_wan, "materials_wan": sum(state.material_inventory_value_wan.values()), "products_wan": sum(state.product_inventory_value_wan.values()), "work_in_process_wan": state.work_in_process_wan, "current_assets_wan": current_assets, "fixed_assets_wan": fixed_assets, "total_assets_wan": current_assets + fixed_assets, "liabilities_wan": state.debt_wan, "owner_equity_wan": state.owner_equity_wan, "liabilities_and_equity_wan": state.debt_wan + state.owner_equity_wan, "balance_gap_wan": state.balance_gap_wan},
+            "balance_sheet": {"cash_wan": state.cash_wan, "receivables_wan": state.receivables_wan, "materials_wan": sum(state.material_inventory_value_wan.values()), "products_wan": sum(state.product_inventory_value_wan.values()), "work_in_process_wan": state.work_in_process_wan, "calibration_residual_asset_wan": state.calibration_residual_asset_wan, "current_assets_wan": current_assets, "fixed_assets_wan": fixed_assets, "total_assets_wan": current_assets + fixed_assets, "liabilities_wan": state.debt_wan, "owner_equity_wan": state.owner_equity_wan, "liabilities_and_equity_wan": state.debt_wan + state.owner_equity_wan, "balance_gap_wan": state.balance_gap_wan},
             "income_statement": {"revenue_wan": revenue, "cost_of_goods_sold_wan": cogs, "other_expenses_wan": expenses, "income_tax_wan": tax, "net_income_wan": net_income, "details": copy.deepcopy(state.annual_income)},
             "cash_flow_statement": {"net_cash_flow_wan": sum(state.annual_cash_flow.values()), "details": copy.deepcopy(state.annual_cash_flow)},
         }
 
     def _bankruptcy_check(self, state: FinancialSandboxState, reason: str) -> None:
+        if self.financial_rules.get("defer_bankruptcy_to_historical_checkpoint"):
+            return
         reasons = []
         if state.cash_wan < 0:
             reasons.append("cash_flow_break")
@@ -1191,6 +1257,8 @@ class FullCompetitionArena(MultiAgentEnvironment):
         order_engine: OrderAllocationEngine | None = None,
         max_periods: int = 20,
         stop_when_all_bankrupt: bool = True,
+        preassignment_mode: str = "initial",
+        quarter_checkpoints: Mapping[str, Mapping[int, Mapping[str, Any]]] | None = None,
     ) -> None:
         self.dynamics = dynamics
         self._agent_ids = tuple(sorted(map(str, team_ids)))
@@ -1200,9 +1268,89 @@ class FullCompetitionArena(MultiAgentEnvironment):
         self.order_engine = order_engine or OrderAllocationEngine(TraditionalXAOrderPolicy(auction_payment_mode=payment_mode))
         self.max_periods = max_periods
         self.stop_when_all_bankrupt = stop_when_all_bankrupt
+        if preassignment_mode not in {"initial", "release_schedule"}:
+            raise ValueError(f"unknown preassignment mode: {preassignment_mode}")
+        self.preassignment_mode = preassignment_mode
+        self.quarter_checkpoints = {
+            str(team_id): {int(index): copy.deepcopy(dict(row)) for index, row in checkpoints.items()}
+            for team_id, checkpoints in (quarter_checkpoints or {}).items()
+        }
         self.states: dict[str, FinancialSandboxState] = {}
         self.order_log: list[dict[str, Any]] = []
         self.terminated = False
+
+    def _assimilate_historical_checkpoint(self, state: FinancialSandboxState, period_index: int) -> Mapping[str, Any] | None:
+        """Assimilate one observed checkpoint while preserving the balance.
+
+        This is deliberately an offline diagnostic.  It uses future historical
+        outcomes and therefore must never be enabled in online-agent evaluation.
+        Cash is exact for all quarters.  Owner equity is only available at
+        annual exports; its unexplained non-cash delta is carried in the
+        diagnostic residual asset instead of pretending that its composition is
+        known.
+        """
+
+        checkpoint = self.quarter_checkpoints.get(state.team_id, {}).get(period_index)
+        if checkpoint is None:
+            return None
+        cash_before = state.cash_wan
+        equity_before = state.owner_equity_wan
+        residual_before = state.calibration_residual_asset_wan
+        target_cash = checkpoint.get("cash_wan")
+        if isinstance(target_cash, (int, float)):
+            cash_delta = float(target_cash) - state.cash_wan
+            state.cash_wan += cash_delta
+            state.owner_equity_wan += cash_delta
+        target_equity = checkpoint.get("owner_equity_wan")
+        if isinstance(target_equity, (int, float)):
+            equity_delta = float(target_equity) - state.owner_equity_wan
+            state.owner_equity_wan += equity_delta
+            state.calibration_residual_asset_wan += equity_delta
+        expected_bankrupt = bool(checkpoint.get("bankrupt"))
+        if expected_bankrupt and not state.bankrupt:
+            state.bankrupt = True
+            state.bankruptcy_period = str(checkpoint.get("period") or _period_label(period_index))
+            state.bankruptcy_reasons = ["observed_historical_checkpoint"]
+            state.accounting_status = "bankrupt"
+        event = {
+            "event_type": "historical_checkpoint_assimilated",
+            "period": str(checkpoint.get("period") or _period_label(period_index)),
+            "period_index": period_index,
+            "cash_before_wan": cash_before,
+            "cash_target_wan": target_cash,
+            "cash_residual_wan": state.cash_wan - cash_before,
+            "equity_before_wan": equity_before,
+            "equity_target_wan": target_equity,
+            "noncash_residual_change_wan": state.calibration_residual_asset_wan - residual_before,
+            "observed_bankrupt": expected_bankrupt,
+            "information_boundary": "offline_future_historical_checkpoint_not_online_agent_eligible",
+        }
+        state.journal.append(dict(event))
+        self.dynamics._assert_balance(state)
+        return event
+
+    def _assign_scheduled_orders(self, period_index: int) -> None:
+        already_assigned = {str(row.get("order_id")) for row in self.order_log if row.get("winner_team_id")}
+        for source_order in self.global_orders:
+            order_id = str(source_order.get("order_id"))
+            owner = source_order.get("owner_team_id")
+            if order_id in already_assigned or owner in {None, ""} or int(source_order.get("release_period_index", 0)) > period_index:
+                continue
+            owner = str(owner)
+            if owner not in self.states:
+                raise ValueError(f"preassigned order has unknown owner: {owner}")
+            order = copy.deepcopy(source_order)
+            order["status"] = "已分配"
+            self.states[owner].assigned_orders.append(order)
+            for state in self.states.values():
+                state.available_orders = [row for row in state.available_orders if str(row.get("order_id")) != order_id]
+            self.order_log.append({
+                "period": _period_label(period_index) if self.preassignment_mode == "release_schedule" else "Y1Q1", "order_id": order_id, "winner_team_id": owner,
+                "policy_id": "observed_owner_release_schedule" if self.preassignment_mode == "release_schedule" else "seeded_initial_preallocation",
+                "reason": "observed_historical_owner_condition" if self.preassignment_mode == "release_schedule" else "scenario_initial_preassignment",
+                "contenders": [owner], "trace": {"release_period_index": source_order.get("release_period_index")},
+                "provenance": "observed_conditioned_simulation" if self.preassignment_mode == "release_schedule" else "simulated",
+            })
 
     @property
     def agent_ids(self) -> tuple[str, ...]:
@@ -1211,33 +1359,8 @@ class FullCompetitionArena(MultiAgentEnvironment):
     def reset(self, seed: int | None = None) -> Mapping[str, AgentObservation]:
         self.states = {team_id: self.dynamics.initial_state(team_id, initial_state=self.initial_states.get(team_id), orders=self.global_orders) for team_id in self.agent_ids}
         self.order_log = []
-        preassigned_ids = set()
-        for source_order in self.global_orders:
-            owner = source_order.get("owner_team_id")
-            if owner in {None, ""}:
-                continue
-            owner = str(owner)
-            if owner not in self.states:
-                raise ValueError(f"preassigned order has unknown owner: {owner}")
-            order = copy.deepcopy(source_order)
-            order["status"] = "已分配"
-            self.states[owner].assigned_orders.append(order)
-            preassigned_ids.add(str(order["order_id"]))
-            self.order_log.append(
-                {
-                    "period": "Y1Q1",
-                    "order_id": order["order_id"],
-                    "winner_team_id": owner,
-                    "policy_id": "seeded_initial_preallocation",
-                    "reason": "scenario_initial_preassignment",
-                    "contenders": [owner],
-                    "trace": {"initial_visibility": order.get("initial_visibility")},
-                    "provenance": "simulated",
-                }
-            )
-        if preassigned_ids:
-            for state in self.states.values():
-                state.available_orders = [row for row in state.available_orders if str(row.get("order_id")) not in preassigned_ids]
+        assignment_index = 0 if self.preassignment_mode == "release_schedule" else 10**9
+        self._assign_scheduled_orders(assignment_index)
         self.terminated = False
         return self._observations()
 
@@ -1325,9 +1448,36 @@ class FullCompetitionArena(MultiAgentEnvironment):
         order_by_id = {str(row["order_id"]): row for row in self.global_orders}
         action_events: dict[str, list[Mapping[str, Any]]] = {team_id: [] for team_id in self.agent_ids}
         action_rejections: dict[str, list[str]] = {team_id: [] for team_id in self.agent_ids}
+        action_lists = {team_id: self._action_list(actions[team_id]) for team_id in self.agent_ids}
+        liquidity_actions = {"short_loan_borrow", "long_loan_borrow", "receivable_discount"}
+        # XA executes financing before same-quarter automatic payments, then
+        # makes received materials available to production.  This phase split
+        # is necessary to reproduce paths such as “borrow → pay/receive raw
+        # materials → produce” without giving policies access to referee state.
         for team_id in self.agent_ids:
-            for action in self._action_list(actions[team_id]):
+            if next_states[team_id].bankrupt:
+                continue
+            for action in action_lists[team_id]:
+                if action.get("action_type") not in liquidity_actions:
+                    continue
+                transition = self.dynamics.apply(next_states[team_id], action)
+                if transition.status != "success":
+                    message = "; ".join(transition.violations)
+                    action_rejections[team_id].append(message)
+                    action_events[team_id].append({"event_type": "action_rejected", "period": next_states[team_id].period, "action_type": action.get("action_type"), "reason": message})
+                    continue
+                next_states[team_id] = transition.state
+                action_events[team_id].extend(transition.events)
+        for team_id in self.agent_ids:
+            if not next_states[team_id].bankrupt:
+                action_events[team_id].extend(self.dynamics._opening_settlement(next_states[team_id]))
+        for team_id in self.agent_ids:
+            if next_states[team_id].bankrupt:
+                continue
+            for action in action_lists[team_id]:
                 action_type = action.get("action_type")
+                if action_type in liquidity_actions:
+                    continue
                 if action_type in {"select_order", "auction_bid"}:
                     values = dict(action.get("parameters") or {})
                     order_id = str(values.get("order_id") or "")
@@ -1400,6 +1550,9 @@ class FullCompetitionArena(MultiAgentEnvironment):
                 raise ValueError(f"{team_id}: {'; '.join(transition.violations)}")
             next_states[team_id] = transition.state
             action_events[team_id].extend(transition.events)
+            checkpoint_event = self._assimilate_historical_checkpoint(next_states[team_id], before[team_id].period_index)
+            if checkpoint_event is not None:
+                action_events[team_id].append(checkpoint_event)
             expected_next_index = before[team_id].period_index + 1
             if transition.state.bankrupt and not transition.state.competition_complete and transition.state.period_index < expected_next_index:
                 if expected_next_index > self.max_periods - 1:
@@ -1425,6 +1578,8 @@ class FullCompetitionArena(MultiAgentEnvironment):
                 "balance_gap_wan": transition.state.balance_gap_wan,
             }
         self.states = next_states
+        if self.preassignment_mode == "release_schedule" and not self.terminated:
+            self._assign_scheduled_orders(next(iter(self.states.values())).period_index)
         all_complete = all(state.competition_complete for state in self.states.values())
         all_inactive = all(state.bankrupt or state.competition_complete for state in self.states.values())
         self.terminated = all_inactive if self.stop_when_all_bankrupt else all_complete

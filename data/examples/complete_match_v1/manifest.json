@@ -1,0 +1,71 @@
+{
+  "schema_version": "goai.complete_match.v1",
+  "dataset_id": "synthetic_cn_complete_match_v1",
+  "generated_at": "2026-08-04T12:00:00+08:00",
+  "data_class": "synthetic_reference",
+  "language_priority": "zh-CN",
+  "formal_training_eligible": false,
+  "purpose": "展示完整比赛、企业时间线、报表、VPD 分析和决策闭环所需的数据形态",
+  "source_basis": [
+    {
+      "dataset_group": "AB/CA/CB/CD/CE/EA/EB/EC/EF/OP",
+      "use": "共同观察规则指纹和历史结构",
+      "binding_status": "formal_rules_missing"
+    },
+    {
+      "dataset_group": "GC rules",
+      "use": "not_used",
+      "binding_status": "unbound_conflicting_candidate"
+    },
+    {
+      "dataset_group": "ZY/AG/ZZ",
+      "use": "not_used",
+      "binding_status": "separate_export_family"
+    },
+    {
+      "dataset_group": "710W test bundle",
+      "use": "not_used",
+      "binding_status": "excluded_from_chinese_mainline"
+    }
+  ],
+  "provenance_status_enum": [
+    "observed",
+    "derived",
+    "inferred",
+    "simulated",
+    "missing"
+  ],
+  "component_files": [
+    {
+      "file": "analytics.json",
+      "sha256": "2d61acee24f1d01af4ecfe2d22bf3153fd3b964ff9763321da1695f2d174bfdf",
+      "bytes": 24584
+    },
+    {
+      "file": "decision_cycles.json",
+      "sha256": "653f626c0984604781208ce5abadcbaabed928608f24820b392b7ee6d42acf93",
+      "bytes": 55817
+    },
+    {
+      "file": "enterprise_timeline.json",
+      "sha256": "fbe789e0d04d851c813dbeeb6b549c7a0a742da6ec8ab0951ab10d00624b8eb5",
+      "bytes": 108016
+    },
+    {
+      "file": "global_context.json",
+      "sha256": "a5c69c43fe6b17291d8eaa655a657f0f42819f24e7f88e5ebe54bbb72b174e90",
+      "bytes": 154613
+    },
+    {
+      "file": "reports.json",
+      "sha256": "9fa2ec6a2c3a007d735ed92d6d996340e4bf5a77d84f7c6ae123ea27494bb10d",
+      "bytes": 7024
+    },
+    {
+      "file": "rule_pack.json",
+      "sha256": "e4ee70e67e2da90737fa202bc0aa833a48cb1cc1e3f0a3c2a72cb91ca50a5987",
+      "bytes": 6824
+    }
+  ],
+  "not_training_data": true
+}

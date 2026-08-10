@@ -1,0 +1,1979 @@
+{
+  "team_id": "CN01",
+  "decision_cycles": [
+    {
+      "decision_id": "decision_621830be73f5ded6",
+      "decision_period": {
+        "year": 1,
+        "quarter": 1,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_2654897b0b00b804",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y1Q1-A",
+          "ORD-Y1Q1-B",
+          "ORD-Y1Q1-C"
+        ],
+        "public_data_cutoff": {
+          "year": 1,
+          "quarter": 1,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_01253f4fe837f221"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y1Q1-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 479.0,
+          "predicted_equity_wan": 600.4,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y1Q1-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y1Q1-A"
+          ],
+          "predicted_min_cash_wan": 388.0,
+          "predicted_equity_wan": 634.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y1Q1-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y1Q1-A",
+            "ORD-Y1Q1-B"
+          ],
+          "predicted_min_cash_wan": 333.0,
+          "predicted_equity_wan": 651.28,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y1Q1-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0001",
+        "EVT-0002",
+        "EVT-0003",
+        "EVT-0004",
+        "EVT-0005",
+        "EVT-0006",
+        "EVT-0007",
+        "EVT-0008",
+        "EVT-0009"
+      ],
+      "outcome": {
+        "state_id": "state_e8dc937338adda5e",
+        "cash_wan": 484.0,
+        "equity_wan": 634.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_1dae907e97bb25ef",
+      "decision_period": {
+        "year": 1,
+        "quarter": 2,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_e8dc937338adda5e",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y1Q2-A",
+          "ORD-Y1Q2-B",
+          "ORD-Y1Q2-C"
+        ],
+        "public_data_cutoff": {
+          "year": 1,
+          "quarter": 2,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_992dfbe1842b9c42"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y1Q2-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 537.0,
+          "predicted_equity_wan": 655.95,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y1Q2-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y1Q2-A"
+          ],
+          "predicted_min_cash_wan": 439.0,
+          "predicted_equity_wan": 692.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y1Q2-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y1Q2-A",
+            "ORD-Y1Q2-B"
+          ],
+          "predicted_min_cash_wan": 384.0,
+          "predicted_equity_wan": 710.54,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y1Q2-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0010",
+        "EVT-0011",
+        "EVT-0012",
+        "EVT-0013",
+        "EVT-0014",
+        "EVT-0015"
+      ],
+      "outcome": {
+        "state_id": "state_6da0c4ae6d8fc5b3",
+        "cash_wan": 542.0,
+        "equity_wan": 692.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_65e612db73a82fbe",
+      "decision_period": {
+        "year": 1,
+        "quarter": 3,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_6da0c4ae6d8fc5b3",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y1Q3-A",
+          "ORD-Y1Q3-B",
+          "ORD-Y1Q3-C"
+        ],
+        "public_data_cutoff": {
+          "year": 1,
+          "quarter": 3,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_2a59292303940515"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y1Q3-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 602.0,
+          "predicted_equity_wan": 721.3,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y1Q3-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y1Q3-A"
+          ],
+          "predicted_min_cash_wan": 505.0,
+          "predicted_equity_wan": 757.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y1Q3-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y1Q3-A",
+            "ORD-Y1Q3-B"
+          ],
+          "predicted_min_cash_wan": 450.0,
+          "predicted_equity_wan": 775.36,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y1Q3-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0016",
+        "EVT-0017",
+        "EVT-0018",
+        "EVT-0019",
+        "EVT-0020"
+      ],
+      "outcome": {
+        "state_id": "state_940539d6ff76116c",
+        "cash_wan": 607.0,
+        "equity_wan": 757.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_2e65c4b9417d09bc",
+      "decision_period": {
+        "year": 1,
+        "quarter": 4,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_940539d6ff76116c",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y1Q4-A",
+          "ORD-Y1Q4-B",
+          "ORD-Y1Q4-C"
+        ],
+        "public_data_cutoff": {
+          "year": 1,
+          "quarter": 4,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_945e958c328cbffd"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y1Q4-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 678.0,
+          "predicted_equity_wan": 774.85,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y1Q4-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y1Q4-A"
+          ],
+          "predicted_min_cash_wan": 574.0,
+          "predicted_equity_wan": 813.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y1Q4-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y1Q4-A",
+            "ORD-Y1Q4-B"
+          ],
+          "predicted_min_cash_wan": 519.0,
+          "predicted_equity_wan": 832.62,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y1Q4-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0021",
+        "EVT-0022",
+        "EVT-0023",
+        "EVT-0024",
+        "EVT-0025",
+        "EVT-0026"
+      ],
+      "outcome": {
+        "state_id": "state_98acaffda9092d7e",
+        "cash_wan": 683.0,
+        "equity_wan": 813.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_23ddd4f9eadfe4c6",
+      "decision_period": {
+        "year": 2,
+        "quarter": 1,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_98acaffda9092d7e",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y2Q1-A",
+          "ORD-Y2Q1-B",
+          "ORD-Y2Q1-C"
+        ],
+        "public_data_cutoff": {
+          "year": 2,
+          "quarter": 1,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_61b2d57600b08e7e"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y2Q1-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 741.0,
+          "predicted_equity_wan": 838.2,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y2Q1-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y2Q1-A"
+          ],
+          "predicted_min_cash_wan": 638.0,
+          "predicted_equity_wan": 876.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y2Q1-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y2Q1-A",
+            "ORD-Y2Q1-B"
+          ],
+          "predicted_min_cash_wan": 583.0,
+          "predicted_equity_wan": 895.44,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y2Q1-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0027",
+        "EVT-0028",
+        "EVT-0029",
+        "EVT-0030",
+        "EVT-0031",
+        "EVT-0032"
+      ],
+      "outcome": {
+        "state_id": "state_360cfdf794b7b57a",
+        "cash_wan": 746.0,
+        "equity_wan": 876.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_fd8fc5ab79c27572",
+      "decision_period": {
+        "year": 2,
+        "quarter": 2,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_360cfdf794b7b57a",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y2Q2-A",
+          "ORD-Y2Q2-B",
+          "ORD-Y2Q2-C"
+        ],
+        "public_data_cutoff": {
+          "year": 2,
+          "quarter": 2,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_d6d8f725facc42c1"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y2Q2-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 819.0,
+          "predicted_equity_wan": 913.75,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y2Q2-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y2Q2-A"
+          ],
+          "predicted_min_cash_wan": 709.0,
+          "predicted_equity_wan": 954.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y2Q2-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y2Q2-A",
+            "ORD-Y2Q2-B"
+          ],
+          "predicted_min_cash_wan": 654.0,
+          "predicted_equity_wan": 974.7,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y2Q2-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0033",
+        "EVT-0034",
+        "EVT-0035",
+        "EVT-0036",
+        "EVT-0037"
+      ],
+      "outcome": {
+        "state_id": "state_3c54414dedbbed01",
+        "cash_wan": 824.0,
+        "equity_wan": 954.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_a04be789951e3b2e",
+      "decision_period": {
+        "year": 2,
+        "quarter": 3,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_3c54414dedbbed01",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y2Q3-A",
+          "ORD-Y2Q3-B",
+          "ORD-Y2Q3-C"
+        ],
+        "public_data_cutoff": {
+          "year": 2,
+          "quarter": 3,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_f0fd7f93b3e421c7"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y2Q3-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 900.0,
+          "predicted_equity_wan": 995.1,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y2Q3-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y2Q3-A"
+          ],
+          "predicted_min_cash_wan": 791.0,
+          "predicted_equity_wan": 1035.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y2Q3-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y2Q3-A",
+            "ORD-Y2Q3-B"
+          ],
+          "predicted_min_cash_wan": 736.0,
+          "predicted_equity_wan": 1055.52,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y2Q3-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0038",
+        "EVT-0039",
+        "EVT-0040",
+        "EVT-0041",
+        "EVT-0042"
+      ],
+      "outcome": {
+        "state_id": "state_c5db86f112ccea96",
+        "cash_wan": 905.0,
+        "equity_wan": 1035.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_a1a7debb8c2a5b16",
+      "decision_period": {
+        "year": 2,
+        "quarter": 4,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_c5db86f112ccea96",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y2Q4-A",
+          "ORD-Y2Q4-B",
+          "ORD-Y2Q4-C"
+        ],
+        "public_data_cutoff": {
+          "year": 2,
+          "quarter": 4,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_af1a0a9b26364f0c"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y2Q4-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 986.0,
+          "predicted_equity_wan": 1058.65,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y2Q4-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y2Q4-A"
+          ],
+          "predicted_min_cash_wan": 870.0,
+          "predicted_equity_wan": 1101.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y2Q4-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y2Q4-A",
+            "ORD-Y2Q4-B"
+          ],
+          "predicted_min_cash_wan": 815.0,
+          "predicted_equity_wan": 1122.78,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y2Q4-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0043",
+        "EVT-0044",
+        "EVT-0045",
+        "EVT-0046",
+        "EVT-0047",
+        "EVT-0048"
+      ],
+      "outcome": {
+        "state_id": "state_520882a2dfbee0fb",
+        "cash_wan": 991.0,
+        "equity_wan": 1101.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_dd61c73603e9df52",
+      "decision_period": {
+        "year": 3,
+        "quarter": 1,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_520882a2dfbee0fb",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y3Q1-A",
+          "ORD-Y3Q1-B",
+          "ORD-Y3Q1-C"
+        ],
+        "public_data_cutoff": {
+          "year": 3,
+          "quarter": 1,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_23529c76de7e5df9"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y3Q1-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1058.0,
+          "predicted_equity_wan": 1131.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y3Q1-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y3Q1-A"
+          ],
+          "predicted_min_cash_wan": 943.0,
+          "predicted_equity_wan": 1173.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y3Q1-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y3Q1-A",
+            "ORD-Y3Q1-B"
+          ],
+          "predicted_min_cash_wan": 888.0,
+          "predicted_equity_wan": 1194.6,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y3Q1-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0049",
+        "EVT-0050",
+        "EVT-0051",
+        "EVT-0052",
+        "EVT-0053",
+        "EVT-0054"
+      ],
+      "outcome": {
+        "state_id": "state_576b8124bcbee490",
+        "cash_wan": 1063.0,
+        "equity_wan": 1173.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_46d989614cb3086c",
+      "decision_period": {
+        "year": 3,
+        "quarter": 2,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_576b8124bcbee490",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y3Q2-A",
+          "ORD-Y3Q2-B",
+          "ORD-Y3Q2-C"
+        ],
+        "public_data_cutoff": {
+          "year": 3,
+          "quarter": 2,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_95891e1ab225c18c"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y3Q2-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1152.0,
+          "predicted_equity_wan": 1222.55,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y3Q2-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y3Q2-A"
+          ],
+          "predicted_min_cash_wan": 1030.0,
+          "predicted_equity_wan": 1267.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y3Q2-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y3Q2-A",
+            "ORD-Y3Q2-B"
+          ],
+          "predicted_min_cash_wan": 975.0,
+          "predicted_equity_wan": 1289.86,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y3Q2-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0055",
+        "EVT-0056",
+        "EVT-0057",
+        "EVT-0058",
+        "EVT-0059"
+      ],
+      "outcome": {
+        "state_id": "state_f9c51958f2e33b7c",
+        "cash_wan": 1157.0,
+        "equity_wan": 1267.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_0ca6ddb8a7d50340",
+      "decision_period": {
+        "year": 3,
+        "quarter": 3,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_f9c51958f2e33b7c",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y3Q3-A",
+          "ORD-Y3Q3-B",
+          "ORD-Y3Q3-C"
+        ],
+        "public_data_cutoff": {
+          "year": 3,
+          "quarter": 3,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_700180b43a9242b0"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y3Q3-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1243.0,
+          "predicted_equity_wan": 1313.9,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y3Q3-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y3Q3-A"
+          ],
+          "predicted_min_cash_wan": 1122.0,
+          "predicted_equity_wan": 1358.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y3Q3-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y3Q3-A",
+            "ORD-Y3Q3-B"
+          ],
+          "predicted_min_cash_wan": 1067.0,
+          "predicted_equity_wan": 1380.68,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y3Q3-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0060",
+        "EVT-0061",
+        "EVT-0062",
+        "EVT-0063",
+        "EVT-0064"
+      ],
+      "outcome": {
+        "state_id": "state_f4731711f023f38c",
+        "cash_wan": 1248.0,
+        "equity_wan": 1358.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_c8e8e91a3b5f504c",
+      "decision_period": {
+        "year": 3,
+        "quarter": 4,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_f4731711f023f38c",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y3Q4-A",
+          "ORD-Y3Q4-B",
+          "ORD-Y3Q4-C"
+        ],
+        "public_data_cutoff": {
+          "year": 3,
+          "quarter": 4,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_d64385f88dd7f15f"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y3Q4-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1339.0,
+          "predicted_equity_wan": 1387.45,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y3Q4-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y3Q4-A"
+          ],
+          "predicted_min_cash_wan": 1211.0,
+          "predicted_equity_wan": 1434.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y3Q4-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y3Q4-A",
+            "ORD-Y3Q4-B"
+          ],
+          "predicted_min_cash_wan": 1156.0,
+          "predicted_equity_wan": 1457.94,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y3Q4-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0065",
+        "EVT-0066",
+        "EVT-0067",
+        "EVT-0068",
+        "EVT-0069",
+        "EVT-0070"
+      ],
+      "outcome": {
+        "state_id": "state_5a74efd2e119fb33",
+        "cash_wan": 1344.0,
+        "equity_wan": 1434.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_9e39fd1832b61fee",
+      "decision_period": {
+        "year": 4,
+        "quarter": 1,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_5a74efd2e119fb33",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y4Q1-A",
+          "ORD-Y4Q1-B",
+          "ORD-Y4Q1-C"
+        ],
+        "public_data_cutoff": {
+          "year": 4,
+          "quarter": 1,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_c9bdc79665f5e55c"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y4Q1-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1426.0,
+          "predicted_equity_wan": 1474.8,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y4Q1-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y4Q1-A"
+          ],
+          "predicted_min_cash_wan": 1299.0,
+          "predicted_equity_wan": 1521.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y4Q1-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y4Q1-A",
+            "ORD-Y4Q1-B"
+          ],
+          "predicted_min_cash_wan": 1244.0,
+          "predicted_equity_wan": 1544.76,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y4Q1-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0071",
+        "EVT-0072",
+        "EVT-0073",
+        "EVT-0074",
+        "EVT-0075",
+        "EVT-0076"
+      ],
+      "outcome": {
+        "state_id": "state_5a5961c21544487d",
+        "cash_wan": 1431.0,
+        "equity_wan": 1521.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_744ccb89107ad919",
+      "decision_period": {
+        "year": 4,
+        "quarter": 2,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_5a5961c21544487d",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y4Q2-A",
+          "ORD-Y4Q2-B",
+          "ORD-Y4Q2-C"
+        ],
+        "public_data_cutoff": {
+          "year": 4,
+          "quarter": 2,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_7baaefb92a4682ad"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y4Q2-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1530.0,
+          "predicted_equity_wan": 1576.35,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y4Q2-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y4Q2-A"
+          ],
+          "predicted_min_cash_wan": 1396.0,
+          "predicted_equity_wan": 1625.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y4Q2-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y4Q2-A",
+            "ORD-Y4Q2-B"
+          ],
+          "predicted_min_cash_wan": 1341.0,
+          "predicted_equity_wan": 1650.02,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y4Q2-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0077",
+        "EVT-0078",
+        "EVT-0079",
+        "EVT-0080",
+        "EVT-0081"
+      ],
+      "outcome": {
+        "state_id": "state_eea78fc65b50bee8",
+        "cash_wan": 1535.0,
+        "equity_wan": 1625.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_ef1c60f3daaf3917",
+      "decision_period": {
+        "year": 4,
+        "quarter": 3,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_eea78fc65b50bee8",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y4Q3-A",
+          "ORD-Y4Q3-B",
+          "ORD-Y4Q3-C"
+        ],
+        "public_data_cutoff": {
+          "year": 4,
+          "quarter": 3,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_46420deb164b2be2"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y4Q3-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1631.0,
+          "predicted_equity_wan": 1677.7,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y4Q3-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y4Q3-A"
+          ],
+          "predicted_min_cash_wan": 1498.0,
+          "predicted_equity_wan": 1726.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y4Q3-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y4Q3-A",
+            "ORD-Y4Q3-B"
+          ],
+          "predicted_min_cash_wan": 1443.0,
+          "predicted_equity_wan": 1750.84,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y4Q3-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0082",
+        "EVT-0083",
+        "EVT-0084",
+        "EVT-0085",
+        "EVT-0086"
+      ],
+      "outcome": {
+        "state_id": "state_000bc984703e3aed",
+        "cash_wan": 1636.0,
+        "equity_wan": 1726.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_a3e47a98082db798",
+      "decision_period": {
+        "year": 4,
+        "quarter": 4,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_000bc984703e3aed",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y4Q4-A",
+          "ORD-Y4Q4-B",
+          "ORD-Y4Q4-C"
+        ],
+        "public_data_cutoff": {
+          "year": 4,
+          "quarter": 4,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_84db3e67bc1ac56f"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y4Q4-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1743.0,
+          "predicted_equity_wan": 1767.25,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y4Q4-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y4Q4-A"
+          ],
+          "predicted_min_cash_wan": 1603.0,
+          "predicted_equity_wan": 1818.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y4Q4-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y4Q4-A",
+            "ORD-Y4Q4-B"
+          ],
+          "predicted_min_cash_wan": 1548.0,
+          "predicted_equity_wan": 1844.1,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y4Q4-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0087",
+        "EVT-0088",
+        "EVT-0089",
+        "EVT-0090",
+        "EVT-0091",
+        "EVT-0092"
+      ],
+      "outcome": {
+        "state_id": "state_c394260bd29685b7",
+        "cash_wan": 1748.0,
+        "equity_wan": 1818.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_f41060c91fe2970c",
+      "decision_period": {
+        "year": 5,
+        "quarter": 1,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_c394260bd29685b7",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y5Q1-A",
+          "ORD-Y5Q1-B",
+          "ORD-Y5Q1-C"
+        ],
+        "public_data_cutoff": {
+          "year": 5,
+          "quarter": 1,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_2c19cf62bff5fabc"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y5Q1-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1839.0,
+          "predicted_equity_wan": 1863.6,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y5Q1-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y5Q1-A"
+          ],
+          "predicted_min_cash_wan": 1700.0,
+          "predicted_equity_wan": 1914.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y5Q1-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y5Q1-A",
+            "ORD-Y5Q1-B"
+          ],
+          "predicted_min_cash_wan": 1645.0,
+          "predicted_equity_wan": 1939.92,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y5Q1-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0093",
+        "EVT-0094",
+        "EVT-0095",
+        "EVT-0096",
+        "EVT-0097",
+        "EVT-0098"
+      ],
+      "outcome": {
+        "state_id": "state_af1d5796374e63fa",
+        "cash_wan": 1844.0,
+        "equity_wan": 1914.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_cbe4dbb3fd4585c9",
+      "decision_period": {
+        "year": 5,
+        "quarter": 2,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_af1d5796374e63fa",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y5Q2-A",
+          "ORD-Y5Q2-B",
+          "ORD-Y5Q2-C"
+        ],
+        "public_data_cutoff": {
+          "year": 5,
+          "quarter": 2,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_eda513e9435ab60a"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y5Q2-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 1953.0,
+          "predicted_equity_wan": 1975.15,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y5Q2-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y5Q2-A"
+          ],
+          "predicted_min_cash_wan": 1807.0,
+          "predicted_equity_wan": 2028.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y5Q2-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y5Q2-A",
+            "ORD-Y5Q2-B"
+          ],
+          "predicted_min_cash_wan": 1752.0,
+          "predicted_equity_wan": 2055.18,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y5Q2-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0099",
+        "EVT-0100",
+        "EVT-0101",
+        "EVT-0102",
+        "EVT-0103"
+      ],
+      "outcome": {
+        "state_id": "state_cf73a7f6eaee98db",
+        "cash_wan": 1958.0,
+        "equity_wan": 2028.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_f2e7370f98b11720",
+      "decision_period": {
+        "year": 5,
+        "quarter": 3,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_cf73a7f6eaee98db",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y5Q3-A",
+          "ORD-Y5Q3-B",
+          "ORD-Y5Q3-C"
+        ],
+        "public_data_cutoff": {
+          "year": 5,
+          "quarter": 3,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_973f4779ab4b1541"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y5Q3-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 2070.0,
+          "predicted_equity_wan": 2092.5,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y5Q3-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y5Q3-A"
+          ],
+          "predicted_min_cash_wan": 1925.0,
+          "predicted_equity_wan": 2145.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y5Q3-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y5Q3-A",
+            "ORD-Y5Q3-B"
+          ],
+          "predicted_min_cash_wan": 1870.0,
+          "predicted_equity_wan": 2172.0,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y5Q3-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0104",
+        "EVT-0105",
+        "EVT-0106",
+        "EVT-0107",
+        "EVT-0108"
+      ],
+      "outcome": {
+        "state_id": "state_80400ec840f68971",
+        "cash_wan": 2075.0,
+        "equity_wan": 2145.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    },
+    {
+      "decision_id": "decision_27163e620acd25c9",
+      "decision_period": {
+        "year": 5,
+        "quarter": 4,
+        "phase": "quarter_start"
+      },
+      "base_state_id": "state_80400ec840f68971",
+      "information_set": {
+        "rules": {
+          "rule_pack_id": "rule_family_cn_observed_v1",
+          "rule_version": "0.1-provisional"
+        },
+        "available_order_ids": [
+          "ORD-Y5Q4-A",
+          "ORD-Y5Q4-B",
+          "ORD-Y5Q4-C"
+        ],
+        "public_data_cutoff": {
+          "year": 5,
+          "quarter": 4,
+          "phase": "quarter_start"
+        },
+        "metric_bundle_id": "metric_82978a7aeca8751e"
+      },
+      "objective": {
+        "hard_constraints": [
+          "cash_nonnegative",
+          "rule_valid",
+          "capacity_sufficient",
+          "delivery_on_time"
+        ],
+        "soft_objectives": [
+          "maximize_min_cash",
+          "maximize_equity",
+          "maximize_delivery_rate",
+          "control_risk"
+        ]
+      },
+      "candidates": [
+        {
+          "candidate_id": "DC-Y5Q4-C1",
+          "strategy": "conservative",
+          "planned_order_ids": [],
+          "predicted_min_cash_wan": 2192.0,
+          "predicted_equity_wan": 2192.05,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y5Q4-C2",
+          "strategy": "balanced",
+          "planned_order_ids": [
+            "ORD-Y5Q4-A"
+          ],
+          "predicted_min_cash_wan": 2040.0,
+          "predicted_equity_wan": 2247.0,
+          "violations": []
+        },
+        {
+          "candidate_id": "DC-Y5Q4-C3",
+          "strategy": "aggressive",
+          "planned_order_ids": [
+            "ORD-Y5Q4-A",
+            "ORD-Y5Q4-B"
+          ],
+          "predicted_min_cash_wan": 1985.0,
+          "predicted_equity_wan": 2275.26,
+          "violations": [
+            "second_order_capacity_not_proven"
+          ]
+        }
+      ],
+      "selected_candidate_id": "DC-Y5Q4-C2",
+      "selection_reason": "平衡方案在样例中无违规且保持更高权益；这是模拟决策，不是训练标签",
+      "human_confirmation": {
+        "status": "approved_synthetic",
+        "confirmed_by": "example_generator"
+      },
+      "submitted_event_ids": [
+        "EVT-0109",
+        "EVT-0110",
+        "EVT-0111",
+        "EVT-0112",
+        "EVT-0113",
+        "EVT-0114"
+      ],
+      "outcome": {
+        "state_id": "state_e478d7e2fa303a99",
+        "cash_wan": 2197.0,
+        "equity_wan": 2247.0,
+        "validation": "passed_synthetic_checks"
+      },
+      "provenance": {
+        "status": "simulated",
+        "basis": [],
+        "note": "展示候选生成、沙盒比较、人工确认、提交和结果记录闭环",
+        "training_eligible": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "competition_id": "zhejiang_8th_710",
+  "rule_version": "zhejiang_8th_rules_v1",
+  "year": 1,
+  "quarter": 1,
+  "cash_wan": 710,
+  "material_inventory": {
+    "R1": 2,
+    "R2": 0,
+    "R3": 0,
+    "R4": 0
+  },
+  "product_inventory": {
+    "P1": 0,
+    "P2": 0,
+    "P3": 0,
+    "P4": 0,
+    "P5": 0
+  },
+  "production_lines": [
+    {
+      "line_instance_id": "L1",
+      "line_type": "自动线"
+    }
+  ],
+  "product_qualifications": [
+    "P1"
+  ]
+}
