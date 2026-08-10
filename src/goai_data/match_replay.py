@@ -15,11 +15,12 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
+from .global_rules import development_potential, rank_final_states
 from .hard_constraints import validate_match
 from .traditional_rules import TRADITIONAL_RULES_VERSION, apply_traditional_defaults
 
 
-MATCH_REPLAY_VERSION = "match_replay_v1.0"
+MATCH_REPLAY_VERSION = "match_replay_v1.1"
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -140,6 +141,91 @@ def _phase_for_action(action: str | None) -> str:
     return "other"
 
 
+def verify_xa_historical_outcome(
+    *,
+    rules: Mapping[str, Any],
+    quarter_states: list[dict[str, Any]],
+    final_states: list[dict[str, Any]],
+    results: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Verify that observed XA trajectories reproduce the formal outcome.
+
+    This is deliberately an outcome replay: cash events and exported terminal
+    accounting states are observed inputs.  Passing this audit proves that the
+    score, rank and bankruptcy services consume those inputs correctly; it does
+    not prove that candidate settlement rules can regenerate every accounting
+    state from business actions alone.
+    """
+
+    recomputed = rank_final_states(final_states, rules)
+    official = list(results.get("ranking") or [])
+    official_by_team = {str(row.get("team_id")): row for row in official}
+    recomputed_by_team = {str(row.get("team_id")): row for row in recomputed}
+
+    rank_mismatches: list[dict[str, Any]] = []
+    score_mismatches: list[dict[str, Any]] = []
+    state_mismatches: list[dict[str, Any]] = []
+    official_order = [str(row.get("team_id")) for row in official]
+    recomputed_order = [str(row.get("team_id")) for row in recomputed]
+    if official_order != recomputed_order:
+        rank_mismatches.append({"official": official_order, "recomputed": recomputed_order})
+    for team_id in sorted(set(official_by_team) | set(recomputed_by_team)):
+        expected = official_by_team.get(team_id)
+        actual = recomputed_by_team.get(team_id)
+        if expected is None or actual is None:
+            score_mismatches.append({"team_id": team_id, "official": expected, "recomputed": actual})
+            continue
+        expected_score = int(expected.get("official_score", expected.get("rounded_recomputed_score", -1)))
+        if int(actual["rounded_score"]) != expected_score:
+            score_mismatches.append({"team_id": team_id, "official_score": expected_score, "recomputed_score": actual["rounded_score"]})
+        if float(actual["owner_equity_wan"]) != float(expected["owner_equity_wan"]) or float(actual["development_potential"]) != float(expected["development_potential"]):
+            state_mismatches.append({
+                "team_id": team_id,
+                "official_equity_wan": expected.get("owner_equity_wan"),
+                "recomputed_equity_wan": actual.get("owner_equity_wan"),
+                "official_potential": expected.get("development_potential"),
+                "recomputed_potential": actual.get("development_potential"),
+            })
+
+    potential_mismatches = []
+    for row in final_states:
+        recomputed_potential = development_potential(row.get("assets") or {}, rules)
+        if float(recomputed_potential) != float(row.get("development_potential", 0)):
+            potential_mismatches.append({"team_id": row.get("team_id"), "recorded": row.get("development_potential"), "recomputed": recomputed_potential})
+
+    official_bankruptcies = {str(row.get("team_id")): row.get("period") for row in results.get("bankruptcies") or []}
+    replayed_bankruptcies = {str(row.get("team_id")): row.get("bankruptcy_period") for row in final_states if row.get("bankruptcy_period")}
+    bankruptcy_mismatches = [] if official_bankruptcies == replayed_bankruptcies else [{"official": official_bankruptcies, "replayed": replayed_bankruptcies}]
+
+    final_quarter_cash = {str(row.get("team_id")): row.get("end_cash_wan") for row in quarter_states if int(row.get("period_index", 0)) == 20}
+    cash_mismatches = []
+    for row in final_states:
+        team_id = str(row.get("team_id"))
+        if final_quarter_cash.get(team_id) != row.get("final_cash_wan"):
+            cash_mismatches.append({"team_id": team_id, "quarter_cash_wan": final_quarter_cash.get(team_id), "final_cash_wan": row.get("final_cash_wan")})
+
+    checks = {
+        "rank_order": {"passed": not rank_mismatches, "mismatches": rank_mismatches, "ranked_team_count": len(recomputed)},
+        "official_scores": {"passed": not score_mismatches, "mismatches": score_mismatches, "matched_team_count": len(recomputed) - len(score_mismatches)},
+        "terminal_equity_and_potential": {"passed": not state_mismatches, "mismatches": state_mismatches},
+        "potential_from_assets": {"passed": not potential_mismatches, "mismatches": potential_mismatches},
+        "bankruptcy_team_and_period": {"passed": not bankruptcy_mismatches, "mismatches": bankruptcy_mismatches, "bankrupt_team_count": len(replayed_bankruptcies)},
+        "terminal_cash": {"passed": not cash_mismatches, "mismatches": cash_mismatches, "team_count": len(final_states)},
+    }
+    return {
+        "mode": "observed_trajectory_outcome_replay",
+        "exact_outcome_match": all(check["passed"] for check in checks.values()),
+        "causal_dynamics_replay": False,
+        "checks": checks,
+        "recomputed_ranking": recomputed,
+        "limitations": [
+            "667 operating cash events have partial business parameters and another 20 are unparsed",
+            "bankrupt teams have no exported terminal owner equity, and several bankruptcies occurred while cash remained positive",
+            "quarterly non-cash accounting snapshots and exact hidden settlement order are unavailable",
+        ],
+    }
+
+
 def build_replay_artifacts(match_dir: Path, rules: Mapping[str, Any], inference_report: Mapping[str, Any], *, seed: int = 0) -> dict[str, Any]:
     """Write deterministic event, quarter, order and final result logs."""
 
@@ -210,24 +296,44 @@ def build_replay_artifacts(match_dir: Path, rules: Mapping[str, Any], inference_
 
     observed_ranking = results.get("ranking", [])
     ranking_by_team = {row.get("team_id"): row for row in observed_ranking}
-    ranked = sorted(final_states, key=lambda row: (
-        row.get("bankruptcy_period") is not None,
-        -(float(row["final_cash_wan"]) if isinstance(row.get("final_cash_wan"), (int, float)) else float("-inf")),
-        -(float(row["development_potential"]) if isinstance(row.get("development_potential"), (int, float)) else float("-inf")),
-        str(row.get("team_id")),
-    ))
-    simulated_ranking = []
-    for index, row in enumerate(ranked, 1):
-        simulated_ranking.append({
-            "rank": index,
-            "team_id": row.get("team_id"),
-            "final_cash_wan": row.get("final_cash_wan"),
-            "development_potential": row.get("development_potential"),
-            "bankruptcy_period": row.get("bankruptcy_period"),
-            "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+    if match_id == "LX_XA":
+        recomputed_ranking = rank_final_states(final_states, rules)
+        ranking_basis = "owner_equity_times_development_potential_multiplier_excluding_bankrupt"
+    else:
+        # Historical matches without exported terminal equity retain the old
+        # candidate ordering.  It is intentionally not labelled as XA score.
+        ranked_candidates = sorted(final_states, key=lambda row: (
+            row.get("bankruptcy_period") is not None,
+            -(float(row["final_cash_wan"]) if isinstance(row.get("final_cash_wan"), (int, float)) else float("-inf")),
+            -(float(row["development_potential"]) if isinstance(row.get("development_potential"), (int, float)) else float("-inf")),
+            str(row.get("team_id")),
+        ))
+        recomputed_ranking = [
+            {
+                "rank": index,
+                "team_id": row.get("team_id"),
+                "final_cash_wan": row.get("final_cash_wan"),
+                "development_potential": row.get("development_potential"),
+                "bankruptcy_period": row.get("bankruptcy_period"),
+            }
+            for index, row in enumerate(ranked_candidates, 1)
+        ]
+        ranking_basis = "candidate_final_cash_then_development_potential"
+    simulated_ranking = [
+        {
+            **row,
             "official_rank": ranking_by_team.get(row.get("team_id"), {}).get("rank"),
-            "provenance": "simulated" if match_id != "LX_XA" else "derived_from_formal_assets",
-        })
+            "ranking_basis": ranking_basis,
+            "provenance": "derived_from_terminal_state_and_rule_pack",
+        }
+        for row in recomputed_ranking
+    ]
+    outcome_verification = verify_xa_historical_outcome(
+        rules=rules,
+        quarter_states=quarter_states,
+        final_states=final_states,
+        results=results,
+    ) if match_id == "LX_XA" else None
     final_result = {
         "match_id": match_id,
         "run_version": MATCH_REPLAY_VERSION,
@@ -235,8 +341,10 @@ def build_replay_artifacts(match_dir: Path, rules: Mapping[str, Any], inference_
         "result_status": "formal_xa_replay_with_simulated_service_logs" if match_id == "LX_XA" else "candidate_replay_simulated_ranking",
         "team_count": len(teams),
         "observed_result": results,
+        "recomputed_ranking": simulated_ranking,
         "simulated_ranking": simulated_ranking,
-        "ranking_warning": "旧场次没有官方最终排名；此排序仅用于运行接口和策略比较。" if match_id != "LX_XA" else "XA 的正式分数仍以 observed_result 为准。",
+        "outcome_replay_verification": outcome_verification,
+        "ranking_warning": "旧场次没有官方最终排名；此排序仅用于运行接口和策略比较。" if match_id != "LX_XA" else "XA 终局裁判已从终局状态重算；这不等于从不完整业务动作因果重建全部会计状态。",
         "provenance": {"events": "observed", "quarter_states": "derived", "orders": "observed_plus_simulated", "ranking": "simulated" if match_id != "LX_XA" else "derived_and_checked"},
     }
 
@@ -248,12 +356,14 @@ def build_replay_artifacts(match_dir: Path, rules: Mapping[str, Any], inference_
         "seed": seed,
         "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
         "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
-        "simulation_scope": "partial_accounting" if match_id != "LX_XA" else "formal_observed_data_plus_service_replay",
+        "simulation_scope": "partial_accounting" if match_id != "LX_XA" else "exact_observed_outcome_replay_not_full_causal_dynamics",
         "counts": {"events": len(event_rows), "quarters": len(quarter_rows), "orders": len(allocation_rows), "teams": len(teams)},
         "cash_identity_passed": all(row["cash_identity_passed"] for row in event_rows),
         "hard_constraints_passed": validation["passed"],
         "provenance_summary": {"observed_events": len(event_rows), "observed_orders": sum(row.get("provenance") == "observed" for row in allocation_rows), "simulated_orders": sum(row.get("provenance") == "simulated" for row in allocation_rows)},
-        "limitations": ["没有把推断规则升级为正式规则", "没有凭空重建旧场官方未分配订单", "尚未执行完整税费、折旧、应收和三表结算动力学"],
+        "exact_historical_outcome_match": outcome_verification["exact_outcome_match"] if outcome_verification else None,
+        "causal_dynamics_replay": False,
+        "limitations": ["没有把推断规则升级为正式规则", "没有凭空重建旧场官方未分配订单", "历史结果回放可精确验收终局，但不完整动作参数和季度非现金状态仍不足以证明完整因果动力学"],
     }
     _write_json(match_dir / "rules_inferred_v2.json", dict(rules))
     _write_json(match_dir / "rule_inference_report.json", dict(inference_report))

@@ -19,6 +19,8 @@ GoAI 是面向企业经营比赛的可审计辅助决策系统。它以规则包
 
 面向后续在线 Agent 的 XA 真实/模拟同构数据入口为 [`data/agent_ready/v1/xa/`](data/agent_ready/v1/xa/)，运行闭环和部分可观测信息边界见 [`docs/ONLINE_AGENT_SYSTEM_DESIGN.md`](docs/ONLINE_AGENT_SYSTEM_DESIGN.md)。仅控制我方一家企业的鲁棒滚动决策实现与实验结果见 [`docs/OWNED_ENTERPRISE_AGENT_SYSTEM.md`](docs/OWNED_ENTERPRISE_AGENT_SYSTEM.md)。
 
+XA 历史结果现已精确复现 18 家正式比分与排名、9 家破产企业及其破产季度；“结果回放”和“仅靠动作重算的前向因果模拟”之间的能力边界见 [`docs/XA_REPLAY_FIDELITY.md`](docs/XA_REPLAY_FIDELITY.md)。
+
 在另一台机器上，请将原始资料放入 `origin data/`，或建立同名软链接；仓库内的 `data/` 已包含可复现数据，也可以按 [DATA_LAYOUT.md](DATA_LAYOUT.md) 改为外部共享路径。新仓库不依赖 `Others` 的 Git 仓库历史即可运行源码、测试和已同步的数据。
 
 ## 快速验证

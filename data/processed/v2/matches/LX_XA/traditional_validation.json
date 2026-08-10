@@ -55,6 +55,26 @@
       "team_count": 27,
       "violations": []
     },
+    "xa_exact_bankruptcies": {
+      "bankrupt_team_count": 9,
+      "passed": true,
+      "violations": []
+    },
+    "xa_exact_development_potential": {
+      "passed": true,
+      "team_count": 27,
+      "violations": []
+    },
+    "xa_exact_rank_order": {
+      "passed": true,
+      "ranked_team_count": 18,
+      "violations": []
+    },
+    "xa_exact_terminal_cash": {
+      "passed": true,
+      "team_count": 27,
+      "violations": []
+    },
     "xa_initial_cash_rule": {
       "initial_cash_wan": 675,
       "passed": true,
@@ -75,6 +95,6 @@
   },
   "match_id": "LX_XA",
   "passed": true,
-  "version": "hard_constraints_v0.1",
+  "version": "hard_constraints_v0.2",
   "violations": []
 }

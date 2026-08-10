@@ -1098,7 +1098,7 @@
   ],
   "rule_pack_id": "AAAAA_20160108_4.3.32.419",
   "runtime_rule_status": "formal_xa",
-  "runtime_version": "match_replay_v1.0",
+  "runtime_version": "match_replay_v1.1",
   "simulation_policy": {
     "auction_generated": "only_from_observed_order_types",
     "observed_orders_are_replayed": true,

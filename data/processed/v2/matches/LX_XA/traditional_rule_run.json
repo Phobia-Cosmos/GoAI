@@ -1,17 +1,19 @@
 {
   "cash_identity_passed": true,
+  "causal_dynamics_replay": false,
   "counts": {
     "events": 3787,
     "orders": 796,
     "quarters": 540,
     "teams": 27
   },
-  "generated_at": "2026-08-05T11:57:32+08:00",
+  "exact_historical_outcome_match": true,
+  "generated_at": "2026-08-10T11:08:10+08:00",
   "hard_constraints_passed": true,
   "limitations": [
     "没有把推断规则升级为正式规则",
     "没有凭空重建旧场官方未分配订单",
-    "尚未执行完整税费、折旧、应收和三表结算动力学"
+    "历史结果回放可精确验收终局，但不完整动作参数和季度非现金状态仍不足以证明完整因果动力学"
   ],
   "match_id": "LX_XA",
   "provenance_summary": {
@@ -20,8 +22,8 @@
     "simulated_orders": 0
   },
   "rule_pack_id": "AAAAA_20160108_4.3.32.419",
-  "run_version": "match_replay_v1.0",
+  "run_version": "match_replay_v1.1",
   "scope": "deterministic historical event replay, traditional order-policy dispatch, quarter and cash audit",
   "seed": 20260805,
-  "simulation_scope": "formal_observed_data_plus_service_replay"
+  "simulation_scope": "exact_observed_outcome_replay_not_full_causal_dynamics"
 }

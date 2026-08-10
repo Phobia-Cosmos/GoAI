@@ -324,286 +324,600 @@
     "ranking_status": "derived_and_checked_against_official_score",
     "rule_pack_id": "AAAAA_20160108_4.3.32.419"
   },
+  "outcome_replay_verification": {
+    "causal_dynamics_replay": false,
+    "checks": {
+      "bankruptcy_team_and_period": {
+        "bankrupt_team_count": 9,
+        "mismatches": [],
+        "passed": true
+      },
+      "official_scores": {
+        "matched_team_count": 18,
+        "mismatches": [],
+        "passed": true
+      },
+      "potential_from_assets": {
+        "mismatches": [],
+        "passed": true
+      },
+      "rank_order": {
+        "mismatches": [],
+        "passed": true,
+        "ranked_team_count": 18
+      },
+      "terminal_cash": {
+        "mismatches": [],
+        "passed": true,
+        "team_count": 27
+      },
+      "terminal_equity_and_potential": {
+        "mismatches": [],
+        "passed": true
+      }
+    },
+    "exact_outcome_match": true,
+    "limitations": [
+      "667 operating cash events have partial business parameters and another 20 are unparsed",
+      "bankrupt teams have no exported terminal owner equity, and several bankruptcies occurred while cash remained positive",
+      "quarterly non-cash accounting snapshots and exact hidden settlement order are unavailable"
+    ],
+    "mode": "observed_trajectory_outcome_replay",
+    "recomputed_ranking": [
+      {
+        "development_potential": 261.0,
+        "owner_equity_wan": 1050.0,
+        "rank": 1,
+        "rounded_score": 3791,
+        "score": 3790.5,
+        "team_id": "XA07"
+      },
+      {
+        "development_potential": 197.0,
+        "owner_equity_wan": 859.0,
+        "rank": 2,
+        "rounded_score": 2551,
+        "score": 2551.2299999999996,
+        "team_id": "XA13"
+      },
+      {
+        "development_potential": 198.0,
+        "owner_equity_wan": 841.0,
+        "rank": 3,
+        "rounded_score": 2506,
+        "score": 2506.18,
+        "team_id": "XA06"
+      },
+      {
+        "development_potential": 165.0,
+        "owner_equity_wan": 903.0,
+        "rank": 4,
+        "rounded_score": 2393,
+        "score": 2392.95,
+        "team_id": "XA08"
+      },
+      {
+        "development_potential": 187.0,
+        "owner_equity_wan": 820.0,
+        "rank": 5,
+        "rounded_score": 2353,
+        "score": 2353.4,
+        "team_id": "XA22"
+      },
+      {
+        "development_potential": 171.0,
+        "owner_equity_wan": 791.0,
+        "rank": 6,
+        "rounded_score": 2144,
+        "score": 2143.61,
+        "team_id": "XA10"
+      },
+      {
+        "development_potential": 171.0,
+        "owner_equity_wan": 679.0,
+        "rank": 7,
+        "rounded_score": 1840,
+        "score": 1840.09,
+        "team_id": "XA15"
+      },
+      {
+        "development_potential": 145.0,
+        "owner_equity_wan": 720.0,
+        "rank": 8,
+        "rounded_score": 1764,
+        "score": 1764.0000000000002,
+        "team_id": "XA19"
+      },
+      {
+        "development_potential": 141.0,
+        "owner_equity_wan": 602.0,
+        "rank": 9,
+        "rounded_score": 1451,
+        "score": 1450.8200000000002,
+        "team_id": "XA02"
+      },
+      {
+        "development_potential": 150.0,
+        "owner_equity_wan": 518.0,
+        "rank": 10,
+        "rounded_score": 1295,
+        "score": 1295.0,
+        "team_id": "XA01"
+      },
+      {
+        "development_potential": 134.0,
+        "owner_equity_wan": 543.0,
+        "rank": 11,
+        "rounded_score": 1271,
+        "score": 1270.62,
+        "team_id": "XA03"
+      },
+      {
+        "development_potential": 119.0,
+        "owner_equity_wan": 547.0,
+        "rank": 12,
+        "rounded_score": 1198,
+        "score": 1197.93,
+        "team_id": "XA12"
+      },
+      {
+        "development_potential": 138.0,
+        "owner_equity_wan": 489.0,
+        "rank": 13,
+        "rounded_score": 1164,
+        "score": 1163.82,
+        "team_id": "XA25"
+      },
+      {
+        "development_potential": 137.0,
+        "owner_equity_wan": 454.0,
+        "rank": 14,
+        "rounded_score": 1076,
+        "score": 1075.98,
+        "team_id": "XA18"
+      },
+      {
+        "development_potential": 112.0,
+        "owner_equity_wan": 347.0,
+        "rank": 15,
+        "rounded_score": 736,
+        "score": 735.64,
+        "team_id": "XA27"
+      },
+      {
+        "development_potential": 112.0,
+        "owner_equity_wan": 191.0,
+        "rank": 16,
+        "rounded_score": 405,
+        "score": 404.92,
+        "team_id": "XA21"
+      },
+      {
+        "development_potential": 110.0,
+        "owner_equity_wan": 115.0,
+        "rank": 17,
+        "rounded_score": 242,
+        "score": 241.5,
+        "team_id": "XA11"
+      },
+      {
+        "development_potential": 46.0,
+        "owner_equity_wan": 47.0,
+        "rank": 18,
+        "rounded_score": 69,
+        "score": 68.62,
+        "team_id": "XA26"
+      }
+    ]
+  },
   "provenance": {
     "events": "observed",
     "orders": "observed_plus_simulated",
     "quarter_states": "derived",
     "ranking": "derived_and_checked"
   },
-  "ranking_warning": "XA 的正式分数仍以 observed_result 为准。",
-  "result_status": "formal_xa_replay_with_simulated_service_logs",
-  "rule_pack_id": "AAAAA_20160108_4.3.32.419",
-  "run_version": "match_replay_v1.0",
-  "simulated_ranking": [
+  "ranking_warning": "XA 终局裁判已从终局状态重算；这不等于从不完整业务动作因果重建全部会计状态。",
+  "recomputed_ranking": [
     {
-      "bankruptcy_period": null,
-      "development_potential": 134,
-      "final_cash_wan": 535.0,
-      "official_rank": 11,
-      "provenance": "derived_from_formal_assets",
-      "rank": 1,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA03"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 112,
-      "final_cash_wan": 373.0,
-      "official_rank": 16,
-      "provenance": "derived_from_formal_assets",
-      "rank": 2,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA21"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 46,
-      "final_cash_wan": 344.0,
-      "official_rank": 18,
-      "provenance": "derived_from_formal_assets",
-      "rank": 3,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA26"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 145,
-      "final_cash_wan": 332.0,
-      "official_rank": 8,
-      "provenance": "derived_from_formal_assets",
-      "rank": 4,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA19"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 165,
-      "final_cash_wan": 312.0,
-      "official_rank": 4,
-      "provenance": "derived_from_formal_assets",
-      "rank": 5,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA08"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 110,
-      "final_cash_wan": 176.0,
-      "official_rank": 17,
-      "provenance": "derived_from_formal_assets",
-      "rank": 6,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA11"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 112,
-      "final_cash_wan": 160.0,
-      "official_rank": 15,
-      "provenance": "derived_from_formal_assets",
-      "rank": 7,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA27"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 141,
-      "final_cash_wan": 157.0,
-      "official_rank": 9,
-      "provenance": "derived_from_formal_assets",
-      "rank": 8,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA02"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 137,
-      "final_cash_wan": 135.0,
-      "official_rank": 14,
-      "provenance": "derived_from_formal_assets",
-      "rank": 9,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA18"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 138,
-      "final_cash_wan": 122.0,
-      "official_rank": 13,
-      "provenance": "derived_from_formal_assets",
-      "rank": 10,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA25"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 198,
-      "final_cash_wan": 117.0,
-      "official_rank": 3,
-      "provenance": "derived_from_formal_assets",
-      "rank": 11,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA06"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 119,
-      "final_cash_wan": 107.0,
-      "official_rank": 12,
-      "provenance": "derived_from_formal_assets",
-      "rank": 12,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA12"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 187,
-      "final_cash_wan": 97.0,
-      "official_rank": 5,
-      "provenance": "derived_from_formal_assets",
-      "rank": 13,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA22"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 171,
-      "final_cash_wan": 56.0,
-      "official_rank": 6,
-      "provenance": "derived_from_formal_assets",
-      "rank": 14,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA10"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 261,
-      "final_cash_wan": 8.0,
+      "development_potential": 261.0,
       "official_rank": 1,
-      "provenance": "derived_from_formal_assets",
-      "rank": 15,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "owner_equity_wan": 1050.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 1,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 3791,
+      "score": 3790.5,
       "team_id": "XA07"
     },
     {
-      "bankruptcy_period": null,
-      "development_potential": 171,
-      "final_cash_wan": 8.0,
-      "official_rank": 7,
-      "provenance": "derived_from_formal_assets",
-      "rank": 16,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA15"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 150,
-      "final_cash_wan": 6.0,
-      "official_rank": 10,
-      "provenance": "derived_from_formal_assets",
-      "rank": 17,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA01"
-    },
-    {
-      "bankruptcy_period": null,
-      "development_potential": 197,
-      "final_cash_wan": 1.0,
+      "development_potential": 197.0,
       "official_rank": 2,
-      "provenance": "derived_from_formal_assets",
-      "rank": 18,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
+      "owner_equity_wan": 859.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 2,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2551,
+      "score": 2551.2299999999996,
       "team_id": "XA13"
     },
     {
-      "bankruptcy_period": "Y5Q1",
-      "development_potential": 79,
-      "final_cash_wan": 829.0,
-      "official_rank": null,
-      "provenance": "derived_from_formal_assets",
-      "rank": 19,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA04"
+      "development_potential": 198.0,
+      "official_rank": 3,
+      "owner_equity_wan": 841.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 3,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2506,
+      "score": 2506.18,
+      "team_id": "XA06"
     },
     {
-      "bankruptcy_period": "Y4Q4",
-      "development_potential": 84,
-      "final_cash_wan": 703.0,
-      "official_rank": null,
-      "provenance": "derived_from_formal_assets",
-      "rank": 20,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA20"
+      "development_potential": 165.0,
+      "official_rank": 4,
+      "owner_equity_wan": 903.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 4,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2393,
+      "score": 2392.95,
+      "team_id": "XA08"
     },
     {
-      "bankruptcy_period": "Y3Q4",
-      "development_potential": 93,
-      "final_cash_wan": 549.0,
-      "official_rank": null,
-      "provenance": "derived_from_formal_assets",
-      "rank": 21,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA16"
+      "development_potential": 187.0,
+      "official_rank": 5,
+      "owner_equity_wan": 820.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 5,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2353,
+      "score": 2353.4,
+      "team_id": "XA22"
     },
     {
-      "bankruptcy_period": "Y3Q4",
-      "development_potential": 83,
-      "final_cash_wan": 366.0,
-      "official_rank": null,
-      "provenance": "derived_from_formal_assets",
-      "rank": 22,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA09"
+      "development_potential": 171.0,
+      "official_rank": 6,
+      "owner_equity_wan": 791.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 6,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2144,
+      "score": 2143.61,
+      "team_id": "XA10"
     },
     {
-      "bankruptcy_period": "Y4Q1",
-      "development_potential": 100,
-      "final_cash_wan": 342.0,
-      "official_rank": null,
-      "provenance": "derived_from_formal_assets",
-      "rank": 23,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA05"
+      "development_potential": 171.0,
+      "official_rank": 7,
+      "owner_equity_wan": 679.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 7,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1840,
+      "score": 1840.09,
+      "team_id": "XA15"
     },
     {
-      "bankruptcy_period": "Y4Q4",
-      "development_potential": 104,
-      "final_cash_wan": 254.0,
-      "official_rank": null,
-      "provenance": "derived_from_formal_assets",
-      "rank": 24,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA14"
+      "development_potential": 145.0,
+      "official_rank": 8,
+      "owner_equity_wan": 720.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 8,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1764,
+      "score": 1764.0000000000002,
+      "team_id": "XA19"
     },
     {
-      "bankruptcy_period": "Y5Q1",
-      "development_potential": 104,
-      "final_cash_wan": 190.0,
-      "official_rank": null,
-      "provenance": "derived_from_formal_assets",
-      "rank": 25,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA24"
+      "development_potential": 141.0,
+      "official_rank": 9,
+      "owner_equity_wan": 602.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 9,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1451,
+      "score": 1450.8200000000002,
+      "team_id": "XA02"
     },
     {
-      "bankruptcy_period": "Y4Q4",
-      "development_potential": 69,
-      "final_cash_wan": 27.0,
-      "official_rank": null,
-      "provenance": "derived_from_formal_assets",
-      "rank": 26,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA17"
+      "development_potential": 150.0,
+      "official_rank": 10,
+      "owner_equity_wan": 518.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 10,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1295,
+      "score": 1295.0,
+      "team_id": "XA01"
     },
     {
-      "bankruptcy_period": "Y5Q4",
-      "development_potential": 54,
-      "final_cash_wan": 2.0,
-      "official_rank": null,
-      "provenance": "derived_from_formal_assets",
-      "rank": 27,
-      "ranking_basis": "final_cash_then_development_potential_excluding_no_observation",
-      "team_id": "XA23"
+      "development_potential": 134.0,
+      "official_rank": 11,
+      "owner_equity_wan": 543.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 11,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1271,
+      "score": 1270.62,
+      "team_id": "XA03"
+    },
+    {
+      "development_potential": 119.0,
+      "official_rank": 12,
+      "owner_equity_wan": 547.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 12,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1198,
+      "score": 1197.93,
+      "team_id": "XA12"
+    },
+    {
+      "development_potential": 138.0,
+      "official_rank": 13,
+      "owner_equity_wan": 489.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 13,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1164,
+      "score": 1163.82,
+      "team_id": "XA25"
+    },
+    {
+      "development_potential": 137.0,
+      "official_rank": 14,
+      "owner_equity_wan": 454.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 14,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1076,
+      "score": 1075.98,
+      "team_id": "XA18"
+    },
+    {
+      "development_potential": 112.0,
+      "official_rank": 15,
+      "owner_equity_wan": 347.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 15,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 736,
+      "score": 735.64,
+      "team_id": "XA27"
+    },
+    {
+      "development_potential": 112.0,
+      "official_rank": 16,
+      "owner_equity_wan": 191.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 16,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 405,
+      "score": 404.92,
+      "team_id": "XA21"
+    },
+    {
+      "development_potential": 110.0,
+      "official_rank": 17,
+      "owner_equity_wan": 115.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 17,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 242,
+      "score": 241.5,
+      "team_id": "XA11"
+    },
+    {
+      "development_potential": 46.0,
+      "official_rank": 18,
+      "owner_equity_wan": 47.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 18,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 69,
+      "score": 68.62,
+      "team_id": "XA26"
+    }
+  ],
+  "result_status": "formal_xa_replay_with_simulated_service_logs",
+  "rule_pack_id": "AAAAA_20160108_4.3.32.419",
+  "run_version": "match_replay_v1.1",
+  "simulated_ranking": [
+    {
+      "development_potential": 261.0,
+      "official_rank": 1,
+      "owner_equity_wan": 1050.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 1,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 3791,
+      "score": 3790.5,
+      "team_id": "XA07"
+    },
+    {
+      "development_potential": 197.0,
+      "official_rank": 2,
+      "owner_equity_wan": 859.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 2,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2551,
+      "score": 2551.2299999999996,
+      "team_id": "XA13"
+    },
+    {
+      "development_potential": 198.0,
+      "official_rank": 3,
+      "owner_equity_wan": 841.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 3,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2506,
+      "score": 2506.18,
+      "team_id": "XA06"
+    },
+    {
+      "development_potential": 165.0,
+      "official_rank": 4,
+      "owner_equity_wan": 903.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 4,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2393,
+      "score": 2392.95,
+      "team_id": "XA08"
+    },
+    {
+      "development_potential": 187.0,
+      "official_rank": 5,
+      "owner_equity_wan": 820.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 5,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2353,
+      "score": 2353.4,
+      "team_id": "XA22"
+    },
+    {
+      "development_potential": 171.0,
+      "official_rank": 6,
+      "owner_equity_wan": 791.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 6,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 2144,
+      "score": 2143.61,
+      "team_id": "XA10"
+    },
+    {
+      "development_potential": 171.0,
+      "official_rank": 7,
+      "owner_equity_wan": 679.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 7,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1840,
+      "score": 1840.09,
+      "team_id": "XA15"
+    },
+    {
+      "development_potential": 145.0,
+      "official_rank": 8,
+      "owner_equity_wan": 720.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 8,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1764,
+      "score": 1764.0000000000002,
+      "team_id": "XA19"
+    },
+    {
+      "development_potential": 141.0,
+      "official_rank": 9,
+      "owner_equity_wan": 602.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 9,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1451,
+      "score": 1450.8200000000002,
+      "team_id": "XA02"
+    },
+    {
+      "development_potential": 150.0,
+      "official_rank": 10,
+      "owner_equity_wan": 518.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 10,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1295,
+      "score": 1295.0,
+      "team_id": "XA01"
+    },
+    {
+      "development_potential": 134.0,
+      "official_rank": 11,
+      "owner_equity_wan": 543.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 11,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1271,
+      "score": 1270.62,
+      "team_id": "XA03"
+    },
+    {
+      "development_potential": 119.0,
+      "official_rank": 12,
+      "owner_equity_wan": 547.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 12,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1198,
+      "score": 1197.93,
+      "team_id": "XA12"
+    },
+    {
+      "development_potential": 138.0,
+      "official_rank": 13,
+      "owner_equity_wan": 489.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 13,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1164,
+      "score": 1163.82,
+      "team_id": "XA25"
+    },
+    {
+      "development_potential": 137.0,
+      "official_rank": 14,
+      "owner_equity_wan": 454.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 14,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 1076,
+      "score": 1075.98,
+      "team_id": "XA18"
+    },
+    {
+      "development_potential": 112.0,
+      "official_rank": 15,
+      "owner_equity_wan": 347.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 15,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 736,
+      "score": 735.64,
+      "team_id": "XA27"
+    },
+    {
+      "development_potential": 112.0,
+      "official_rank": 16,
+      "owner_equity_wan": 191.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 16,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 405,
+      "score": 404.92,
+      "team_id": "XA21"
+    },
+    {
+      "development_potential": 110.0,
+      "official_rank": 17,
+      "owner_equity_wan": 115.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 17,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 242,
+      "score": 241.5,
+      "team_id": "XA11"
+    },
+    {
+      "development_potential": 46.0,
+      "official_rank": 18,
+      "owner_equity_wan": 47.0,
+      "provenance": "derived_from_terminal_state_and_rule_pack",
+      "rank": 18,
+      "ranking_basis": "owner_equity_times_development_potential_multiplier_excluding_bankrupt",
+      "rounded_score": 69,
+      "score": 68.62,
+      "team_id": "XA26"
     }
   ],
   "team_count": 27

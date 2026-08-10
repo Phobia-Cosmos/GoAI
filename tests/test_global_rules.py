@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from goai_data.global_rules import infer_xa_global_rules, is_bankrupt, merge_rule_overrides, rank_final_states
+from goai_data.match_replay import verify_xa_historical_outcome
 from goai_data.rulepack import infer_partial_event_parameters
 
 
@@ -45,3 +46,15 @@ def test_partial_event_inference_is_conservative() -> None:
     assert result["parameter_parse_status"] == "inferred_partial"
     assert "term/term_quarters" in result["missing_parameter_fields"] or result["missing_parameter_fields"] == []
     assert result["inference_provenance"] == "derived_from_event_evidence"
+
+
+def test_xa_historical_outcome_replay_is_exact_but_not_claimed_as_causal() -> None:
+    rules = json.loads((ROOT / "rules.json").read_text(encoding="utf-8"))
+    results = json.loads((ROOT / "results.json").read_text(encoding="utf-8"))
+    final_states = [json.loads(line) for line in (ROOT / "final_states.jsonl").read_text(encoding="utf-8").splitlines()]
+    quarter_states = [json.loads(line) for line in (ROOT / "quarter_states.jsonl").read_text(encoding="utf-8").splitlines()]
+    audit = verify_xa_historical_outcome(rules=rules, quarter_states=quarter_states, final_states=final_states, results=results)
+    assert audit["exact_outcome_match"] is True
+    assert audit["causal_dynamics_replay"] is False
+    assert all(check["passed"] for check in audit["checks"].values())
+    assert [row["team_id"] for row in audit["recomputed_ranking"]][:3] == ["XA07", "XA13", "XA06"]

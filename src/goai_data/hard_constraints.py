@@ -5,8 +5,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+from .global_rules import development_potential, rank_final_states
 
-HARD_CONSTRAINTS_VERSION = "hard_constraints_v0.1"
+
+HARD_CONSTRAINTS_VERSION = "hard_constraints_v0.2"
 
 
 def _jsonl(path: Path) -> list[dict[str, Any]]:
@@ -191,11 +193,50 @@ def validate_match(match_dir: Path) -> ConstraintReport:
         else:
             report.pass_check("xa_initial_cash_rule", initial_cash_wan=675)
         results = json.loads((match_dir / "results.json").read_text(encoding="utf-8"))
-        mismatches = [row["team_id"] for row in results.get("ranking", []) if row.get("official_score_matches") is not True]
-        if mismatches:
-            report.fail("xa_official_scores", "XA 重算分数与官方分数不一致", team_ids=mismatches)
+        final_states = _jsonl(match_dir / "final_states.jsonl")
+        recomputed = rank_final_states(final_states, rules)
+        official = results.get("ranking", [])
+        official_by_team = {row.get("team_id"): row for row in official}
+        score_mismatches = [
+            {
+                "team_id": row.get("team_id"),
+                "official_score": official_by_team.get(row.get("team_id"), {}).get("official_score"),
+                "recomputed_score": row.get("rounded_score"),
+            }
+            for row in recomputed
+            if official_by_team.get(row.get("team_id"), {}).get("official_score") != row.get("rounded_score")
+        ]
+        if score_mismatches:
+            report.fail("xa_official_scores", "XA 终局状态重算分数与官方分数不一致", mismatches=score_mismatches)
         else:
-            report.pass_check("xa_official_scores", ranked_team_count=len(results.get("ranking", [])))
+            report.pass_check("xa_official_scores", ranked_team_count=len(recomputed))
+        official_order = [row.get("team_id") for row in official]
+        recomputed_order = [row.get("team_id") for row in recomputed]
+        if official_order != recomputed_order:
+            report.fail("xa_exact_rank_order", "XA 终局状态重算排名与官方排名不一致", official=official_order, recomputed=recomputed_order)
+        else:
+            report.pass_check("xa_exact_rank_order", ranked_team_count=len(recomputed))
+        official_bankruptcies = {row.get("team_id"): row.get("period") for row in results.get("bankruptcies", [])}
+        replayed_bankruptcies = {row.get("team_id"): row.get("bankruptcy_period") for row in final_states if row.get("bankruptcy_period")}
+        if official_bankruptcies != replayed_bankruptcies:
+            report.fail("xa_exact_bankruptcies", "XA 终局状态中的破产企业或时期与官方结果不一致", official=official_bankruptcies, replayed=replayed_bankruptcies)
+        else:
+            report.pass_check("xa_exact_bankruptcies", bankrupt_team_count=len(replayed_bankruptcies))
+        potential_mismatches = [
+            {"team_id": row.get("team_id"), "recorded": row.get("development_potential"), "recomputed": development_potential(row.get("assets") or {}, rules)}
+            for row in final_states
+            if float(row.get("development_potential", 0)) != development_potential(row.get("assets") or {}, rules)
+        ]
+        if potential_mismatches:
+            report.fail("xa_exact_development_potential", "XA 资产重算发展潜力不一致", mismatches=potential_mismatches)
+        else:
+            report.pass_check("xa_exact_development_potential", team_count=len(final_states))
+        final_cash = {row.get("team_id"): row.get("end_cash_wan") for row in quarter_states if int(row.get("period_index", 0)) == 20}
+        cash_mismatches = [row.get("team_id") for row in final_states if final_cash.get(row.get("team_id")) != row.get("final_cash_wan")]
+        if cash_mismatches:
+            report.fail("xa_exact_terminal_cash", "XA 季度现金回放终值与终局状态不一致", team_ids=cash_mismatches)
+        else:
+            report.pass_check("xa_exact_terminal_cash", team_count=len(final_states))
 
     _check_reports(reports, report)
     quality = json.loads((match_dir / "quality.json").read_text(encoding="utf-8"))

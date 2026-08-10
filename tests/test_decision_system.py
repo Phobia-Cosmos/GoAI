@@ -72,6 +72,13 @@ def test_historical_replay_arena_runs_all_xa_enterprises_in_lockstep() -> None:
     assert result["steps"] == 19
     assert all(observation.period == "Y5Q4" for observation in result["final_observations"].values())
     assert result["final_observations"]["XA01"].public_state["information_policy"] == "no_other_team_private_cash"
+    assert [row["team_id"] for row in result["terminal_results"]["ranking"]][:3] == ["XA07", "XA13", "XA06"]
+    assert {row["team_id"]: row["period"] for row in result["terminal_results"]["bankruptcies"]} == {
+        "XA04": "Y5Q1", "XA05": "Y4Q1", "XA09": "Y3Q4", "XA14": "Y4Q4", "XA16": "Y3Q4",
+        "XA17": "Y4Q4", "XA20": "Y4Q4", "XA23": "Y5Q4", "XA24": "Y5Q1",
+    }
+    assert result["final_observations"]["XA04"].private_state["bankrupt"] is True
+    assert result["final_observations"]["XA07"].private_state["terminal_state"]["score"] == 3790.5
 
 
 def test_arena_rejects_missing_or_counterfactual_joint_actions() -> None:

@@ -22,6 +22,16 @@ def _clamp(value: float, low: float = 0.0, high: float = 1.0) -> float:
     return min(high, max(low, value))
 
 
+def _period_label_index(period: Any) -> int | None:
+    if not isinstance(period, str) or not period.startswith("Y") or "Q" not in period:
+        return None
+    try:
+        year_text, quarter_text = period[1:].split("Q", 1)
+        return (int(year_text) - 1) * 4 + int(quarter_text)
+    except ValueError:
+        return None
+
+
 @dataclass(frozen=True)
 class CandidateOutcome:
     candidate_id: str
@@ -287,8 +297,11 @@ class HistoricalReplayArena:
             raise FileNotFoundError(match_root)
         teams = [json.loads(line) for line in (match_root / "teams.jsonl").read_text(encoding="utf-8").splitlines() if line]
         states = [json.loads(line) for line in (match_root / "quarter_states.jsonl").read_text(encoding="utf-8").splitlines() if line]
+        final_states = [json.loads(line) for line in (match_root / "final_states.jsonl").read_text(encoding="utf-8").splitlines() if line]
         self._agent_ids = tuple(sorted(team["team_id"] for team in teams))
         self._states = {(state["team_id"], int(state["period_index"])): state for state in states}
+        self._final_states = {state["team_id"]: state for state in final_states}
+        self._results = json.loads((match_root / "results.json").read_text(encoding="utf-8"))
         self.current_period_index = 1
         self.terminated = False
 
@@ -302,12 +315,25 @@ class HistoricalReplayArena:
         return self._observations()
 
     def _observation(self, agent_id: str) -> AgentObservation:
-        state = self._states[(agent_id, self.current_period_index)]
+        state = dict(self._states[(agent_id, self.current_period_index)])
+        final_state = self._final_states[agent_id]
+        bankruptcy_period = final_state.get("bankruptcy_period")
+        bankruptcy_index = _period_label_index(bankruptcy_period)
+        bankruptcy_observed = bankruptcy_index is not None and self.current_period_index >= bankruptcy_index
+        state["bankruptcy_period"] = bankruptcy_period if bankruptcy_observed else None
+        state["bankrupt"] = bankruptcy_observed
+        if self.current_period_index == 20:
+            state["terminal_state"] = final_state
         public = {
             "match_id": self.match_id,
             "period": state["period"],
             "agent_count": len(self.agent_ids),
             "information_policy": "no_other_team_private_cash",
+            "bankrupt_team_ids": sorted(
+                team_id
+                for team_id, row in self._final_states.items()
+                if (_period_label_index(row.get("bankruptcy_period")) or 10**9) <= self.current_period_index
+            ),
         }
         return AgentObservation(
             match_id=self.match_id,
@@ -344,6 +370,11 @@ class HistoricalReplayArena:
             infos[agent_id] = {"mode": "historical_replay", "provenance": "derived_from_observed_events", "counterfactual_actions_allowed": False}
         return ArenaStep(observations=observations, rewards=rewards, terminated=self.terminated, infos=infos)
 
+    def terminal_results(self) -> Mapping[str, Any]:
+        if not self.terminated:
+            raise RuntimeError("terminal results are only available after replay reaches Y5Q4")
+        return self._results
+
 
 class ReplayPolicy:
     def __init__(self, agent_id: str) -> None:
@@ -369,7 +400,7 @@ class ArenaRunner:
             observations = result.observations
             if result.terminated:
                 break
-        return {
+        output = {
             "system_version": DECISION_SYSTEM_VERSION,
             "match_id": next(iter(observations.values())).match_id,
             "steps": steps,
@@ -377,3 +408,7 @@ class ArenaRunner:
             "cumulative_rewards": cumulative_rewards,
             "final_observations": observations,
         }
+        terminal_results = getattr(environment, "terminal_results", None)
+        if callable(terminal_results):
+            output["terminal_results"] = terminal_results()
+        return output
