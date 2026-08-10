@@ -379,9 +379,12 @@ def build_xa_agent_dataset(data_root: Path, output_root: Path, simulation_source
             "never_assumed_available": ["opponent_private_operations", "opponent_private_state", "future_information", "terminal_result"],
         },
         "metric_policy": {
-            "required": ["hard_constraint_feasibility", "cash_safety", "solvency", "competition_terminal_score"],
-            "optional_plugins": ["VPD", "PSS", "EPSS", "capacity_utilization", "strategy_stability"],
-            "vpd_required": False,
+            "required_online_safety": ["hard_constraint_feasibility", "cash_safety", "solvency"],
+            "required_offline_acceptance": ["VPD", "VPD/OE", "competition_terminal_score", "bankruptcy_rate", "default_rate"],
+            "optional_diagnostics": ["PSS", "EPSS", "capacity_utilization", "strategy_stability"],
+            "vpd_required": True,
+            "vpd_role": "paired_agent_vs_human_complete_trajectory_acceptance_not_online_action_selector",
+            "binding_status": "candidate_until_XA_accounting_allocation_is_validated",
         },
     }
     _write_json(output_root / "catalog.json", catalog)

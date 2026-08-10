@@ -78,3 +78,17 @@ Pre-Agent 全链路实验运行命令：
 - XLSX 抽样回读：对 `SIM_AB_seed_20260808` 执行 `SimulatedCompetitionXlsxImporter`，回读 24 家企业、400 条全局订单、2,581 条事件和 6,192 条报表记录，结构和现金流字段可用。
 - 产物：`/home/undefined/Disk/datasets/goai/simulations/large_20260808/all_template_generation_summary_seed_20260808.json`。
 - 限制：这些规则、订单、策略、事件、报表和排名均为模拟数据；父规则来自各比赛的推断规则包，不能当作正式裁判规则或历史训练标签。完整私有状态轨迹未默认写入，需使用 `--full-trace` 单独生成。
+
+## 2026-08-10 复杂单企业 Agent 实验（EXP-OWNED-COMPLEX-V1）
+
+- 运行入口：`scripts/run_owned_agent_robustness.py --order-seed 20260810 --opponent-profile conservative --opponent-profile mixed --opponent-profile aggressive --team-count 12 --scenario-count 12`
+- 输入：XA 正式参数、796 条 XA 形状随机订单、同一订单种子，分别配置保守、混合和激进对手；每组运行固定基线和复杂滚动 Agent。
+- 复杂决策：融资、资格、产能、供应、生产、履约和市场七个动作域；共享柔性线联合排程；短贷、长贷、原料、在建产线、研发、维护和租金现金时点进入风险情景。
+- 中间失败 1：复杂规划器未接入主策略，仍存在“有订单只履约”和“第四年禁止扩张”。已删除旧分支。
+- 中间失败 2：初始无订单时只买厂房、没有经营闭环，导致 Y5Q1 破产。已加入不读取未来订单的最小启动组合。
+- 中间失败 3：柔性线按产品重复计算产能，导致两笔违约。已改为多产品共享产线联合排程，并按最早交期保留库存。
+- 中间失败 4：订单风险漏算短贷到期和后续付款，激进对手组破产。已加入完整现金义务调度，并修正慢速产线首批完成窗口。
+- 最终结果：复杂 Agent 3 场平均获单/交付为 3.67/3.67，破产率 0%，违约场次比例 0%，最低现金均值 53.67；覆盖 4 种产品、4 个市场和 1 项 ISO 的平均终局资格，并实际使用七个动作域。固定基线平均获单/交付为 2.33/1.00，违约场次比例 100%。
+- 主要不足：复杂 Agent 平均得分 70.01，低于固定基线 288.31；平均权益仅 39.33，说明资格投入过宽、利润与权益保留不足。当前实验只证明复杂决策、排程和风险闭环可运行，不证明策略优于人工或基线。
+- VPD 验收：`decision_acceptance.py` 已规定相同规则、订单种子、对手、接入时点和初始状态下的 Agent—人工配对比较；硬约束优先，VPD 与 VPD/OE 为离线主指标。旧 VPD/OE 公式尚待 XA 会计口径校准。
+- 产物：`data/experiments/owned_agent_complex_v1/results.json`。

@@ -15,7 +15,8 @@ def test_xa_agent_dataset_separates_observation_from_offline_labels(tmp_path: Pa
     simulation = DATA / "simulations" / "large_20260808" / "SIM_LX_XA_seed_20270808"
     catalog = build_xa_agent_dataset(DATA, tmp_path / "xa", [simulation])
     assert catalog["baseline"] == "XA"
-    assert catalog["metric_policy"]["vpd_required"] is False
+    assert catalog["metric_policy"]["vpd_required"] is True
+    assert catalog["metric_policy"]["vpd_role"].startswith("paired_agent_vs_human")
 
     real_rows = read_jsonl(tmp_path / "xa" / "real" / "transitions.jsonl")
     assert len(real_rows) == 540

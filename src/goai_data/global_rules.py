@@ -137,7 +137,7 @@ def infer_xa_global_rules(
         and round_nonnegative_half_up(float(row["score"])) == int(official_by_team[str(row.get("team_id"))].get("official_score", official_by_team[str(row.get("team_id"))].get("score", -1)))
     )
     year_values = sorted({int(row["year"]) for row in global_orders if isinstance(row.get("year"), (int, float))})
-    unassigned = sum(row.get("owner_team_id") in (None, "", "-") for row in global_orders)
+    unassigned = sum(row.get("final_owner_team_id", row.get("owner_team_id")) in (None, "", "-") for row in global_orders)
     confirmed = {
         "initial_cash_wan": parameters.get("initial_cash_wan"),
         "bankruptcy_predicates": list(parameters.get("bankruptcy", ())),

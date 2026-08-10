@@ -258,14 +258,14 @@ def validate_traditional_xa(
 
     team_ids = {str(row.get("team_id")) for row in teams}
     order_ids = [str(row.get("order_id")) for row in global_orders]
-    assigned = [row for row in global_orders if row.get("owner_team_id") not in (None, "", "-")]
+    assigned = [row for row in global_orders if row.get("final_owner_team_id", row.get("owner_team_id")) not in (None, "", "-")]
     auction_orders = [row for row in global_orders if str(row.get("order_type", "")) == "竞单"]
     award_events = [row for row in events if row.get("action") == "order_award"]
     checks = {
         "no_year1_orders": all(int(row.get("year", 0)) >= 2 for row in global_orders),
         "unique_order_ids": len(order_ids) == len(set(order_ids)),
-        "assigned_owner_exists": all(str(row.get("owner_team_id")) in team_ids for row in assigned),
-        "unassigned_pool_preserved": sum(row.get("owner_team_id") in (None, "", "-") for row in global_orders) > 0,
+        "assigned_owner_exists": all(str(row.get("final_owner_team_id", row.get("owner_team_id"))) in team_ids for row in assigned),
+        "unassigned_pool_preserved": sum(row.get("final_owner_team_id", row.get("owner_team_id")) in (None, "", "-") for row in global_orders) > 0,
         "ranking_available": bool(results.get("ranking")),
         "bankruptcy_results_available": bool(results.get("bankruptcies")),
         "observed_pool_used": all(row.get("provenance") == "observed" for row in global_orders),

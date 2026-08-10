@@ -8,7 +8,8 @@
     "global_orders": 796,
     "observed_global_orders": 796,
     "simulated_global_orders": 0,
-    "unassigned_global_orders": 235,
+    "unassigned_at_release_global_orders": 796,
+    "unallocated_at_match_end_global_orders": 235,
     "reports": 9610,
     "quarter_states": 540
   },

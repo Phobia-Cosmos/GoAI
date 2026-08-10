@@ -275,7 +275,7 @@ def build_replay_artifacts(match_dir: Path, rules: Mapping[str, Any], inference_
 
     allocation_rows = []
     for order in sorted(orders, key=lambda item: str(item["order_id"])):
-        owner = order.get("owner_team_id")
+        owner = order.get("final_owner_team_id", order.get("owner_team_id"))
         order_type = str(order.get("order_type") or "未知")
         allocation_rows.append({
             "match_id": match_id,
@@ -285,7 +285,8 @@ def build_replay_artifacts(match_dir: Path, rules: Mapping[str, Any], inference_
             "product": order.get("product"),
             "owner_team_id": owner,
             "winner_team_id": owner,
-            "status": order.get("status"),
+            "status": order.get("final_status", order.get("status")),
+            "result_information_boundary": "offline_match_end_label_not_release_time_state",
             "allocation_policy": "replay_observed_owner" if order.get("provenance") == "observed" else "preserve_simulated_unassigned",
             "traditional_policy": "traditional_highest_bid_first_come" if "竞单" in order_type else "traditional_selection_advertising_priority",
             "auction_enabled_for_match": bool(rules.get("global_rule_services", {}).get("auction_enabled")),

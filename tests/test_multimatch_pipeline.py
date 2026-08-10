@@ -46,4 +46,5 @@ def test_builds_uniform_multimatch_dataset(tmp_path: Path) -> None:
     assert all(row["action"] is not None for row in ab_events)
 
     xa_quality = json.loads((output / "matches/LX_XA/quality.json").read_text(encoding="utf-8"))
-    assert xa_quality["record_counts"]["unassigned_global_orders"] == 235
+    assert xa_quality["record_counts"]["unassigned_at_release_global_orders"] == 796
+    assert xa_quality["record_counts"]["unallocated_at_match_end_global_orders"] == 235

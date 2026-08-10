@@ -55,7 +55,7 @@ def _real_xa_comparison(base_path: Path, *, arena: Any) -> dict[str, Any] | None
             "survivors": len(real_survivors),
             "orders": len(real_orders),
             "delivered_orders": sum(str(row.get("status")) == "已交" for row in real_orders),
-            "unassigned_orders": sum(row.get("owner_team_id") in {None, ""} for row in real_orders),
+            "unassigned_orders": sum(row.get("final_owner_team_id", row.get("owner_team_id")) in {None, ""} for row in real_orders),
             "survivor_mean_equity_wan": _mean(real_survivors, "owner_equity_wan"),
             "survivor_mean_development_potential": _mean(real_survivors, "development_potential"),
             "survivor_mean_score": _mean(real_survivors, "official_score"),

@@ -54,6 +54,12 @@ def _owned_result(arena: Any, owned_team_id: str, artifacts: Mapping[str, list[d
         "defaulted_orders": len(state.defaulted_orders),
         "action_rejection_count": len(rejections),
         "action_rejections": rejections,
+        "qualified_products": len(state.products),
+        "qualified_markets": len(state.markets),
+        "qualified_iso": len(state.iso),
+        "factory_count": len(state.factories),
+        "production_line_count": len(state.production_lines) + len(state.pending_lines),
+        "active_product_count": len({str(row.get("product")) for row in state.assigned_orders}),
         "minimum_cash_wan": min(
             float(row["cash_wan"])
             for row in artifacts["quarter_states"]
@@ -99,6 +105,13 @@ def _run_variant(
             "global_order_count": len(orders),
             "decision_count": len(owned_policy.decision_history) if owned_policy else 20,
             "decision_audit": owned_policy.decision_history if owned_policy else [],
+            "selected_action_domains": sorted(
+                {
+                    domain
+                    for audit in (owned_policy.decision_history if owned_policy else [])
+                    for domain in (audit.get("selected_business_plan") or {}).get("action_domains", [])
+                }
+            ),
         }
     )
     return result
@@ -120,6 +133,13 @@ def _summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "mean_delivered_orders": mean(row["delivered_orders"] for row in selected),
             "mean_minimum_cash_wan": mean(row["minimum_cash_wan"] for row in selected),
             "total_action_rejections": sum(row["action_rejection_count"] for row in selected),
+            "mean_qualified_products": mean(row["qualified_products"] for row in selected),
+            "mean_qualified_markets": mean(row["qualified_markets"] for row in selected),
+            "mean_qualified_iso": mean(row["qualified_iso"] for row in selected),
+            "mean_factory_count": mean(row["factory_count"] for row in selected),
+            "mean_production_line_count": mean(row["production_line_count"] for row in selected),
+            "mean_active_product_count": mean(row["active_product_count"] for row in selected),
+            "covered_action_domains": sorted({domain for row in selected for domain in row.get("selected_action_domains", [])}),
         }
     output["paired"] = {
         "mean_score_delta_robust_minus_baseline": output["robust"]["mean_score"] - output["baseline"]["mean_score"],
@@ -131,7 +151,7 @@ def _summarize(rows: list[dict[str, Any]]) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--base-rules", type=Path, default=Path("data/processed/v2/matches/LX_XA/rules.json"))
-    parser.add_argument("--output", type=Path, default=Path("data/experiments/owned_agent_robust_v1/results.json"))
+    parser.add_argument("--output", type=Path, default=Path("data/experiments/owned_agent_complex_v1/results.json"))
     parser.add_argument("--order-seed", type=int, action="append")
     parser.add_argument("--opponent-profile", choices=("conservative", "mixed", "aggressive"), action="append")
     parser.add_argument("--team-count", type=int, default=27)
@@ -158,11 +178,17 @@ def main() -> int:
                     )
                 )
     payload = {
-        "experiment_id": "owned_agent_robust_v1",
+        "experiment_id": "owned_agent_complex_v1",
         "agent_version": OWNED_AGENT_VERSION,
         "objective": "one_owned_enterprise_against_uncontrolled_partially_observed_opponents",
         "information_boundary": "owned_private_state_plus_released_public_information_only",
         "formal_XA_parameters_changed": False,
+        "acceptance_policy": {
+            "primary": "paired_Agent_vs_human_VPD_and_VPD_over_OE",
+            "hard_gates": ["bankruptcy_not_worse", "default_count_not_worse", "minimum_cash_nonnegative"],
+            "online_selector_uses_vpd": False,
+            "binding_status": "candidate_until_XA_accounting_allocation_is_validated",
+        },
         "config": config.__dict__,
         "summary": _summarize(rows),
         "runs": rows,
@@ -175,4 +201,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

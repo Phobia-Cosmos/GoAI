@@ -1365,7 +1365,20 @@ class FullCompetitionArena(MultiAgentEnvironment):
         return self._observations()
 
     def _visible_orders(self, state: FinancialSandboxState) -> list[dict[str, Any]]:
-        return [copy.deepcopy(row) for row in state.available_orders if int(row.get("release_period_index", 0)) <= state.period_index and row.get("owner_team_id") in {None, ""}]
+        output = []
+        for row in state.available_orders:
+            if int(row.get("release_period_index", 0)) > state.period_index or row.get("owner_team_id") not in {None, ""}:
+                continue
+            visible = copy.deepcopy(row)
+            # The XA global-order workbook is a terminal export.  These final
+            # labels are offline evidence, not information available when an
+            # enterprise chooses an order.
+            for field in ("final_owner_team_id", "final_status", "final_result_available_at", "calibration_owner_team_id"):
+                visible.pop(field, None)
+            visible["owner_team_id"] = None
+            visible["status"] = "未分配"
+            output.append(visible)
+        return output
 
     def _public_order_results(self) -> list[dict[str, Any]]:
         """Return only fields published to competitors, never referee traces."""

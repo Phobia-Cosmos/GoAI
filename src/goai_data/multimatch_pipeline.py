@@ -705,8 +705,13 @@ class MultiMatchDatasetBuilder:
                 "delivery_term_quarters": as_int(data.get("交货期")),
                 "receivable_term_quarters": as_int(data.get("账期")),
                 "iso": clean_text(data.get("ISO")) or "-",
-                "owner_team_id": None if owner in {None, "-"} else owner.upper(),
-                "status": clean_text(data.get(status_key)) if status_key else None,
+                # The last two columns are populated by the platform's final
+                # export.  They are outcomes, not release-time allocation.
+                "owner_team_id": None,
+                "status": "未分配",
+                "final_owner_team_id": None if owner in {None, "-"} else owner.upper(),
+                "final_status": clean_text(data.get(status_key)) if status_key else None,
+                "final_result_available_at": "match_end_offline_label",
                 "delivered_period": None,
                 "coverage_scope": "complete_global_order_pool",
                 "source_path": path.relative_to(self.project_root).as_posix(),
@@ -721,6 +726,15 @@ class MultiMatchDatasetBuilder:
         unique = {}
         for order in orders:
             candidate = dict(order)
+            observed_owner = candidate.get("final_owner_team_id", candidate.get("owner_team_id"))
+            observed_status = candidate.get("final_status", candidate.get("status"))
+            candidate.update({
+                "owner_team_id": None,
+                "status": "未分配",
+                "final_owner_team_id": observed_owner,
+                "final_status": observed_status,
+                "final_result_available_at": "match_end_offline_label",
+            })
             candidate["coverage_scope"] = "observed_allocated_order"
             if candidate.get("order_type") is None:
                 inferred_type = {"X": "选单", "J": "竞单", "B": "未知竞价类"}.get(candidate["order_id"][:1].upper())
@@ -771,6 +785,9 @@ class MultiMatchDatasetBuilder:
             "order_type": {"X": "选单", "J": "竞单", "B": "未知竞价类"}.get(order_id[:1].upper(), template.get("order_type")),
             "owner_team_id": None,
             "status": "模拟未分配",
+            "final_owner_team_id": None,
+            "final_status": None,
+            "final_result_available_at": "not_observed_simulated_record",
             "delivered_period": None,
             "coverage_scope": "simulated_unassigned_order",
             "source_path": None,
@@ -1150,9 +1167,10 @@ class MultiMatchDatasetBuilder:
             global_order = global_by_id.get(order["order_id"])
             if not global_order:
                 continue
-            for field in ("owner_team_id", "market", "product", "quantity", "total_price_wan"):
-                if order[field] != global_order[field]:
-                    order_field_mismatches.append({"order_id": order["order_id"], "field": field, "team_value": order[field], "global_value": global_order[field]})
+            for field in ("final_owner_team_id", "market", "product", "quantity", "total_price_wan"):
+                team_value = order.get("owner_team_id") if field == "final_owner_team_id" else order.get(field)
+                if team_value != global_order.get(field):
+                    order_field_mismatches.append({"order_id": order["order_id"], "field": field, "team_value": team_value, "global_value": global_order.get(field)})
         hashes = [sha256_file(path) for path in sources]
         unmapped_operating_actions = [event["event_id"] for event in events if event["included_in_match"] and event["action"] is None]
         return {
@@ -1162,7 +1180,8 @@ class MultiMatchDatasetBuilder:
                 "team_orders": len(team_orders), "global_orders": len(global_orders),
                 "observed_global_orders": sum(row.get("provenance") == "observed" for row in global_orders),
                 "simulated_global_orders": sum(row.get("provenance") == "simulated" for row in global_orders),
-                "unassigned_global_orders": sum(row.get("owner_team_id") is None for row in global_orders),
+                "unassigned_at_release_global_orders": sum(row.get("owner_team_id") is None for row in global_orders),
+                "unallocated_at_match_end_global_orders": sum(row.get("final_owner_team_id") is None for row in global_orders),
                 "reports": len(reports), "quarter_states": len(quarter_states),
             },
             "coverage": {

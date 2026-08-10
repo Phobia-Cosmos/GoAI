@@ -156,7 +156,7 @@ def validate_match(match_dir: Path) -> ConstraintReport:
     for order in orders:
         quantity = order.get("quantity")
         price = order.get("total_price_wan")
-        owner = order.get("owner_team_id")
+        owner = order.get("final_owner_team_id", order.get("owner_team_id"))
         if not isinstance(quantity, (int, float)) or quantity <= 0:
             report.fail("order_quantity", "订单数量必须为正数", order_id=order["order_id"], quantity=quantity)
         if not isinstance(price, (int, float)) or price < 0:
@@ -181,8 +181,8 @@ def validate_match(match_dir: Path) -> ConstraintReport:
         simulated = [row["order_id"] for row in orders if row.get("provenance") == "simulated"]
         if simulated:
             report.fail("xa_no_extra_simulated_orders", "XA 已有完整订单池，不应额外生成模拟订单", simulated_count=len(simulated))
-        assigned_count = sum(row.get("owner_team_id") is not None for row in orders)
-        unassigned_count = sum(row.get("owner_team_id") is None for row in orders)
+        assigned_count = sum(row.get("final_owner_team_id", row.get("owner_team_id")) is not None for row in orders)
+        unassigned_count = sum(row.get("final_owner_team_id", row.get("owner_team_id")) is None for row in orders)
         if len(orders) != 796 or assigned_count != 561 or unassigned_count != 235:
             report.fail("xa_order_pool_counts", "XA 全局订单池数量与已审计结果不符", total=len(orders), assigned=assigned_count, unassigned=unassigned_count)
         else:

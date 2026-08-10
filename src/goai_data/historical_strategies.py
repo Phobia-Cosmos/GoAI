@@ -120,7 +120,9 @@ def build_historical_xa_profiles(match_dir: Path) -> tuple[dict[str, HistoricalS
         history = delivery_by_order.get(str(row["order_id"]))
         row["delivered_period"] = history.get("delivered_period") if history else None
         row["delivered_period_index"] = history.get("delivered_period_index") if history else None
-        row["calibration_owner_team_id"] = row.get("owner_team_id")
+        row["calibration_owner_team_id"] = row.get("final_owner_team_id", row.get("owner_team_id"))
+        row["owner_team_id"] = None
+        row["status"] = "未分配"
         orders.append(row)
     return profiles, orders, actions
 
