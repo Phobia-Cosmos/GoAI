@@ -3,6 +3,8 @@ from pathlib import Path
 
 import pytest
 
+from goai_data.collaborative_agent import CollaborativeEnterprisePolicy, FulfillmentSpecialist, OrderPortfolioSpecialist, SharedDecisionBlackboard, TreasurySpecialist
+from goai_data.decision_system import AgentObservation
 from goai_data.full_sandbox import (
     FullCompetitionArena,
     FullFinancialDynamics,
@@ -10,6 +12,7 @@ from goai_data.full_sandbox import (
     generate_initial_visible_orders,
 )
 from goai_data.owned_agent import ComplexBusinessPlanner, OwnedEnterpriseRobustPolicy, RobustAgentConfig, RobustOrderPlanner
+from goai_data.xa_population import XALateAggressivePopulationPolicy
 
 
 BASE_RULES = Path(__file__).resolve().parents[1] / "data" / "processed" / "v2" / "matches" / "LX_XA" / "rules.json"
@@ -17,6 +20,192 @@ BASE_RULES = Path(__file__).resolve().parents[1] / "data" / "processed" / "v2" /
 
 def rules(team_count: int = 3):
     return build_fixed_xa_rule_pack(json.loads(BASE_RULES.read_text(encoding="utf-8")), match_id="OWNED_TEST", team_count=team_count, seed=17)
+
+
+def test_collaborative_policy_coordinates_six_specialists_for_one_enterprise() -> None:
+    generated = rules(2)
+    arena = FullCompetitionArena(FullFinancialDynamics(generated), generated["participants"]["team_ids"], [])
+    observations = arena.reset()
+    owned_id, other_id = arena.agent_ids
+    policy = CollaborativeEnterprisePolicy(owned_id, 17, rules=generated, profile="leader")
+    action = policy.act(observations[owned_id])
+    metadata = action["policy_metadata"]
+    audit = metadata["planning_audit"]
+    assert metadata["owned_enterprise_only"] is True
+    assert metadata["specialist_count"] == 6
+    assert {row["specialist_id"] for row in audit["specialist_proposals"]} == {
+        "treasury_agent", "capability_agent", "capacity_agent", "fulfillment_agent", "order_portfolio_agent"
+    }
+    assert audit["coordination_protocol"].startswith("shared_blackboard_then_joint_bundle")
+    assert audit["risk_review"]["projected_bankrupt"] is False
+    assert any(row.get("action_type") == "buy_workshop" for row in action["actions"])
+    result = arena.step({owned_id: action, other_id: {"action_type": "hold"}})
+    assert result.infos[owned_id]["action_status"] == "accepted"
+    with pytest.raises(ValueError, match="another enterprise"):
+        policy.act(observations[other_id])
+
+
+def test_collaborative_policy_replans_joint_fulfillment_after_actual_allocation() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state(team_id)
+    state.products = ["P1"]
+    state.markets = ["本地"]
+    state.product_inventory["P1"] = 1.0
+    state.product_inventory_value_wan["P1"] = 16.0
+    state.owner_equity_wan += 16.0
+    state.assigned_orders = [{"order_id": "AWARDED-NOW", "product": "P1", "market": "本地", "quantity": 1.0, "total_price_wan": 100.0, "due_period_index": 1, "status": "已分配", "owner_team_id": team_id}]
+    observation = AgentObservation(generated["match_id"], team_id, 0, "Y1Q1", state.to_dict(), {"available_orders": [], "decision_phase": "post_allocation"}, engine.legal_actions(state))
+    bundle = CollaborativeEnterprisePolicy(team_id, 17, rules=generated).act(observation)
+    assert bundle["policy_metadata"]["decision_phase"] == "post_allocation"
+    assert bundle["policy_metadata"]["planning_audit"]["portfolio_scope"].startswith("all_outstanding_orders")
+    assert any(action.get("action_type") == "order_delivery" for action in bundle["actions"])
+    assert all(action.get("action_type") not in {"develop_product", "develop_market", "select_order", "order_portfolio"} for action in bundle["actions"])
+
+
+def test_order_portfolio_enforces_joint_whole_batch_capacity() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state(team_id)
+    state.year, state.quarter = 2, 2
+    state.products = ["P1"]
+    state.markets = ["本地"]
+    state.production_lines = [
+        {"line_id": f"L{index}", "line_type": "手工线", "product_id": "P1", "status": "ready", "ownership": "purchased", "maintenance_wan_per_year": 15}
+        for index in range(2)
+    ]
+    order = {"order_id": "CAPACITY-3", "product": "P1", "market": "本地", "quantity": 3, "total_price_wan": 180, "due_period_index": 9, "order_type": "选单", "required_iso": []}
+    observation = AgentObservation(generated["match_id"], team_id, 5, "Y2Q2", state.to_dict(), {"available_orders": [order]}, engine.legal_actions(state))
+    board = SharedDecisionBlackboard(observation, generated, "leader")
+    proposal = OrderPortfolioSpecialist(17, team_id).propose(board, state.to_dict())
+    assert not [action for action in proposal.actions if action.get("action_type") in {"select_order", "auction_bid"}]
+
+
+def test_order_portfolio_counts_finished_inventory_as_executable_capacity() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state(team_id)
+    state.year, state.quarter = 2, 2
+    state.products = ["P1"]
+    state.markets = ["本地"]
+    state.product_inventory["P1"] = 3.0
+    state.product_inventory_value_wan["P1"] = 48.0
+    order = {"order_id": "STOCK-3", "product": "P1", "market": "本地", "quantity": 3, "total_price_wan": 180, "due_period_index": 9, "order_type": "选单", "required_iso": []}
+    observation = AgentObservation(generated["match_id"], team_id, 5, "Y2Q2", state.to_dict(), {"available_orders": [order]}, engine.legal_actions(state))
+    proposal = OrderPortfolioSpecialist(17, team_id).propose(SharedDecisionBlackboard(observation, generated, "leader"), state.to_dict())
+    assert proposal.evidence["selected_orders"] == 1
+    portfolio = next(action for action in proposal.actions if action.get("action_type") == "order_portfolio")
+    assert portfolio["parameters"]["candidate_slots"][0][0]["parameters"]["order_id"] == "STOCK-3"
+
+
+def test_prospective_new_product_cell_is_opt_in_and_bounded() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state(team_id)
+    state.year, state.quarter = 2, 2
+    state.products = ["P1", "P2"]
+    state.markets = ["本地"]
+    state.cash_wan = state.owner_equity_wan = 900.0
+    order = {"order_id": "NEW-CELL-P2", "product": "P2", "market": "本地", "quantity": 1, "total_price_wan": 120, "due_period_index": 9, "order_type": "选单", "required_iso": []}
+    observation = AgentObservation(generated["match_id"], team_id, 5, "Y2Q2", state.to_dict(), {"available_orders": [order]}, engine.legal_actions(state))
+    board = SharedDecisionBlackboard(observation, generated, "balanced")
+    default_proposal = OrderPortfolioSpecialist(17, team_id).propose(board, state.to_dict())
+    experimental = OrderPortfolioSpecialist(17, team_id, allow_prospective_new_cell=True).propose(board, state.to_dict())
+    assert default_proposal.evidence["selected_orders"] == 0
+    assert experimental.evidence["selected_orders"] == 1
+
+
+def test_fulfillment_can_deliver_product_completing_at_quarter_opening() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state(team_id)
+    state.year, state.quarter = 2, 2
+    state.products = ["P1"]
+    state.markets = ["本地"]
+    order = {"order_id": "OPENING-P1", "product": "P1", "market": "本地", "quantity": 1, "total_price_wan": 80, "due_period_index": 5, "order_type": "选单", "required_iso": [], "status": "已分配", "owner_team_id": team_id}
+    state.assigned_orders = [order]
+    state.pending_production = [{"job_id": "JOB-1", "product_id": "P1", "quantity": 1, "completion_period_index": 5, "inventory_value_wan": 16}]
+    observation = AgentObservation(generated["match_id"], team_id, 5, "Y2Q2", state.to_dict(), {"available_orders": []}, engine.legal_actions(state))
+    proposal = FulfillmentSpecialist().propose(SharedDecisionBlackboard(observation, generated, "conservative"), engine)
+    assert any(action.get("action_type") == "order_delivery" and action.get("parameters", {}).get("order_id") == "OPENING-P1" for action in proposal.actions)
+
+
+def test_fulfillment_rejects_equity_destroying_emergency_product_rescue() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state(team_id)
+    state.year, state.quarter = 2, 2
+    state.products = ["P3"]
+    state.markets = ["本地"]
+    # One expensive unit is already in stock and two more would need a 3x
+    # emergency purchase.  Revenue plus avoided penalty cannot cover the
+    # complete book cost, so delivering would destroy more equity than default.
+    state.product_inventory["P3"] = 1.0
+    state.product_inventory_value_wan["P3"] = 100.0
+    state.assigned_orders = [{"order_id": "LOSS-RESCUE", "product": "P3", "market": "本地", "quantity": 3, "total_price_wan": 150.0, "due_period_index": state.period_index, "status": "已分配", "owner_team_id": team_id}]
+    observation = AgentObservation(generated["match_id"], team_id, state.period_index, state.period, state.to_dict(), {"available_orders": []}, engine.legal_actions(state))
+    actions = FulfillmentSpecialist().propose(SharedDecisionBlackboard(observation, generated, "balanced"), engine).actions
+    assert not any(action.get("action_type") == "emergency_product_purchase" for action in actions)
+    assert not any(action.get("action_type") == "order_delivery" for action in actions)
+
+
+def test_late_aggressive_opponent_changes_behavior_only_after_trigger() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    policy = XALateAggressivePopulationPolicy(team_id, 17, rules=generated)
+    initial = engine.initial_state(team_id)
+    initial_observation = AgentObservation(generated["match_id"], team_id, 0, "Y1Q1", initial.to_dict(), {"available_orders": []}, engine.legal_actions(initial))
+    assert "population_behavior" not in policy.act(initial_observation)["policy_metadata"]
+    late = engine.initial_state(team_id)
+    late.year, late.quarter = 4, 1
+    late.products = ["P1", "P2", "P3"]
+    late.markets = ["本地", "区域", "国内"]
+    late.cash_wan = late.owner_equity_wan = 900.0
+    late_observation = AgentObservation(generated["match_id"], team_id, late.period_index, "Y4Q1", late.to_dict(), {"available_orders": []}, engine.legal_actions(late))
+    bundle = policy.act(late_observation)
+    assert bundle["policy_metadata"]["population_behavior"] == "late_aggressive_expansion"
+    assert any(action.get("action_type") == "advertising" for action in bundle["actions"])
+
+
+def test_treasury_can_cover_a_maturing_short_loan_beyond_asset_haircut() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state(team_id)
+    state.year, state.quarter = 4, 1
+    state.cash_wan = 301.0
+    state.owner_equity_wan = 425.0
+    state.production_lines = [
+        {
+            "line_id": "REFI-ASSET",
+            "line_type": "自动线",
+            "product_id": "P1",
+            "ownership": "purchased",
+            "book_value_wan": 664.0,
+            "residual_value_wan": 28.0,
+            "depreciation_fee_wan": 28.0,
+            "maintenance_wan_per_year": 0.0,
+            "completed_year": 1,
+            "status": "ready",
+        }
+    ]
+    state.short_loans = [{"loan_id": "DUE", "principal_wan": 540.0, "interest_wan": 27.0, "rate": 0.05, "due_period_index": state.period_index}]
+    observation = AgentObservation(generated["match_id"], team_id, state.period_index, state.period, state.to_dict(), {"available_orders": []}, engine.legal_actions(state))
+    proposal = TreasurySpecialist().propose(SharedDecisionBlackboard(observation, generated, "leader"), engine)
+    refinancing = [action for action in proposal.actions if action.get("action_type") == "short_loan_borrow"]
+    assert refinancing
+    assert refinancing[0]["parameters"]["principal_wan"] >= 486.0
+    refinanced = engine.apply(state, refinancing[0]).state
+    engine._opening_settlement(refinanced)
+    assert refinanced.cash_wan >= 180.0
+    assert refinanced.bankrupt is False
 
 
 def test_owned_policy_uses_one_enterprise_observation_and_records_robust_search() -> None:

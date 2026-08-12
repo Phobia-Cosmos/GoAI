@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from .decision_system import AgentObservation
+from .full_sandbox import order_is_qualified
 
 
 HISTORICAL_STRATEGY_VERSION = "xa_historical_strategy_profiles_v1.0"
@@ -293,7 +294,7 @@ class HistoricalXAProfilePolicy:
         year = observation.period_index // 4 + 1
         target = self.year_order_targets.get(year, 0)
         visible = list((observation.public_state or {}).get("available_orders") or [])
-        qualified = [row for row in visible if row.get("market") in state.get("markets", []) and row.get("product") in state.get("products", []) and row.get("iso") in {None, "", "-", *state.get("iso", [])}]
+        qualified = [row for row in visible if order_is_qualified(row, markets=state.get("markets", []), products=state.get("products", []), iso=state.get("iso", []))]
         def value(order: Mapping[str, Any]) -> tuple[float, str]:
             pair = (str(order.get("market")), str(order.get("product")))
             preference = self.preference_counts.get(pair, 0) * 25

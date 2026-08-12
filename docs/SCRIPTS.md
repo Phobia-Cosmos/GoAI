@@ -34,6 +34,8 @@
 | `run_pre_agent_experiments.py` | Pre-Agent 全链路实验 |
 | `run_modular_decision_experiments.py` | 模块化指标和多 Agent 接口实验 |
 | `run_owned_agent_robustness.py` | 我方单企业对未知对手和订单种子的鲁棒性实验 |
+| `run_xa_population_calibration.py` | 用多个订单种子比较协作 Agent 人口与真实 XA 的权益、评分、能力、获单和交付指标；`--survivor-policy collaborative_late_failure` 可运行晚期失败压力场 |
+| `run_web_platform.py` | 启动可点击的人机对抗、多人比赛和纯 Agent Web 赛场 |
 
 常规开发只需运行测试。只有重建数据、生成新模拟批次或复现实验时才需要直接调用这些脚本：
 

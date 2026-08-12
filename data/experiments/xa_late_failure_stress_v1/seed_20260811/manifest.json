@@ -1,0 +1,30 @@
+{
+  "format_version": "goai_recorded_match_v1.0",
+  "match_id": "SIM_XA_POPULATION_20260811",
+  "sandbox_version": "full_financial_sandbox_v1.2_xa_phased_historical_calibration",
+  "rule_pack_id": "SIM_XA_POPULATION_20260811_fixed_AAAAA_20160108_4.3.32.419",
+  "parent_rule_pack_id": "AAAAA_20160108_4.3.32.419",
+  "source_match_id": "LX_XA",
+  "generation_seed": 20260811,
+  "provenance": "simulated",
+  "training_eligible": false,
+  "truth_policy": "Generated rules, orders, events, reports and rankings are simulation artifacts, not historical facts.",
+  "recording_scope": "complete_global_environment_with_agent_private_observation_isolation",
+  "files": [
+    "manifest.json",
+    "rules.json",
+    "global_orders.jsonl",
+    "teams.jsonl",
+    "observations.jsonl",
+    "actions.jsonl",
+    "feedback.jsonl",
+    "quarter_states.jsonl",
+    "trace.jsonl",
+    "events.jsonl",
+    "order_log.jsonl",
+    "reports.jsonl",
+    "states.jsonl",
+    "results.json"
+  ],
+  "information_policy": "global_environment_truth_isolated_from_agent_private_observations"
+}

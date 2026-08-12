@@ -33,6 +33,15 @@ cd /home/undefined/Desktop/GoAI
 /home/undefined/Disk/python-envs/goai-py312/bin/python -m pytest -q
 ```
 
+## 启动可点击比赛
+
+```bash
+cd /home/undefined/Desktop/GoAI
+PYTHONPATH=src /home/undefined/Disk/python-envs/goai-py312/bin/python scripts/run_web_platform.py --host 127.0.0.1 --port 8765
+```
+
+打开 `http://127.0.0.1:8765` 后可以创建单人对 Agent、多人对 Agent、纯用户或纯 Agent 比赛，选择聚合异质、晚期扩张压力、协同、保守基线或启发式对手；全部经营动作均可点击加入联合决策包。完整用法、接口和部署边界见 [`docs/CLICKABLE_COMPETITION_PLATFORM.md`](docs/CLICKABLE_COMPETITION_PLATFORM.md)，最新六专业 Agent 与真实 XA 指标对比见 [`docs/COLLABORATIVE_AGENT_DESIGN.md`](docs/COLLABORATIVE_AGENT_DESIGN.md)。
+
 ## 可信边界
 
 所有数据均需区分 `observed`、`derived`、`inferred`、`simulated` 和 `missing`。只有已确认规则下的 `observed + derived` 数据可作为正式回放基准；推断和模拟数据仅用于候选仿真、压力测试和接口验证。

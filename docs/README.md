@@ -15,6 +15,8 @@
 | `AGENT_MVP.md` | 早期决策 Agent MVP 说明 |
 | `ONLINE_AGENT_SYSTEM_DESIGN.md` | 部分可观测比赛中的在线闭环设计 |
 | `OWNED_ENTERPRISE_AGENT_SYSTEM.md` | 仅控制我方企业的滚动决策系统 |
+| `COLLABORATIVE_AGENT_DESIGN.md` | 我方一家企业内部六专业 Agent 的协同协议、指标定义和校准结果 |
+| `CLICKABLE_COMPETITION_PLATFORM.md` | 可点击的人机/多人比赛平台、启动方式、接口与部署边界 |
 | `XA_REPLAY_FIDELITY.md` | 历史结果回放与因果模拟的边界 |
 | `XA_INTERMEDIATE_RECONSTRUCTION.md` | XA 中途状态反推和规则校准 |
 | `XA_HISTORICAL_STRATEGY_REPLAY.md` | 27 家历史策略重建和三种模拟模式 |

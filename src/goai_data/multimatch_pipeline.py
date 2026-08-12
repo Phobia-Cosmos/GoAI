@@ -15,6 +15,7 @@ from docx import Document
 from openpyxl import load_workbook
 
 from .common import as_int, as_number, cell_ref, clean_text, parse_duration, parse_money_wan, parse_period, sha256_file, stable_record_id
+from .full_sandbox import order_iso_requirements
 from .rulepack import ACTION_CONTROL_TYPES, ACTION_DEFINITIONS, canonicalize_action, parse_action_parameters
 
 
@@ -693,6 +694,7 @@ class MultiMatchDatasetBuilder:
                 continue
             owner = clean_text(data.get("所属用户"))
             status_key = next((header for header in headers if header and "状态" in header), None)
+            iso_label = clean_text(data.get("ISO")) or "-"
             rows.append({
                 "match_id": "LX_XA",
                 "order_id": order_id,
@@ -704,7 +706,8 @@ class MultiMatchDatasetBuilder:
                 "total_price_wan": parse_money_wan(data.get("总价")),
                 "delivery_term_quarters": as_int(data.get("交货期")),
                 "receivable_term_quarters": as_int(data.get("账期")),
-                "iso": clean_text(data.get("ISO")) or "-",
+                "iso": iso_label,
+                "required_iso": list(order_iso_requirements(iso_label)),
                 # The last two columns are populated by the platform's final
                 # export.  They are outcomes, not release-time allocation.
                 "owner_team_id": None,
@@ -783,6 +786,7 @@ class MultiMatchDatasetBuilder:
             "match_id": match_id,
             "order_id": order_id,
             "order_type": {"X": "选单", "J": "竞单", "B": "未知竞价类"}.get(order_id[:1].upper(), template.get("order_type")),
+            "required_iso": list(order_iso_requirements(template)),
             "owner_team_id": None,
             "status": "模拟未分配",
             "final_owner_team_id": None,

@@ -116,6 +116,33 @@ def _number(value: Any, default: float = 0.0) -> float:
     return float(value) if isinstance(value, (int, float)) else default
 
 
+def order_iso_requirements(order_or_iso: Mapping[str, Any] | Any) -> tuple[str, ...]:
+    """Normalize XA order ISO labels into the qualifications they require."""
+
+    value = order_or_iso.get("required_iso") if isinstance(order_or_iso, Mapping) else order_or_iso
+    if value is None or (isinstance(value, str) and value in {"", "-"}):
+        value = order_or_iso.get("iso") if isinstance(order_or_iso, Mapping) else value
+    if isinstance(value, (list, tuple, set)):
+        raw = " ".join(str(item) for item in value)
+    else:
+        raw = str(value or "")
+    upper = raw.upper()
+    result: list[str] = []
+    if any(token in upper for token in ("9K", "9000")):
+        result.append("ISO9000")
+    if any(token in upper for token in ("14K", "14000")):
+        result.append("ISO14000")
+    return tuple(result)
+
+
+def order_is_qualified(order: Mapping[str, Any], *, markets: Sequence[str], products: Sequence[str], iso: Sequence[str]) -> bool:
+    return (
+        str(order.get("market")) in set(markets)
+        and str(order.get("product")) in set(products)
+        and set(order_iso_requirements(order)).issubset(set(iso))
+    )
+
+
 def _round_half_up(value: float) -> float:
     return float(math.floor(float(value) + 0.5))
 
@@ -355,6 +382,7 @@ def generate_global_orders(
                 "market": market,
                 "product": product,
                 "iso": "-" if entry_level else rng.choice(iso_values),
+                "required_iso": [],
                 "quantity": float(quantity),
                 "total_price_wan": float(total),
                 "delivery_term_quarters": delivery_term,
@@ -367,6 +395,7 @@ def generate_global_orders(
                 "provenance": "simulated",
                 "generation_seed": seed,
             })
+            output[-1]["required_iso"] = list(order_iso_requirements(output[-1]))
     return output
 
 
@@ -401,6 +430,68 @@ def generate_xa_shaped_global_orders(
         order["order_type"] = "竞单" if index in auction_indexes else "选单"
         order["order_shape_profile"] = "observed_XA_counts_randomized_content_v1"
     return orders
+
+
+def generate_xa_empirical_global_orders(
+    rules: Mapping[str, Any],
+    templates: Sequence[Mapping[str, Any]],
+    *,
+    seed: int,
+    price_jitter: float = 0.03,
+    due_grace_quarters: int = 0,
+) -> list[dict[str, Any]]:
+    """Generate simulated XA orders from the observed joint order shape.
+
+    The function preserves the observed year, market/product, quantity, ISO,
+    price, delivery-term and receivable-term distributions while shuffling
+    records and assigning new IDs.  This separates order-shape calibration from
+    policy evaluation; the terminal owner/status labels are never copied.
+    """
+
+    if not templates:
+        raise ValueError("empirical XA order templates cannot be empty")
+    rng = random.Random(seed)
+    rows = [copy.deepcopy(dict(row)) for row in templates]
+    rng.shuffle(rows)
+    match_id = str(rules.get("match_id", "SIM_XA_EMPIRICAL"))
+    output: list[dict[str, Any]] = []
+    for index, row in enumerate(rows, 1):
+        year = int(row.get("year") or 1)
+        release_index = (year - 1) * 4
+        term = max(0, int(row.get("delivery_term_quarters") or 0))
+        due_index = min(19, release_index + term + max(0, int(due_grace_quarters)))
+        requirements = list(order_iso_requirements(row))
+        iso_label = "+".join(requirements) if requirements else "-"
+        price = _number(row.get("total_price_wan"))
+        if price_jitter:
+            price = round(max(1.0, price * rng.uniform(1.0 - price_jitter, 1.0 + price_jitter)), 0)
+        output.append({
+            "match_id": match_id,
+            "order_id": f"{match_id}-EMP-{index:04d}",
+            "year": year,
+            "release_period": f"Y{year}Q1",
+            "release_period_index": release_index,
+            "due_period": _period_label(due_index),
+            "due_period_index": due_index,
+            "market": row.get("market"),
+            "product": row.get("product"),
+            "iso": iso_label,
+            "required_iso": requirements,
+            "quantity": _number(row.get("quantity")),
+            "total_price_wan": price,
+            "delivery_term_quarters": term,
+            "receivable_term_quarters": int(row.get("receivable_term_quarters") or 0),
+            "order_type": row.get("order_type") or "选单",
+            "customer_segment": row.get("customer_segment") or "稳定供货型",
+            "priority": row.get("priority") or "普通",
+            "owner_team_id": None,
+            "status": "未分配",
+            "provenance": "simulated_empirical_xa_shape",
+            "generation_seed": seed,
+            "order_shape_profile": "observed_XA_joint_distribution_shuffled_v1",
+            "release_semantics": "annual_market_release_before_operating_quarter",
+        })
+    return output
 
 
 def generate_initial_visible_orders(
@@ -1188,6 +1279,14 @@ class FullFinancialDynamics:
             state.annual_income["depreciation_expense"] = state.annual_income.get("depreciation_expense", 0.0) - depreciation
             event = {"event_type": "depreciation", "period": state.period, "cash_effect_wan": 0.0, "equity_effect_wan": -depreciation, "asset_type": "production_line", "asset_id": asset.get("line_id"), "amount_wan": depreciation}
             state.journal.append(event); events.append(event)
+        # Depreciation is a non-cash expense, but XA bankruptcy also includes
+        # negative owner equity.  It therefore needs the same post-transition
+        # solvency check as cash expenses; otherwise a negative-equity firm
+        # could incorrectly remain in the terminal ranking until some later
+        # cash event happened to trigger the check.
+        self._bankruptcy_check(state, "year_end_depreciation")
+        if state.bankrupt:
+            return events
         pretax = sum(state.annual_income.values())
         taxable_after_losses = pretax - state.tax_loss_carryforward_wan
         tax = _round_half_up(max(0.0, taxable_after_losses) * _number(self.parameters.get("tax_rate"), 0.25))
@@ -1259,6 +1358,7 @@ class FullCompetitionArena(MultiAgentEnvironment):
         stop_when_all_bankrupt: bool = True,
         preassignment_mode: str = "initial",
         quarter_checkpoints: Mapping[str, Mapping[int, Mapping[str, Any]]] | None = None,
+        post_allocation_phase: bool = False,
     ) -> None:
         self.dynamics = dynamics
         self._agent_ids = tuple(sorted(map(str, team_ids)))
@@ -1271,6 +1371,11 @@ class FullCompetitionArena(MultiAgentEnvironment):
         if preassignment_mode not in {"initial", "release_schedule"}:
             raise ValueError(f"unknown preassignment mode: {preassignment_mode}")
         self.preassignment_mode = preassignment_mode
+        # Optional referee timing used by live decision experiments.  The
+        # default remains the historical one-step contract so replay files
+        # and existing callers retain their meaning.
+        self.post_allocation_phase = bool(post_allocation_phase)
+        self.decision_phase = "operating"
         self.quarter_checkpoints = {
             str(team_id): {int(index): copy.deepcopy(dict(row)) for index, row in checkpoints.items()}
             for team_id, checkpoints in (quarter_checkpoints or {}).items()
@@ -1362,6 +1467,7 @@ class FullCompetitionArena(MultiAgentEnvironment):
         assignment_index = 0 if self.preassignment_mode == "release_schedule" else 10**9
         self._assign_scheduled_orders(assignment_index)
         self.terminated = False
+        self.decision_phase = "operating"
         return self._observations()
 
     def _visible_orders(self, state: FinancialSandboxState) -> list[dict[str, Any]]:
@@ -1403,6 +1509,8 @@ class FullCompetitionArena(MultiAgentEnvironment):
                     "public_order_results": self._public_order_results(),
                     "agent_ids": list(self.agent_ids),
                     "information_policy": "released_orders_and_sanitized_results_only_private_operations_isolated",
+                    "decision_phase": self.decision_phase,
+                    "post_allocation_phase_enabled": self.post_allocation_phase,
                 },
                 self.dynamics.legal_actions(state),
             )
@@ -1413,8 +1521,87 @@ class FullCompetitionArena(MultiAgentEnvironment):
         rows = action.get("actions")
         return list(rows) if isinstance(rows, list) else [action]
 
+    def _step_post_allocation(self, actions: Mapping[str, Mapping[str, Any]]) -> ArenaStep:
+        """Resolve operations after the referee has assigned this quarter's orders."""
+        before = copy.deepcopy(self.states)
+        next_states = copy.deepcopy(self.states)
+        action_events: dict[str, list[Mapping[str, Any]]] = {team_id: [] for team_id in self.agent_ids}
+        action_rejections: dict[str, list[str]] = {team_id: [] for team_id in self.agent_ids}
+        allowed = {
+            "hold", "short_loan_borrow", "long_loan_borrow", "receivable_discount",
+            "rent_workshop", "buy_workshop", "buy_product_line", "convert_product_line",
+            "material_order", "emergency_purchase", "emergency_product_purchase",
+            "production", "order_delivery",
+        }
+        for team_id in self.agent_ids:
+            if next_states[team_id].bankrupt:
+                continue
+            for action in self._action_list(actions[team_id]):
+                action_type = str(action.get("action_type") or "hold")
+                if action_type == "hold":
+                    continue
+                if action_type not in allowed:
+                    message = f"订单分配后阶段不允许动作：{action_type}"
+                    action_rejections[team_id].append(message)
+                    action_events[team_id].append({"event_type": "action_rejected", "period": next_states[team_id].period, "action_type": action_type, "reason": message})
+                    continue
+                transition = self.dynamics.apply(next_states[team_id], action)
+                if transition.status != "success":
+                    message = "; ".join(transition.violations)
+                    action_rejections[team_id].append(message)
+                    action_events[team_id].append({"event_type": "action_rejected", "period": next_states[team_id].period, "action_type": action_type, "reason": message})
+                    continue
+                next_states[team_id] = transition.state
+                action_events[team_id].extend(transition.events)
+
+        rewards: dict[str, float] = {}
+        infos: dict[str, Any] = {}
+        for team_id in self.agent_ids:
+            transition = self.dynamics.advance_quarter(next_states[team_id])
+            if transition.status != "success":
+                raise ValueError(f"{team_id}: {'; '.join(transition.violations)}")
+            next_states[team_id] = transition.state
+            action_events[team_id].extend(transition.events)
+            checkpoint_event = self._assimilate_historical_checkpoint(next_states[team_id], before[team_id].period_index)
+            if checkpoint_event is not None:
+                action_events[team_id].append(checkpoint_event)
+            expected_next_index = before[team_id].period_index + 1
+            if transition.state.bankrupt and not transition.state.competition_complete and transition.state.period_index < expected_next_index:
+                if expected_next_index > self.max_periods - 1:
+                    transition.state.competition_complete = True
+                    action_events[team_id].append({"event_type": "competition_complete", "period": transition.state.period, "reason": "bankruptcy_during_final_settlement"})
+                else:
+                    from_period = transition.state.period
+                    transition.state.year, transition.state.quarter = _period_from_index(expected_next_index)
+                    action_events[team_id].append({"event_type": "quarter_advanced_after_bankruptcy", "from_period": from_period, "to_period": transition.state.period})
+            rewards[team_id] = transition.state.owner_equity_wan - before[team_id].owner_equity_wan
+            transition.state.last_action_feedback = {
+                "period": before[team_id].period,
+                "decision_phase": "post_allocation",
+                "status": "partially_rejected" if action_rejections[team_id] else "accepted",
+                "rejections": copy.deepcopy(action_rejections[team_id]),
+                "event_types": [str(event.get("event_type")) for event in action_events[team_id]],
+                "bankrupt": transition.state.bankrupt,
+            }
+            infos[team_id] = {
+                "events": copy.deepcopy(action_events[team_id]),
+                "action_status": "partially_rejected" if action_rejections[team_id] else "accepted",
+                "action_rejections": copy.deepcopy(action_rejections[team_id]),
+                "bankrupt": transition.state.bankrupt,
+                "balance_gap_wan": transition.state.balance_gap_wan,
+                "decision_phase": "post_allocation",
+            }
+        self.states = next_states
+        self.decision_phase = "operating"
+        if self.preassignment_mode == "release_schedule" and not self.terminated:
+            self._assign_scheduled_orders(next(iter(self.states.values())).period_index)
+        all_complete = all(state.competition_complete for state in self.states.values())
+        all_inactive = all(state.bankrupt or state.competition_complete for state in self.states.values())
+        self.terminated = all_inactive if self.stop_when_all_bankrupt else all_complete
+        return ArenaStep(self._observations(), rewards, self.terminated, infos)
+
     def _eligible(self, state: FinancialSandboxState, order: Mapping[str, Any]) -> bool:
-        return str(order.get("market")) in state.markets and str(order.get("product")) in state.products and (order.get("iso") in {None, "", "-"} or str(order.get("iso")) in state.iso)
+        return order_is_qualified(order, markets=state.markets, products=state.products, iso=state.iso)
 
     @staticmethod
     def _cash_band(cash_wan: float) -> str:
@@ -1450,15 +1637,111 @@ class FullCompetitionArena(MultiAgentEnvironment):
             "provenance": "simulated_information_service",
         }
 
+    def _allocate_claim_queues(
+        self,
+        next_states: dict[str, FinancialSandboxState],
+        claim_queues: Mapping[str, Mapping[str, Any]],
+        action_events: dict[str, list[Mapping[str, Any]]],
+        action_rejections: dict[str, list[str]],
+    ) -> None:
+        """Run repeated one-order turns with fallback candidates.
+
+        A portfolio declares how many orders it wants and a longer ranked
+        candidate queue.  If its first candidate was taken by another team,
+        the same turn continues with the next still-available candidate.  The
+        old simultaneous implementation stopped after the collision and left
+        most of the annual XA pool unclaimed.
+        """
+
+        order_by_id = {str(row["order_id"]): row for row in self.global_orders}
+        allocated_ids = {str(row.get("order_id")) for row in self.order_log if row.get("winner_team_id")}
+        targets = {team_id: len(request.get("slots") or []) for team_id, request in claim_queues.items()}
+        queues = {team_id: [list(slot or []) for slot in request.get("slots") or []] for team_id, request in claim_queues.items()}
+        maximum_turns = max(targets.values(), default=0)
+        for turn in range(maximum_turns):
+            pointers = {team_id: 0 for team_id in claim_queues}
+            won_this_turn: set[str] = set()
+            exhausted: set[str] = set()
+            while True:
+                claims_by_order: dict[str, list[dict[str, Any]]] = {}
+                for team_id, target in targets.items():
+                    if target <= turn or team_id in won_this_turn | exhausted or next_states[team_id].bankrupt:
+                        continue
+                    queue = queues[team_id][turn]
+                    claim: Mapping[str, Any] | None = None
+                    while pointers[team_id] < len(queue):
+                        candidate = queue[pointers[team_id]]
+                        pointers[team_id] += 1
+                        action_type = str(candidate.get("action_type") or "select_order")
+                        values = dict(candidate.get("parameters") or candidate)
+                        order_id = str(values.get("order_id") or "")
+                        order = order_by_id.get(order_id)
+                        if order_id in allocated_ids:
+                            continue
+                        visible_ids = {str(row.get("order_id")) for row in self._visible_orders(next_states[team_id])}
+                        if order is None or order_id not in visible_ids or not self._eligible(next_states[team_id], order):
+                            message = f"订单不存在、尚未发布或资格不足：{order_id}"
+                            action_rejections[team_id].append(message)
+                            action_events[team_id].append({"event_type": "action_rejected", "period": next_states[team_id].period, "action_type": action_type, "reason": message})
+                            continue
+                        expected_action = "auction_bid" if str(order.get("order_type")) == "竞单" else "select_order"
+                        if action_type != expected_action:
+                            message = f"订单 {order_id} 需要动作 {expected_action}"
+                            action_rejections[team_id].append(message)
+                            action_events[team_id].append({"event_type": "action_rejected", "period": next_states[team_id].period, "action_type": action_type, "reason": message})
+                            continue
+                        if action_type == "auction_bid":
+                            fee = _number(self.dynamics.financial_rules.get("auction_bid_fee_wan"), 10)
+                            fee_result = self.dynamics._expense(next_states[team_id], fee, "auction_bid_fee", {"order_id": order_id})
+                            action_events[team_id].append(fee_result)
+                            if next_states[team_id].bankrupt:
+                                exhausted.add(team_id)
+                                break
+                        claim = {"action_type": action_type, "parameters": values}
+                        break
+                    if claim is None:
+                        exhausted.add(team_id)
+                        continue
+                    values = dict(claim["parameters"])
+                    claims_by_order.setdefault(str(values["order_id"]), []).append({**values, "team_id": team_id})
+                if not claims_by_order:
+                    break
+                decisions = self.order_engine.allocate([order_by_id[key] for key in claims_by_order], claims_by_order, {"period": next(iter(next_states.values())).period, "selection_turn": turn + 1})
+                for decision in decisions:
+                    order = copy.deepcopy(order_by_id[decision.order_id])
+                    order["owner_team_id"] = decision.winner_team_id
+                    order["status"] = "已分配" if decision.winner_team_id else "流单"
+                    allocation = {
+                        "period": next(iter(next_states.values())).period,
+                        "order_id": decision.order_id,
+                        "winner_team_id": decision.winner_team_id,
+                        "policy_id": decision.policy_id,
+                        "reason": decision.reason,
+                        "contenders": list(decision.contenders),
+                        "trace": {**dict(decision.trace), "selection_turn": turn + 1, "fallback_queue": True},
+                        "provenance": "simulated",
+                    }
+                    self.order_log.append(allocation)
+                    if decision.winner_team_id:
+                        winner = str(decision.winner_team_id)
+                        won_this_turn.add(winner)
+                        allocated_ids.add(decision.order_id)
+                        next_states[winner].assigned_orders.append(order)
+                        for state in next_states.values():
+                            state.available_orders = [row for row in state.available_orders if str(row.get("order_id")) != decision.order_id]
+                if all(team_id in won_this_turn | exhausted or targets[team_id] <= turn for team_id in targets):
+                    break
+
     def step(self, actions: Mapping[str, Mapping[str, Any]]) -> ArenaStep:
         if self.terminated:
             raise RuntimeError("arena is terminated; call reset()")
         if set(actions) != set(self.agent_ids):
             raise ValueError("one action bundle is required for every agent")
+        if self.post_allocation_phase and self.decision_phase == "post_allocation":
+            return self._step_post_allocation(actions)
         before = copy.deepcopy(self.states)
         next_states = copy.deepcopy(self.states)
-        claims_by_order: dict[str, list[dict[str, Any]]] = {}
-        order_by_id = {str(row["order_id"]): row for row in self.global_orders}
+        claim_queues: dict[str, dict[str, Any]] = {team_id: {"slots": []} for team_id in self.agent_ids}
         action_events: dict[str, list[Mapping[str, Any]]] = {team_id: [] for team_id in self.agent_ids}
         action_rejections: dict[str, list[str]] = {team_id: [] for team_id in self.agent_ids}
         action_lists = {team_id: self._action_list(actions[team_id]) for team_id in self.agent_ids}
@@ -1492,27 +1775,27 @@ class FullCompetitionArena(MultiAgentEnvironment):
                 if action_type in liquidity_actions:
                     continue
                 if action_type in {"select_order", "auction_bid"}:
+                    claim_queues[team_id]["slots"].append([{"action_type": action_type, "parameters": copy.deepcopy(dict(action.get("parameters") or {}))}])
+                    continue
+                if action_type == "order_portfolio":
                     values = dict(action.get("parameters") or {})
-                    order_id = str(values.get("order_id") or "")
-                    order = order_by_id.get(order_id)
-                    if order is None or order not in self._visible_orders(next_states[team_id]) or not self._eligible(next_states[team_id], order):
-                        message = f"订单不存在、尚未发布或资格不足：{order_id}"
+                    candidate_slots = values.get("candidate_slots")
+                    candidates = values.get("candidates") or []
+                    if candidate_slots is not None and (not isinstance(candidate_slots, list) or any(not isinstance(slot, list) for slot in candidate_slots)):
+                        message = "order_portfolio.candidate_slots 必须是二维数组"
                         action_rejections[team_id].append(message)
                         action_events[team_id].append({"event_type": "action_rejected", "period": next_states[team_id].period, "action_type": action_type, "reason": message})
                         continue
-                    expected_action = "auction_bid" if str(order.get("order_type")) == "竞单" else "select_order"
-                    if action_type != expected_action:
-                        message = f"订单 {order_id} 需要动作 {expected_action}"
+                    if candidate_slots is not None:
+                        claim_queues[team_id]["slots"].extend(copy.deepcopy(candidate_slots))
+                        continue
+                    if not isinstance(candidates, list):
+                        message = "order_portfolio.candidates 必须是数组"
                         action_rejections[team_id].append(message)
                         action_events[team_id].append({"event_type": "action_rejected", "period": next_states[team_id].period, "action_type": action_type, "reason": message})
                         continue
-                    if action_type == "auction_bid":
-                        fee = _number(self.dynamics.financial_rules.get("auction_bid_fee_wan"), 10)
-                        fee_result = self.dynamics._expense(next_states[team_id], fee, "auction_bid_fee", {"order_id": order_id})
-                        action_events[team_id].append(fee_result)
-                        if next_states[team_id].bankrupt:
-                            continue
-                    claims_by_order.setdefault(order_id, []).append({**values, "team_id": team_id})
+                    target_count = max(0, int(values.get("target_count", 0)))
+                    claim_queues[team_id]["slots"].extend([copy.deepcopy(candidates[index::target_count]) for index in range(target_count)] if target_count else [])
                     continue
                 if action_type == "spy_information_purchase":
                     values = dict(action.get("parameters") or {})
@@ -1543,18 +1826,34 @@ class FullCompetitionArena(MultiAgentEnvironment):
                     continue
                 next_states[team_id] = transition.state
                 action_events[team_id].extend(transition.events)
-        if claims_by_order:
-            decisions = self.order_engine.allocate([order_by_id[key] for key in claims_by_order], claims_by_order, {"period": next(iter(next_states.values())).period})
-            for decision in decisions:
-                order = copy.deepcopy(order_by_id[decision.order_id])
-                order["owner_team_id"] = decision.winner_team_id
-                order["status"] = "已分配" if decision.winner_team_id else "流单"
-                allocation = {"period": next(iter(next_states.values())).period, "order_id": decision.order_id, "winner_team_id": decision.winner_team_id, "policy_id": decision.policy_id, "reason": decision.reason, "contenders": list(decision.contenders), "trace": dict(decision.trace), "provenance": "simulated"}
-                self.order_log.append(allocation)
-                if decision.winner_team_id:
-                    next_states[decision.winner_team_id].assigned_orders.append(order)
-                for state in next_states.values():
-                    state.available_orders = [row for row in state.available_orders if str(row.get("order_id")) != decision.order_id]
+        if any(request["slots"] for request in claim_queues.values()):
+            self._allocate_claim_queues(next_states, claim_queues, action_events, action_rejections)
+        if self.post_allocation_phase:
+            rewards: dict[str, float] = {}
+            infos: dict[str, Any] = {}
+            self.states = next_states
+            for team_id in self.agent_ids:
+                rewards[team_id] = next_states[team_id].owner_equity_wan - before[team_id].owner_equity_wan
+                next_states[team_id].last_action_feedback = {
+                    "period": before[team_id].period,
+                    "decision_phase": "operating",
+                    "status": "partially_rejected" if action_rejections[team_id] else "accepted",
+                    "rejections": copy.deepcopy(action_rejections[team_id]),
+                    "event_types": [str(event.get("event_type")) for event in action_events[team_id]],
+                    "bankrupt": next_states[team_id].bankrupt,
+                }
+                infos[team_id] = {
+                    "events": copy.deepcopy(action_events[team_id]),
+                    "action_status": "partially_rejected" if action_rejections[team_id] else "accepted",
+                    "action_rejections": copy.deepcopy(action_rejections[team_id]),
+                    "bankrupt": next_states[team_id].bankrupt,
+                    "balance_gap_wan": next_states[team_id].balance_gap_wan,
+                    "decision_phase": "operating",
+                }
+            self.decision_phase = "post_allocation"
+            all_inactive = all(state.bankrupt or state.competition_complete for state in self.states.values())
+            self.terminated = all_inactive if self.stop_when_all_bankrupt else False
+            return ArenaStep(self._observations(), rewards, self.terminated, infos)
         infos: dict[str, Any] = {}
         rewards: dict[str, float] = {}
         for team_id in self.agent_ids:
@@ -1632,7 +1931,7 @@ class LegacySeededHeuristicPolicy:
                 break
 
         visible = list((observation.public_state or {}).get("available_orders") or [])
-        qualified = [row for row in visible if row.get("market") in state.get("markets", []) and row.get("product") in state.get("products", []) and row.get("iso") in {None, "", "-", *state.get("iso", [])}]
+        qualified = [row for row in visible if order_is_qualified(row, markets=state.get("markets", []), products=state.get("products", []), iso=state.get("iso", []))]
         if qualified and cash > 30:
             qualified.sort(key=lambda row: (_number(row.get("quantity")), -int(row.get("delivery_term_quarters", 0)), -_number(row.get("total_price_wan")), str(row.get("order_id"))))
             order = self.rng.choice(qualified[: min(8, len(qualified))])
@@ -1777,7 +2076,7 @@ class FixedXABaselinePolicy:
                 for order in visible
                 if order.get("market") == "本地"
                 and order.get("product") == "P1"
-                and order.get("iso") in {None, "", "-"}
+                and not order_iso_requirements(order)
                 and _number(order.get("quantity")) <= 4
                 and int(order.get("due_period_index", 0)) - period_index >= 4
                 and _number(order.get("total_price_wan")) >= _number(order.get("quantity")) * 24
@@ -1986,7 +2285,7 @@ class SeededHeuristicPolicy:
                 break
 
         visible = list((observation.public_state or {}).get("available_orders") or [])
-        qualified = [row for row in visible if row.get("market") in state.get("markets", []) and row.get("product") in state.get("products", []) and row.get("iso") in {None, "", "-", *state.get("iso", [])} and int(row.get("due_period_index", 99)) > period_index + 1]
+        qualified = [row for row in visible if order_is_qualified(row, markets=state.get("markets", []), products=state.get("products", []), iso=state.get("iso", [])) and int(row.get("due_period_index", 99)) > period_index + 1]
         current_commitment = sum(_number(row.get("quantity")) for row in assigned)
         capacity_factor = max(1, len(state.get("production_lines", [])) + len(state.get("pending_lines", [])))
         claim_budget = max(0, min(self.max_claims, int((capacity_factor * 12 - current_commitment) // 2)))

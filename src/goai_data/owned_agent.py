@@ -18,7 +18,7 @@ from statistics import mean
 from typing import Any, Mapping, Sequence
 
 from .decision_system import AgentObservation
-from .full_sandbox import FinancialSandboxState, FullFinancialDynamics
+from .full_sandbox import FinancialSandboxState, FullFinancialDynamics, order_is_qualified, order_iso_requirements
 from .global_rules import development_potential
 
 
@@ -148,12 +148,9 @@ class RobustOrderPlanner:
 
     def _qualified_orders(self, observation: AgentObservation, state: Mapping[str, Any]) -> list[Mapping[str, Any]]:
         period_index = observation.period_index
-        markets = set(state.get("markets") or [])
-        products = set(state.get("products") or [])
-        iso = set(state.get("iso") or []) | {None, "", "-"}
         output = []
         for order in observation.public_state.get("available_orders") or []:
-            if order.get("market") not in markets or order.get("product") not in products or order.get("iso") not in iso:
+            if not order_is_qualified(order, markets=state.get("markets", []), products=state.get("products", []), iso=state.get("iso", [])):
                 continue
             product = str(order.get("product"))
             matching_lines = [
@@ -595,9 +592,8 @@ class ComplexBusinessPlanner:
             product_value[product] = product_value.get(product, 0.0) + value
             market_value[market] = market_value.get(market, 0.0) + value
             pair_value[(market, product)] = pair_value.get((market, product), 0.0) + value
-            iso = order.get("iso")
-            if iso not in {None, "", "-"}:
-                iso_value[str(iso)] = iso_value.get(str(iso), 0.0) + value
+            for iso in order_iso_requirements(order):
+                iso_value[iso] = iso_value.get(iso, 0.0) + value
         planning_prior = not visible and not assigned
         if planning_prior:
             # Before the first yearly order release, a human team still knows
@@ -891,7 +887,7 @@ class ComplexBusinessPlanner:
         for order in demand["visible"]:
             value = max(1.0, _number(order.get("total_price_wan")))
             total_value += value
-            if order.get("product") in future_products and order.get("market") in future_markets and order.get("iso") in {None, "", "-", *future_iso}:
+            if order.get("product") in future_products and order.get("market") in future_markets and set(order_iso_requirements(order)).issubset(future_iso):
                 ready_value += value
         readiness = ready_value / total_value if total_value else 1.0
         projected_score = projected.owner_equity_wan * (1 + future_potential / 100)

@@ -7,10 +7,14 @@ from goai_data.full_sandbox import (
     SeededHeuristicPolicy,
     generate_global_orders,
     generate_simulated_rule_pack,
+    generate_xa_empirical_global_orders,
+    order_is_qualified,
+    order_iso_requirements,
 )
 
 
 BASE_RULES = Path("/home/undefined/Disk/datasets/goai/processed/v2/matches/LX_XA/rules.json")
+XA_ORDERS = Path(__file__).resolve().parents[1] / "data" / "processed" / "v2" / "matches" / "LX_XA" / "global_orders.jsonl"
 
 
 def rules(seed: int = 1, team_count: int = 3):
@@ -19,6 +23,32 @@ def rules(seed: int = 1, team_count: int = 3):
 
 def assert_balanced(state) -> None:
     assert abs(state.balance_gap_wan) <= 1e-6
+
+
+def test_order_iso_normalization_and_qualification_supports_combined_requirements() -> None:
+    assert order_iso_requirements("9K") == ("ISO9000",)
+    assert order_iso_requirements("14K") == ("ISO14000",)
+    assert order_iso_requirements("9K 14K") == ("ISO9000", "ISO14000")
+    order = {"market": "国内", "product": "P3", "required_iso": ["ISO9000", "ISO14000"]}
+    assert not order_is_qualified(order, markets=["国内"], products=["P3"], iso=["ISO9000"])
+    assert order_is_qualified(order, markets=["国内"], products=["P3"], iso=["ISO9000", "ISO14000"])
+
+
+def test_empirical_xa_orders_preserve_shape_without_terminal_labels() -> None:
+    templates = [json.loads(line) for line in XA_ORDERS.read_text(encoding="utf-8").splitlines() if line.strip()]
+    generated_rules = rules(9, 27)
+    generated_rules["match_id"] = "EMPIRICAL"
+    orders = generate_xa_empirical_global_orders(generated_rules, templates, seed=10, price_jitter=0)
+    assert len(orders) == len(templates) == 796
+    assert {year: sum(row["year"] == year for row in orders) for year in (2, 3, 4, 5)} == {2: 169, 3: 172, 4: 214, 5: 241}
+    assert min(row["quantity"] for row in orders) == 1
+    assert max(row["quantity"] for row in orders) == 5
+    assert all(row["release_period"] == f"Y{row['year']}Q1" for row in orders)
+    assert all(row["owner_team_id"] is None and row["status"] == "未分配" for row in orders)
+    assert all("final_owner_team_id" not in row and "final_status" not in row and "delivered_period" not in row for row in orders)
+    assert [(row["market"], row["product"], row["quantity"], row["required_iso"]) for row in orders] != [
+        (row["market"], row["product"], row["quantity"], list(order_iso_requirements(row))) for row in templates
+    ]
 
 
 def test_seeded_rule_and_order_generation_is_reproducible() -> None:
@@ -31,6 +61,36 @@ def test_seeded_rule_and_order_generation_is_reproducible() -> None:
     assert len(first) == 16
     assert min(row["year"] for row in first) == 2
     assert all(row["provenance"] == "simulated" and row["owner_team_id"] is None for row in first)
+
+
+def test_optional_two_stage_quarter_exposes_actual_award_before_settlement() -> None:
+    generated = rules(15, 1)
+    team_id = generated["participants"]["team_ids"][0]
+    order = {
+        "match_id": generated["match_id"], "order_id": "TWO-STAGE-1", "year": 1,
+        "release_period": "Y1Q1", "release_period_index": 0, "due_period": "Y1Q2",
+        "due_period_index": 1, "market": "本地", "product": "P1", "required_iso": [],
+        "quantity": 1.0, "total_price_wan": 100.0, "order_type": "选单",
+        "owner_team_id": None, "status": "未分配",
+    }
+    initial = {
+        team_id: {
+            "markets": ["本地"], "products": ["P1"],
+            "product_inventory": {"P1": 1.0}, "product_inventory_value_wan": {"P1": 16.0},
+        }
+    }
+    arena = FullCompetitionArena(FullFinancialDynamics(generated), [team_id], [order], initial_states=initial, post_allocation_phase=True, stop_when_all_bankrupt=False)
+    first = arena.reset()[team_id]
+    assert first.public_state["decision_phase"] == "operating"
+    allocation = arena.step({team_id: {"action_type": "select_order", "parameters": {"order_id": order["order_id"], "market": "本地", "product": "P1", "submitted_at": 0.1}}})
+    assert allocation.observations[team_id].period == "Y1Q1"
+    assert allocation.observations[team_id].public_state["decision_phase"] == "post_allocation"
+    assert allocation.observations[team_id].private_state["assigned_orders"][0]["order_id"] == "TWO-STAGE-1"
+    settled = arena.step({team_id: {"actions": [{"action_type": "order_delivery", "parameters": {"order_id": "TWO-STAGE-1"}}, {"action_type": "advertising", "parameters": {"market": "本地", "product_id": "P1", "amount_wan": 1}}]}})
+    assert settled.observations[team_id].period == "Y1Q2"
+    assert settled.observations[team_id].public_state["decision_phase"] == "operating"
+    assert any(event["event_type"] == "order_delivered" for event in settled.infos[team_id]["events"])
+    assert settled.infos[team_id]["action_rejections"] == ["订单分配后阶段不允许动作：advertising"]
 
 
 def test_large_profile_expands_order_attributes_and_complexity() -> None:
@@ -192,3 +252,62 @@ def test_multi_team_environment_runs_twenty_quarters_with_balanced_accounts() ->
     assert all(abs(state.balance_gap_wan) <= 1e-6 for state in arena.states.values())
     assert arena.order_log
     assert arena.final_results()["sandbox_version"]
+
+
+def test_order_portfolio_fallback_gives_loser_another_order_in_same_turn() -> None:
+    generated = rules(51, 2)
+    orders = [
+        {
+            "order_id": order_id,
+            "order_type": "选单",
+            "market": "本地",
+            "product": "P1",
+            "quantity": 1,
+            "total_price_wan": 80,
+            "release_period_index": 0,
+            "due_period_index": 6,
+            "owner_team_id": None,
+            "status": "未分配",
+        }
+        for order_id in ("O1", "O2", "O3")
+    ]
+    team_ids = generated["participants"]["team_ids"]
+    initial = {team_id: {"products": ["P1"], "markets": ["本地"]} for team_id in team_ids}
+    arena = FullCompetitionArena(FullFinancialDynamics(generated), team_ids, orders, initial_states=initial)
+    arena.reset()
+
+    def portfolio(fallback: str) -> dict:
+        return {
+            "action_type": "order_portfolio",
+            "parameters": {
+                "candidate_slots": [[
+                    {"action_type": "select_order", "parameters": {"order_id": "O1"}},
+                    {"action_type": "select_order", "parameters": {"order_id": fallback}},
+                ]],
+                "target_count": 1,
+            },
+        }
+
+    arena.step({team_ids[0]: portfolio("O2"), team_ids[1]: portfolio("O3")})
+    winners = [row["winner_team_id"] for row in arena.order_log if row.get("winner_team_id")]
+    assert sorted(winners) == sorted(team_ids)
+    assert len({row["order_id"] for row in arena.order_log if row.get("winner_team_id")}) == 2
+    assert all(row["trace"]["fallback_queue"] for row in arena.order_log)
+
+
+def test_year_end_depreciation_immediately_marks_negative_equity_bankruptcy() -> None:
+    engine = FullFinancialDynamics(rules(52, 1))
+    state = engine.initial_state("TEST01")
+    state = engine.apply(state, {"action_type": "rent_workshop", "parameters": {"factory": "小厂房"}}).state
+    state = engine.apply(state, {"action_type": "buy_product_line", "parameters": {"line_type": "手工线", "product_id": "P1"}}).state
+    state.production_lines[0]["maintenance_wan_per_year"] = 0
+    state.production_lines[0]["completed_year"] = 1
+    state.owner_equity_wan = 5
+    state.calibration_residual_asset_wan += state.owner_equity_wan - (state.total_assets_wan - state.debt_wan)
+    assert_balanced(state)
+    events = engine._year_end(state, closing_year=2)
+    assert any(event["event_type"] == "depreciation" for event in events)
+    assert state.bankrupt is True
+    assert "negative_equity" in state.bankruptcy_reasons
+    assert "year_end_depreciation" in state.bankruptcy_reasons
+    assert_balanced(state)
