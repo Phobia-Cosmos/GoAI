@@ -16,7 +16,7 @@ from .decision_system import AgentObservation
 from .full_sandbox import FinancialSandboxState, FullFinancialDynamics, order_is_qualified
 
 
-COLLABORATIVE_AGENT_VERSION = "owned_enterprise_specialist_committee_v0.8_two_stage"
+COLLABORATIVE_AGENT_VERSION = "owned_enterprise_specialist_committee_v0.9_executable_capacity"
 
 
 def _number(value: Any, default: float = 0.0) -> float:
@@ -234,7 +234,6 @@ class CapacitySpecialist:
             for row in board.outstanding_orders
         )
         current_lines = len(lines)
-        delivered = len(state.get("delivered_orders") or [])
         backlog_by_product: dict[str, float] = {}
         margin_by_product: dict[str, float] = {}
         line_count_by_product: dict[str, int] = {}
@@ -251,32 +250,19 @@ class CapacitySpecialist:
         for job in state.get("pending_production") or []:
             product = str(job.get("product_id") or "")
             pending_by_product[product] = pending_by_product.get(product, 0.0) + _number(job.get("quantity"))
-        product_expansion_need: dict[str, int] = {}
-        for product, units in backlog_by_product.items():
-            net_units = max(
-                0.0,
-                units
-                - _number((state.get("product_inventory") or {}).get(product))
-                - pending_by_product.get(product, 0.0),
-            )
-            covered_units = line_count_by_product.get(product, 0) * 2
-            uncovered_units = max(0.0, net_units - covered_units)
-            candidate_lines = min(3, int((uncovered_units + 3) // 4)) if uncovered_units > 0 else 0
-            # One automatic line's conservative lifecycle burden includes
-            # maintenance, at least one depreciation charge and a financing
-            # buffer.  Do not expand one product merely because unrelated
-            # products make the total backlog look profitable.
-            if candidate_lines and margin_by_product.get(product, 0.0) >= candidate_lines * 80.0:
-                product_expansion_need[product] = candidate_lines
+        inventory_units = sum(_number(value) for value in (state.get("product_inventory") or {}).values())
+        pending_units = sum(pending_by_product.values())
+        uncovered_units = max(0.0, backlog_units - inventory_units - pending_units - current_lines * 2)
+        candidate_lines = min(3, int((uncovered_units + 3) // 4)) if uncovered_units > 0 else 0
+        expansion_count = candidate_lines if backlog_margin >= candidate_lines * 80.0 else 0
         can_expand = (
             board.period_index >= 5
             and _number(state.get("cash_wan")) >= {"leader": 180.0, "balanced": 200.0, "conservative": 220.0}[board.profile]
             and _number(state.get("owner_equity_wan")) >= 100.0
-            and bool(product_expansion_need)
+            and expansion_count > 0
         )
-        expansion_count = 0
-        if can_expand:
-            expansion_count = min(3, sum(product_expansion_need.values()))
+        if not can_expand:
+            expansion_count = 0
         desired = initial_target if board.period_index < 4 else current_lines + expansion_count
         desired = min(desired, {"leader": 12, "balanced": 10, "conservative": 8}[board.profile])
         capacity = sum(int(row.get("capacity", 0)) for row in factories)
@@ -312,19 +298,13 @@ class CapacitySpecialist:
         if not preferred:
             preferred = ["P1", "P2", "P3"]
         if board.outstanding_orders:
-            preferred.sort(key=lambda product: (-product_expansion_need.get(product, 0), -(backlog_by_product.get(product, 0.0) / max(1, line_count_by_product.get(product, 0))), product))
+            preferred.sort(key=lambda product: (-(backlog_by_product.get(product, 0.0) / max(1, line_count_by_product.get(product, 0))), -margin_by_product.get(product, 0.0), product))
         product_offset = int(hashlib.sha256(board.observation.agent_id.encode()).hexdigest()[:8], 16) % len(preferred)
-        planned_product_expansions = dict(product_expansion_need)
         for index in range(additions):
             if board.period_index == 0 and "P4" in portfolio:
                 product = "P2"
             elif board.period_index == 0 and "P5" in portfolio:
                 product = "P3"
-            elif board.outstanding_orders and planned_product_expansions:
-                product = max(planned_product_expansions, key=lambda value: (planned_product_expansions[value], backlog_by_product.get(value, 0.0), value))
-                planned_product_expansions[product] -= 1
-                if planned_product_expansions[product] <= 0:
-                    del planned_product_expansions[product]
             else:
                 product = preferred[index % len(preferred)] if board.outstanding_orders else preferred[(product_offset + len(lines) + index) % len(preferred)]
             # Automatic starter lines complete during the order-free first
@@ -338,7 +318,7 @@ class CapacitySpecialist:
             "size product-specific capacity from the complete order backlog rather than one isolated order",
             tuple(actions),
             dependencies=("treasury_agent", "capability_agent"),
-            evidence={"current_lines": len(lines), "current_factory_capacity": capacity, "desired_lines": desired, "backlog_units": backlog_units, "backlog_margin_wan": backlog_margin, "product_expansion_need": product_expansion_need, "backlog_by_product": backlog_by_product},
+            evidence={"current_lines": len(lines), "current_factory_capacity": capacity, "desired_lines": desired, "backlog_units": backlog_units, "backlog_margin_wan": backlog_margin, "uncovered_units": uncovered_units, "expansion_count": expansion_count, "backlog_by_product": backlog_by_product},
         )
 
 
@@ -364,6 +344,12 @@ class FulfillmentSpecialist:
         for job in state.get("pending_production") or []:
             product = str(job.get("product_id"))
             quantity = _number(job.get("quantity"))
+            if job.get("inventory_released_in_start_period"):
+                # One-quarter production is already present in the state's
+                # product inventory.  The job remains only to keep its line
+                # busy until quarter advance; counting it as WIP again makes
+                # the planner stop one batch early and causes false defaults.
+                continue
             if int(job.get("completion_period_index", 10**9)) <= board.period_index:
                 # The arena performs opening settlement after financing and
                 # before operating actions.  Products completing now are
@@ -426,9 +412,36 @@ class FulfillmentSpecialist:
                 inventory[product] -= quantity
                 required[product] = max(0.0, required.get(product, 0.0) - quantity)
         ready_lines = [copy.deepcopy(row) for row in state.get("production_lines") or [] if row.get("status") == "ready"]
+        product_rules = board.parameters.get("products") or {}
+
+        def dependency_depth(product: str, trail: tuple[str, ...] = ()) -> int:
+            """Return the number of product-BOM edges below a product."""
+            if product in trail:
+                return 0
+            children = [str(component) for component in (product_rules.get(product, {}).get("bom") or {}) if str(component).startswith("P")]
+            return 0 if not children else 1 + max(dependency_depth(child, (*trail, product)) for child in children)
+
+        # Component products (P2 for P4, P3 for P5) must be scheduled before
+        # their downstream product.  This is a local planning order only; the
+        # environment still rejects an action if the submitted state lacks the
+        # required component inventory.
+        component_demand: dict[str, float] = {}
+        for product, quantity in list(required.items()):
+            for component, units in (product_rules.get(product, {}).get("bom") or {}).items():
+                component = str(component)
+                if component.startswith("P"):
+                    component_demand[component] = component_demand.get(component, 0.0) + quantity * _number(units)
+        ready_lines.sort(key=lambda line: (
+            -component_demand.get(str(line.get("product_id") or ""), 0.0),
+            dependency_depth(str(line.get("product_id") or "")),
+            str(line.get("line_id") or ""),
+        ))
         for line in ready_lines:
             products = [
-                product for product, quantity in sorted(required.items(), key=lambda row: (-row[1], row[0]))
+                product for product, quantity in sorted(
+                    required.items(),
+                    key=lambda row: (-component_demand.get(row[0], 0.0), -dependency_depth(row[0]), -row[1], row[0]),
+                )
                 if quantity - inventory.get(product, 0.0) - pending.get(product, 0.0) > 0
                 and product in state.get("products", [])
                 and (line.get("line_type") == "柔性线" or str(line.get("product_id")) == product)
@@ -436,25 +449,54 @@ class FulfillmentSpecialist:
             if not products:
                 continue
             product = products[0]
-            product_rule = (board.parameters.get("products") or {}).get(product) or {}
+            product_rule = product_rules.get(product) or {}
             can_produce = True
             for component, units in (product_rule.get("bom") or {}).items():
                 component = str(component)
+                units = _number(units)
                 if component.startswith("R"):
-                    missing = max(0.0, _number(units) - materials.get(component, 0.0))
+                    missing = max(0.0, units - materials.get(component, 0.0))
                     if missing:
                         actions.append({"action_type": "emergency_purchase", "parameters": {"material_id": component, "quantity": missing}})
                         materials[component] = materials.get(component, 0.0) + missing
-                    materials[component] -= _number(units)
-                elif inventory.get(component, 0.0) >= _number(units):
-                    inventory[component] -= _number(units)
+                    materials[component] -= units
+                elif inventory.get(component, 0.0) >= units:
+                    inventory[component] -= units
                 else:
                     can_produce = False
                     break
             if not can_produce:
                 continue
             actions.append({"action_type": "production", "parameters": {"product_id": product, "quantity": 1, "line_type": line.get("line_type")}})
-            pending[product] = pending.get(product, 0.0) + 1
+            line_rule = (board.parameters.get("production_lines") or {}).get(str(line.get("line_type")), {})
+            duration = max(1, int(line_rule.get("production_quarters", 1)))
+            if duration == 1:
+                # FullFinancialDynamics releases one-quarter production at
+                # action time, so it can feed a downstream P4/P5 batch or a
+                # delivery later in this same action bundle.
+                inventory[product] = inventory.get(product, 0.0) + 1.0
+                inventory_value[product] = inventory_value.get(product, 0.0) + _number(product_rule.get("direct_cost_wan"), 0.0)
+            else:
+                pending[product] = pending.get(product, 0.0) + 1.0
+
+        # A production action appears before delivery in the submitted bundle
+        # for products completed at quarter opening/action time.  Recheck the
+        # complete inventory projection after scheduling production so a
+        # newly completed one-quarter batch is actually deliverable this
+        # quarter instead of being delayed until its due-period default.
+        for order in outstanding:
+            order_id = str(order.get("order_id"))
+            if order_id in planned_delivery_ids:
+                continue
+            product = str(order.get("product"))
+            quantity = _number(order.get("quantity"))
+            if inventory.get(product, 0.0) < quantity:
+                continue
+            actions.append({"action_type": "order_delivery", "parameters": {"order_id": order_id}})
+            planned_delivery_ids.add(order_id)
+            unit_book_value = inventory_value.get(product, 0.0) / inventory.get(product, 1.0)
+            inventory_value[product] = max(0.0, inventory_value.get(product, 0.0) - unit_book_value * quantity)
+            inventory[product] -= quantity
         # Maintain a rolling two-batch material cover.  After orders are won,
         # this is capped by the outstanding production need; immediately
         # before an annual order pool it pre-positions a starter stock.  The
@@ -560,6 +602,53 @@ class OrderPortfolioSpecialist:
         def reject(reason: str) -> None:
             rejection_reasons[reason] = rejection_reasons.get(reason, 0) + 1
 
+        def executable_capacity(product: str, due_period_index: int) -> float:
+            due_period_index = min(due_period_index, 19)
+            product_lines = [
+                line for line in [*(state.get("production_lines") or []), *(state.get("pending_lines") or [])]
+                if str(line.get("product_id")) == product
+            ]
+            pending_jobs = [job for job in state.get("pending_production") or [] if str(job.get("product_id")) == product]
+            capacity = max(0.0, _number((state.get("product_inventory") or {}).get(product)))
+            for line in product_lines:
+                line_id = str(line.get("line_id") or "")
+                production_quarters = max(1, int((parameters.get("production_lines") or {}).get(str(line.get("line_type")), {}).get("production_quarters", 1)))
+                start_period = board.period_index
+                if line.get("status") == "installing":
+                    start_period = max(start_period, int(line.get("completion_period_index", board.period_index)))
+                elif line.get("status") == "busy":
+                    active_jobs = [job for job in pending_jobs if str(job.get("line_id") or "") == line_id]
+                    if active_jobs:
+                        completion_period = board.period_index + max(int(job.get("remaining_quarters", production_quarters)) for job in active_jobs)
+                        start_period = max(start_period, completion_period)
+                        capacity += sum(
+                            _number(job.get("quantity"))
+                            for job in active_jobs
+                            if not job.get("inventory_released_in_start_period") and completion_period <= due_period_index
+                        )
+                if start_period > due_period_index:
+                    continue
+                if production_quarters == 1:
+                    capacity += due_period_index - start_period + 1
+                else:
+                    capacity += max(0, (due_period_index - start_period) // production_quarters)
+            gap = due_period_index - board.period_index
+            component = {"P4": "P2", "P5": "P3"}.get(product)
+            component_cell_exists = bool(
+                component
+                and any(str(line.get("product_id")) == component for line in [*(state.get("production_lines") or []), *(state.get("pending_lines") or [])])
+            )
+            two_stage = bool(board.observation.public_state.get("post_allocation_phase_enabled"))
+            prospective_limit = (
+                {"leader": 4, "balanced": 3, "conservative": 2}[board.profile]
+                if two_stage
+                else (2 if board.profile in {"leader", "balanced"} else 1)
+            )
+            prospective_lines = min(prospective_limit, max(0, target_lines_by_product.get(product, 0) - len(product_lines))) if product_lines or component_cell_exists else 0
+            if not product_lines and not component_cell_exists and product == planned_new_cell:
+                prospective_lines = 1
+            return capacity + prospective_lines * max(0, gap - 1)
+
         for order in board.visible_orders:
             if not order_is_qualified(order, markets=state.get("markets") or [], products=state.get("products") or [], iso=state.get("iso") or []):
                 reject("qualification")
@@ -569,49 +658,15 @@ class OrderPortfolioSpecialist:
             # Capacity after Y5Q4 cannot improve the terminal score.  Orders
             # whose contractual due date falls beyond the 20-quarter match
             # must still fit inside the remaining competition horizon.
-            gap = min(int(order.get("due_period_index", 99)), 20) - board.period_index
-            product_lines = [line for line in [*(state.get("production_lines") or []), *(state.get("pending_lines") or [])] if str(line.get("product_id")) == product]
-            # Sum whole batches line by line.  Using the fastest cycle for a
-            # mixed automatic/manual fleet overstated every manual line and
-            # created orders that could not be completed.
-            capacity = 0
-            for line in product_lines:
-                production_quarters = max(1, int((parameters.get("production_lines") or {}).get(str(line.get("line_type")), {}).get("production_quarters", 1)))
-                installation_delay = max(0, int(line.get("completion_period_index", board.period_index)) - board.period_index) if line.get("status") == "installing" else 0
-                capacity += max(0, (gap - 1 - installation_delay) // production_quarters)
-            # Finished goods are executable capacity, not sunk history.  The
-            # previous planner ignored warehouse stock and rejected orders
-            # even when the complete lot was already available.  Outstanding
-            # commitments are compared below against inventory plus future
-            # production as one shared capacity budget.
-            on_hand = max(0.0, _number((state.get("product_inventory") or {}).get(product)))
-            capacity += on_hand
-            # A human order plan may reserve capacity that will be installed
-            # after winning the annual pool.  Add only the profile's bounded
-            # future manual-line slots, with one quarter reserved for the
-            # post-award build decision and two quarters per batch.  The
-            # Capacity specialist must then actually finance and install the
-            # lines; otherwise normal due-date/default transitions still
-            # apply.
-            # Reserve future expansion only behind an existing product cell.
-            # Assuming a brand-new line for every qualified product let one
-            # enterprise win P1/P2/P3 simultaneously, even though the next
-            # quarter's risk review could finance only one of those cells.
-            two_stage = bool(board.observation.public_state.get("post_allocation_phase_enabled"))
-            prospective_limit = (
-                {"leader": 4, "balanced": 3, "conservative": 2}[board.profile]
-                if two_stage
-                else (2 if board.profile in {"leader", "balanced"} else 1)
-            )
-            component = {"P4": "P2", "P5": "P3"}.get(product)
-            component_cell_exists = bool(
-                component
-                and any(str(line.get("product_id")) == component for line in [*(state.get("production_lines") or []), *(state.get("pending_lines") or [])])
-            )
-            prospective_lines = min(prospective_limit, max(0, target_lines_by_product.get(product, 0) - len(product_lines))) if product_lines or component_cell_exists else 0
-            if not product_lines and not component_cell_exists and product == planned_new_cell:
-                prospective_lines = 1
-            capacity += prospective_lines * max(0, (gap - 2) // 2)
+            due_period_index = min(int(order.get("due_period_index", 99)), 19)
+            gap = due_period_index - board.period_index
+            # Count the batches that the state machine can actually complete
+            # by this order's due period.  A ready one-quarter line can start
+            # now; an installing line can start in its completion period; a
+            # busy line becomes reusable only after its active job completes.
+            # The previous `(gap - 1) / cycle` approximation discarded the
+            # current and due quarters and rejected many executable orders.
+            capacity = executable_capacity(product, due_period_index)
             if committed.get(product, 0.0) + quantity > capacity:
                 reject("existing_commitment_exceeds_candidate_capacity")
                 continue

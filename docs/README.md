@@ -4,6 +4,10 @@
 
 | 文档 | 用途 |
 | --- | --- |
+| `CURRENT_VERSION_SUMMARY.md` | 当前可交付版本、真实 XA 指标对照、可信边界和下一阶段 |
+| `COMPETITION_SUBMISSION_SECURITY.md` | 初赛材料结构、公开仓库风险、数据合规和发布前检查 |
+| `SUBMISSION_DRAFT.md` | 初赛 500 字简介、逐页 PPT 文案、Demo 口播和答辩问答定稿 |
+| `SUBMISSION_ARTIFACT_INTEGRATION.md` | 新增 DOCX/PPTX/PDF 的内容整合、逐页修改建议和 Web Demo 录制流程 |
 | `PROJECT_STATUS_AND_AGENT_PLAN.md` | 项目目标、当前进度和 Agent 总路线 |
 | `SYSTEM_ARCHITECTURE.md` | 系统组件、数据契约和协作关系 |
 | `DATA_LAYOUT.md` | 仓库内外的数据存储规则 |
@@ -22,4 +26,4 @@
 | `XA_HISTORICAL_STRATEGY_REPLAY.md` | 27 家历史策略重建和三种模拟模式 |
 | `XA_REAL_VS_SIMULATION_ANALYSIS.md` | 真实 XA 与模拟比赛结果差异 |
 
-优先阅读顺序为：项目路线图 → 系统架构 → 在线 Agent 设计 → XA 历史重建与模拟边界。
+优先阅读顺序为：当前版本总结 → 项目路线图 → 系统架构 → 在线 Agent 设计 → XA 历史重建与模拟边界。

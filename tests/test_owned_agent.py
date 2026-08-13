@@ -135,6 +135,51 @@ def test_fulfillment_can_deliver_product_completing_at_quarter_opening() -> None
     assert any(action.get("action_type") == "order_delivery" and action.get("parameters", {}).get("order_id") == "OPENING-P1" for action in proposal.actions)
 
 
+def test_fulfillment_does_not_double_count_immediately_released_production() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state(team_id)
+    state.year, state.quarter = 2, 2
+    state.products = ["P1"]
+    state.markets = ["本地"]
+    state.product_inventory["P1"] = 1.0
+    state.product_inventory_value_wan["P1"] = 16.0
+    state.material_inventory["R1"] = 1.0
+    state.material_inventory_value_wan["R1"] = 8.0
+    state.production_lines = [
+        {"line_id": "READY-P1", "line_type": "自动线", "product_id": "P1", "status": "ready"},
+        {"line_id": "BUSY-P1", "line_type": "自动线", "product_id": "P1", "status": "busy"},
+    ]
+    state.pending_production = [{"job_id": "RELEASED", "line_id": "BUSY-P1", "product_id": "P1", "quantity": 1.0, "remaining_quarters": 1, "inventory_released_in_start_period": True}]
+    state.assigned_orders = [{"order_id": "NEEDS-TWO", "product": "P1", "market": "本地", "quantity": 2.0, "total_price_wan": 120.0, "due_period_index": 8, "status": "已分配", "owner_team_id": team_id}]
+    observation = AgentObservation(generated["match_id"], team_id, state.period_index, state.period, state.to_dict(), {"available_orders": []}, engine.legal_actions(state))
+    proposal = FulfillmentSpecialist().propose(SharedDecisionBlackboard(observation, generated, "balanced"), engine)
+    assert any(action.get("action_type") == "production" and action.get("parameters", {}).get("product_id") == "P1" for action in proposal.actions)
+
+
+def test_fulfillment_schedules_component_before_same_quarter_final_product() -> None:
+    generated = rules(1)
+    team_id = generated["participants"]["team_ids"][0]
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state(team_id)
+    state.year, state.quarter = 2, 2
+    state.products = ["P2", "P4"]
+    state.markets = ["本地"]
+    state.material_inventory.update({"R2": 1.0, "R3": 1.0, "R4": 1.0})
+    state.material_inventory_value_wan.update({"R2": 9.0, "R3": 9.0, "R4": 10.0})
+    state.production_lines = [
+        {"line_id": "AUTO-P4", "line_type": "自动线", "product_id": "P4", "status": "ready"},
+        {"line_id": "AUTO-P2", "line_type": "自动线", "product_id": "P2", "status": "ready"},
+    ]
+    state.assigned_orders = [{"order_id": "CHAIN-P4", "product": "P4", "market": "本地", "quantity": 1.0, "total_price_wan": 120.0, "due_period_index": state.period_index + 1, "status": "已分配", "owner_team_id": team_id}]
+    observation = AgentObservation(generated["match_id"], team_id, state.period_index, state.period, state.to_dict(), {"available_orders": []}, engine.legal_actions(state))
+    proposal = FulfillmentSpecialist().propose(SharedDecisionBlackboard(observation, generated, "leader"), engine)
+    production_products = [action.get("parameters", {}).get("product_id") for action in proposal.actions if action.get("action_type") == "production"]
+    assert production_products[:2] == ["P2", "P4"]
+    assert any(action.get("action_type") == "order_delivery" and action.get("parameters", {}).get("order_id") == "CHAIN-P4" for action in proposal.actions)
+
+
 def test_fulfillment_rejects_equity_destroying_emergency_product_rescue() -> None:
     generated = rules(1)
     team_id = generated["participants"]["team_ids"][0]
@@ -302,7 +347,8 @@ def test_paid_intelligence_is_optional_private_and_charged_by_environment() -> N
     assert report["target_team_id"] == target
     assert report["visibility"] == "buyer_private_legally_purchased"
     assert not arena.states[target].intelligence_reports
-    expected = initial_cash - 5 - generated["parameters"]["management_fee_per_quarter_wan"]
+    assert generated["financial_rules"]["information_purchase"]["fee_wan"] == 5
+    expected = initial_cash - generated["financial_rules"]["information_purchase"]["fee_wan"] - generated["parameters"]["management_fee_per_quarter_wan"]
     assert arena.states[buyer].cash_wan == expected
     assert "intelligence_reports" not in result.observations[target].public_state
 

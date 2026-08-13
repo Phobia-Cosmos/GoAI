@@ -95,7 +95,7 @@ def _candidate_financial_rules(parameters: Mapping[str, Any]) -> dict[str, Any]:
         "auction_payment_mode": "fixed_order_price",
         "unclaimed_orders_carry_forward": False,
         "information_purchase": {
-            "enabled": False,
+            "enabled": True,
             "fee_wan": 5,
             "disclosed_fields": [
                 "cash_band",
@@ -106,7 +106,7 @@ def _candidate_financial_rules(parameters: Mapping[str, Any]) -> dict[str, Any]:
                 "production_line_count",
                 "assigned_order_count",
             ],
-            "provenance": "optional_candidate_service_not_confirmed_for_XA_Y1Q1_Y5Q4",
+            "provenance": "observed_XA_spy_cash_events_five_wan_overrides_generic_report_guidance_one_wan",
         },
         "provenance": "candidate_traditional_sandbox_service",
     }
@@ -1016,6 +1016,9 @@ class FullFinancialDynamics:
         # A flexible line may produce any qualified product; its exported
         # product label is the last observed setting, not a hard qualification.
         candidates = [row for row in state.production_lines if row.get("status") == "ready" and (row.get("line_type") == "柔性线" or row.get("product_id") in {None, product_id})]
+        requested_line_id = str(values.get("line_id") or "")
+        if requested_line_id:
+            candidates = [row for row in candidates if str(row.get("line_id")) == requested_line_id]
         requested_line_type = values.get("line_type")
         if requested_line_type:
             typed = [row for row in candidates if str(row.get("line_type")) == str(requested_line_type)]

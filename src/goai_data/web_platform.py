@@ -33,7 +33,7 @@ from .global_rules import development_potential, ranking_score
 from .xa_population import XALateAggressivePopulationPolicy, XARealisticPopulationPolicy, strategy_class_for_team
 
 
-WEB_PLATFORM_VERSION = "goai_clickable_competition_v0.2_two_stage"
+WEB_PLATFORM_VERSION = "goai_clickable_competition_v0.5_guided_human_agent"
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_MATCH_DIR = PROJECT_ROOT / "data" / "processed" / "v2" / "matches" / "LX_XA"
 STATIC_DIR = Path(__file__).resolve().parent / "web_static"
@@ -120,6 +120,29 @@ class CompetitionSession:
 
     def _feedback_payload(self, team_id: str, result: Any, period: str) -> dict[str, Any]:
         info = copy.deepcopy(dict(result.infos[team_id]))
+        state = self.arena.states[team_id]
+        previous = self._pre_step_states.get(team_id, {})
+        current = state.to_dict()
+        cash_delta = float(current.get("cash_wan") or 0) - float(previous.get("cash_wan") or 0)
+        equity_delta = float(current.get("owner_equity_wan") or 0) - float(previous.get("owner_equity_wan") or 0)
+        awarded_delta = max(0, len(current.get("assigned_orders") or []) - len(previous.get("assigned_orders") or []))
+        delivered_delta = max(0, len(current.get("delivered_orders") or []) - len(previous.get("delivered_orders") or []))
+        defaulted_delta = max(0, len(current.get("defaulted_orders") or []) - len(previous.get("defaulted_orders") or []))
+        suggestions: list[str] = []
+        if info.get("action_rejections"):
+            suggestions.append("先修正被裁判拒绝的动作，再安排新增投入。")
+        if current.get("bankrupt"):
+            suggestions.append("企业已触发破产，本局后续仅能复盘资金链断点。")
+        elif float(current.get("cash_wan") or 0) < 50:
+            suggestions.append("现金缓冲偏低，下一阶段优先检查到期贷款、应收贴现和最低履约资金。")
+        if defaulted_delta:
+            suggestions.append("本期发生订单违约，应减少超出资格、库存和可交付产能的申领。")
+        elif awarded_delta and not delivered_delta:
+            suggestions.append("已获得新订单，履约阶段应按交期倒排原料、产线和成品缺口。")
+        elif delivered_delta:
+            suggestions.append("本期交付已形成回款，下一期可比较扩产收益与保留现金的风险。")
+        if not suggestions:
+            suggestions.append("经营状态稳定，下一期继续比较订单边际收益、产能占用和现金安全垫。")
         return {
             "agent_id": team_id,
             "period": period,
@@ -131,6 +154,14 @@ class CompetitionSession:
             "balance_gap_wan": info.get("balance_gap_wan"),
             "terminated": result.terminated,
             "decision_phase": info.get("decision_phase"),
+            "state_changes": {
+                "cash_wan": round(cash_delta, 4),
+                "owner_equity_wan": round(equity_delta, 4),
+                "awarded_orders": awarded_delta,
+                "delivered_orders": delivered_delta,
+                "defaulted_orders": defaulted_delta,
+            },
+            "review_suggestions": suggestions,
         }
 
     def _advance(self) -> None:
@@ -144,11 +175,7 @@ class CompetitionSession:
                 actions[team_id] = copy.deepcopy(dict(self.pending_actions.get(team_id) or {"action_type": "hold"}))
             else:
                 actions[team_id] = self.bots[team_id].act(self.observations[team_id])
-            if decision_phase == "post_allocation":
-                allowed = {"hold", "short_loan_borrow", "long_loan_borrow", "receivable_discount", "rent_workshop", "buy_workshop", "buy_product_line", "convert_product_line", "material_order", "emergency_purchase", "emergency_product_purchase", "production", "order_delivery"}
-                rows = self.arena._action_list(actions[team_id])
-                filtered = [copy.deepcopy(dict(row)) for row in rows if row.get("action_type") in allowed]
-                actions[team_id] = {"actions": filtered or [{"action_type": "hold"}]}
+        self._pre_step_states = {team_id: copy.deepcopy(self.arena.states[team_id].to_dict()) for team_id in self.arena.agent_ids}
         result = self.arena.step(actions)
         if decision_phase == "post_allocation":
             self.step += 1
@@ -173,9 +200,16 @@ class CompetitionSession:
                 raise ValueError("比赛当前不能提交决策")
             if self.observations[player.team_id].private_state.get("bankrupt"):
                 action_bundle = {"action_type": "hold"}
+            if not isinstance(action_bundle, Mapping):
+                raise ValueError("action_bundle 必须是 JSON 对象")
             rows = action_bundle.get("actions") if isinstance(action_bundle, Mapping) else None
             if rows is not None and not isinstance(rows, list):
                 raise ValueError("actions 必须是动作数组")
+            action_rows = self.arena._action_list(action_bundle or {"action_type": "hold"})
+            allowed = set(self.allowed_action_types())
+            invalid = sorted({str(row.get("action_type") or "") for row in action_rows if str(row.get("action_type") or "") not in allowed})
+            if invalid:
+                raise ValueError(f"{self.decision_phase_name}阶段不允许动作：{', '.join(invalid)}")
             self.pending_actions[player.team_id] = copy.deepcopy(dict(action_bundle or {"action_type": "hold"}))
             waiting = [team_id for team_id in self.human_team_ids if team_id not in self.pending_actions]
             advanced = not waiting
@@ -189,13 +223,44 @@ class CompetitionSession:
                 raise ValueError("含有人类玩家的比赛必须等待玩家提交")
             self._advance()
 
+    def run_bots_to_terminal(self) -> None:
+        with self.lock:
+            if self.human_team_ids:
+                raise ValueError("含有人类玩家的比赛不能自动运行至终局")
+            if self.status != "running":
+                raise ValueError("比赛当前不能自动运行")
+            while self.status == "running":
+                self._advance()
+
+    @property
+    def decision_phase_name(self) -> str:
+        phase = str(next(iter(self.observations.values())).public_state.get("decision_phase") or "operating")
+        return "获单后履约" if phase == "post_allocation" else "经营与申领"
+
+    def allowed_action_types(self) -> tuple[str, ...]:
+        phase = str(next(iter(self.observations.values())).public_state.get("decision_phase") or "operating")
+        if phase == "post_allocation":
+            return (
+                "hold", "short_loan_borrow", "long_loan_borrow", "receivable_discount",
+                "rent_workshop", "buy_workshop", "buy_product_line", "convert_product_line",
+                "material_order", "emergency_purchase", "emergency_product_purchase",
+                "production", "order_delivery",
+            )
+        return (*FullFinancialDynamics.ACTIONS, "select_order", "auction_bid", "order_portfolio")
+
     def recommendation(self, token: str, profile: str = "balanced") -> dict[str, Any]:
         with self.lock:
             player = self.player_for_token(token)
             if player is None:
                 raise PermissionError("无效玩家令牌")
             observation = self.observations[player.team_id]
-            policy = CollaborativeEnterprisePolicy(player.team_id, self.seed + self.step, rules=self.rules, profile=profile)
+            policy = CollaborativeEnterprisePolicy(
+                player.team_id,
+                self.seed + self.step,
+                rules=self.rules,
+                profile=profile,
+                allow_prospective_new_cell=True,
+            )
             return copy.deepcopy(dict(policy.act(observation)))
 
     def _current_score(self, team_id: str) -> dict[str, Any]:
@@ -208,8 +273,27 @@ class CompetitionSession:
             "completed_lines": [row["line_type"] for row in state.production_lines],
         }
         potential = development_potential(assets, self.rules)
+        participant_type = "human" if team_id in self.human_team_ids else "agent"
+        human_player = next((row for row in self.players.values() if row.team_id == team_id), None)
+        position = list(self.arena.agent_ids).index(team_id) + 1
+        if human_player is not None:
+            display_name = f"{human_player.player_name}（人类）"
+        elif participant_type == "human":
+            display_name = f"人类席位 {position:02d}"
+        else:
+            display_name = f"Agent {position:02d}"
+        strategy_labels = {
+            "mixed": "异质经营策略",
+            "late_failure": "扩张压力策略",
+            "collaborative": "协同决策策略",
+            "baseline": "保守基线策略",
+            "heuristic": "启发式策略",
+        }
         return {
             "team_id": team_id,
+            "display_name": display_name,
+            "participant_type": participant_type,
+            "strategy_label": "人工决策" if participant_type == "human" else strategy_labels.get(self.bot_policy, "Agent 策略"),
             "bankrupt": state.bankrupt,
             "bankruptcy_period": state.bankruptcy_period,
             "development_potential": potential,
@@ -220,10 +304,18 @@ class CompetitionSession:
         with self.lock:
             player = self.player_for_token(token)
             team_status = [self._current_score(team_id) for team_id in self.arena.agent_ids]
+            if not self.human_team_ids:
+                match_mode = "纯 Agent 赛"
+            elif len(self.human_team_ids) == len(self.arena.agent_ids):
+                match_mode = "纯用户赛"
+            else:
+                match_mode = "人机对抗"
             payload: dict[str, Any] = {
                 "platform_version": WEB_PLATFORM_VERSION,
                 "match_id": self.match_id,
                 "name": self.name,
+                "display_name": f"{match_mode} · {self.name}",
+                "match_mode": match_mode,
                 "seed": self.seed,
                 "status": self.status,
                 "step": self.step,
@@ -234,6 +326,8 @@ class CompetitionSession:
                 "joined_players": [player_row.public_dict() for player_row in self.players.values()],
                 "open_human_slots": len(self.unclaimed_human_teams),
                 "bot_policy": self.bot_policy,
+                "allowed_action_types": list(self.allowed_action_types()),
+                "information_purchase_enabled": bool((self.rules.get("financial_rules", {}).get("information_purchase") or {}).get("enabled")),
                 "pending_team_ids": sorted(self.pending_actions),
                 "team_status": team_status,
                 "public_order_results": copy.deepcopy(self.arena._public_order_results()),
@@ -308,7 +402,7 @@ class CompetitionService:
         if policy_id == "collaborative":
             index = list((rules.get("participants") or {}).get("team_ids") or []).index(team_id)
             profile = ("leader", "balanced", "conservative")[index % 3]
-            return CollaborativeEnterprisePolicy(team_id, seed, rules=rules, profile=profile)
+            return CollaborativeEnterprisePolicy(team_id, seed, rules=rules, profile=profile, allow_prospective_new_cell=True)
         if policy_id == "baseline":
             return FixedXABaselinePolicy(team_id, seed, rules=rules)
         if policy_id == "heuristic":
@@ -318,7 +412,7 @@ class CompetitionService:
             if strategy == "aggressive_failed":
                 return XALateAggressivePopulationPolicy(team_id, seed, rules=rules)
             profile = {"leader_growth": "leader", "balanced_expansion": "balanced", "conservative_survivor": "conservative"}[strategy]
-            return CollaborativeEnterprisePolicy(team_id, seed, rules=rules, profile=profile)
+            return CollaborativeEnterprisePolicy(team_id, seed, rules=rules, profile=profile, allow_prospective_new_cell=True)
         return XARealisticPopulationPolicy(team_id, seed, rules=rules, strategy_class=strategy)
 
     def create(self, config: Mapping[str, Any]) -> tuple[CompetitionSession, PlayerSeat | None]:
@@ -466,6 +560,9 @@ class GoAIRequestHandler(BaseHTTPRequestHandler):
                 self._json(HTTPStatus.OK, {"recommendation": session.recommendation(token, str(body.get("profile") or "balanced"))})
             elif operation == "advance":
                 session.advance_bots()
+                self._json(HTTPStatus.OK, session.snapshot(token))
+            elif operation == "run":
+                session.run_bots_to_terminal()
                 self._json(HTTPStatus.OK, session.snapshot(token))
             else:
                 self._error(HTTPStatus.NOT_FOUND, "接口不存在")

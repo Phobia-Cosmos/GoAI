@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>GoAI 企业经营竞技场</title>
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <header class="topbar">
     <div class="brand"><span class="brand-mark">G</span><div><strong>GoAI 经营竞技场</strong><small>XA 规则 · 人机对抗 · 多人比赛</small></div></div>
-    <div id="connection" class="connection">本地裁判已连接</div>
+    <div class="top-actions"><button id="open-guide" class="secondary">操作说明</button><div id="connection" class="connection">本地裁判已连接</div></div>
   </header>
 
   <main>
@@ -27,7 +28,7 @@
         <div class="tabs"><button class="tab active" data-tab="create">创建比赛</button><button class="tab" data-tab="join">加入比赛</button></div>
         <form id="create-form" class="form-stack">
           <label>比赛名称<input name="name" value="XA 训练赛"></label>
-          <div class="form-row"><label>企业数量<input name="team_count" type="number" min="2" max="27" value="6"></label><label>人类席位<input name="human_slots" type="number" min="1" max="6" value="1"></label></div>
+          <div class="form-row"><label>企业数量<input name="team_count" type="number" min="2" max="27" value="6"></label><label>人类席位<input name="human_slots" type="number" min="0" max="27" value="1"></label></div>
           <label>对手类型<select name="bot_policy"><option value="mixed">异质经营对手</option><option value="late_failure">晚期扩张压力对手</option><option value="collaborative">协同 Agent 对手</option><option value="baseline">保守基线对手</option><option value="heuristic">启发式对手</option></select></label>
           <div class="form-row"><label>你的名称<input name="creator_name" value="选手 1"></label><label>订单种子<input name="seed" type="number" value="20260811"></label></div>
           <button class="primary wide" type="submit">创建并进入赛场</button>
@@ -43,10 +44,17 @@
 
     <section id="game-view" class="view hidden">
       <div class="match-banner panel">
-        <div><p class="eyebrow" id="match-id"></p><h2 id="match-name">比赛</h2><p id="match-meta"></p></div>
+        <div><div class="match-identity"><span id="match-mode" class="mode-badge">人机对抗</span><p class="eyebrow" id="match-id"></p></div><h2 id="match-name">比赛</h2><p id="match-meta"></p></div>
         <div class="period-box"><small>当前期间</small><strong id="period">Y1Q1</strong><span id="phase-pill" class="phase-pill">经营与申领</span><span id="status-pill" class="pill">大厅</span></div>
-        <div class="banner-actions"><button id="copy-code" class="secondary">复制加入码</button><button id="export-match" class="secondary hidden">导出完整记录</button><button id="start-match" class="primary">开始比赛</button></div>
+        <div class="banner-actions"><button id="back-lobby" class="secondary">返回大厅</button><button id="copy-code" class="secondary">复制加入码</button><button id="advance-bots" class="secondary hidden">推进一个阶段</button><button id="run-bots" class="secondary hidden">运行至终局</button><button id="export-match" class="secondary hidden">导出完整记录</button><button id="start-match" class="primary">开始比赛</button></div>
       </div>
+
+      <ol class="stage-flow panel" aria-label="比赛决策流程">
+        <li data-stage="operating"><span>1</span><div><strong>经营准备与订单申领</strong><small>融资、研发、资产、广告与申领</small></div></li>
+        <li data-stage="allocation"><span>2</span><div><strong>统一订单分配</strong><small>裁判按资格与冲突规则分配</small></div></li>
+        <li data-stage="post_allocation"><span>3</span><div><strong>获单后履约</strong><small>基于实际获单采购、生产与交付</small></div></li>
+        <li data-stage="settlement"><span>4</span><div><strong>财务结算与复盘</strong><small>环境判定违约、报表与破产</small></div></li>
+      </ol>
 
       <nav class="game-tabs panel">
         <button class="game-tab active" data-screen="command">决策中心</button>
@@ -68,9 +76,10 @@
         </aside>
 
         <div class="panel decision-card">
-          <div class="section-title"><div><p class="eyebrow">QUARTERLY DECISION</p><h3>本季度联合决策</h3></div><button id="get-recommendation" class="accent">让协同 Agent 生成方案</button></div>
+          <div class="section-title"><div><p class="eyebrow">QUARTERLY DECISION</p><h3>本季度联合决策</h3></div><div class="agent-assist player-control"><select id="agent-profile" aria-label="Agent 决策风格"><option value="conservative">稳健</option><option value="balanced" selected>平衡</option><option value="leader">增长</option></select><button id="get-recommendation" class="accent">让协同 Agent 生成方案</button></div></div>
+          <p id="phase-explanation" class="phase-explanation"></p>
           <div class="decision-domains">
-            <details open><summary>资金与融资</summary><div class="action-form inline-actions"><select id="loan-type"><option value="short_loan_borrow">短期贷款</option><option value="long_loan_borrow">长期贷款</option></select><input id="loan-amount" type="number" value="100" min="10"><button data-add="loan">加入方案</button></div><div id="receivable-actions" class="button-list"></div></details>
+            <details open><summary>资金与融资</summary><div class="action-form inline-actions"><select id="loan-type"><option value="short_loan_borrow">短期贷款</option><option value="long_loan_borrow">长期贷款</option></select><input id="loan-amount" type="number" value="100" min="10"><input id="loan-term" type="number" value="4" min="1" max="4" title="短贷期限为季度，长贷期限为年度"><button data-add="loan">加入方案</button></div><div id="receivable-actions" class="button-list"></div></details>
             <details><summary>产品、市场与认证</summary><div id="qualification-actions" class="button-list"></div></details>
             <details><summary>厂房与生产线</summary><div class="action-form inline-actions"><select id="factory-mode"><option value="rent_workshop">租赁厂房</option><option value="buy_workshop">购买厂房</option></select><select id="factory-name"></select><button data-add="factory">加入方案</button></div><div class="action-form inline-actions"><select id="line-type"></select><select id="line-product"></select><button data-add="line">建设产线</button></div></details>
             <details><summary>采购、生产与交付</summary><div id="production-actions" class="button-list"></div><div id="delivery-actions" class="button-list"></div><div class="action-form inline-actions"><select id="material-name"></select><input id="material-quantity" type="number" min="1" value="1"><button data-add="material">订购原料</button></div></details>
@@ -80,22 +89,35 @@
         </div>
 
         <aside class="panel plan-card">
-          <div class="section-title"><h3>待提交动作包</h3><button id="clear-plan" class="text-button">清空</button></div>
+          <div class="section-title"><div><h3>待提交决策</h3><span>可逐项检查、删除后再提交</span></div><button id="clear-plan" class="text-button">清空</button></div>
           <div id="plan-list" class="plan-list"><p class="muted">尚未添加动作；空方案会提交“保持”。</p></div>
-          <button id="submit-plan" class="primary wide">提交经营与申领方案</button>
+          <button id="submit-plan" class="primary wide player-control">提交经营与申领方案</button>
           <p id="submit-hint" class="muted center">全员提交后先分配订单；依据实际获单再提交履约方案，随后统一结算季度。</p>
         </aside>
       </section>
 
       <section id="screen-orders" class="game-screen hidden">
-        <div class="panel"><div class="section-title"><div><p class="eyebrow">PUBLIC ORDER POOL</p><h3>当前可见订单</h3></div><div><button id="claim-selected" class="primary">申领选中订单</button></div></div><div class="table-wrap"><table><thead><tr><th></th><th>订单</th><th>类型</th><th>市场</th><th>产品</th><th>数量</th><th>金额</th><th>交期</th><th>ISO</th></tr></thead><tbody id="orders-table"></tbody></table></div></div>
+        <div class="panel"><div class="section-title"><div><p class="eyebrow">PUBLIC ORDER POOL</p><h3>当前可见订单</h3></div><div class="inline-actions order-actions"><button id="claim-selected" class="primary">申领选中订单</button><button id="claim-portfolio" class="secondary" title="按产品和交期生成回退候选">组合申领（含回退）</button></div></div><div class="table-wrap"><table><thead><tr><th></th><th>订单</th><th>类型</th><th>市场</th><th>产品</th><th>数量</th><th>金额</th><th>竞价</th><th>交期</th><th>ISO</th></tr></thead><tbody id="orders-table"></tbody></table></div></div>
       </section>
 
       <section id="screen-company" class="game-screen hidden"><div class="two-col"><div class="panel"><div class="section-title"><h3>资产与产能</h3></div><div id="assets-view"></div></div><div class="panel"><div class="section-title"><h3>库存、贷款与应收</h3></div><div id="finance-view"></div></div></div></section>
-      <section id="screen-reports" class="game-screen hidden"><div class="two-col"><div class="panel"><div class="section-title"><h3>最新裁判反馈</h3></div><div id="feedback-view"></div></div><div class="panel"><div class="section-title"><h3>年度报表</h3></div><div id="reports-view"></div></div></div></section>
-      <section id="screen-ranking" class="game-screen hidden"><div class="panel"><div class="section-title"><h3>赛场状态</h3><span>比赛期间仅展示规则允许的状态摘要</span></div><div class="table-wrap"><table><thead><tr><th>企业</th><th>状态</th><th>发展潜力</th><th>当前评分代理</th></tr></thead><tbody id="ranking-table"></tbody></table></div></div></section>
+      <section id="screen-reports" class="game-screen hidden"><div class="review-layout"><div class="panel"><div class="section-title"><h3>最新裁判反馈</h3></div><div id="feedback-view"></div></div><div class="panel review-panel"><div class="section-title"><h3>本季度复盘建议</h3><span>基于实际结算结果</span></div><div id="review-view"></div></div><div class="panel"><div class="section-title"><h3>年度报表</h3></div><div id="reports-view"></div></div></div></section>
+      <section id="screen-ranking" class="game-screen hidden"><div class="panel"><div class="section-title"><h3 id="ranking-title">人机赛场状态</h3><span>人类与 Agent 身份明确标注；比赛期间仅展示规则允许的信息</span></div><div class="table-wrap"><table><thead><tr><th>企业 / 身份</th><th>决策方式</th><th>状态</th><th>发展潜力</th><th>当前评分代理</th></tr></thead><tbody id="ranking-table"></tbody></table></div></div></section>
     </section>
   </main>
+  <div id="guide-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="guide-title">
+    <div class="modal-dialog">
+      <div class="section-title"><div><p class="eyebrow">QUICK START</p><h2 id="guide-title">如何完成一个季度</h2></div><button id="close-guide" class="icon-button" aria-label="关闭操作说明">×</button></div>
+      <div class="guide-steps">
+        <article><span>1</span><div><h3>先读输入</h3><p>查看比赛规则、本企业现金与资产、公开订单，以及规则允许购买的对手情报。其他企业的私有决策默认不可见。</p></div></article>
+        <article><span>2</span><div><h3>提交经营与申领方案</h3><p>这是获单前的经营计划：安排融资、研发认证、厂房产线、原料、广告，并申领公开订单。所有企业提交后，裁判统一处理订单冲突与分配。</p></div></article>
+        <article><span>3</span><div><h3>提交获单后履约方案</h3><p>订单结果公布后，只依据本企业实际获单重新安排贷款、采购、生产和交付。提交后由环境独立判定现金流、违约、报表和破产。</p></div></article>
+        <article><span>4</span><div><h3>让 Agent 辅助，而不是替你盲交</h3><p>选择稳健、平衡或增长风格。多模块 Agent 会联合检查资金、资格、订单收益、产能与风险，生成可读建议；你可以增删和修改后再提交。</p></div></article>
+      </div>
+      <div class="io-grid"><div><strong>系统输入</strong><p>规则、本企业私有状态、公开订单、可购情报、当前阶段、风险偏好。</p></div><div><strong>系统输出</strong><p>可读决策建议、风险提示、订单分配结果、新企业状态、报表、排名与复盘建议。</p></div></div>
+      <button id="guide-start" class="primary wide">开始操作</button>
+    </div>
+  </div>
   <script src="/app.js"></script>
 </body>
 </html>

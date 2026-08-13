@@ -10,6 +10,7 @@ venv/
 # Raw资料仍在仓库外；规范化数据和可复现实验数据会纳入 Git。
 /data/original
 /data/experiments/external_output
+/artifact/
 /output/
 /runs/
 

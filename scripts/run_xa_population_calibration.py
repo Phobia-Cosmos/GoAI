@@ -205,20 +205,22 @@ def run_seed(match_dir: Path, output_root: Path, seed: int, *, record: bool, sur
     return report
 
 
-def main() -> int:
-    parser = argparse.ArgumentParser(description="运行固定 XA 规则、经验订单形状和聚合企业策略的完整 20 季校准")
-    parser.add_argument("--match-dir", type=Path, default=DEFAULT_MATCH_DIR)
-    parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
-    parser.add_argument("--seeds", nargs="+", type=int, default=[20260811, 20260812, 20260813])
-    parser.add_argument("--record-all", action="store_true", help="为每个种子保存完整逐季轨迹；默认仅保存校准指标")
-    parser.add_argument("--survivor-policy", choices=("hybrid", "collaborative", "collaborative_late_failure", "all_collaborative"), default="hybrid", help="18 家目标存续企业采用的策略；collaborative 使用六专业 Agent 协作；collaborative_late_failure 另用晚期扩张型对手复现破产生命周期；all_collaborative 让 27 家都由协作 Agent 决策并由环境自然判定破产")
-    parser.add_argument("--post-allocation-phase", action="store_true", help="在每季度订单分配后开放一次基于实际获单的履约决策，再执行季度结算")
-    parser.add_argument("--allow-prospective-new-cell", action="store_true", help="允许订单 Agent 为一个尚无产线的 P1-P3 产品预留扩线能力；仅用于对照实验")
-    args = parser.parse_args()
-    match_dir = args.match_dir.resolve()
-    output_root = args.output_root.resolve()
-    reports = [run_seed(match_dir, output_root, seed, record=args.record_all or index == 0, survivor_policy=args.survivor_policy, post_allocation_phase=args.post_allocation_phase, allow_prospective_new_cell=args.allow_prospective_new_cell) for index, seed in enumerate(args.seeds)]
-    mean_simulated = {field: mean(float(report["simulated"][field]) for report in reports) for field in reports[0]["simulated"] if isinstance(reports[0]["simulated"][field], (int, float, bool))}
+def aggregate_reports(
+    output_root: Path,
+    reports: Sequence[Mapping[str, Any]],
+    *,
+    seeds: Sequence[int],
+    survivor_policy: str,
+    post_allocation_phase: bool,
+    allow_prospective_new_cell: bool,
+) -> dict[str, Any]:
+    if not reports:
+        raise ValueError("at least one seed report is required")
+    mean_simulated = {
+        field: mean(float(report["simulated"][field]) for report in reports)
+        for field in reports[0]["simulated"]
+        if isinstance(reports[0]["simulated"][field], (int, float, bool))
+    }
     real = reports[0]["real_XA"]
     comparison_fields = (
         "survivor_mean_score", "all_team_mean_score", "survivor_mean_equity_wan",
@@ -228,22 +230,57 @@ def main() -> int:
     aggregate = {
         "format_version": "goai_XA_population_multiseed_calibration_v1.0",
         "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
-        "seeds": args.seeds,
-        "survivor_policy": args.survivor_policy,
-        "post_allocation_phase": args.post_allocation_phase,
-        "allow_prospective_new_cell": args.allow_prospective_new_cell,
-        "collaborative_agent_version": COLLABORATIVE_AGENT_VERSION if args.survivor_policy in {"collaborative", "collaborative_late_failure", "all_collaborative"} else None,
+        "seeds": list(seeds),
+        "survivor_policy": survivor_policy,
+        "post_allocation_phase": post_allocation_phase,
+        "allow_prospective_new_cell": allow_prospective_new_cell,
+        "collaborative_agent_version": COLLABORATIVE_AGENT_VERSION if survivor_policy in {"collaborative", "collaborative_late_failure", "all_collaborative"} else None,
         "real_XA": real,
         "simulated_seed_metrics": [report["simulated"] for report in reports],
         "mean_simulated": mean_simulated,
         "mean_simulated_minus_real": {field: mean_simulated[field] - float(real[field]) for field in comparison_fields},
         "mean_simulated_as_fraction_of_real": {field: mean_simulated[field] / float(real[field]) if float(real[field]) else 0.0 for field in comparison_fields},
         "metric_definitions": METRIC_DEFINITIONS,
-        "reports": [f"seed_{seed}/calibration_report.json" for seed in args.seeds],
+        "reports": [f"seed_{seed}/calibration_report.json" for seed in seeds],
         "provenance": "simulated_calibration_experiment",
     }
     output_root.mkdir(parents=True, exist_ok=True)
     (output_root / "summary.json").write_text(json.dumps(aggregate, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return aggregate
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="运行固定 XA 规则、经验订单形状和聚合企业策略的完整 20 季校准")
+    parser.add_argument("--match-dir", type=Path, default=DEFAULT_MATCH_DIR)
+    parser.add_argument("--output-root", type=Path, default=DEFAULT_OUTPUT_ROOT)
+    parser.add_argument("--seeds", nargs="+", type=int, default=[20260811, 20260812, 20260813])
+    parser.add_argument("--record-all", action="store_true", help="为每个种子保存完整逐季轨迹；默认仅保存校准指标")
+    parser.add_argument("--survivor-policy", choices=("hybrid", "collaborative", "collaborative_late_failure", "all_collaborative"), default="hybrid", help="18 家目标存续企业采用的策略；collaborative 使用六专业 Agent 协作；collaborative_late_failure 另用晚期扩张型对手复现破产生命周期；all_collaborative 让 27 家都由协作 Agent 决策并由环境自然判定破产")
+    parser.add_argument("--post-allocation-phase", action="store_true", help="在每季度订单分配后开放一次基于实际获单的履约决策，再执行季度结算")
+    parser.add_argument("--allow-prospective-new-cell", action="store_true", help="允许订单 Agent 为一个尚无产线的 P1-P3 产品预留扩线能力；仅用于对照实验")
+    parser.add_argument("--summarize-existing", action="store_true", help="不重跑比赛，从输出目录中已有的种子报告重建多种子 summary.json")
+    args = parser.parse_args()
+    match_dir = args.match_dir.resolve()
+    output_root = args.output_root.resolve()
+    if args.summarize_existing:
+        reports = [_read_json(output_root / f"seed_{seed}" / "calibration_report.json") for seed in args.seeds]
+        for seed, report in zip(args.seeds, reports):
+            if int(report.get("seed", -1)) != seed:
+                raise ValueError(f"seed report mismatch: expected {seed}, got {report.get('seed')}")
+            expected = (args.survivor_policy, args.post_allocation_phase, args.allow_prospective_new_cell)
+            actual = (report.get("survivor_policy"), bool(report.get("post_allocation_phase")), bool(report.get("allow_prospective_new_cell")))
+            if actual != expected:
+                raise ValueError(f"seed {seed} configuration mismatch: expected {expected}, got {actual}")
+    else:
+        reports = [run_seed(match_dir, output_root, seed, record=args.record_all or index == 0, survivor_policy=args.survivor_policy, post_allocation_phase=args.post_allocation_phase, allow_prospective_new_cell=args.allow_prospective_new_cell) for index, seed in enumerate(args.seeds)]
+    aggregate = aggregate_reports(
+        output_root,
+        reports,
+        seeds=args.seeds,
+        survivor_policy=args.survivor_policy,
+        post_allocation_phase=args.post_allocation_phase,
+        allow_prospective_new_cell=args.allow_prospective_new_cell,
+    )
     print(json.dumps(aggregate, ensure_ascii=False, indent=2))
     return 0 if all(report["simulated"]["all_accounts_balanced"] for report in reports) else 1
 

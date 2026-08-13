@@ -215,6 +215,29 @@ def test_flexible_line_can_switch_product_without_implicit_asset_value_fee() -> 
     assert_balanced(produced.state)
 
 
+def test_production_uses_the_explicit_line_instance() -> None:
+    generated = rules(41, 1)
+    engine = FullFinancialDynamics(generated)
+    state = engine.initial_state("TEST01")
+    state.production_lines = [
+        {"line_id": "LINE-P1", "line_type": "自动线", "product_id": "P1", "status": "ready", "ownership": "purchased", "cost_wan": 140},
+        {"line_id": "LINE-FLEX", "line_type": "柔性线", "product_id": "P1", "status": "ready", "ownership": "purchased", "cost_wan": 180},
+    ]
+    state.material_inventory.update({"R1": 2})
+    state.material_inventory_value_wan.update({"R1": 20})
+    state.owner_equity_wan = state.total_assets_wan - state.debt_wan
+
+    produced = engine.apply(
+        state,
+        {"action_type": "production", "parameters": {"line_id": "LINE-FLEX", "line_type": "柔性线", "product_id": "P1", "quantity": 1}},
+    )
+
+    assert produced.status == "success"
+    assert next(row for row in produced.state.production_lines if row["line_id"] == "LINE-FLEX")["status"] == "busy"
+    assert next(row for row in produced.state.production_lines if row["line_id"] == "LINE-P1")["status"] == "ready"
+    assert_balanced(produced.state)
+
+
 def test_checkpoint_assisted_reconstruction_preserves_observed_cash_and_equity() -> None:
     generated = rules(43, 1)
     generated["financial_rules"]["defer_bankruptcy_to_historical_checkpoint"] = True
