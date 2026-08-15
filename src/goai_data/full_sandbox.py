@@ -364,9 +364,7 @@ def generate_global_orders(
             quantity = rng.randint(*(entry_range if entry_level else advanced_range))
             direct_cost = _number((params.get("products") or {}).get(product, {}).get("direct_cost_wan"), 20)
             market_factor = 1.0 + 0.08 * markets.index(market)
-            # Large matches need varied orders without letting a few random
-            # high-margin lots dominate the entire five-year ranking.
-            margin_bounds = (1.40, 2.35) if complexity == "large" else ((1.30, 2.55) if complexity == "stress" else (1.35, 2.30))
+            margin_bounds = (1.25, 2.65) if complexity in {"large", "stress"} else (1.35, 2.30)
             margin = rng.uniform(*margin_bounds)
             total = round(max(direct_cost * quantity * market_factor * margin, direct_cost * quantity + 1), 0)
             quarter = rng.randint(1, 4)

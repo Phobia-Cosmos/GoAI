@@ -190,6 +190,11 @@ def test_single_phase_autopilot_does_not_back_orders_with_hypothetical_lines() -
     assert state.bankrupt is False
     assert len(state.assigned_orders) >= 10
     assert len(state.delivered_orders) / len(state.assigned_orders) >= 0.90
+    bot_states = [session.arena.states[team_id] for team_id in session.bots]
+    assert min(len(bot_state.assigned_orders) for bot_state in bot_states) >= 10
+    assert all(bot_state.production_lines for bot_state in bot_states)
+    final_ranking = session.snapshot(creator.token)["final_results"]["ranking"]
+    assert next(row["rank"] for row in final_ranking if row["team_id"] == creator.team_id) > 1
 
 
 def test_single_quarter_submission_has_no_post_allocation_second_decision() -> None:

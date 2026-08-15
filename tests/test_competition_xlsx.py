@@ -155,5 +155,5 @@ def test_enterprise_export_preserves_timestamps_and_uses_chinese_cashflow_notes(
     assert assets["L8"].value == "第1年1季"
     notes = [workbook["现金流量表"].cell(row, 7).value for row in range(4, workbook["现金流量表"].max_row + 1)]
     assert any(note == "申请长期贷款" for note in notes)
-    assert any(note.startswith("订购[自动线]") for note in notes)
+    assert any(note.startswith("订购生产线[自动线]") for note in notes)
     assert all("{" not in str(note) and "}" not in str(note) for note in notes)

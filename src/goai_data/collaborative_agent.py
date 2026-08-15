@@ -265,7 +265,7 @@ class CapacitySpecialist:
         if not can_expand:
             expansion_count = 0
         desired = initial_target if board.period_index < 4 else current_lines + expansion_count
-        desired = min(desired, {"leader": 8, "balanced": 8, "conservative": 7}[board.profile])
+        desired = min(desired, {"leader": 6, "balanced": 4, "conservative": 4}[board.profile])
         capacity = sum(int(row.get("capacity", 0)) for row in factories)
         factory_specs = board.parameters.get("factories") or {}
         asset_limits = board.parameters.get("asset_limits") or {}
@@ -577,7 +577,7 @@ class OrderPortfolioSpecialist:
             product = str(order.get("product"))
             committed[product] = committed.get(product, 0.0) + _number(order.get("quantity"))
         candidates: list[tuple[float, float, float, Mapping[str, Any]]] = []
-        maximum_lines = {"leader": 8, "balanced": 8, "conservative": 7}[board.profile]
+        maximum_lines = {"leader": 6, "balanced": 4, "conservative": 4}[board.profile]
         qualified_products = [product for product in _product_portfolio(board.observation.agent_id, board.profile) if product in state.get("products", [])]
         target_lines_by_product: dict[str, int] = {}
         if qualified_products:
@@ -707,8 +707,8 @@ class OrderPortfolioSpecialist:
                 reject("insufficient_conservative_margin")
                 continue
             # Prefer profitable small lots that can be completed as a whole.
-            # The random term diversifies opponents but must not dominate
-            # delivery feasibility as it did in v0.1.
+            # The team-specific term diversifies otherwise equal candidates
+            # without overwhelming margin and delivery feasibility.
             score = conservative_margin / max(1.0, quantity) * 8 + self._fraction(order.get("order_id")) * 250 - quantity * 8 + gap * 30
             candidates.append((score, conservative_margin, float(capacity), order))
         candidates.sort(key=lambda row: (-row[0], -row[1], _number(row[3].get("quantity")), str(row[3].get("order_id"))))
