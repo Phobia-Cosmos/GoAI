@@ -1,0 +1,16 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "envId": "arithmetic-challenge-d0ac567f37e",
+  "functionRoot": ".",
+  "functions": [
+    {
+      "name": "stratpilot-competition",
+      "runtime": "Nodejs20.19",
+      "type": "HTTP",
+      "timeout": 30,
+      "memorySize": 256,
+      "installDependency": false,
+      "description": "StratPilot比赛应用的腾讯 CloudBase 公开演示兼容运行层"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "envId": "arithmetic-challenge-d0ac567f37e",
+  "functionRoot": ".",
+  "functions": [
+    {
+      "name": "stratpilot-demo",
+      "runtime": "Python3.11",
+      "type": "HTTP",
+      "timeout": 30,
+      "memorySize": 512,
+      "installDependency": false,
+      "description": "StratPilot公开演示服务；仅使用模拟规则和模拟数据"
+    }
+  ]
+}

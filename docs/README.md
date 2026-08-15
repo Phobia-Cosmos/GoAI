@@ -1,9 +1,10 @@
-# GoAI 文档索引
+# StratPilot文档索引
 
 项目级说明统一放在本目录。数据目录内保留的少量 `README.md` 是与数据一同分发的清单和可信边界，不是另一套项目文档。
 
 | 文档 | 用途 |
 | --- | --- |
+| `PRODUCT_SYSTEM_DESIGN.md` | 产品名称、三层解耦、每场规则生成、对话修订、人机反事实评估和脱敏发布设计 |
 | `CURRENT_VERSION_SUMMARY.md` | 当前可交付版本、真实 XA 指标对照、可信边界和下一阶段 |
 | `COMPETITION_SUBMISSION_SECURITY.md` | 初赛材料结构、公开仓库风险、数据合规和发布前检查 |
 | `SUBMISSION_DRAFT.md` | 初赛 500 字简介、逐页 PPT 文案、Demo 口播和答辩问答定稿 |

@@ -8,6 +8,9 @@ events, orders, reports and final cash are imported from the visible tables.
 from __future__ import annotations
 
 import json
+import tempfile
+import zipfile
+from io import BytesIO
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
@@ -21,6 +24,7 @@ from .full_sandbox import FULL_SANDBOX_VERSION, FinancialSandboxState, FullCompe
 
 
 COMPETITION_XLSX_VERSION = "goai_competition_xlsx_v1.0"
+COMPETITION_ARCHIVE_VERSION = "stratpilot_competition_archive_v1.0"
 ENTERPRISE_SHEETS = (
     "企业信息",
     "库存信息",
@@ -92,6 +96,17 @@ def _period_cn(period: Any, *, year_only: bool = False) -> str:
             if quarter_text.isdigit():
                 return f"第{int(year_text)}年{int(quarter_text)}季"
     return text or "-"
+
+
+def _period_index_cn(period_index: Any) -> str:
+    """Render a zero-based quarter index using the reference workbook style."""
+    if period_index is None or period_index == "":
+        return "-"
+    try:
+        index = int(period_index)
+    except (TypeError, ValueError):
+        return _period_cn(period_index)
+    return f"第{index // 4 + 1}年{index % 4 + 1}季" if index >= 0 else "-"
 
 
 def _header(ws, row: int, values: Sequence[Any], start_col: int = 2) -> None:
@@ -184,25 +199,33 @@ def _write_loans(workbook: Workbook, state: FinancialSandboxState) -> None:
     for index, item in enumerate(state.receivables, 4):
         ws.cell(index, 2, f"{max(0, int(item.get('due_period_index', state.period_index)) - state.period_index)}季"); ws.cell(index, 3, _money(item.get("amount_wan")))
     for index, item in enumerate(state.long_loans, 4):
-        ws.cell(index, 5, f"{max(0, int(item.get('due_period_index', state.period_index)) - state.period_index) / 4:g}年"); ws.cell(index, 6, _money(item.get("principal_wan"))); ws.cell(index, 7, _period_cn(item.get("borrowed_period")))
+        ws.cell(index, 5, f"{max(0, int(item.get('due_period_index', state.period_index)) - state.period_index) / 4:g}年"); ws.cell(index, 6, _money(item.get("principal_wan"))); ws.cell(index, 7, _period_index_cn(item.get("borrowed_period_index")))
     for index, item in enumerate(state.short_loans, 4):
-        ws.cell(index, 9, f"{max(0, int(item.get('due_period_index', state.period_index)) - state.period_index)}季"); ws.cell(index, 10, _money(item.get("principal_wan"))); ws.cell(index, 11, _period_cn(item.get("borrowed_period")))
+        ws.cell(index, 9, f"{max(0, int(item.get('due_period_index', state.period_index)) - state.period_index)}季"); ws.cell(index, 10, _money(item.get("principal_wan"))); ws.cell(index, 11, _period_index_cn(item.get("borrowed_period_index")))
     _finish_sheet(ws, {2: 14, 3: 14, 5: 14, 6: 14, 7: 18, 9: 14, 10: 14, 11: 18, 13: 14, 14: 18})
 
 
 def _write_development(workbook: Workbook, state: FinancialSandboxState, rules: Mapping[str, Any]) -> None:
     ws = workbook.create_sheet("研发认证")
     params = rules.get("parameters", rules)
-    ws["B2"], ws["H2"], ws["N2"] = "市场开拓", "产品研发", "ISO认证"
-    headings = ["名称", "开发费", "周期", "剩余时间", "完成时间"]
-    _header(ws, 3, headings, 2); _header(ws, 3, headings, 8); _header(ws, 3, headings, 14)
+    ws["B2"], ws["H2"], ws["O2"] = "市场开拓", "产品研发", "ISO认证"
+    headings = ["名称", "开发费", "周期", "开始时间", "剩余时间", "完成时间"]
+    _header(ws, 3, headings, 2); _header(ws, 3, headings, 8); _header(ws, 3, headings, 15)
+    completed = {(str(row.get("kind")), str(row.get("target"))): row for row in state.completed_development}
+    pending = {(str(row.get("kind")), str(row.get("target"))): row for row in state.pending_development}
     for index, (name, value) in enumerate((params.get("markets") or {}).items(), 4):
-        ws.cell(index, 2, name); ws.cell(index, 3, f"{value.get('fee_wan_per_year', 0):g}W/年"); ws.cell(index, 4, f"{value.get('years', 0):g}年"); ws.cell(index, 5, "-"); ws.cell(index, 6, "已完成" if name in state.markets else "-")
+        record, waiting = completed.get(("market", str(name))), pending.get(("market", str(name)))
+        values = [name, f"{value.get('fee_wan_per_year', 0):g}W/年", f"{value.get('years', 0):g}年", _period_cn(waiting.get("started_period")) if waiting else (_period_cn(record.get("started_period")) if record else "初始资格"), f"{waiting.get('remaining_installments', 0)}次" if waiting else "-", _period_cn(record.get("completed_period")) if record else "-"]
+        for col, cell_value in enumerate(values, 2): ws.cell(index, col, cell_value)
     for index, (name, value) in enumerate((params.get("products") or {}).items(), 4):
-        ws.cell(index, 8, name); ws.cell(index, 9, f"{value.get('development_wan_per_quarter', 0):g}W/季"); ws.cell(index, 10, f"{value.get('quarters', 0):g}季"); ws.cell(index, 11, "-"); ws.cell(index, 12, "已完成" if name in state.products else "-")
+        record, waiting = completed.get(("product", str(name))), pending.get(("product", str(name)))
+        values = [name, f"{value.get('development_wan_per_quarter', 0):g}W/季", f"{value.get('quarters', 0):g}季", _period_cn(waiting.get("started_period")) if waiting else (_period_cn(record.get("started_period")) if record else "初始资格"), f"{waiting.get('remaining_installments', 0)}季" if waiting else "-", _period_cn(record.get("completed_period")) if record else "-"]
+        for col, cell_value in enumerate(values, 8): ws.cell(index, col, cell_value)
     for index, (name, value) in enumerate((params.get("iso") or {}).items(), 4):
-        ws.cell(index, 14, name); ws.cell(index, 15, f"{value.get('fee_wan_per_year', 0):g}W/年"); ws.cell(index, 16, f"{value.get('years', 0):g}年"); ws.cell(index, 17, "-"); ws.cell(index, 18, "已完成" if name in state.iso else "-")
-    _finish_sheet(ws, {index: 15 for index in range(2, 19)})
+        record, waiting = completed.get(("iso", str(name))), pending.get(("iso", str(name)))
+        values = [name, f"{value.get('fee_wan_per_year', 0):g}W/年", f"{value.get('years', 0):g}年", _period_cn(waiting.get("started_period")) if waiting else (_period_cn(record.get("started_period")) if record else "初始资格"), f"{waiting.get('remaining_installments', 0)}年" if waiting else "-", _period_cn(record.get("completed_period")) if record else "-"]
+        for col, cell_value in enumerate(values, 15): ws.cell(index, col, cell_value)
+    _finish_sheet(ws, {index: 15 for index in range(2, 21)})
 
 
 def _write_assets(workbook: Workbook, state: FinancialSandboxState, rules: Mapping[str, Any]) -> None:
@@ -213,7 +236,8 @@ def _write_assets(workbook: Workbook, state: FinancialSandboxState, rules: Mappi
     row = 4
     for item in state.factories:
         spec = (params.get("factories") or {}).get(item.get("name"), {})
-        values = [item.get("factory_id"), item.get("name"), "购买" if item.get("ownership") == "purchased" else "租用", f"0/{item.get('capacity', 0)}", _money(item.get("cost_wan", spec.get("purchase_wan"))), f"{spec.get('rent_wan_per_year', 0):g}W/年", _money(item.get("book_value_wan")), "-", _period_cn(item.get("acquired_period"))]
+        acquired = item.get("acquired_period") or _period_index_cn(item.get("acquired_period_index"))
+        values = [item.get("factory_id"), item.get("name"), "购买" if item.get("ownership") == "purchased" else "租用", f"0/{item.get('capacity', 0)}", _money(item.get("cost_wan", spec.get("purchase_wan"))), f"{spec.get('rent_wan_per_year', 0):g}W/年", _money(item.get("book_value_wan")), "-", _period_cn(acquired)]
         for col, value in enumerate(values, 2): ws.cell(row, col, value)
         row += 1
     row += 1
@@ -221,7 +245,9 @@ def _write_assets(workbook: Workbook, state: FinancialSandboxState, rules: Mappi
     _header(ws, row + 1, ["ID", "名称", "厂房", "产品", "状态", "累计折旧", "开产时间", "转产时间", "剩余时间", "建成时间", "开建时间"], 2)
     row += 2
     for item in state.production_lines:
-        values = [item.get("line_id"), item.get("line_type"), item.get("factory_id") or "-", item.get("product_id") or "-", item.get("status"), _money(item.get("accumulated_depreciation_wan")), "-", "-", "0季", _period_cn(item.get("completed_period")), _period_cn(item.get("ordered_period"))]
+        completed = item.get("completed_period") or _period_index_cn(item.get("completion_period_index"))
+        ordered = item.get("ordered_period") or _period_index_cn(item.get("ordered_period_index"))
+        values = [item.get("line_id"), item.get("line_type"), item.get("factory_id") or "-", item.get("product_id") or "-", item.get("status"), _money(item.get("accumulated_depreciation_wan")), "-", "-", "0季", _period_cn(completed), _period_cn(ordered)]
         for col, value in enumerate(values, 2): ws.cell(row, col, value)
         row += 1
     _finish_sheet(ws, {index: 16 for index in range(2, 13)})
@@ -238,9 +264,57 @@ def _write_orders(workbook: Workbook, state: FinancialSandboxState) -> None:
 
 
 def _event_note(event: Mapping[str, Any]) -> str:
-    omitted = {"event_type", "period", "cash_effect_wan", "equity_effect_wan"}
-    details = {key: value for key, value in event.items() if key not in omitted}
-    return f"{event.get('event_type')} | {json.dumps(details, ensure_ascii=False, sort_keys=True)}" if details else str(event.get("event_type"))
+    """Translate journal events to human-readable competition bookkeeping notes."""
+    event_type = str(event.get("event_type") or "")
+    details = event.get("details") if isinstance(event.get("details"), Mapping) else event
+    labels = {
+        "factory_purchased": "购买厂房", "factory_rent_expense": "支付厂房租金", "factory_sold": "出售厂房",
+        "production_line_ordered": "订购生产线", "production_line_investment": "支付生产线投资款",
+        "production_line_ready": "生产线安装完成", "production_line_sold": "出售生产线",
+        "production_line_conversion_expense": "生产线转产", "material_ordered": "订购原料",
+        "material_arrived": "支付原料费", "emergency_material_purchase": "紧急采购原料",
+        "emergency_product_purchase": "紧急采购产品", "production_started": "开始生产",
+        "production_completed": "生产完成", "order_delivered": "交付订单并确认销售收入",
+        "order_default_penalty": "支付订单违约损失", "receivable_collected": "收回应收款",
+        "receivable_discounted": "贴现应收款", "short_loan_borrowed": "申请短期贷款",
+        "short_loan_repaid": "偿还短期贷款本息", "long_loan_borrowed": "申请长期贷款",
+        "long_loan_principal_repaid": "偿还长期贷款本金", "long_loan_interest_paid": "支付长期贷款利息",
+        "management_fee_expense": "支付行政管理费", "maintenance_expense": "支付生产线维护费",
+        "advertising_expense": "广告投放", "auction_bid_fee": "支付竞单费用",
+        "spy_information_purchase": "购买竞争情报", "tax_expense": "计提所得税",
+        "income_tax_expense": "计提所得税", "income_tax_paid": "缴纳所得税",
+        "depreciation": "计提折旧", "development_completed": "研发或认证完成",
+        "product_development_expense": "产品生产资格投资", "market_development_expense": "市场开拓资格投资",
+        "iso_development_expense": "ISO认证资格投资",
+    }
+    note = labels.get(event_type, event_type or "经营事项")
+    if event_type in {"factory_purchased", "factory_rent_expense", "factory_sold"}:
+        factory = details.get("factory") if isinstance(details.get("factory"), Mapping) else details
+        name = factory.get("name") if isinstance(factory, Mapping) else details.get("factory")
+        if name:
+            note += f"[{name}]"
+    elif event_type == "production_line_ordered":
+        line = details.get("line") if isinstance(details.get("line"), Mapping) else details
+        if isinstance(line, Mapping) and line.get("line_type"):
+            note += f"[{line.get('line_type')}]"
+        if isinstance(line, Mapping) and line.get("product_id"):
+            note += f"生产[{line.get('product_id')}]"
+    elif event_type in {"material_ordered", "material_arrived"}:
+        rows = details.get("orders") if isinstance(details.get("orders"), list) else ([details.get("order")] if isinstance(details.get("order"), Mapping) else [])
+        parts = [f"{row.get('material_id')}:{float(row.get('quantity')):g}" for row in rows if isinstance(row, Mapping) and row.get("material_id") is not None]
+        if parts:
+            note += " " + " ".join(parts)
+    elif event_type == "production_line_conversion_expense" and details.get("product_id"):
+        note += f"，转产成{details.get('product_id')}"
+    elif event_type in {"production_started", "production_completed"}:
+        job = details.get("job") if isinstance(details.get("job"), Mapping) else details
+        if isinstance(job, Mapping) and job.get("product_id"):
+            note += f"[{job.get('product_id')}]"
+    elif event_type in {"order_delivered", "order_default_penalty"} and details.get("order_id"):
+        note += f"，订单{details.get('order_id')}"
+    elif event_type == "development_completed" and details.get("target"):
+        note += f"：{details.get('target')}"
+    return note
 
 
 def _write_cashflow(workbook: Workbook, state: FinancialSandboxState, initial_cash: float) -> None:
@@ -249,7 +323,7 @@ def _write_cashflow(workbook: Workbook, state: FinancialSandboxState, initial_ca
     _header(ws, 3, ["ID", "动作", "资金", "余额", "时间", "备注"], 2)
     balance = float(initial_cash)
     ws.append([])
-    values = [1, "Pay_Capital", initial_cash, balance, "第1年1季", "公司成立,股东注资；provenance=simulated"]
+    values = [1, "Pay_Capital", initial_cash, balance, "第1年1季", "公司成立，股东注资"]
     for col, value in enumerate(values, 2): ws.cell(4, col, value)
     for sequence, event in enumerate(state.journal, 2):
         amount = float(event.get("cash_effect_wan") or 0)
@@ -367,26 +441,76 @@ def _write_global_orders(path: Path, orders: Sequence[Mapping[str, Any]], rules:
 def _write_rules(path: Path, rules: Mapping[str, Any]) -> None:
     workbook = Workbook(); ws = workbook.active; ws.title = "Sheet1"
     params = rules.get("parameters", rules)
-    ws.append(["重要经营规则"]); ws.append([f"模拟规则包:{rules.get('rule_pack_id')}"]); ws.append([f"来源规则包:{rules.get('parent_rule_pack_id')}"]); ws.append(["一.生产线"])
-    ws.append(["名称", "投资总额", "安装周期", "生产周期", "维护费", "分值"])
-    for name, item in (params.get("production_lines") or {}).items(): ws.append([name, _money(item.get("investment_wan")), f"{item.get('install_quarters', 0)}季", f"{item.get('production_quarters', 0)}季", f"{item.get('maintenance_wan_per_year', 0)}W/年", item.get("score")])
-    ws.append(["二.融资"]); ws.append(["贷款类型", "年息", "期限/额度", "结算方式"])
-    ws.append(["长期贷款", (params.get("long_loan") or {}).get("annual_rate"), (params.get("long_loan") or {}).get("max_years"), "年末付息，到期还本"]); ws.append(["短期贷款", (params.get("short_loan") or {}).get("rate"), "按季", "到期一次还本付息"])
-    ws.append(["三.厂房"]); ws.append(["名称", "购买价格", "租用价格", "容量", "分值"])
-    for name, item in (params.get("factories") or {}).items(): ws.append([name, _money(item.get("purchase_wan")), f"{item.get('rent_wan_per_year', 0)}W/年", item.get("capacity"), item.get("score")])
+    long_loan = params.get("long_loan") or {}
+    short_loan = params.get("short_loan") or {}
+    discount = params.get("receivable_discount") or {}
+    asset_limits = params.get("asset_limits") or {}
+    ws.append(["重要经营规则"])
+    ws.append([f"模拟器版本:{FULL_SANDBOX_VERSION}"])
+    ws.append([f"当前规则方案名称：{rules.get('rule_pack_id')}"])
+    ws.append(["一.生产线"])
+    ws.append(["名称", "投资总额", "每季投资额", "安装周期", "生产周期", "每季转产费", "转产周期", "维护费", "残值", "折旧费", "折旧时间", "分值"])
+    for name, item in (params.get("production_lines") or {}).items():
+        ws.append([
+            name, _money(item.get("investment_wan")), _money(item.get("investment_wan_per_quarter")),
+            f"{item.get('install_quarters', 0)}季", f"{item.get('production_quarters', 0)}季",
+            _money(item.get("conversion_wan_per_quarter")), f"{item.get('conversion_quarters', 0)}季",
+            f"{item.get('maintenance_wan_per_year', 0):g}W/年", _money(item.get("residual_value_wan")),
+            _money(item.get("depreciation_fee_wan")), f"{item.get('depreciation_years', 0)}年", item.get("score"),
+        ])
+    ws.append(["安装周期为0表示即买即用；只有空闲生产线可以转产或出售。"])
+    ws.append(["生产线按平均年限法计提折旧，建成当年不提折旧，净值达到残值后停止折旧。"])
+    ws.append(["当年建成的生产线需要按本场规则支付维护费。"])
+    ws.append(["二.融资"])
+    ws.append(["贷款类型", "贷款时间", "贷款额度", "年息/贴现率", "还款方式", "备注"])
+    ws.append(["长期贷款", "每年年初", f"长短贷合计不超过上年权益 {long_loan.get('max_total_multiple_prior_equity', 0)} 倍", long_loan.get("annual_rate"), "按年付息，到期还本", f"最小 {long_loan.get('minimum_wan', 0)}W"])
+    ws.append(["短期贷款", "每季度初", "按本企业状态和规则校验", short_loan.get("rate"), "到期一次还本付息", "期限按季度"])
+    ws.append(["资金贴现", "季度决策时", "不超过可贴现应收款", discount.get("terms_1_2"), "变现时贴息", f"3、4期贴现率 {discount.get('terms_3_4')}"])
+    ws.append(["库存拍卖", "应急阶段", "按库存数量", "-", "即时结算", "产品和原料折价率以本场规则为准"])
+    ws.append(["三.厂房"])
+    ws.append(["名称", "购买价格", "租用价格", "出售价格", "生产线容量", "使用上限", "分值"])
+    for name, item in (params.get("factories") or {}).items():
+        ws.append([name, _money(item.get("purchase_wan")), f"{item.get('rent_wan_per_year', 0)}W/年", _money(item.get("sale_wan")), item.get("capacity"), item.get("usage_limit", asset_limits.get("max_factories_per_type")), item.get("score")])
+    ws.append([f"本场厂房总数上限为 {asset_limits.get('max_factories_total', params.get('max_factory_count', '-'))}；同类型上限为 {asset_limits.get('max_factories_per_type', '-')}。"])
+    ws.append([f"厂房出售形成 {params.get('factory_sale_receivable_term_quarters', 0)} 个账期的应收款；租金和续租由环境按规则结算。"])
     ws.append(["四.市场开拓"]); ws.append(["名称", "每年开发费", "开发时间", "分值"])
     for name, item in (params.get("markets") or {}).items(): ws.append([name, _money(item.get("fee_wan_per_year")), f"{item.get('years', 0)}年", item.get("score")])
+    ws.append(["市场开发费用在年末支付，不允许加速；完成后取得对应市场资格。"])
     ws.append(["五.ISO认证"]); ws.append(["名称", "每年开发费", "开发时间", "分值"])
     for name, item in (params.get("iso") or {}).items(): ws.append([name, _money(item.get("fee_wan_per_year")), f"{item.get('years', 0)}年", item.get("score")])
+    ws.append(["ISO 开发费用在年末支付，不允许加速；完成后取得对应认证。"])
     ws.append(["六.产品研发"]); ws.append(["名称", "加工费", "每季开发费", "开发时间", "直接成本", "分值", "产品组成"])
     for name, item in (params.get("products") or {}).items(): ws.append([name, _money(item.get("process_wan")), _money(item.get("development_wan_per_quarter")), f"{item.get('quarters', 0)}季", _money(item.get("direct_cost_wan")), item.get("score"), ", ".join(f"{count}*{material}" if count != 1 else material for material, count in (item.get("bom") or {}).items())])
+    ws.append(["产品研发费用在季末支付，不允许加速；完成后取得对应生产资格。"])
     ws.append(["七.原料设置"]); ws.append(["名称", "购买单价", "提前期"])
     for name, item in (params.get("materials") or {}).items(): ws.append([name, _money(item.get("price_wan")), f"{item.get('lead_quarters', 0)}季"])
-    generation = rules.get("generation") or {}
-    ws.append(["八.其它说明"]); ws.append(["这是模拟执行规则包；XA 参数来源和候选结算服务必须按 provenance 分别解释。"]); ws.append(["规则模式", generation.get("mode")]); ws.append(["参数来源", generation.get("parameters_provenance")]); ws.append(["场景覆盖", json.dumps(rules.get("scenario_overrides") or {}, ensure_ascii=False)]); ws.append([f"正式 XA 参数记录第一年{'有' if params.get('first_year_has_orders') else '无'}订单"]); ws.append(["破产标准", json.dumps(params.get("bankruptcy"), ensure_ascii=False)]); ws.append(["评分公式", params.get("score_formula")])
-    ws.append(["九.重要参数"]); ws.append(["违约金比例", params.get("default_penalty_rate"), "初始现金", _money(params.get("initial_cash_wan")), "管理费", _money(params.get("management_fee_per_quarter_wan")), "所得税率", params.get("tax_rate")])
+    ws.append(["八.其它说明"])
+    ws.append([f"1. 紧急采购付款即到货；原料价格为正常价格的 {params.get('emergency_material_price_multiplier', 0)} 倍，成品价格为直接成本的 {params.get('emergency_product_price_multiplier', 0)} 倍。"])
+    ws.append(["2. 订单冲突优先级：" + " → ".join(str(value) for value in (params.get("selection_priority") or []))])
+    ws.append(["3. 破产标准：现金断流或所有者权益为负；破产由环境结算判定。"])
+    ws.append([f"4. 第一年度{'有' if params.get('first_year_has_orders') else '无'}订单；全赛程订单可提前查看，通常在释放前 1 个季度进入申领窗口。"])
+    ws.append(["5. 订单可以提前交付，不可晚于交期；逾期由环境收回并按规则计罚。"])
+    ws.append(["6. 舍入规则：" + json.dumps(params.get("rounding") or {}, ensure_ascii=False)])
+    ws.append(["7. 库存折价、资产处置损失、紧急采购和订单违约均进入财务报表。"])
+    ws.append(["8. 排行榜记分标准："])
+    ws.append([params.get("score_formula") or "score = owner_equity * (1 + development_potential / 100)"])
+    ws.append(["企业综合发展潜力由市场、ISO、产品、自有厂房和已建成生产线分值汇总。"])
+    ws.append(["九.重要参数"])
+    ws.append(["违约金比例", params.get("default_penalty_rate"), "贷款额倍数", long_loan.get("max_total_multiple_prior_equity")])
+    ws.append(["长贷利率", long_loan.get("annual_rate"), "短贷利率", short_loan.get("rate")])
+    ws.append(["1、2期贴现率", discount.get("terms_1_2"), "3、4期贴现率", discount.get("terms_3_4")])
+    ws.append(["初始现金", _money(params.get("initial_cash_wan")), "管理费", _money(params.get("management_fee_per_quarter_wan"))])
+    ws.append(["所得税率", params.get("tax_rate"), "最小得单广告额", _money(params.get("minimum_order_advertising_wan"))])
+    ws.append(["原料紧急采购倍数", params.get("emergency_material_price_multiplier"), "产品紧急采购倍数", params.get("emergency_product_price_multiplier")])
+    ws.append(["最大长贷年限", long_loan.get("max_years"), "最大厂房数量", asset_limits.get("max_factories_total", params.get("max_factory_count"))])
+    for row in ws.iter_rows():
+        if row and row[0].value and (str(row[0].value).startswith(tuple("一二三四五六七八九")) or row[0].value == "重要经营规则"):
+            row[0].font = Font(bold=True, size=13)
+        for cell in row:
+            cell.alignment = Alignment(vertical="top", wrap_text=True)
     ws.sheet_view.showGridLines = False
-    for col in range(1, 13): ws.column_dimensions[get_column_letter(col)].width = 20
+    ws.freeze_panes = "A5"
+    for col in range(1, 13): ws.column_dimensions[get_column_letter(col)].width = 19
     _metadata_sheet(workbook, {"format_version": COMPETITION_XLSX_VERSION, "match_id": rules.get("match_id"), "rule_pack_id": rules.get("rule_pack_id"), "parent_rule_pack_id": rules.get("parent_rule_pack_id"), "rules_json": dict(rules), "provenance": "simulated"})
     workbook.save(path)
 
@@ -400,6 +524,24 @@ def _write_results(path: Path, arena: FullCompetitionArena) -> None:
         values = [row.get("rank"), row.get("team_id"), row.get("owner_equity_wan"), row.get("development_potential"), row.get("rounded_score", row.get("score")), "是" if broken else "否", broken.get("bankruptcy_period")]
         for col, value in enumerate(values, 1): ws.cell(row_index, col, value)
     _finish_sheet(ws, {1: 10, 2: 20, 3: 16, 4: 16, 5: 14, 6: 12, 7: 16})
+
+    ws = workbook.create_sheet("破产信息")
+    _header(ws, 1, ["企业", "破产时间", "终局现金", "终局权益", "破产原因"], 1)
+    for row_index, state in enumerate(sorted((state for state in arena.states.values() if state.bankrupt), key=lambda item: (item.bankruptcy_period or "", item.team_id)), 2):
+        values = [state.team_id, state.bankruptcy_period, state.cash_wan, state.owner_equity_wan, "、".join(state.bankruptcy_reasons)]
+        for col, value in enumerate(values, 1): ws.cell(row_index, col, value)
+    _finish_sheet(ws, {1: 20, 2: 16, 3: 14, 4: 14, 5: 52})
+
+    ws = workbook.create_sheet("全部企业终局")
+    _header(ws, 1, ["企业", "状态", "现金", "所有者权益", "获单数", "交付数", "违约数", "厂房数", "产线数", "破产时间"], 1)
+    for row_index, state in enumerate(sorted(arena.states.values(), key=lambda item: item.team_id), 2):
+        values = [
+            state.team_id, "破产" if state.bankrupt else "经营结束", state.cash_wan, state.owner_equity_wan,
+            len(state.assigned_orders), len(state.delivered_orders), len(state.defaulted_orders),
+            len(state.factories), len(state.production_lines), state.bankruptcy_period,
+        ]
+        for col, value in enumerate(values, 1): ws.cell(row_index, col, value)
+    _finish_sheet(ws, {1: 20, 2: 14, 3: 14, 4: 16, 5: 12, 6: 12, 7: 12, 8: 12, 9: 12, 10: 16})
     _metadata_sheet(workbook, {"format_version": COMPETITION_XLSX_VERSION, "match_id": results.get("match_id"), "provenance": "simulated"})
     workbook.save(path)
 
@@ -512,6 +654,44 @@ def export_competition_xlsx(output_dir: Path, *, rules: Mapping[str, Any], order
     manifest = {"format_version": COMPETITION_XLSX_VERSION, "match_id": match_id, "rule_pack_id": rules.get("rule_pack_id"), "parent_rule_pack_id": rules.get("parent_rule_pack_id"), "source_match_id": (rules.get("generation") or {}).get("source_match_id"), "provenance": "simulated", "training_eligible": False, "enterprise_sheet_names": list(ENTERPRISE_SHEETS), "annual_public_sheet_roles": ["年度广告投放", "年度广告投放格式二", "年度三张报表", "生产线信息", "年度市场老大"], "team_count": len(team_files), "order_count": len(merged_orders), "files": {"enterprise": team_files, "annual_public": annual_public_files, "rules": rules_name, "orders": orders_name, "results": results_name}}
     _json(output_dir / "manifest.json", manifest)
     return manifest
+
+
+def build_competition_xlsx_archive(*, rules: Mapping[str, Any], orders: Sequence[Mapping[str, Any]], arena: FullCompetitionArena) -> bytes:
+    """Return a ZIP whose layout mirrors a complete Chinese competition export."""
+
+    match_id = str(rules.get("match_id") or "SIM_MATCH")
+    with tempfile.TemporaryDirectory(prefix="stratpilot-xlsx-") as directory:
+        bundle = Path(directory) / "generated"
+        manifest = export_competition_xlsx(bundle, rules=rules, orders=orders, arena=arena)
+        archive_manifest = dict(manifest)
+        archive_manifest["archive_format_version"] = COMPETITION_ARCHIVE_VERSION
+        archive_manifest["files"] = {
+            "enterprise": [f"{match_id}/{Path(name).name}" for name in manifest["files"]["enterprise"]],
+            "annual_public": [f"{match_id}/{Path(name).name}" for name in manifest["files"]["annual_public"]],
+            "rules": manifest["files"]["rules"],
+            "orders": manifest["files"]["orders"],
+            "results": manifest["files"]["results"],
+        }
+        readme = (
+            f"{match_id} 模拟比赛资料包\n\n"
+            f"{match_id}/：第1年至第6年公共表，以及每家企业的完整工作簿。\n"
+            f"{manifest['files']['rules']}：本场实际执行规则。\n"
+            f"{manifest['files']['orders']}：全局订单及终局归属、状态。\n"
+            f"{manifest['files']['results']}：最终排名、权益、发展潜力和破产时间。\n"
+            "所有文件均由本场模拟器生成，provenance=simulated，不代表历史赛事官方导出。\n"
+        )
+        output = BytesIO()
+        with zipfile.ZipFile(output, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as archive:
+            for relative in manifest["files"]["enterprise"]:
+                archive.write(bundle / relative, f"{match_id}/{Path(relative).name}")
+            for relative in manifest["files"]["annual_public"]:
+                archive.write(bundle / relative, f"{match_id}/{Path(relative).name}")
+            for key in ("rules", "orders", "results"):
+                relative = manifest["files"][key]
+                archive.write(bundle / relative, Path(relative).name)
+            archive.writestr("manifest.json", json.dumps(archive_manifest, ensure_ascii=False, indent=2) + "\n")
+            archive.writestr("导出说明.txt", readme)
+        return output.getvalue()
 
 
 def _meta(workbook) -> dict[str, Any]:

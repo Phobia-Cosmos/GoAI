@@ -1,10 +1,12 @@
 import json
+import zipfile
+from io import BytesIO
 from pathlib import Path
 
 import pytest
 from openpyxl import load_workbook
 
-from goai_data.competition_xlsx import ENTERPRISE_SHEETS, SimulatedCompetitionXlsxImporter, export_competition_xlsx
+from goai_data.competition_xlsx import ENTERPRISE_SHEETS, SimulatedCompetitionXlsxImporter, build_competition_xlsx_archive, export_competition_xlsx
 from goai_data.full_sandbox import FullCompetitionArena, FullFinancialDynamics, SeededHeuristicPolicy, generate_global_orders, generate_simulated_rule_pack
 
 
@@ -98,3 +100,25 @@ def test_competition_xlsx_round_trip_uses_visible_competition_tables(tmp_path: P
         assert rows[-1]["balance_wan"] == pytest.approx(final_cash[team_id])
         for previous, current in zip(rows, rows[1:]):
             assert previous["balance_wan"] + current["amount_wan"] == pytest.approx(current["balance_wan"])
+
+
+def test_competition_archive_matches_the_reference_directory_family() -> None:
+    rules, orders, arena = run_small_match("LX_XA", seed=509)
+    payload = build_competition_xlsx_archive(rules=rules, orders=orders, arena=arena)
+    match_id = rules["match_id"]
+    with zipfile.ZipFile(BytesIO(payload)) as archive:
+        names = set(archive.namelist())
+        assert {f"{match_id}/{year}.xlsx" for year in range(1, 7)} <= names
+        assert {f"{match_id}/{team_id}.xlsx" for team_id in arena.agent_ids} <= names
+        assert f"{match_id}比赛规则.xlsx" in names
+        assert f"{match_id}订单详情.xlsx" in names
+        assert f"{match_id}最终排名和破产信息.xlsx" in names
+        assert {"manifest.json", "导出说明.txt"} <= names
+        rules_book = load_workbook(BytesIO(archive.read(f"{match_id}比赛规则.xlsx")), data_only=True)
+        assert rules_book["Sheet1"]["A5"].value == "名称"
+        assert rules_book["Sheet1"]["L5"].value == "分值"
+        enterprise_book = load_workbook(BytesIO(archive.read(f"{match_id}/{arena.agent_ids[0]}.xlsx")), data_only=True)
+        assert tuple(name for name in enterprise_book.sheetnames if not name.startswith("_")) == ENTERPRISE_SHEETS
+        results_book = load_workbook(BytesIO(archive.read(f"{match_id}最终排名和破产信息.xlsx")), data_only=True)
+        assert tuple(name for name in results_book.sheetnames if not name.startswith("_")) == ("最终排名", "破产信息", "全部企业终局")
+        assert results_book["全部企业终局"].max_row == len(arena.agent_ids) + 1

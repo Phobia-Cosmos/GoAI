@@ -1,0 +1,16 @@
+{
+  "$schema": "https://static.cloudbase.net/cli/cloudbaserc.schema.json",
+  "envId": "arithmetic-challenge-d0ac567f37e",
+  "functionRoot": ".",
+  "functions": [
+    {
+      "name": "stratpilot-showcase",
+      "runtime": "Nodejs20.19",
+      "type": "HTTP",
+      "timeout": 10,
+      "memorySize": 128,
+      "installDependency": false,
+      "description": "StratPilot公开成果、有声视频和操作导览"
+    }
+  ]
+}

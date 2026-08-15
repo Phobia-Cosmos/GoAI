@@ -60,13 +60,14 @@ class SharedDecisionBlackboard:
         self.profile = profile
         self.state = observation.private_state
         self.visible_orders = list(observation.public_state.get("available_orders") or [])
+        self.planning_orders = list(observation.public_state.get("global_orders") or self.visible_orders)
         self.outstanding_orders = [row for row in self.state.get("assigned_orders") or [] if row.get("status") not in {"已交", "违约"}]
         self.period_index = observation.period_index
         self.remaining_quarters = max(0, 20 - observation.period_index)
 
     def demand_by_product(self) -> dict[str, float]:
         result: dict[str, float] = {}
-        for order in [*self.outstanding_orders, *self.visible_orders]:
+        for order in [*self.outstanding_orders, *self.planning_orders]:
             product = str(order.get("product"))
             direct = _number((self.parameters.get("products") or {}).get(product, {}).get("direct_cost_wan")) * _number(order.get("quantity"))
             result[product] = result.get(product, 0.0) + max(0.0, _number(order.get("total_price_wan")) - direct)
@@ -227,7 +228,7 @@ class CapacitySpecialist:
         factories = list(state.get("factories") or [])
         lines = [*(state.get("production_lines") or []), *(state.get("pending_lines") or [])]
         actions: list[Mapping[str, Any]] = []
-        initial_target = 2 if board.profile == "leader" else 1
+        initial_target = 2
         backlog_units = sum(_number(row.get("quantity")) for row in board.outstanding_orders)
         backlog_margin = sum(
             max(0.0, _number(row.get("total_price_wan")) - _number((board.parameters.get("products") or {}).get(str(row.get("product")), {}).get("direct_cost_wan")) * _number(row.get("quantity")))
@@ -264,28 +265,45 @@ class CapacitySpecialist:
         if not can_expand:
             expansion_count = 0
         desired = initial_target if board.period_index < 4 else current_lines + expansion_count
-        desired = min(desired, {"leader": 12, "balanced": 10, "conservative": 8}[board.profile])
+        desired = min(desired, {"leader": 8, "balanced": 8, "conservative": 7}[board.profile])
         capacity = sum(int(row.get("capacity", 0)) for row in factories)
-        purchased_target = {"leader": 3, "balanced": 2, "conservative": 2}[board.profile]
-        planned_purchases = sum(row.get("ownership") == "purchased" for row in factories)
-
-        def add_small_factory() -> None:
-            nonlocal capacity, planned_purchases
-            # Preserve roughly the real XA survivor mix: own the stable base
-            # capacity so its value remains on the balance sheet, then lease
-            # burst capacity instead of locking every expansion into cash.
-            if planned_purchases < purchased_target:
-                actions.append({"action_type": "buy_workshop", "parameters": {"factory": "小厂房"}})
-                planned_purchases += 1
-            else:
-                actions.append({"action_type": "rent_workshop", "parameters": {"factory": "小厂房"}})
-            capacity += 1
-
-        if capacity < desired:
-            if not factories:
-                add_small_factory()
-            while capacity < desired:
-                add_small_factory()
+        factory_specs = board.parameters.get("factories") or {}
+        asset_limits = board.parameters.get("asset_limits") or {}
+        max_factory_total = int(asset_limits.get("max_factories_total", board.parameters.get("max_factory_count", 4)))
+        max_per_type = int(asset_limits.get("max_factories_per_type", 1))
+        counts_by_name: dict[str, int] = {}
+        for factory in factories:
+            name = str(factory.get("name") or "")
+            counts_by_name[name] = counts_by_name.get(name, 0) + 1
+        planned_factory_count = len(factories)
+        cash_budget = _number(state.get("cash_wan"))
+        reserve = {"leader": 140.0, "balanced": 180.0, "conservative": 220.0}[board.profile]
+        while capacity < desired and planned_factory_count < max_factory_total:
+            gap = desired - capacity
+            candidates = [
+                (name, spec) for name, spec in factory_specs.items()
+                if counts_by_name.get(str(name), 0) < max_per_type
+            ]
+            if not candidates:
+                break
+            # Choose the smallest unique factory that covers the missing
+            # line slots; if none covers it, choose the largest remaining.
+            covering = [row for row in candidates if int(row[1].get("capacity", 0)) >= gap]
+            name, spec = min(covering, key=lambda row: (int(row[1].get("capacity", 0)), str(row[0]))) if covering else max(candidates, key=lambda row: (int(row[1].get("capacity", 0)), str(row[0])))
+            purchase = _number(spec.get("purchase_wan"))
+            # A medium starter factory plus two lines is useful, but buying
+            # all of it before first revenue can consume the whole first-year
+            # cash buffer.  Balanced uses leased base capacity; leader buys
+            # when the complete bundle still leaves a meaningful reserve.
+            should_buy = board.profile == "leader" and cash_budget - purchase >= reserve
+            if int(spec.get("capacity", 0)) == 1 and cash_budget - purchase >= reserve:
+                should_buy = True
+            actions.append({"action_type": "buy_workshop" if should_buy else "rent_workshop", "parameters": {"factory": name}})
+            if should_buy:
+                cash_budget -= purchase
+            capacity += int(spec.get("capacity", 0))
+            counts_by_name[str(name)] = counts_by_name.get(str(name), 0) + 1
+            planned_factory_count += 1
         additions = min(max(0, desired - len(lines)), max(0, capacity - len(lines)))
         additions = min(additions, initial_target if board.period_index == 0 else expansion_count)
         existing_products = set(state.get("products") or []) | {str(row.get("target")) for row in state.get("pending_development") or [] if row.get("kind") == "product"}
@@ -381,36 +399,6 @@ class FulfillmentSpecialist:
                 unit_book_value = inventory_value.get(product, 0.0) / inventory.get(product, 1.0)
                 inventory_value[product] = max(0.0, inventory_value.get(product, 0.0) - unit_book_value * quantity)
                 inventory[product] -= quantity
-        emergency_multiplier = _number(board.parameters.get("emergency_product_price_multiplier"), 3.0)
-        default_penalty_rate = _number(board.parameters.get("default_penalty_rate"), 0.2)
-        for order in outstanding:
-            order_id = str(order.get("order_id"))
-            if order_id in planned_delivery_ids or int(order.get("due_period_index", 99)) > board.period_index:
-                continue
-            product, quantity = str(order.get("product")), _number(order.get("quantity"))
-            on_hand = inventory.get(product, 0.0)
-            existing_units = min(quantity, on_hand)
-            existing_book_value = (inventory_value.get(product, 0.0) / on_hand * existing_units) if on_hand > 0 else 0.0
-            missing = max(0.0, quantity - on_hand)
-            product_rule = (board.parameters.get("products") or {}).get(product) or {}
-            emergency_cost = missing * _number(product_rule.get("direct_cost_wan")) * emergency_multiplier
-            # Buy a missing terminal lot only when completing it is no worse
-            # for equity than accepting the contractual default penalty.
-            # The joint risk replay still rejects the action if cash cannot
-            # actually fund it after opening settlement.
-            avoided_penalty = _number(order.get("total_price_wan")) * default_penalty_rate
-            incremental_equity = _number(order.get("total_price_wan")) + avoided_penalty - existing_book_value - emergency_cost
-            if missing > 0 and incremental_equity >= 0:
-                actions.append({"action_type": "emergency_product_purchase", "parameters": {"product_id": product, "quantity": missing}})
-                inventory[product] = inventory.get(product, 0.0) + missing
-                inventory_value[product] = inventory_value.get(product, 0.0) + emergency_cost
-            if inventory.get(product, 0.0) >= quantity:
-                actions.append({"action_type": "order_delivery", "parameters": {"order_id": order.get("order_id")}})
-                planned_delivery_ids.add(order_id)
-                unit_book_value = inventory_value.get(product, 0.0) / inventory.get(product, 1.0)
-                inventory_value[product] = max(0.0, inventory_value.get(product, 0.0) - unit_book_value * quantity)
-                inventory[product] -= quantity
-                required[product] = max(0.0, required.get(product, 0.0) - quantity)
         ready_lines = [copy.deepcopy(row) for row in state.get("production_lines") or [] if row.get("status") == "ready"]
         product_rules = board.parameters.get("products") or {}
 
@@ -497,6 +485,38 @@ class FulfillmentSpecialist:
             unit_book_value = inventory_value.get(product, 0.0) / inventory.get(product, 1.0)
             inventory_value[product] = max(0.0, inventory_value.get(product, 0.0) - unit_book_value * quantity)
             inventory[product] -= quantity
+            required[product] = max(0.0, required.get(product, 0.0) - quantity)
+
+        # Normal capacity is always consumed before an emergency spot buy.
+        # Re-evaluate only the residual shortage of orders due now; otherwise
+        # the policy can pay the emergency multiplier for units its own ready
+        # line could have completed in the same quarterly action bundle.
+        emergency_multiplier = _number(board.parameters.get("emergency_product_price_multiplier"), 3.0)
+        default_penalty_rate = _number(board.parameters.get("default_penalty_rate"), 0.2)
+        for order in outstanding:
+            order_id = str(order.get("order_id"))
+            if order_id in planned_delivery_ids or int(order.get("due_period_index", 99)) > board.period_index:
+                continue
+            product, quantity = str(order.get("product")), _number(order.get("quantity"))
+            on_hand = inventory.get(product, 0.0)
+            existing_units = min(quantity, on_hand)
+            existing_book_value = (inventory_value.get(product, 0.0) / on_hand * existing_units) if on_hand > 0 else 0.0
+            missing = max(0.0, quantity - on_hand)
+            product_rule = (board.parameters.get("products") or {}).get(product) or {}
+            emergency_cost = missing * _number(product_rule.get("direct_cost_wan")) * emergency_multiplier
+            avoided_penalty = _number(order.get("total_price_wan")) * default_penalty_rate
+            incremental_equity = _number(order.get("total_price_wan")) + avoided_penalty - existing_book_value - emergency_cost
+            if missing > 0 and incremental_equity >= 0:
+                actions.append({"action_type": "emergency_product_purchase", "parameters": {"product_id": product, "quantity": missing}})
+                inventory[product] = inventory.get(product, 0.0) + missing
+                inventory_value[product] = inventory_value.get(product, 0.0) + emergency_cost
+            if inventory.get(product, 0.0) >= quantity:
+                actions.append({"action_type": "order_delivery", "parameters": {"order_id": order.get("order_id")}})
+                planned_delivery_ids.add(order_id)
+                unit_book_value = inventory_value.get(product, 0.0) / inventory.get(product, 1.0)
+                inventory_value[product] = max(0.0, inventory_value.get(product, 0.0) - unit_book_value * quantity)
+                inventory[product] -= quantity
+                required[product] = max(0.0, required.get(product, 0.0) - quantity)
         # Maintain a rolling two-batch material cover.  After orders are won,
         # this is capped by the outstanding production need; immediately
         # before an annual order pool it pre-positions a starter stock.  The
@@ -557,7 +577,7 @@ class OrderPortfolioSpecialist:
             product = str(order.get("product"))
             committed[product] = committed.get(product, 0.0) + _number(order.get("quantity"))
         candidates: list[tuple[float, float, float, Mapping[str, Any]]] = []
-        maximum_lines = {"leader": 12, "balanced": 10, "conservative": 8}[board.profile]
+        maximum_lines = {"leader": 8, "balanced": 8, "conservative": 7}[board.profile]
         qualified_products = [product for product in _product_portfolio(board.observation.agent_id, board.profile) if product in state.get("products", [])]
         target_lines_by_product: dict[str, int] = {}
         if qualified_products:
@@ -638,14 +658,24 @@ class OrderPortfolioSpecialist:
                 component
                 and any(str(line.get("product_id")) == component for line in [*(state.get("production_lines") or []), *(state.get("pending_lines") or [])])
             )
-            two_stage = bool(board.observation.public_state.get("post_allocation_phase_enabled"))
-            prospective_limit = (
-                {"leader": 4, "balanced": 3, "conservative": 2}[board.profile]
-                if two_stage
-                else (2 if board.profile in {"leader", "balanced"} else 1)
+            # Only capacity already present in the jointly replayed action
+            # bundle may back an order claim.  The web competition has one
+            # submission per quarter, so a line that the Capacity specialist
+            # merely hoped to add next quarter is not a contractual resource.
+            # Counting those hypothetical lines made one physical line look
+            # like three and caused deterministic over-awarding and defaults.
+            phase_flag = board.observation.public_state.get("post_allocation_phase_enabled")
+            # Older research observations omit the phase flag and use the
+            # explicit allow_prospective_new_cell opt-in.  A live single-phase
+            # arena publishes False and must never use hypothetical capacity.
+            two_stage = bool(phase_flag) or (phase_flag is None and self.allow_prospective_new_cell)
+            prospective_limit = {"leader": 4, "balanced": 3, "conservative": 2}[board.profile]
+            prospective_lines = (
+                min(prospective_limit, max(0, target_lines_by_product.get(product, 0) - len(product_lines)))
+                if two_stage and (product_lines or component_cell_exists)
+                else 0
             )
-            prospective_lines = min(prospective_limit, max(0, target_lines_by_product.get(product, 0) - len(product_lines))) if product_lines or component_cell_exists else 0
-            if not product_lines and not component_cell_exists and product == planned_new_cell:
+            if two_stage and not product_lines and not component_cell_exists and product == planned_new_cell:
                 prospective_lines = 1
             return capacity + prospective_lines * max(0, gap - 1)
 
@@ -684,7 +714,7 @@ class OrderPortfolioSpecialist:
         candidates.sort(key=lambda row: (-row[0], -row[1], _number(row[3].get("quantity")), str(row[3].get("order_id"))))
         annual_budget = {"leader": 12, "balanced": 10, "conservative": 8}[board.profile]
         budget = annual_budget if board.period_index % 4 == 0 else 3
-        remaining_target = {"leader": 42, "balanced": 34, "conservative": 28}[board.profile] - len(state.get("assigned_orders") or [])
+        remaining_target = {"leader": 32, "balanced": 30, "conservative": 26}[board.profile] - len(state.get("assigned_orders") or [])
         selected: list[Mapping[str, Any]] = []
         planned_commitment = dict(committed)
         selected_margin = 0.0

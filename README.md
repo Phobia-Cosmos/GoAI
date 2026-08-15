@@ -1,8 +1,8 @@
-# GoAI
+# StratPilot
 
-GoAI 是面向企业经营比赛的可审计辅助决策系统。它以规则包、结构化事件和确定性财务状态机为核心，在人工确认前生成并比较多个可执行经营方案；LLM 仅是可选的规划与解释层，不负责财务真值或动作合法性。
+StratPilot是面向企业经营沙盘的可审计人机协同决策系统。它以每场独立规则包、结构化事件和确定性财务状态机为核心，在人工确认前生成并比较多个带理由的可执行经营方案；LLM 仅是可选的语言理解与解释层，不负责财务真值或动作合法性。
 
-当前可交付版本、真实 XA 指标对照和后续路线见 [`docs/CURRENT_VERSION_SUMMARY.md`](docs/CURRENT_VERSION_SUMMARY.md)；初赛提交与保密边界见 [`docs/COMPETITION_SUBMISSION_SECURITY.md`](docs/COMPETITION_SUBMISSION_SECURITY.md)；完整文档索引见 [`docs/README.md`](docs/README.md)。
+新的产品定位、每场规则生成、人机差异、反事实评估和脱敏发布方案见 [`docs/PRODUCT_SYSTEM_DESIGN.md`](docs/PRODUCT_SYSTEM_DESIGN.md)；当前可交付版本和内部基准对照见 [`docs/CURRENT_VERSION_SUMMARY.md`](docs/CURRENT_VERSION_SUMMARY.md)；初赛提交与保密边界见 [`docs/COMPETITION_SUBMISSION_SECURITY.md`](docs/COMPETITION_SUBMISSION_SECURITY.md)。
 
 ## 目录
 

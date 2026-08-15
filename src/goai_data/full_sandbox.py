@@ -364,7 +364,9 @@ def generate_global_orders(
             quantity = rng.randint(*(entry_range if entry_level else advanced_range))
             direct_cost = _number((params.get("products") or {}).get(product, {}).get("direct_cost_wan"), 20)
             market_factor = 1.0 + 0.08 * markets.index(market)
-            margin_bounds = (1.25, 2.65) if complexity in {"large", "stress"} else (1.35, 2.30)
+            # Large matches need varied orders without letting a few random
+            # high-margin lots dominate the entire five-year ranking.
+            margin_bounds = (1.40, 2.35) if complexity == "large" else ((1.30, 2.55) if complexity == "stress" else (1.35, 2.30))
             margin = rng.uniform(*margin_bounds)
             total = round(max(direct_cost * quantity * market_factor * margin, direct_cost * quantity + 1), 0)
             quarter = rng.randint(1, 4)
@@ -573,6 +575,7 @@ class FinancialSandboxState:
     production_lines: list[dict[str, Any]] = field(default_factory=list)
     pending_material_orders: list[dict[str, Any]] = field(default_factory=list)
     pending_development: list[dict[str, Any]] = field(default_factory=list)
+    completed_development: list[dict[str, Any]] = field(default_factory=list)
     pending_lines: list[dict[str, Any]] = field(default_factory=list)
     pending_production: list[dict[str, Any]] = field(default_factory=list)
     short_loans: list[dict[str, Any]] = field(default_factory=list)
@@ -684,6 +687,7 @@ class FullFinancialDynamics:
             factories=copy.deepcopy(list(configured.get("factories") or [])), production_lines=copy.deepcopy(list(configured.get("production_lines") or [])),
             pending_material_orders=copy.deepcopy(list(configured.get("pending_material_orders") or [])),
             pending_development=copy.deepcopy(list(configured.get("pending_development") or [])),
+            completed_development=copy.deepcopy(list(configured.get("completed_development") or [])),
             pending_lines=copy.deepcopy(list(configured.get("pending_lines") or [])),
             pending_production=copy.deepcopy(list(configured.get("pending_production") or [])),
             short_loans=copy.deepcopy(list(configured.get("short_loans") or [])),
@@ -880,6 +884,8 @@ class FullFinancialDynamics:
                 "development_id": _stable_id("DEV", state.team_id, state.period, kind, target),
                 "kind": kind,
                 "target": target,
+                "started_period": state.period,
+                "started_period_index": state.period_index,
                 "payment_timing": "year_end",
                 "remaining_installments": duration_years,
                 "installment_wan": _number(rule.get("fee_wan_per_year")),
@@ -894,6 +900,8 @@ class FullFinancialDynamics:
             "development_id": _stable_id("DEV", state.team_id, state.period, kind, target),
             "kind": kind,
             "target": target,
+            "started_period": state.period,
+            "started_period_index": state.period_index,
             "payment_timing": "quarterly",
             "remaining_installments": max(0, duration - 1),
             "installment_wan": installment,
@@ -904,6 +912,14 @@ class FullFinancialDynamics:
         if duration == 1:
             getattr(next_state, collection).append(target)
             next_state.pending_development.remove(pending)
+            completed = {
+                "development_id": pending["development_id"], "kind": kind, "target": target,
+                "started_period": state.period, "started_period_index": state.period_index,
+                "completed_period": state.period, "completed_period_index": state.period_index,
+            }
+            next_state.completed_development.append(completed)
+            completion_event = self._journal(next_state, "development_completed", details={"kind": kind, "target": target})
+            return FinancialTransition("success", next_state, (event, completion_event))
         return FinancialTransition("success", next_state, (event,))
 
     def _factory(self, state: FinancialSandboxState, mode: str, values: Mapping[str, Any]) -> FinancialTransition:
@@ -911,16 +927,23 @@ class FullFinancialDynamics:
         rule = (self.parameters.get("factories") or {}).get(name)
         if not rule:
             return self._reject(state, "厂房类型无效")
+        limits = dict(self.parameters.get("asset_limits") or {})
+        maximum_total = int(limits.get("max_factories_total", 3))
+        maximum_per_type = int(limits.get("max_factories_per_type", 1))
+        if len(state.factories) >= maximum_total:
+            return self._reject(state, f"厂房总数上限为 {maximum_total} 座")
+        if sum(str(row.get("name")) == name for row in state.factories) >= maximum_per_type:
+            return self._reject(state, f"{name}数量上限为 {maximum_per_type} 座")
         next_state = copy.deepcopy(state)
         factory_id = _stable_id("F", state.team_id, state.period, len(state.factories))
         if mode == "buy":
             cost = _number(rule.get("purchase_wan"))
-            asset = {"factory_id": factory_id, "name": name, "ownership": "purchased", "capacity": int(rule.get("capacity", 0)), "cost_wan": cost, "book_value_wan": cost, "accumulated_depreciation_wan": 0.0}
+            asset = {"factory_id": factory_id, "name": name, "ownership": "purchased", "capacity": int(rule.get("capacity", 0)), "cost_wan": cost, "book_value_wan": cost, "accumulated_depreciation_wan": 0.0, "acquired_period": state.period, "acquired_period_index": state.period_index}
             next_state.factories.append(asset)
             event = self._journal(next_state, "factory_purchased", cash=-cost, cash_category="fixed_asset_purchase", details={"factory": asset})
         else:
             rent = _number(rule.get("rent_wan_per_year"))
-            asset = {"factory_id": factory_id, "name": name, "ownership": "rented", "capacity": int(rule.get("capacity", 0)), "annual_rent_wan": rent, "next_rent_period_index": state.period_index + 4}
+            asset = {"factory_id": factory_id, "name": name, "ownership": "rented", "capacity": int(rule.get("capacity", 0)), "annual_rent_wan": rent, "next_rent_period_index": state.period_index + 4, "acquired_period": state.period, "acquired_period_index": state.period_index}
             next_state.factories.append(asset)
             event = self._expense(next_state, rent, "factory_rent_expense", {"factory": asset})
         return FinancialTransition("success", next_state, (event,))
@@ -939,8 +962,18 @@ class FullFinancialDynamics:
         first_payment = min(cost, installment)
         completed_index = state.period_index if install == 0 else state.period_index + install
         completed_year = _period_from_index(completed_index)[0]
+        assigned_counts: dict[str, int] = {}
+        for existing in state.production_lines + state.pending_lines:
+            assigned_id = str(existing.get("factory_id") or "")
+            if assigned_id:
+                assigned_counts[assigned_id] = assigned_counts.get(assigned_id, 0) + 1
+        factory_id = next(
+            (factory.get("factory_id") for factory in state.factories if assigned_counts.get(str(factory.get("factory_id")), 0) < int(factory.get("capacity", 0))),
+            None,
+        )
         line = {
             "line_id": _stable_id("L", state.team_id, state.period, used), "line_type": line_type,
+            "factory_id": factory_id,
             "product_id": values.get("product_id"), "ownership": "rented" if line_type == "租赁线" else "purchased",
             "cost_wan": cost, "book_value_wan": first_payment, "accumulated_depreciation_wan": 0.0,
             "residual_value_wan": _number(rule.get("residual_value_wan")),
@@ -948,6 +981,8 @@ class FullFinancialDynamics:
             "maintenance_wan_per_year": _number(rule.get("maintenance_wan_per_year")),
             "status": "ready" if install == 0 else "installing",
             "completion_period_index": completed_index, "completed_year": completed_year,
+            "ordered_period": state.period, "ordered_period_index": state.period_index,
+            "completed_period": _period_label(completed_index),
             "remaining_investment_wan": max(0.0, cost - first_payment),
             "next_investment_period_index": state.period_index + 1,
         }
@@ -1124,7 +1159,13 @@ class FullFinancialDynamics:
                 if item["target"] not in bucket:
                     bucket.append(item["target"])
                 next_state.pending_development.remove(item)
-                events.append({"event_type": "development_completed", "kind": item["kind"], "target": item["target"], "period": state.period})
+                completed = {
+                    "development_id": item.get("development_id"), "kind": item["kind"], "target": item["target"],
+                    "started_period": item.get("started_period"), "started_period_index": item.get("started_period_index"),
+                    "completed_period": state.period, "completed_period_index": state.period_index,
+                }
+                next_state.completed_development.append(completed)
+                events.append(self._journal(next_state, "development_completed", details={"kind": item["kind"], "target": item["target"]}))
             if next_state.bankrupt:
                 return FinancialTransition("success", next_state, tuple(events))
 
@@ -1362,6 +1403,8 @@ class FullCompetitionArena(MultiAgentEnvironment):
         preassignment_mode: str = "initial",
         quarter_checkpoints: Mapping[str, Mapping[int, Mapping[str, Any]]] | None = None,
         post_allocation_phase: bool = False,
+        full_order_catalog_visible: bool = False,
+        order_claim_lead_quarters: int = 0,
     ) -> None:
         self.dynamics = dynamics
         self._agent_ids = tuple(sorted(map(str, team_ids)))
@@ -1378,6 +1421,8 @@ class FullCompetitionArena(MultiAgentEnvironment):
         # default remains the historical one-step contract so replay files
         # and existing callers retain their meaning.
         self.post_allocation_phase = bool(post_allocation_phase)
+        self.full_order_catalog_visible = bool(full_order_catalog_visible)
+        self.order_claim_lead_quarters = max(0, int(order_claim_lead_quarters))
         self.decision_phase = "operating"
         self.quarter_checkpoints = {
             str(team_id): {int(index): copy.deepcopy(dict(row)) for index, row in checkpoints.items()}
@@ -1473,10 +1518,20 @@ class FullCompetitionArena(MultiAgentEnvironment):
         self.decision_phase = "operating"
         return self._observations()
 
-    def _visible_orders(self, state: FinancialSandboxState) -> list[dict[str, Any]]:
+    def _visible_orders(self, state: FinancialSandboxState, *, claimable_only: bool = False) -> list[dict[str, Any]]:
         output = []
-        for row in state.available_orders:
-            if int(row.get("release_period_index", 0)) > state.period_index or row.get("owner_team_id") not in {None, ""}:
+        allocation_by_order = {str(row.get("order_id")): row for row in self.order_log if row.get("winner_team_id")}
+        source_orders = self.global_orders if self.full_order_catalog_visible and not claimable_only else state.available_orders
+        for row in source_orders:
+            release_index = int(row.get("release_period_index", 0))
+            claim_index = max(0, int(row.get("claim_period_index", release_index - self.order_claim_lead_quarters)))
+            allocation = allocation_by_order.get(str(row.get("order_id")))
+            claimable_now = not allocation and (state.period_index == claim_index if self.full_order_catalog_visible else release_index <= state.period_index)
+            if row.get("owner_team_id") not in {None, ""} and allocation is None:
+                continue
+            if claimable_only and not claimable_now:
+                continue
+            if not self.full_order_catalog_visible and release_index > state.period_index:
                 continue
             visible = copy.deepcopy(row)
             # The XA global-order workbook is a terminal export.  These final
@@ -1485,7 +1540,12 @@ class FullCompetitionArena(MultiAgentEnvironment):
             for field in ("final_owner_team_id", "final_status", "final_result_available_at", "calibration_owner_team_id"):
                 visible.pop(field, None)
             visible["owner_team_id"] = None
-            visible["status"] = "未分配"
+            visible["status"] = "已分配" if allocation else (("申领窗口" if claimable_now else "提前规划") if self.full_order_catalog_visible else "未分配")
+            visible["winner_team_id"] = allocation.get("winner_team_id") if allocation else None
+            visible["claim_period_index"] = claim_index
+            visible["claim_period"] = _period_label(claim_index)
+            visible["claimable_now"] = claimable_now
+            visible["planning_lead_quarters"] = max(0, release_index - claim_index)
             output.append(visible)
         return output
 
@@ -1508,7 +1568,8 @@ class FullCompetitionArena(MultiAgentEnvironment):
                 private_state,
                 {
                     "period": state.period,
-                    "available_orders": self._visible_orders(state),
+                    "available_orders": self._visible_orders(state, claimable_only=True),
+                    "global_orders": self._visible_orders(state),
                     "public_order_results": self._public_order_results(),
                     "agent_ids": list(self.agent_ids),
                     "information_policy": "released_orders_and_sanitized_results_only_private_operations_isolated",
@@ -1681,7 +1742,7 @@ class FullCompetitionArena(MultiAgentEnvironment):
                         order = order_by_id.get(order_id)
                         if order_id in allocated_ids:
                             continue
-                        visible_ids = {str(row.get("order_id")) for row in self._visible_orders(next_states[team_id])}
+                        visible_ids = {str(row.get("order_id")) for row in self._visible_orders(next_states[team_id], claimable_only=True)}
                         if order is None or order_id not in visible_ids or not self._eligible(next_states[team_id], order):
                             message = f"订单不存在、尚未发布或资格不足：{order_id}"
                             action_rejections[team_id].append(message)
