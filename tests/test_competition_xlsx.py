@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 from openpyxl import load_workbook
 
-from goai_data.competition_xlsx import ENTERPRISE_SHEETS, SimulatedCompetitionXlsxImporter, build_competition_xlsx_archive, export_competition_xlsx
+from goai_data.competition_xlsx import ENTERPRISE_SHEETS, SimulatedCompetitionXlsxImporter, _write_enterprise_workbook, build_competition_xlsx_archive, export_competition_xlsx
 from goai_data.full_sandbox import FullCompetitionArena, FullFinancialDynamics, SeededHeuristicPolicy, generate_global_orders, generate_simulated_rule_pack
 
 
@@ -122,3 +122,38 @@ def test_competition_archive_matches_the_reference_directory_family() -> None:
         results_book = load_workbook(BytesIO(archive.read(f"{match_id}最终排名和破产信息.xlsx")), data_only=True)
         assert tuple(name for name in results_book.sheetnames if not name.startswith("_")) == ("最终排名", "破产信息", "全部企业终局")
         assert results_book["全部企业终局"].max_row == len(arena.agent_ids) + 1
+
+
+def test_enterprise_export_preserves_timestamps_and_uses_chinese_cashflow_notes(tmp_path: Path) -> None:
+    rules = generate_simulated_rule_pack(load_base("LX_XA"), seed=817, match_id="SIM_FIELDS", team_count=2, source_match_id="LX_XA")
+    dynamics = FullFinancialDynamics(rules)
+    state = dynamics.initial_state("SIM_FIELDS01")
+    for action in (
+        {"action_type": "long_loan_borrow", "parameters": {"principal_wan": 100, "term_years": 4}},
+        {"action_type": "develop_product", "parameters": {"target": "P2"}},
+        {"action_type": "buy_workshop", "parameters": {"factory": "小厂房"}},
+        {"action_type": "buy_product_line", "parameters": {"line_type": "自动线", "product_id": "P1"}},
+        {"action_type": "material_order", "parameters": {"materials": {"R1": 2}}},
+    ):
+        transition = dynamics.apply(state, action)
+        assert transition.status == "success"
+        state = transition.state
+
+    assert state.completed_development[0]["completed_period"] == "Y1Q1"
+    workbook_path = tmp_path / "SIM_FIELDS01.xlsx"
+    _write_enterprise_workbook(workbook_path, state, rules)
+    workbook = load_workbook(workbook_path, data_only=True)
+
+    loans = workbook["银行贷款"]
+    assert loans["G4"].value == "第1年1季"
+    development = workbook["研发认证"]
+    assert development["K5"].value == "第1年1季"
+    assert development["M5"].value == "第1年1季"
+    assets = workbook["厂房与生产线"]
+    assert assets["J4"].value == "第1年1季"
+    assert assets["K8"].value == "第1年3季"
+    assert assets["L8"].value == "第1年1季"
+    notes = [workbook["现金流量表"].cell(row, 7).value for row in range(4, workbook["现金流量表"].max_row + 1)]
+    assert any(note == "申请长期贷款" for note in notes)
+    assert any(note.startswith("订购[自动线]") for note in notes)
+    assert all("{" not in str(note) and "}" not in str(note) for note in notes)

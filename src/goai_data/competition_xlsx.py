@@ -244,7 +244,7 @@ def _write_assets(workbook: Workbook, state: FinancialSandboxState, rules: Mappi
     ws.cell(row, 2, "生产线信息")
     _header(ws, row + 1, ["ID", "名称", "厂房", "产品", "状态", "累计折旧", "开产时间", "转产时间", "剩余时间", "建成时间", "开建时间"], 2)
     row += 2
-    for item in state.production_lines:
+    for item in [*state.production_lines, *state.pending_lines]:
         completed = item.get("completed_period") or _period_index_cn(item.get("completion_period_index"))
         ordered = item.get("ordered_period") or _period_index_cn(item.get("ordered_period_index"))
         values = [item.get("line_id"), item.get("line_type"), item.get("factory_id") or "-", item.get("product_id") or "-", item.get("status"), _money(item.get("accumulated_depreciation_wan")), "-", "-", "0季", _period_cn(completed), _period_cn(ordered)]
@@ -276,9 +276,10 @@ def _event_note(event: Mapping[str, Any]) -> str:
         "emergency_product_purchase": "紧急采购产品", "production_started": "开始生产",
         "production_completed": "生产完成", "order_delivered": "交付订单并确认销售收入",
         "order_default_penalty": "支付订单违约损失", "receivable_collected": "收回应收款",
-        "receivable_discounted": "贴现应收款", "short_loan_borrowed": "申请短期贷款",
+        "short_loan_borrowed": "申请短期贷款",
         "short_loan_repaid": "偿还短期贷款本息", "long_loan_borrowed": "申请长期贷款",
         "long_loan_principal_repaid": "偿还长期贷款本金", "long_loan_interest_paid": "支付长期贷款利息",
+        "interest_expense": "支付贷款利息", "receivable_discounted": "贴现应收款",
         "management_fee_expense": "支付行政管理费", "maintenance_expense": "支付生产线维护费",
         "advertising_expense": "广告投放", "auction_bid_fee": "支付竞单费用",
         "spy_information_purchase": "购买竞争情报", "tax_expense": "计提所得税",
@@ -615,8 +616,8 @@ def _write_annual_public(path: Path, year: int, arena: FullCompetitionArena, rul
     _header(ws, 2, ["所属用户", "名称", "厂房", "产品", "状态", "累计折旧", "开产时间", "转产时间", "剩余时间", "建成时间", "开建时间"], 2)
     row = 3
     for team_id, state in sorted(arena.states.items()):
-        for line in state.production_lines:
-            values = [team_id, line.get("line_type"), line.get("factory_id") or "-", line.get("product_id") or "-", line.get("status"), _money(line.get("accumulated_depreciation_wan")), "-", "-", "0季", _period_cn(line.get("completed_period")), _period_cn(line.get("ordered_period"))]
+        for line in [*state.production_lines, *state.pending_lines]:
+            values = [team_id, line.get("line_type"), line.get("factory_id") or "-", line.get("product_id") or "-", line.get("status"), _money(line.get("accumulated_depreciation_wan")), "-", "-", "0季", _period_cn(line.get("completed_period") or _period_index_cn(line.get("completion_period_index"))), _period_cn(line.get("ordered_period") or _period_index_cn(line.get("ordered_period_index")))]
             for col, value in enumerate(values, 2):
                 ws.cell(row, col, value)
             row += 1
